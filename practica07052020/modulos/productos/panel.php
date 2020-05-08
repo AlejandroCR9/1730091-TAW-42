@@ -93,14 +93,14 @@
                         <td><?php echo $row['cat'] ?></td>
                         <td>
                           <div class="row justify-content-center">
-                            <div class="col-6 justify-content-center">
+                            <!--<div class="col-6 justify-content-center">
                               <span>
                                 <form action="editar.php" method="POST">
                                   <input type=image src="../../img/edit.png" width="20" data-toggle="tooltip" data-placement="top" title="Modificar">
                                   <input type="hidden" value="<?php echo $row["id"]?>" name="id">
                                 </form>
                             </span>
-                            </div>
+                            </div>-->
                             <div class="col-6 justify-content-center">
                               <span>
                               <form action="eliminar.php" method="POST">
