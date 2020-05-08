@@ -1,7 +1,7 @@
 <?php
   include_once "../../conn.php";
   session_start();
- 
+  
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Juegos</title>
+  <title>Productos</title>
 
   <!-- Custom fonts for this template -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -53,8 +53,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Juegos</h1>
-          <p class="mb-4">Datos de las juegos registradas en el sistema.</p>
+          <h1 class="h3 mb-2 text-gray-800">Productos</h1>
+          <p class="mb-4">Datos de los productos.</p>
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -63,10 +63,7 @@
                     <span class="icon text-white-50">
                         <i class="fa fa-pencil-square"></i>
                     </span>
-                    <span class="text">Registrar juego</span>
-                </a>
-                <a onclick="window.print();" class="btn btn-info btn-circle" style="margin-left: 800px;">
-                    <i class="fas fa-download" style="color: white;"></i>
+                    <span class="text">Registrar productos</span>
                 </a>
             </div>
             <div class="card-body">
@@ -74,19 +71,26 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Título</th>
-                      <th>Plataforma</th>
-                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Descripcion</th>
+                      <th>P/Venta</th>
+                      <th>P/Compra</th>
+                      <th>Color</th>
+                      <th>Fabricante</th>
+                      <th>Categoria</th>
                       <th>Acción</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($conn->query('SELECT c.idJuego AS id, c.titulo AS titulo, p.nombre AS plataforma, c.rutaImagen AS imagen 
-                    FROM juegos c INNER JOIN plataformas p ON c.idPlataforma = p.idPlataforma') as $row){ ?>
+                    <?php foreach ($conn->query('SELECT p.id, p.nombre,p.descripcion,p.precioventa,p.preciocompra,p.color,c.nombre AS cat,f.nombre AS fabri FROM productos p INNER JOIN categoriaproductos c ON p.idcategoria=c.id INNER JOIN fabricantes f ON p.idfabricante=f.id') as $row){ ?>
                     <tr>
-                        <td><?php echo $row['titulo'] ?></td>
-                        <td><?php echo $row['plataforma'] ?></td>
-                        <td><?php $pic = $row['imagen']; echo "<img src='$pic' width='50'></img>" ?></td>
+                        <td><?php echo $row['nombre'] ?></td>
+                        <td><?php echo $row['descripcion'] ?></td>
+                        <td><?php echo $row['precioventa'] ?></td>
+                        <td><?php echo $row['preciocompra'] ?></td>
+                        <td><?php echo $row['color'] ?></td>
+                        <td><?php echo $row['fabri'] ?></td>
+                        <td><?php echo $row['cat'] ?></td>
                         <td>
                           <div class="row justify-content-center">
                             <div class="col-6 justify-content-center">
@@ -136,9 +140,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <?php
-    include "../../logout-modal.php";
-  ?>
 
 
   <!-- Bootstrap core JavaScript-->

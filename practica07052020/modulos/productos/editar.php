@@ -1,13 +1,7 @@
 <?php
   include_once "../../conn.php";
   session_start();
-  
-  $usuario = $_SESSION['idUsuario'];
-  if ($usuario == null || $usuario == ''){
-    header("Location: ../../login.php");
-    die();
-  }
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Juegos</title>
+  <title>Productos</title>
 
   <!-- Custom fonts for this template -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -59,7 +53,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Modificar juego</h1>
+          <h1 class="h3 mb-2 text-gray-800">Modificar productos</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -68,26 +62,41 @@
             </div>
             <div class="card-body">
               <?php 
-                 $Id=$_POST["id"];
-                $sql="SELECT idJuego, titulo, idPlataforma FROM juegos WHERE idJuego = '$Id'";
+                 $id=$_POST["id"];
+                $sql="SELECT * FROM productos WHERE id = '$id'";
                 $datos=mysqli_query($conn,$sql);
                 $reg=mysqli_fetch_array($datos);
               ?>
                 <form class="user" method="POST" action="sqleditar.php">
-                <input type="hidden" name="id" value=<?php print_r($reg["idJuego"]); ?>>
+                <input type="hidden" name="id" value=<?php print_r($reg["id"]); ?>>
                 <div class="form-group row">
                     <div class="col-sm-4">
-                      <label for="titulo">Título</label>
-                      <input type="text" class="form-control" id="titulo" name="titulo" value=<?php print_r($reg["titulo"]); ?> required>
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" value=<?php print_r($reg["nombre"]); ?> required>
                     </div>
                     <div class="col-sm-4">
-                      <label for="fecha">Plataforma</label>
+                      <label for="direccion">Descripcion</label>
+                      <input type="text" class="form-control" id="direccion" name="direccion" value=<?php print_r($reg["direccion"]); ?> required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="telefono">Telefono</label>
+                      <input type="text" class="form-control" id="telefono" name="telefono" value=<?php print_r($reg["telefono"]); ?> required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="correo">Correo</label>
+                      <input type="text" class="form-control" id="correo" name="correo" value=<?php print_r($reg["correo"]); ?> required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="categoria">Categoria</label>
                       <!--<input type="date" class="form-control" id="fecha" name="fecha">-->
-                      <select name="plataforma" id="plataforma" class="form-control">
-                      <?php $query = $mysqli -> query ("SELECT idPlataforma, nombre FROM plataformas");
+                      <select name="categoria" id="categoria" class="form-control">
+                      <?php $query = $mysqli -> query ("SELECT id, nombre FROM categoriafabricantes");
                         while ($valores = mysqli_fetch_array($query)) {
-                          if (!($reg["plataforma"]==$valores[nombre])) {
-                            echo '<option value="'.$valores[idPlataforma].'">'.$valores[nombre].'</option>';
+                          
+                          if (($reg["id"]==$valores['id'])) {
+                            echo '<option value="'.$valores['id'].'" selected>'.$valores['nombre'].'</option>';
+                          }else{
+                             echo '<option value="'.$valores['id'].'">'.$valores['nombre'].'</option>';
                           }
                         } ?>
                       </select>

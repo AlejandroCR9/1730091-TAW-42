@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Categoria</title>
+  <title>Productos</title>
 
   <!-- Custom fonts for this template -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -54,7 +54,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Registrar juego</h1>
+          <h1 class="h3 mb-2 text-gray-800">Registrar productos</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -65,24 +65,44 @@
                 <form class="user" method="POST" action="sqlagregar.php" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-4">
-                      <label for="titulo">Título</label>
-                      <input type="text" class="form-control" id="titulo" name="titulo" required>
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" required>
                     </div>
                     <div class="col-sm-4">
-                      <label for="plataforma">Plataforma</label>
+                      <label for="descripcion">Descripcion</label>
+                      <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="precioventa">Precio Venta</label>
+                      <input type="number" class="form-control" id="precioventa" name="precioventa" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="preciocompra">Precio Compra</label>
+                      <input type="number" class="form-control" id="preciocompra" name="preciocompra" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="color">Color</label>
+                      <input type="text" class="form-control" id="color" name="color" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="categoria">Categoria</label>
                       <!--<input type="date" class="form-control" id="fecha" name="fecha">-->
-                      <select name="plataforma" id="plataforma" class="form-control">
-                      <?php $query = $mysqli -> query ("SELECT idPlataforma, nombre FROM plataformas");
+                      <select name="categoria" id="categoria" class="form-control">
+                      <?php $query = $mysqli -> query ("SELECT id, nombre FROM categoriaproductos");
                         while ($valores = mysqli_fetch_array($query)) {
-                          if (!($reg["plataforma"]==$valores[nombre])) {
-                            echo '<option value="'.$valores[idPlataforma].'">'.$valores[nombre].'</option>';
-                          }
+                            echo '<option value="'.$valores['id'].'">'.$valores['nombre'].'</option>'; 
                         } ?>
                       </select>
                     </div>
                     <div class="col-sm-4">
-                      <label for="foto">Imagen</label>
-                      <input type="file" class="form-control-file" id="foto" name="foto">
+                      <label for="fabricante">Fabricante</label>
+                      <!--<input type="date" class="form-control" id="fecha" name="fecha">-->
+                      <select name="fabricante" id="fabricante" class="form-control">
+                      <?php $query = $mysqli -> query ("SELECT id, nombre FROM fabricantes");
+                        while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="'.$valores['id'].'">'.$valores['nombre'].'</option>'; 
+                        } ?>
+                      </select>
                     </div>
                 </div>
                     <a href="panel.php" class="btn btn-primary btn-icon-split">
@@ -120,9 +140,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <?php
-    include "../../logout-modal.php";
-  ?>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
