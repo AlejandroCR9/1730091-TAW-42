@@ -54,7 +54,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Registrar juego</h1>
+          <h1 class="h3 mb-2 text-gray-800">Registrar fabricante</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -65,24 +65,30 @@
                 <form class="user" method="POST" action="sqlagregar.php" enctype="multipart/form-data">
                 <div class="form-group row">
                     <div class="col-sm-4">
-                      <label for="titulo">Título</label>
-                      <input type="text" class="form-control" id="titulo" name="titulo" required>
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" name="nombre" required>
                     </div>
                     <div class="col-sm-4">
-                      <label for="plataforma">Plataforma</label>
+                      <label for="direccion">Direccion</label>
+                      <input type="text" class="form-control" id="direccion" name="direccion" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="telefono">Telefono</label>
+                      <input type="text" class="form-control" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="correo">Correo</label>
+                      <input type="text" class="form-control" id="correo" name="correo" required>
+                    </div>
+                    <div class="col-sm-4">
+                      <label for="categoria">Categoria</label>
                       <!--<input type="date" class="form-control" id="fecha" name="fecha">-->
-                      <select name="plataforma" id="plataforma" class="form-control">
-                      <?php $query = $mysqli -> query ("SELECT idPlataforma, nombre FROM plataformas");
+                      <select name="categoria" id="categoria" class="form-control">
+                      <?php $query = $mysqli -> query ("SELECT id, nombre FROM categoriafabricantes");
                         while ($valores = mysqli_fetch_array($query)) {
-                          if (!($reg["plataforma"]==$valores[nombre])) {
-                            echo '<option value="'.$valores[idPlataforma].'">'.$valores[nombre].'</option>';
-                          }
+                            echo '<option value="'.$valores['id'].'">'.$valores['nombre'].'</option>'; 
                         } ?>
                       </select>
-                    </div>
-                    <div class="col-sm-4">
-                      <label for="foto">Imagen</label>
-                      <input type="file" class="form-control-file" id="foto" name="foto">
                     </div>
                 </div>
                     <a href="panel.php" class="btn btn-primary btn-icon-split">

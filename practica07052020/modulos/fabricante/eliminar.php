@@ -1,20 +1,11 @@
 <?php
 include_once "../../conn.php";
 
-/*session_start();
-$idUser = $_SESSION['idUsuario'];
-$sql2="SELECT idOrganizacion FROM organizaciones WHERE idUsuario='$idUser'"; 
-$idOrg="";
-$result = mysqli_query($conn, $sql2);
-if ($valores = mysqli_fetch_array($result)) {
-  $idOrg = $valores['idOrganizacion'];
-}*/
+$id = $_POST['id'];
 
-$Id = $_POST['id'];
-
-$sql = "DELETE FROM juegos WHERE idJuego ='$Id'";
+$sql = "DELETE FROM fabricantes WHERE id ='$id'";
 if(mysqli_query($conn,$sql)){
-    echo '<script>alert("Juego eliminado")</script>';
+    echo '<script>alert("Eliminado")</script>';
     echo "<script>location.href='panel.php'</script>";
 }else{
     echo '<script>alert("Asegurate de proporcionar datos correctos")</script>';

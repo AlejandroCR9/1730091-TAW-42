@@ -1,26 +1,20 @@
 <?php
 include_once "../../conn.php";
 
-/*session_start();
-$idUser = $_SESSION['idUsuario'];
-$sql2="SELECT idOrganizacion FROM organizaciones WHERE idUsuario='$idUser'"; 
-$idOrg="";
-$result = mysqli_query($conn, $sql2);
-if ($valores = mysqli_fetch_array($result)) {
-  $idOrg = $valores['idOrganizacion'];
-}*/
+$id = $_POST['id'];
+$nom = $_POST['nombre'];
+$dir = $_POST['direccion'];
+$tel = $_POST['telefono'];
+$correo = $_POST['correo'];
+$cat = $_POST['categoria'];
 
-$Id = $_POST['id'];
-$Titulo = $_POST['titulo'];
-$Plat = $_POST['plataforma'];
-
-$sql = "UPDATE juegos SET titulo = '$Titulo', idPlataforma = '$Plat' WHERE idJuego='$Id'";
+$sql = "UPDATE fabricantes SET nombre = '$nom', direccion = '$dir', telefono='$tel', correo='$correo',idcategoriaf='$cat' WHERE id='$id'";
 if(mysqli_query($conn,$sql)){
-    echo '<script>alert("Juego modificado")</script>';
+    echo '<script>alert("Modificado")</script>';
     echo "<script>location.href='panel.php'</script>";
 }else{
     echo '<script>alert("Asegurate de proporcionar datos correctos")</script>';
-    //echo '<script type="text/javascript"> history.back();</script>';
+    echo '<script type="text/javascript"> history.back();</script>';
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);

@@ -2,11 +2,6 @@
   include_once "../../conn.php";
   session_start();
   
-  $usuario = $_SESSION['idUsuario'];
-  if ($usuario == null || $usuario == ''){
-    header("Location: ../../login.php");
-    die();
-  }
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Juegos</title>
+  <title>Fabricantes</title>
 
   <!-- Custom fonts for this template -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -58,8 +53,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Juegos</h1>
-          <p class="mb-4">Datos de las juegos registradas en el sistema.</p>
+          <h1 class="h3 mb-2 text-gray-800">Fabricantes</h1>
+          <p class="mb-4">Datos de los fabricantes.</p>
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -68,10 +63,7 @@
                     <span class="icon text-white-50">
                         <i class="fa fa-pencil-square"></i>
                     </span>
-                    <span class="text">Registrar juego</span>
-                </a>
-                <a onclick="window.print();" class="btn btn-info btn-circle" style="margin-left: 800px;">
-                    <i class="fas fa-download" style="color: white;"></i>
+                    <span class="text">Registrar fabricantes</span>
                 </a>
             </div>
             <div class="card-body">
@@ -79,19 +71,20 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Título</th>
-                      <th>Plataforma</th>
-                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Telefono</th>
+                      <th>Correo</th>
                       <th>Acción</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($conn->query('SELECT c.idJuego AS id, c.titulo AS titulo, p.nombre AS plataforma, c.rutaImagen AS imagen 
-                    FROM juegos c INNER JOIN plataformas p ON c.idPlataforma = p.idPlataforma') as $row){ ?>
+                    <?php foreach ($conn->query('SELECT * FROM fabricantes') as $row){ ?>
                     <tr>
-                        <td><?php echo $row['titulo'] ?></td>
-                        <td><?php echo $row['plataforma'] ?></td>
-                        <td><?php $pic = $row['imagen']; echo "<img src='$pic' width='50'></img>" ?></td>
+                        <td><?php echo $row['nombre'] ?></td>
+                        <td><?php echo $row['direccion'] ?></td>
+                        <td><?php echo $row['telefono'] ?></td>
+                        <td><?php echo $row['correo'] ?></td>
                         <td>
                           <div class="row justify-content-center">
                             <div class="col-6 justify-content-center">
