@@ -83,12 +83,12 @@
     <span>Tarifas</span></a>
 </li>-->
 
-<!-- Nav Item - Tables 
+<!-- Nav Item - Tables -->
 <li class="nav-item">
   <a class="nav-link" href="../promociones/panel.php">
     <i class="fa fa-gift"></i>
     <span>Promociones</span></a>
-</li>-->
+</li>
 
 <!-- Nav Item - Tables -->
 <li class="nav-item">
