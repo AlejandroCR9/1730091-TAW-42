@@ -33,5 +33,34 @@
 				}
 			}
 		}
+		//INgreso usuarios
+		public function ingresoUsuarioController(){
+			if(isset($_POST["usuarioIngreso"])){
+				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
+				$respuesta= Datos::ingresoUsuarioModel($datosController,"usuarios");
+				//validar la repsuesta de modelo
+				if($respuesta["usuario"]==$_POST["usuarioIngreso"] $$ $respuesta["password"]== $_POST["passwordIngreso"]){
+					$_SESSION["validar"]=true;
+					header("location:index.php?action=usuarios");
+				}else{
+					header("location:index.php?action=fallo");
+				}
+			}
+		}
+
+
+		//Vista de usuarios
+		public function vistaUsuariosController(){
+			$respuesta=Datos::vistaUsuarioModel("usuarios");
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+						<td>'.$item["usuario"].'</td>
+						<td>'.$item["password"].'</td>
+						<td>'.$item["email"].'</td>
+						<td><a href=index.php?action=usuarios&idBorrar='.$item["id"].'<button>Borrar</button></td>
+
+						<td><a href=index.php?action=usuarios&idEditar='.$item["id"].'<button>Editar</button></td>';
+			}
+		}
 	}
 ?>
