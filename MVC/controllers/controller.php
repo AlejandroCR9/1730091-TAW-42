@@ -98,8 +98,8 @@
 
 		//LISTA DE MODELOS POR DESARROLLAR:
 		/*
-		* 1. registroUsuariosModel
-		* 2. ingresoUsuariosModel
+		* 1. registroUsuariosModel--ok
+		* 2. ingresoUsuariosModel --ok
 		* 3. vistaUsuarioModel
 		* 4. editarUsuarioModel
 		* 5. actualizarUsuarioModel
