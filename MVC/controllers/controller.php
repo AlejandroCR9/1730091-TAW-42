@@ -57,10 +57,53 @@
 						<td>'.$item["usuario"].'</td>
 						<td>'.$item["password"].'</td>
 						<td>'.$item["email"].'</td>
-						<td><a href=index.php?action=usuarios&idBorrar='.$item["id"].'<button>Borrar</button></td>
+						<td><a href=index.php?action=editar&idBorrar='.$item["id"].'<button>Borrar</button></td>
 
 						<td><a href=index.php?action=usuarios&idEditar='.$item["id"].'<button>Editar</button></td>';
 			}
 		}
+
+		//Editar usuario
+		public function editarUsuarioController(){
+			$datosController=$_GET["id"];
+			$respuesta=Datos::editarUsuarioModel($datosController,"usuarios");
+
+			//Diseñar la estructura de un formulario para que se muestre los datos de la consulta generada en el modelo.
+			echo ('<input type="hidden" value="'.$respuesta["id"].'" name=""idEditar">
+			<input type="text" value="'.$respuesta["usuario"].'" name="usuarioEditar" required>
+			<input type="text" value="'.$respuesta["password"].'" name="passwordEditar" required>
+			<input type="text" value="'.$respuesta["email"].'" name="emailEditar" required>');
+		}
+
+		public function actualizarUsuarioController(){
+			if(isset($_POST["usuarioEditar"])){
+				$datosController=array("id"=>$_POST["idEditar"], "usuario"=>$_POST["usuarioEditar"],"password"=>$_POST["passwordEditar"], "email"=>$_POST["emailEditar"]);
+				$respuesta=Datos::actualizarUsuarioModel($datosController,"usuarios");
+				if($respuesta=="succes"){
+					header("location:index.php?action=cambio");
+				}else{
+					echo("error");
+				}
+			}
+		}
+		public function borrarUsuariosController(){
+			if(isset($_GET["idBorrar"])){
+				$datosController=$_GET["idBorrar"];
+				$respuesta=Datos::borrarUsuarioModel($datosController,"usuarios");
+				if($respuesta=="success"){
+					header("location:index.php?action=usuarios");
+				}
+			}
+		}
+
+		//LISTA DE MODELOS POR DESARROLLAR:
+		/*
+		* 1. registroUsuariosModel
+		* 2. ingresoUsuariosModel
+		* 3. vistaUsuarioModel
+		* 4. editarUsuarioModel
+		* 5. actualizarUsuarioModel
+		* 6. borrarUsuarioModel
+		*/
 	}
 ?>
