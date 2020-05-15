@@ -6,7 +6,7 @@
 		}
 
 		//enlaces
-		public function enlacesPaginasController{
+		public function enlacesPaginasController(){
 			if(isset($_GET['action'])){
 				$enlaces = $_GET['action'];
 			}else{
@@ -40,6 +40,7 @@
 				$respuesta= Datos::ingresoUsuarioModel($datosController,"usuarios");
 				//validar la repsuesta de modelo
 				if($respuesta["usuario"]==$_POST["usuarioIngreso"] $$ $respuesta["password"]== $_POST["passwordIngreso"]){
+					session_start();
 					$_SESSION["validar"]=true;
 					header("location:index.php?action=usuarios");
 				}else{
@@ -100,10 +101,10 @@
 		/*
 		* 1. registroUsuariosModel--ok
 		* 2. ingresoUsuariosModel --ok
-		* 3. vistaUsuarioModel
-		* 4. editarUsuarioModel
-		* 5. actualizarUsuarioModel
-		* 6. borrarUsuarioModel
+		* 3. vistaUsuarioModel --ok
+		* 4. editarUsuarioModel--ok
+		* 5. actualizarUsuarioModel--ok
+		* 6. borrarUsuarioModel --ok
 		*/
 	}
 ?>
