@@ -87,12 +87,12 @@
 
 	<body>
 		<!--Incluir la navegacion (Estilo navbar) en todos los archivos-->
-		<?php include "module/navegacion.php"; ?>
+		<?php include "modules/navegacion.php"; ?>
 		<section>
 			<!--Construimos una seccion que va a ser variable para mostrar todos y cada de los controladores-->
 			<?php
 				$mvc= new MvcController();
-				$mvc -> enlacesPaginasController();
+				$mvc->enlacesPaginasController();
 			?>
 		</section>
 

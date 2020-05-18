@@ -24,12 +24,12 @@
 				$datosController= array("usuario"=>$_POST["usuarioRegistro"],"password"=>$_POST["passwordRegistro"],"email"=>$_POST["emailRegistro"]);
 				//se le dice al modelo model/crud.php (Datos:registroUsuarioModel), en que modelo Datos el metodo registroUsuarioMOdel reciba en sus parmatros los valores $datoaController y el nombre de la tabla a ala cual debe conectarse
 
-				$respuesta =Datos::registroUsuarioModel($datosController,"usuarios");
+				$respuesta = Datos::registroUsuarioModel($datosController,"usuarios");
 				//se imprime la respuesta en la vista
-				if($respuesta=="success"){
-					header(string: "location:index.php?action=ok");
+				if($respuesta == "success"){
+					header("location:index.php?action=ok");
 				}else{
-					header(string: "location:index.php");
+					header("location:index.php");
 				}
 			}
 		}
@@ -39,7 +39,7 @@
 				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
 				$respuesta= Datos::ingresoUsuarioModel($datosController,"usuarios");
 				//validar la repsuesta de modelo
-				if($respuesta["usuario"]==$_POST["usuarioIngreso"] $$ $respuesta["password"]== $_POST["passwordIngreso"]){
+				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && $respuesta["password"]== $_POST["passwordIngreso"]){
 					session_start();
 					$_SESSION["validar"]=true;
 					header("location:index.php?action=usuarios");
@@ -51,7 +51,7 @@
 
 
 		//Vista de usuarios
-		public function vistaUsuariosController(){
+		public static function vistaUsuariosController(){
 			$respuesta=Datos::vistaUsuarioModel("usuarios");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>

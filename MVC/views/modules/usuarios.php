@@ -19,9 +19,9 @@
 		</thead>
 		<tbody>
 			<?php 
-				$vistaUsuario=MvcController();
-				$vistaUsuario=vistaUsuarioController();
-				$vistaUsuario=borrarUsuarioController();
+				$vistaUsuario= new MvcController();
+				$vistaUsuario-> vistaUsuariosController();
+				$vistaUsuario-> borrarUsuariosController();
 			?>
 
 		</tbody>

@@ -8,6 +8,7 @@ require_once "models/crudProd.php";
 //Creacion de objetos, logica del negocio
 require_once "controllers/controller.php";
 
+$mvc = new MvcController();
 //muestra la función o método página que se encuentra en controllers/controller.php
 $mvc->pagina();
 ?>

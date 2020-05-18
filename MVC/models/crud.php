@@ -7,7 +7,7 @@
 		//registo de usuarios
 		public function registroUsuariosModel($datosModel,$tabla){
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
-			$stmt= Conexion::conectar()->("INSERT INTO $tabla (usuario,password, email) VALUES(:usuario,:password,:email)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario,password, email) VALUES(:usuario,:password,:email)");
 
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
 			$stmt->bindParam(":usuario",$datosModel["usuario"], PDO::PARAM_STR);
@@ -25,10 +25,10 @@
 		}
 
 		//modelo ingresoUsuarioModel
-		public function ingresoUsuarioModel($datosModel,$tabla){
+		public static function ingresoUsuarioModel($datosModel,$tabla){
 			$stmt = Conexion::conectar()->prepare("SELECT usuario, password FROM $tabla WHERE usuario=:usuario");
-			$stmt=bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
-			$stmt=execute();
+			$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+			$stmt->execute();
 			//fetch() Obtiene una fila de un conjunto de resultados 
 			return $stmt->fetch();
 
@@ -36,7 +36,7 @@
 		}
 		
 		//MOdelo vistaUsuarioModel
-		public function vistaUsuarioModel($tabla){
+		public static function vistaUsuarioModel($tabla){
 			$stmt = Conexion::conectar()->prepare("SELECT id, usuario, password,email FROM $tabla");
 			$stmt->execute();
 			//fetchAll: obtiene todas las fils de un conjunto asociado al objeto PDO statment (stmt)
@@ -48,7 +48,7 @@
 
 		//Editar usuarios
 		public function editarUsuarioModel($datosModel,$tabla){
-			$stmt =Conexion::conectar->prepare("SELECT id, usuario, password, email FROM $tabla WHERE id=:id");
+			$stmt =Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla WHERE id=:id");
 			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
 			$stmt->execute();
 
@@ -75,10 +75,10 @@
 		}
 
 		public function borrarUsuarioModel($datosModel,$tabla){
-			$stmt=Conexion::conectar->prepare("DELETE FROM $tabla WHERE id=:id")
+			$stmt=Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id=:id");
 			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
 
-			if($stmt->execute){
+			if($stmt->execute()){
 				return "success";
 			}else{
 				return "error";
