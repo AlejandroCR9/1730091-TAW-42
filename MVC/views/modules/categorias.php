@@ -8,22 +8,21 @@
 
 ?>
 
-<H1>USUAROS</H1>
+<H1>Categorias</H1>
 	<table border="1">
 		<thead>
 			<tr>
-				<th>Usuario</th>
-				<th>Contraseña</th>
-				<th>Email</th>
+				<th>Id</th>
+				<th>Nombre</th>
 				<th>¿Editar?</th>
 				<th>¿Eliminar?</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
-				$vistaUsuario= new MvcController();
-				$vistaUsuario-> vistaUsuariosController();
-				$vistaUsuario-> borrarUsuariosController();
+				$vistaUsuario= new catController();
+				$vistaUsuario-> vistaCatController();
+				$vistaUsuario-> borrarCatController();
 			?>
 
 		</tbody>

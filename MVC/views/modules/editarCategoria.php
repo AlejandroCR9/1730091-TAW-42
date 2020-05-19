@@ -9,8 +9,8 @@
 <H1>EDITAR USUARIO</H1>
 	<form method="post">
 		<?php 
-			$editarUsuario= new MvcController();
-			$editarUsuario->editarUsuarioController();
-			$editarUsuario->actualizarUsuarioController();
+			$editarUsuario= new catController();
+			$editarUsuario->editarCatController();
+			$editarUsuario->actualizarCatController();
 		?>
 	</form>

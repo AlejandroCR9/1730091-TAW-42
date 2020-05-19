@@ -1,5 +1,5 @@
 <?php
-	class MvcController{
+	class MvcController extends Datos{
 		#llamada a la plantilla
 		public function pagina(){
 			include "views/template.php";
@@ -24,7 +24,7 @@
 				$datosController= array("usuario"=>$_POST["usuarioRegistro"],"password"=>$_POST["passwordRegistro"],"email"=>$_POST["emailRegistro"]);
 				//se le dice al modelo model/crud.php (Datos:registroUsuarioModel), en que modelo Datos el metodo registroUsuarioMOdel reciba en sus parmatros los valores $datoaController y el nombre de la tabla a ala cual debe conectarse
 
-				$respuesta = Datos::registroUsuarioModel($datosController,"usuarios");
+				$respuesta = Datos::registroUsuariosModel($datosController,"usuarios");
 				//se imprime la respuesta en la vista
 				if($respuesta == "success"){
 					header("location:index.php?action=ok");
@@ -51,36 +51,37 @@
 
 
 		//Vista de usuarios
-		public static function vistaUsuariosController(){
+		public  function vistaUsuariosController(){
 			$respuesta=Datos::vistaUsuarioModel("usuarios");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
 						<td>'.$item["usuario"].'</td>
 						<td>'.$item["password"].'</td>
 						<td>'.$item["email"].'</td>
-						<td><a href=index.php?action=editar&idBorrar='.$item["id"].'<button>Borrar</button></td>
+						<td><a href=index.php?action=editar&idEditar='.$item["id"].'><button>Editar</button></td>
 
-						<td><a href=index.php?action=usuarios&idEditar='.$item["id"].'<button>Editar</button></td>';
+						<td><a href=index.php?action=usuarios&idBorrar='.$item["id"].'><button>Borrar</button></td>';
 			}
 		}
 
 		//Editar usuario
 		public function editarUsuarioController(){
-			$datosController=$_GET["id"];
+			$datosController=$_GET["idEditar"];
 			$respuesta=Datos::editarUsuarioModel($datosController,"usuarios");
 
 			//Diseñar la estructura de un formulario para que se muestre los datos de la consulta generada en el modelo.
-			echo ('<input type="hidden" value="'.$respuesta["id"].'" name=""idEditar">
+			echo ('<form method="post"><input type="hidden" value="'.$respuesta["id"].'" name="idEditar">
 			<input type="text" value="'.$respuesta["usuario"].'" name="usuarioEditar" required>
 			<input type="text" value="'.$respuesta["password"].'" name="passwordEditar" required>
-			<input type="text" value="'.$respuesta["email"].'" name="emailEditar" required>');
+			<input type="text" value="'.$respuesta["email"].'" name="emailEditar" required>
+			<input type="submit" value="Enviar"></form>');
 		}
 
 		public function actualizarUsuarioController(){
 			if(isset($_POST["usuarioEditar"])){
 				$datosController=array("id"=>$_POST["idEditar"], "usuario"=>$_POST["usuarioEditar"],"password"=>$_POST["passwordEditar"], "email"=>$_POST["emailEditar"]);
 				$respuesta=Datos::actualizarUsuarioModel($datosController,"usuarios");
-				if($respuesta=="succes"){
+				if($respuesta=="success"){
 					header("location:index.php?action=cambio");
 				}else{
 					echo("error");

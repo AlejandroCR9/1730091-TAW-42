@@ -5,7 +5,7 @@
 	//heredar la calse conexion.php para poder acccesar y ttilizar la conexion a la base de dats, s extiende cuando se quiere manipular una funcion o méotod, en este caso manipularemos la funcion "conectar" de models/conexion.php
 	class Datos extends Conexion{
 		//registo de usuarios
-		public function registroUsuariosModel($datosModel,$tabla){
+		public static function registroUsuariosModel($datosModel,$tabla){
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (usuario,password, email) VALUES(:usuario,:password,:email)");
 
@@ -47,7 +47,7 @@
 		}
 
 		//Editar usuarios
-		public function editarUsuarioModel($datosModel,$tabla){
+		public static function editarUsuarioModel($datosModel,$tabla){
 			$stmt =Conexion::conectar()->prepare("SELECT id, usuario, password, email FROM $tabla WHERE id=:id");
 			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
 			$stmt->execute();
@@ -58,7 +58,7 @@
 
 		}
 
-		public function actualizarUsuarioModel($datosModel,$tabla){
+		public static function actualizarUsuarioModel($datosModel,$tabla){
 			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET usuario=:usuario, password=:password, email=:email WHERE id=:id");
 
 			$stmt->bindParam(":usuario",$datosModel["usuario"], PDO::PARAM_STR);
@@ -74,9 +74,9 @@
 
 		}
 
-		public function borrarUsuarioModel($datosModel,$tabla){
+		public static function borrarUsuarioModel($datosModel,$tabla){
 			$stmt=Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id=:id");
-			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
+			$stmt->bindParam(":id",$datosModel, PDO::PARAM_INT);
 
 			if($stmt->execute()){
 				return "success";
