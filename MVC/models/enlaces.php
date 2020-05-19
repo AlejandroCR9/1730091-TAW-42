@@ -10,12 +10,16 @@
 				$module="views/modules/registro.php";
 			}else if ($enlaces=="okC"){
 				$module="views/modules/categorias.php";
+			}else if ($enlaces=="okP"){
+				$module="views/modules/productos.php";
 			}else if ($enlaces=="fallo"){
 				$module="views/modules/registro.php";
 			}else if ($enlaces=="cambio"){
 				$module="views/modules/usarios.php";
 			}else if ($enlaces=="cambioC"){
 				$module="views/modules/categorias.php";
+			}else if ($enlaces=="cambioP"){
+				$module="views/modules/productos.php";
 			}else {
 				$module="views/modules/registro.php";
 			}
