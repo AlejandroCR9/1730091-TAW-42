@@ -1,13 +1,13 @@
 <?php
-	session_start();
 	
-	if(!$_SESSION["validar"]){
-		header("location:index.php?action=ingresar");
+		
+	if(!isset($_SESSION["validar"])){
+
+		echo '<script> window.location.replace("index.php?action=ingresar"); </script>';
 		exit();
+		
 	}
-
 ?>
-
 <H1>USUAROS</H1>
 	<table border="1">
 		<thead>

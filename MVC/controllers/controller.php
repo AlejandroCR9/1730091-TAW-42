@@ -27,9 +27,10 @@
 				$respuesta = Datos::registroUsuariosModel($datosController,"usuarios");
 				//se imprime la respuesta en la vista
 				if($respuesta == "success"){
-					header("location:index.php?action=ok");
+					echo '<script> window.location.replace("index.php?action=ok"); </script>';
+					
 				}else{
-					header("location:index.php");
+					echo '<script> window.location.replace("index.php"); </script>';
 				}
 			}
 		}
@@ -42,9 +43,11 @@
 				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && $respuesta["password"]== $_POST["passwordIngreso"]){
 					session_start();
 					$_SESSION["validar"]=true;
-					header("location:index.php?action=usuarios");
+					echo '<script> window.location.replace("index.php?action=usuarios"); </script>';
+					
 				}else{
-					header("location:index.php?action=fallo");
+					echo '<script> window.location.replace("index.php?action=fallo"); </script>';
+					//header("location:index.php?action=fallo");
 				}
 			}
 		}
@@ -82,7 +85,8 @@
 				$datosController=array("id"=>$_POST["idEditar"], "usuario"=>$_POST["usuarioEditar"],"password"=>$_POST["passwordEditar"], "email"=>$_POST["emailEditar"]);
 				$respuesta=Datos::actualizarUsuarioModel($datosController,"usuarios");
 				if($respuesta=="success"){
-					header("location:index.php?action=cambio");
+					echo '<script> window.location.replace("index.php?action=cambio"); </script>';
+					//header("location:index.php?action=cambio");
 				}else{
 					echo("error");
 				}
@@ -93,7 +97,8 @@
 				$datosController=$_GET["idBorrar"];
 				$respuesta=Datos::borrarUsuarioModel($datosController,"usuarios");
 				if($respuesta=="success"){
-					header("location:index.php?action=usuarios");
+					echo '<script> window.location.replace("index.php?action=usuarios"); </script>';
+					//header("location:index.php?action=usuarios");
 				}
 			}
 		}

@@ -4,11 +4,11 @@
     <input type="text" placeholder="Nombre" name="nombreRegistro" required>
     <input type="text" placeholder="Descripcion" name="descripcionRegistro" required>
     <input type="text" placeholder="Precio Compra" name="preciocompraRegistro" required>
-    <input type="text" placeholder="Precio Venta" name="precioRegistro" required>
+    <input type="text" placeholder="Precio Venta" name="precioventaRegistro" required>
     <input type="text" placeholder="Num Inventario" name="inventarioRegistro" required>
     <label for="cars">Categoria:</label>
 
-    <select id="idcategoriaRegistro">
+    <select name="idcategoriaRegistro">
         <?php $respuesta = DatosProd::vistaCat("categorias"); 
             foreach ($respuesta as $row => $item) {
                 echo('<option value="'.$item["id"].'">'.$item["nombre"].'</option>');
