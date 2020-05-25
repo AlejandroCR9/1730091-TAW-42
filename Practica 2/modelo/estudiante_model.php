@@ -17,9 +17,9 @@
 
         function getUser($usuario){
             $this->DB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT usuario,contraseña FROM usuarios where usuario = ?";
+            $sql = "SELECT * FROM usuarios where usuario = ?";
             $q = $this->DB->prepare($sql);
-            $q->execute(array($usuario["usuario"] ));
+            $q->execute(array($usuario));
             $data = $q->fetch(PDO::FETCH_ASSOC);
             return $data;
         }

@@ -28,9 +28,7 @@
             include_once('vistas/footer.php');
         }
         function ingresar(){
-            $data['usuario']=$_REQUEST['txtUsuario'];
-            $data['contra']=$_REQUEST['txtContraseña'];
-            $this->model_e->getUser($data);
+            $this->model_e->getUser($_REQUEST["txtUsuario"]);
             session_start();
             $_SESSION["entrar"]="admin";
 

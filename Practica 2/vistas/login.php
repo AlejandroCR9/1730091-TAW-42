@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label class=" col-sm-2 control-label" for="txtContraseña">Contraseña:</label>
                     <div class="col-sm-6">
-                        <input type="password" class="form-control" name="txtContraseña" value="">
+                        <input type="password" class="form-control" name="txtContrasena" value="">
                     </div>
                 </div>
                 <div class="form-group">
