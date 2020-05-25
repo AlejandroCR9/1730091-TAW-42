@@ -29,8 +29,11 @@
         }
         function ingresar(){
             $this->model_e->getUser($_REQUEST["txtUsuario"]);
-            session_start();
             $_SESSION["entrar"]="admin";
+
+        }
+        function salir(){
+            include_once('vistas/salir.php');
 
         }
         function get_datosE(){

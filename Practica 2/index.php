@@ -3,8 +3,8 @@
     require_once('controlador/estudiante_controller.php');
 
     $controller= new estudiante_controller();
-    session_start();
-     if(isset($_SESSION["entrar"])){
+    //session_start();
+     if(isset($_SESSION["entrar"]) && $_SESSION["entrar"]!=""){
         if(!empty($_REQUEST['m'])){
             $metodo=$_REQUEST['m'];
             if (method_exists($controller, $metodo)) {

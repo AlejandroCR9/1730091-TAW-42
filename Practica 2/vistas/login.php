@@ -1,3 +1,4 @@
+<?php session_start();?>
 <link rel="stylesheet" type="text/css" href="style/css/bootstrap.min.css">      
 <div class="container">
     <div class="jumbotron">
