@@ -27,7 +27,14 @@
             include_once('vistas/estudiante.php');
             include_once('vistas/footer.php');
         }
+        function ingresar(){
+            $data['usuario']=$_REQUEST['txtUsuario'];
+            $data['contra']=$_REQUEST['txtContraseña'];
+            $this->model_e->getUser($data);
+            session_start();
+            $_SESSION["entrar"]="admin";
 
+        }
         function get_datosE(){
 
             

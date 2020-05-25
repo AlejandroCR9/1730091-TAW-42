@@ -4,16 +4,27 @@
 
     $controller= new estudiante_controller();
     
-    if(!empty($_REQUEST['m'])){
-        $metodo=$_REQUEST['m'];
-        if (method_exists($controller, $metodo)) {
-            $controller->$metodo();
+     if(isset($_SESSION["entrar"])){
+        if(!empty($_REQUEST['m'])){
+            $metodo=$_REQUEST['m'];
+            if (method_exists($controller, $metodo)) {
+                $controller->$metodo();
+            }else{
+                $controller->index();
+            }
         }else{
             $controller->index();
         }
     }else{
-        $controller->index();
+        include_once('vistas/login.php');
+        if(!empty($_REQUEST['m'])){
+            $metodo=$_REQUEST['m'];
+            if (method_exists($controller, $metodo)) {
+                $controller->$metodo();
+            }
+        }  
     }
+    
 
 
 
