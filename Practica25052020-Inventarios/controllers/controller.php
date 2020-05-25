@@ -23,7 +23,7 @@
 				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
 				$respuesta= Datos::ingresoUsuarioModel($datosController,"usuarios");
 				//validar la repsuesta de modelo
-				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && $respuesta["password"]== $_POST["passwordIngreso"]){
+				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && password_verify($_POST["txtPassword"], hash)){
 					session_start();
 					$_SESSION["validar"]=true;
 					$_SESSION["nombre_usuario"]=$respuesta["usuario"];
@@ -35,6 +35,24 @@
 				}
 			}
 		}
-	}
+
+
+		//Vista de usuarios
+		public  function vistaUsuariosController(){
+			$respuesta=Datos::vistaUsuarioModel("usuarios");
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+						<td><a href=index.php?action=editar&idEditar='.$item["id"].'><button>Editar</button></td>
+
+						<td><a href=index.php?action=usuarios&idBorrar='.$item["id"].'><button>Borrar</button></td>
+						<td>'.$item["firstname"].'</td>
+						<td>'.$item["lastname"].'</td>
+						<td>'.$item["user_name"].'</td>
+						<td>'.$item["user_email"].'</td>
+						<td>'.$item["date_added"].'</td>
+						
+					</tr>';
+			}
+		}	}
 
 ?>
