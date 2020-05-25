@@ -17,23 +17,6 @@
 			include $respuesta;
 		}
 
-		//registro
-		public function registroUsiaroController(){
-			if(isset($_POST["usuarioRegistro"])){
-				//recibe a traves del metoddo post el name de usuario, passwoer y email se almacenan los datos en una variable o propiedad de tipo array asociativo cpn sus respectivas propiedades
-				$datosController= array("usuario"=>$_POST["usuarioRegistro"],"password"=>$_POST["passwordRegistro"],"email"=>$_POST["emailRegistro"]);
-				//se le dice al modelo model/crud.php (Datos:registroUsuarioModel), en que modelo Datos el metodo registroUsuarioMOdel reciba en sus parmatros los valores $datoaController y el nombre de la tabla a ala cual debe conectarse
-
-				$respuesta = Datos::registroUsuariosModel($datosController,"usuarios");
-				//se imprime la respuesta en la vista
-				if($respuesta == "success"){
-					echo '<script> window.location.replace("index.php?action=ok"); </script>';
-					
-				}else{
-					echo '<script> window.location.replace("index.php"); </script>';
-				}
-			}
-		}
 		//INgreso usuarios
 		public function ingresoUsuarioController(){
 			if(isset($_POST["usuarioIngreso"])){
