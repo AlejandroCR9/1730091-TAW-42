@@ -9,7 +9,7 @@
     <form method="post" action="index.php?m=confirmarDeleteE&id=<?php echo "0";?>">
         <div class="col-md-6 col-md-offset-3">
             <label>¿Deseas eliminar este registro?</label>
-            <input type="hidden" name="txt_id" value="<?php echo $data['id']; ?>">
+            <input type="hidden" name="txt_idCarrera" value="<?php echo $data['idCarrera']; ?>">
             <input type="submit" name="" value="eliminar" class="form-control btn btn-danger">
         </div>
     </form>

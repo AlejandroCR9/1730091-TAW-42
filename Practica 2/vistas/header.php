@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +20,16 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-             <li class="active dropdown"><a href="index.php?m=estudiante">Nuevo registro estudiante</a></li>
-             <li class="active dropdown"><a href="index.php?m=salir">Salir</a></li>
-               <!--<li class="active dropdown"><a href="index.php?m=universidad">Nuevo registro universidad</a></li>-->
-              <li class="dropdown">
-                <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
-
+              <li class="active"><a href="index.php?m=estudiante">Nuevo registro Estudiante</a></li>
+              <li class="active"><a href="index.php?m=universidad">Nuevo registro Universidad</a></li>
+              <li class="active"><a href="index.php?m=carrera">Nuevo registro Carrera</a></li>
+              <li class="active"><a href="index.php?m=indexU" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar Universidades<span class="caret"></span></a></li>
+              <li class="active"><a href="index.php?m=indexE" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listar Estudiantes<span class="caret"></span></a>
+              </li>
+               <li class="active"><a href="index.php?m=salir">Salir<span class="caret"></span></a>
               </li>
             </ul>
+
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
