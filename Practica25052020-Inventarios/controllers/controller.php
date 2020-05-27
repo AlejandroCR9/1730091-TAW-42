@@ -53,6 +53,45 @@
 						
 					</tr>';
 			}
-		}	}
+		}
+
+		/*--Este controlador se encarga de mostrar el formualrio al usuario para registrase*/
+		public function registrarUsuarioController(){
+			?>
+			<div class="col-md-6 mt-6">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de usuarios </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=usuarios">
+							<div class="form-group">
+								<label for="nusuariotxt">Nombre:</label>
+								<input  class="form-control" type="text" name="nusuariotxt" id="nusuariotxt">
+							</div>
+							<div class="form-group">
+								<label for="ausuariotxt">Apellidos:</label>
+								<input  class="form-control" type="text" name="ausuariotxt" id="ausuariotxt">
+							</div>
+							<div class="form-group">
+								<label for="usuariotxt">Usuario:</label>
+								<input  class="form-control" type="text" name="usuariotxt" id="usuariotxt">
+							</div>
+							<div class="form-group">
+								<label for="ucontratxt">Contraseña:</label>
+								<input  class="form-control" type="password" name="ucontratxt" id="ucontratxt">
+							</div>
+							<div class="form-group">
+								<label for="uemailtxt">Correo Electornico:</label>
+								<input  class="form-control" type="password" name="uemailtxt" id="uemailtxt">
+							</div>
+							<button class="btn btn-primary" type="submit">Agregar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}	
+	}
 
 ?>
