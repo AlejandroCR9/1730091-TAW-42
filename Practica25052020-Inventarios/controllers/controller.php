@@ -176,6 +176,42 @@
                     </div>
             </div>
             <?php
+        }
+
+        /*este controlador sirve para actuaizat el usuario que se acaba de ingresar y notifica si se reliazo dicha actividad o hubo algun error*/
+        public function actualizarUsuarioController(){
+        	if(isset($_POST["nusuariotxtEditar"])){
+        		$_POST["contratxtEditar"]=password_hash($_POST["contratxtEditar"], PASSWORD_DEFAULT);
+        		$datosController=array("id" => $_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],"ausuario"=>$_POST["usuariotxtEditar"],"usuario"=>$_POST["usuariotxtEditar"],"ucontra"=>$_POST["ucontratxt"],"nemail"=>$_POST["nemailtxtEditar"]);
+
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Usuario editado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de agregar.
+							</div>
+						</div>
+					';
+				}
+        	}
         }	
 	}
 
