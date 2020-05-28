@@ -21,7 +21,7 @@
 		public function ingresoUsuarioController(){
 			if(isset($_POST["usuarioIngreso"])){
 				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
-				$respuesta= Datos::ingresoUsuarioModel($datosController,"usuarios");
+				$respuesta= Datos::ingresoUsuarioModel($datosController,"users");
 				//validar la repsuesta de modelo
 				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && password_verify($_POST["txtPassword"], hash)){
 					session_start();
@@ -138,7 +138,7 @@
 		public function editarUserController() {
             $datosController = $_GET["idUserEditar"];
             //envío de datos al mododelo
-            $respuesta = Datos::editarUserModel($datosController,"users");
+            $respuesta = Datos::editarUsuarioModel($datosController,"users");
             ?>
             <div class="col-md-6 mt-3">
                 <div class="card card-warning">
@@ -184,7 +184,7 @@
         		$_POST["contratxtEditar"]=password_hash($_POST["contratxtEditar"], PASSWORD_DEFAULT);
         		$datosController=array("id" => $_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],"ausuario"=>$_POST["usuariotxtEditar"],"usuario"=>$_POST["usuariotxtEditar"],"ucontra"=>$_POST["ucontratxt"],"nemail"=>$_POST["nemailtxtEditar"]);
 
-            	$respuesta = Datos::editarUserModel($datosController,"users");
+            	$respuesta = Datos::actualizarUsuarioModel($datosController,"users");
         		if ($respuesta=="success") {
 					echo ' 
 						<div class="col-md-6 mt-3">
@@ -220,7 +220,7 @@
         	if(isset($_GET["idBorrar"])){
         		$datosController=$_GET["idBorrar"];
         		//Manda parametros al modelo
-        		$respuesta=Datos::eliminarUserModel($datosController,"users");
+        		$respuesta=Datos::eliminarUsuarioModel($datosController,"users");
         		if ($respuesta=="success") {
 					echo ' 
 						<div class="col-md-6 mt-3">
