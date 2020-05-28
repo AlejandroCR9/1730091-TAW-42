@@ -184,6 +184,7 @@
         		$_POST["contratxtEditar"]=password_hash($_POST["contratxtEditar"], PASSWORD_DEFAULT);
         		$datosController=array("id" => $_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],"ausuario"=>$_POST["usuariotxtEditar"],"usuario"=>$_POST["usuariotxtEditar"],"ucontra"=>$_POST["ucontratxt"],"nemail"=>$_POST["nemailtxtEditar"]);
 
+            	$respuesta = Datos::editarUserModel($datosController,"users");
         		if ($respuesta=="success") {
 					echo ' 
 						<div class="col-md-6 mt-3">
@@ -206,12 +207,49 @@
 									<i class="icon fas fa-ban"></i>
 									Error!
 								</h5>
-								Se ha producido un error al momento de agregar.
+								Se ha producido un error al momento de editar.
 							</div>
 						</div>
 					';
 				}
         	}
+        }
+
+        /*Este controlador sirve para eliminar el usuario que se acabd de ingresar y notifica si se relaizo dicha actividad o si hubo algun error*/
+        public function eliminarUsuarioController(){
+        	if(isset($_GET["idBorrar"])){
+        		$datosController=$_GET["idBorrar"];
+        		//Manda parametros al modelo
+        		$respuesta=Datos::eliminarUserModel($datosController,"users");
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Usuario eliminado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de eliminar.
+							</div>
+						</div>
+					';
+				}
+        	}
+
         }	
 	}
 
