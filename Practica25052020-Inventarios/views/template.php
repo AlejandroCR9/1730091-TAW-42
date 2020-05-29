@@ -71,5 +71,48 @@
         /*Se verifica que la vista actual no se el login, en caso de que se ael login, el footer no se muestra*/
         if($_GET['action']!='ingresar'){
     ?>
-    
+    <?php 
+        }
+    ?>
+    <!-- jQuery -->
+    <script src="views/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="views/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+    $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="views/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="views/assets/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="views/assets/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="views/assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="views/assets/plugins/jqvmap/maps/jquery.vmap.world.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="views/assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="views/assets/plugins/moment/moment.min.js"></script>
+    <script src="views/assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="views/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="views/assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="views/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="views/assets/dist/js/adminlte.js"></script>
+    <!-- DataTables -->
+    <script src="views/assets/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="views/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- page script -->
+    <script>
+    $(function () {
+        $("#example1").DataTable();
+        $("#example2").DataTable();
+    });
+    </script>
 </body>
+</html>
