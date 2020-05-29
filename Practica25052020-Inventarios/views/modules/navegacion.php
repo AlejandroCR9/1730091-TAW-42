@@ -63,17 +63,23 @@
 				</li>
 				<li class="nav-item">
 					<a href="index.php?action=categoria" class="nav-link">
-						<i class="nav-icon fas fa-users"></i>
+						<i class="nav-icon fas fa-tag"></i>
 						<p>
 							Categorias
 						</p>
 					</a>
 				</li>
-				
+				<li class="nav-item">
+					<a href="index.php?action=salir" class="nav-link">
+						<i class="nav-icon fas fa-sign-out-alt"></i>
+						<p>
+							Salir
+						</p>
+					</a>
+				</li>
 			</ul>
 		</nav>
-
-		
+	
 	</div>
 	
 </aside>
