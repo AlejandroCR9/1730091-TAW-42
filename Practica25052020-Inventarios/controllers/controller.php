@@ -274,7 +274,124 @@
                     </div>
                 </div>
                 ';
-        }	
+        }
+
+
+        //Vista de usuarios
+		public  function vistaProductosController(){
+			$respuesta=Datos::vistaProductoModel("products");
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+						<td><a href=index.php?action=inventario&idProductEditar='.$item["user_id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
+
+						<td><a href=index.php?action=inventario&idBorrar='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Editar</button>Borrar</button></td>
+						<td>'.$item["id"].'</td>
+						<td>'.$item["codigo"].'</td>
+						<td>'.$item["producto"].'</td>
+						<td>'.$item["fecha"].'</td>
+						<td>'.$item["precio"].'</td>
+						<td>'.$item["stoc"].'</td>
+						<td>'.$item["categoria"].'</td>
+						<td>'.$item["precio"].'</td>
+						<td><a href=index.php?action=inventario&idProductAdd='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
+						<td><a href=index.php?action=inventario&idProductDel='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
+					</tr>';
+			}
+		}
+
+		/*--Este controlador se encarga de mostrar el formualrio al producto para registrase*/
+		public function registrarProductoController(){
+			?>
+			<div class="col-md-6 mt-6">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de Productos </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=inventario">
+							<div class="form-group">
+								<label for="codigotxt">Codigo:</label>
+								<input  class="form-control" type="text" name="codigotxt" id="codigotxt" required>
+							</div>
+							<div class="form-group">
+								<label for="nombretxt">Nombre:</label>
+								<input  class="form-control" type="text" name="ausuariotxt" id="nombretxt" required>
+							</div>
+							<div class="form-group">
+								<label for="preciotxt">Precio:</label>
+								<input  class="form-control" type="number" min="1" name="preciotxt" id="preciotxt" required> 
+							</div>
+							<div class="form-group">
+								<label for="stocktxt">Stock:</label>
+								<input  class="form-control" type="number" name="ucontratxt" id="stocktxt" required>
+							</div>
+							<div class="form-group">
+								<label for="motivotxt">Motivo:</label>
+								<input  class="form-control" type="text" name="motivotxt" id="motivotxt" required>
+							</div>
+							<div class="form-group">
+								<label for="categoria">Cateogíra::</label>
+								<select class="form-control" type="text" name="cateogria" id="cateogira" required>
+									<?php
+										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
+										foreach ($respuesta_categoria as $row => $item) {
+										 	?>
+										 		<option value="<?php echo $item["id"]?>"><?php echo $item["categoria"]?></option>
+										 	<?php
+										 } 
+									?>
+								</select>
+							</div>
+							<button class="btn btn-primary" type="submit">Agregar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
+		/*-- Esta funcion permite insertar productos llamando al modelo  que se encuentra en  elarchivo crud de modelos confirma con un isset que la caja de texto del codigo este llena y procede a llenar en una variable llamada datos controller este arreglo se manda como parametro aligual que elnombre de la tabla,una vez se obtiene una respuesta de la funcion del modelo de inserccion 
+        tenemos que checar si la respuesta fue afirmativa hubo un error y mostrara los respectivas alerta,para insertar datos en la tabla de historial se tiene que mandar a un modelollamado ultimoproductmodel este traera el ultimo dato insertado que es el id del producto que se manda en elarray de datoscontroller2 junto al nombre de la tabla asi insertando los datos en la tabla historial --*/
+		public function insertarUsuarioController(){
+			if(isset($_POST["codigotxt"])){
+
+				//Almacenar en un array los valores de los text del metodo "registrarUserController"
+				$datosController=array("codigo"=>$_POST["codigotxt"],"precio"=>$_POST["preciotxt"],"stock"=>$_POST["stocktxt"],"categoria"=>$_POST["categoria"],"nombre"=>$_POST["nombretxt"]);
+
+				$respuesta=Datos::insertarProductoModel($datosController,"products");
+
+				if ($respuesta=="success") {
+					$repsuesta3= Datos::ultimoProductoModel("products");
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Usuario agregado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de agregar.
+							</div>
+						</div>
+					';
+				}
+			}
+		}
+
+
 	}
 
 ?>
