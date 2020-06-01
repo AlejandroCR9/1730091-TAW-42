@@ -69,10 +69,10 @@
     </div>
     <?php 
         /*Se verifica que la vista actual no se el login, en caso de que se ael login, el footer no se muestra*/
-        if($_GET['action']!='ingresar'){
+        //if($_GET['action']!='ingresar'){
     ?>
     <?php 
-        }
+        //}
     ?>
     <!-- jQuery -->
     <script src="views/assets/plugins/jquery/jquery.min.js"></script>

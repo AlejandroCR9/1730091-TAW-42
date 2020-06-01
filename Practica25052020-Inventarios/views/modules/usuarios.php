@@ -1,6 +1,6 @@
 <?php 
 	/*Se verifica que exista la sesion, en caso de que no sea aso, se muestta el login*/
-	if(isset($_SESSION['validar'])){
+	if(!isset($_SESSION['validar'])){
 		header("location:index.php?action=ingresar");
 		exit();
 	}
@@ -10,8 +10,9 @@
 	$usuarios->actualizarUsuarioController();
 	$usuarios->eliminarUsuarioController();
 	/*Se verifica que el usuario haya pulsado sobre el boton de registro de registar o editar para mostrarle su resperivo formulario*/
+
 	if(isset($_GET['registar'])){
-		$usuarios->registarUsuarioController();
+		$usuarios->registrarUsuarioController();
 	}else if(isset($_GET['idUserEditar'])){
 		$usuarios->editarUsuarioController();
 	}
@@ -25,7 +26,7 @@
 		<div class="card-body">
 			<div class="row mb-4">
 				<div class="col-sm-6">
-					<a href="index.php?action=usuarios&registrar" class="btn btn-info">Agregar</a>
+					<a href="index.php?action=usuarios&registar" class="btn btn-info">Agregar</a>
 				</div>
 			</div>
 			<div id="example2-wrapper" class="dataTables_wrapper dt-bootstrap">

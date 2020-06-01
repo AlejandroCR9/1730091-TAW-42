@@ -1,5 +1,6 @@
 <?php
 	class MvcController extends Datos{
+
 		#llamada a la plantilla
 		public function pagina(){
 			include "views/template.php";
@@ -23,28 +24,28 @@
 				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
 				$respuesta= Datos::ingresoUsuarioModel($datosController,"users");
 				//validar la repsuesta de modelo
-				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && password_verify($_POST["txtPassword"], hash)){
-					session_start();
+				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && password_verify($_POST["passwordIngreso"], $respuesta["contrasena"])){
+					//session_start();
 					$_SESSION["validar"]=true;
 					$_SESSION["nombre_usuario"]=$respuesta["usuario"];
 					$_SESSION["id"]=$respuesta["id"];
 					header("Location:index.php?action=tablero");
 					
 				}else{
-					header("location:index.php?action=fallo&res=fallo");
+					header("Location:index.php?action=fallo&res=fallo");
 				}
 			}
 		}
 
 
 		//Vista de usuarios
-		public  function vistaUsuariosController(){
-			$respuesta=Datos::vistaUsuarioModel("usuarios");
+		public  function vistaUsuarioController(){
+			$respuesta=Datos::vistaUsuarioModel("users");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
-						<td><a href=index.php?action=editar&idEditar='.$item["id"].'><button>Editar</button></td>
+						<td><a href=index.php?action=usuarios&idUserEditar='.$item["user_id"].'><button class="btn btn-primary">Editar</button></td>
 
-						<td><a href=index.php?action=usuarios&idBorrar='.$item["id"].'><button>Borrar</button></td>
+						<td><a href=index.php?action=usuarios&idBorrar='.$item["user_id"].'><button class="btn btn-primary">Borrar</button></td>
 						<td>'.$item["firstname"].'</td>
 						<td>'.$item["lastname"].'</td>
 						<td>'.$item["user_name"].'</td>
@@ -83,7 +84,7 @@
 							</div>
 							<div class="form-group">
 								<label for="uemailtxt">Correo Electornico:</label>
-								<input  class="form-control" type="password" name="uemailtxt" id="uemailtxt" required>
+								<input  class="form-control" type="text" name="uemailtxt" id="uemailtxt" required>
 							</div>
 							<button class="btn btn-primary" type="submit">Agregar</button>
 						</form>
@@ -100,7 +101,7 @@
 				$_POST["ucontratxt"]=password_hash($_POST["ucontratxt"], PASSWORD_DEFAULT);
 
 				//Almacenar en un array los valores de los text del metodo "registrarUserController"
-				$datosController=array("nusuario"=>$_POST["nusuariotxt"],"ausuario"=>$_POST["usuariotxt"],"usuario"=>$_POST["usuariotxt"],"ucontra"=>$_POST["ucontratxt"],"nemailtxt"=>$_POST["nemailtxt"]);
+				$datosController=array("nusuario"=>$_POST["nusuariotxt"],"ausuario"=>$_POST["ausuariotxt"],"usuario"=>$_POST["usuariotxt"],"contra"=>$_POST["ucontratxt"],"email"=>$_POST["uemailtxt"]);
 
 				$respuesta=Datos::insertarUsuarioModel($datosController,"users");
 
@@ -135,7 +136,7 @@
 		}
 
 		/*Este contorlador se encarga de mostar el formulario para editar sus daos, la contraseña no se carga debido a como esta iencripara, no es optimo */
-		public function editarUserController() {
+		public function editarUsuarioController() {
             $datosController = $_GET["idUserEditar"];
             //envío de datos al mododelo
             $respuesta = Datos::editarUsuarioModel($datosController,"users");
@@ -182,7 +183,7 @@
         public function actualizarUsuarioController(){
         	if(isset($_POST["nusuariotxtEditar"])){
         		$_POST["contratxtEditar"]=password_hash($_POST["contratxtEditar"], PASSWORD_DEFAULT);
-        		$datosController=array("id" => $_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],"ausuario"=>$_POST["usuariotxtEditar"],"usuario"=>$_POST["usuariotxtEditar"],"ucontra"=>$_POST["ucontratxt"],"nemail"=>$_POST["nemailtxtEditar"]);
+        		$datosController=array("id" => $_POST["idUserEditar"],"nusuario"=>$_POST["nusuariotxtEditar"],"ausuario"=>$_POST["ausuariotxtEditar"],"usuario"=>$_POST["usuariotxtEditar"],"contra"=>$_POST["contratxtEditar"],"email"=>$_POST["uemailtxtEditar"]);
 
             	$respuesta = Datos::actualizarUsuarioModel($datosController,"users");
         		if ($respuesta=="success") {
@@ -250,6 +251,29 @@
 				}
         	}
 
+        }
+
+        // CNTROLADORES PARA EL TABLERO //
+        /*Este controlador sirve para mostrale al usuaroo las cajas done se tiene inforamcion sobre los usuarios, prpductos, ventas registradas, asi com los movimientos que se tienen en el historial, y las ganacinas que se tienen*/
+        public function contarFilas(){
+        	$respuesta_users=Datos::contarFilasModel("users");
+        	//$respuesta_users=Datos::contrarFilasModel("users"); products
+        	//$respuesta_users=Datos::contrarFilasModel("users"); cateogries 
+        	//$respuesta_users=Datos::contrarFilasModel("users"); //historial
+        	echo '
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>'.$respuesta_users["filas"].'</h3>
+                            <p>Total de Usuarios</p>
+                        </div>
+                        <div class="icon">
+                            <i class="far fa-address-card"></i>
+                        </div>
+                        <a class="small-box-footer" href="index.php?action=usuarios">Más <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                ';
         }	
 	}
 
