@@ -487,6 +487,34 @@
         	}
         }
 
+        /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
+        public function addProductoController(){
+        	$datosController=$_GET["idProductAdd"];
+        	$repsuesta=Datos::editarProductoModel("products");
+        	?>
+        	<div class="col-md-6 mt-3">
+				<div class="card card-warning">
+					<div class="card-header">
+						<h4><b>Agregar</b> stock de Productos </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=inventario">
+							<input  class="form-control" type="hidden" name="idProductEditar" id="idProductEditar" value="<?php echo $respuesta["id"] ?>" required>
+							<div class="form-group">
+								<label for="stocktxt">Stock:</label>
+								<input  class="form-control" type="number" name="addstocktxt" min="1" value="1" id="addstocktxt" required>
+							</div>
+							<div class="form-group">
+								<label for="motivotxt">Motivo:</label>
+								<input  class="form-control" type="text" name="addreferenciatxt" id="motivotxt"  required>
+							</div>
+							<button class="btn btn-primary" type="submit">Guardar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+        	<?php
+        }
 
 	}
 
