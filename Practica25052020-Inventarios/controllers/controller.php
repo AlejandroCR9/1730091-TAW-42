@@ -352,7 +352,7 @@
 
 		/*-- Esta funcion permite insertar productos llamando al modelo  que se encuentra en  elarchivo crud de modelos confirma con un isset que la caja de texto del codigo este llena y procede a llenar en una variable llamada datos controller este arreglo se manda como parametro aligual que elnombre de la tabla,una vez se obtiene una respuesta de la funcion del modelo de inserccion 
         tenemos que checar si la respuesta fue afirmativa hubo un error y mostrara los respectivas alerta,para insertar datos en la tabla de historial se tiene que mandar a un modelollamado ultimoproductmodel este traera el ultimo dato insertado que es el id del producto que se manda en elarray de datoscontroller2 junto al nombre de la tabla asi insertando los datos en la tabla historial --*/
-		public function insertarUsuarioController(){
+		public function insertarProductoController(){
 			if(isset($_POST["codigotxt"])){
 
 				//Almacenar en un array los valores de los text del metodo "registrarUserController"
@@ -362,6 +362,8 @@
 
 				if ($respuesta=="success") {
 					$repsuesta3= Datos::ultimoProductoModel("products");
+					$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxt"],"producto"=>$respuesta3["id"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxt"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -370,7 +372,7 @@
 									<i class="icon fas fa-check"></i>
 									Exito!
 								</h5>
-								Usuario agregado con éxito.
+								Producto agregado con éxito.
 							</div>
 						</div>
 					';
@@ -390,6 +392,100 @@
 				}
 			}
 		}
+
+		/*--Este controlador se encarga de mostrar el formualrio al producto para registrase*/
+		public function editarProductoController(){
+			$datosController = $_GET["idProductEditar"];
+            //envío de datos al mododelo
+            $respuesta = Datos::editarProductoModel($datosController,"products");
+			?>
+			<div class="col-md-6 mt-6">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Editar</b> de Productos </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=inventario">
+							<input  class="form-control" type="hidden" name="idProductEditar" id="idProductEditar" value="<?php echo $respuesta["id"] ?>" required>
+							<div class="form-group">
+								<label for="codigotxtEditar">Codigo:</label>
+								<input  class="form-control" type="text" name="codigotxt" id="codigotxt" value="<?php echo $respuesta["codigo"] ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="nombretxt">Nombre:</label>
+								<input  class="form-control" type="text" name="ausuariotxt" id="nombretxt" value="<?php echo $respuesta["nombre"] ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="preciotxt">Precio:</label>
+								<input  class="form-control" type="number" min="1" name="preciotxt" id="preciotxt" value="<?php echo $respuesta["precio"] ?>" required> 
+							</div>
+							<div class="form-group">
+								<label for="stocktxt">Stock:</label>
+								<input  class="form-control" type="number" name="ucontratxt" id="stocktxt"  required>
+							</div>
+							<div class="form-group">
+								<label for="motivotxt">Motivo:</label>
+								<input  class="form-control" type="text" name="motivotxt" id="motivotxt" value="<?php echo $respuesta["motivo"] ?>" required>
+							</div>
+							<div class="form-group">
+								<label for="categoria">Cateogíra:</label>
+								<select class="form-control" type="text" name="cateogria" id="cateogira" required>
+									<?php
+										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
+										foreach ($respuesta_categoria as $row => $item) {
+										 	?>
+										 		<option value="<?php echo $item["id"]?>"><?php echo $item["categoria"]?></option>
+										 	<?php
+										 } 
+									?>
+								</select>
+							</div>
+							<button class="btn btn-primary" type="submit">Editar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
+		 /*-- Esta funcion permite actualizar los datos en la tabla productos a partir del metodo form anterior mandando atravez del modelo del crud a traves del arreglo  y con la variable respuesta mandamos dichos datos porque se llama al modelo actualizarproductsmodel si en el modelo se realizo correctamente entonces mandara una alerta decorrecto y pasara allenar dichos datos en elmodelo de insertar historial model en caso contrario no se hara nada y mostrara mensaje de error --*/
+		public function actualizarProductoController(){
+        	if(isset($_POST["codigotxtEditar"])){
+        		$datosController=array("id"=>$_POST["idProductEditar"],"codigo"=>$_POST["codigotxtEditar"],"precio"=>$_POST["preciotxtEditar"],"stock"=>$_POST["stocktxtEditar"],"categoria"=>$_POST["categoriaEditar"],"nombre"=>$_POST["nombretxtEditar"]);
+
+            	$respuesta = Datos::actualizarProductModel($datosController,"products");
+            	$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxtEditar"],"producto"=>$_POST["idProductEditar"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtEditar"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+        		if ($respuesta=="success") {
+        			$datoscontroller2=
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Producto editado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de editar.
+							</div>
+						</div>
+					';
+				}
+        	}
+        }
 
 
 	}
