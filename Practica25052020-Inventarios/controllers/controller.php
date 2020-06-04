@@ -454,10 +454,10 @@
         		$datosController=array("id"=>$_POST["idProductEditar"],"codigo"=>$_POST["codigotxtEditar"],"precio"=>$_POST["preciotxtEditar"],"stock"=>$_POST["stocktxtEditar"],"categoria"=>$_POST["categoriaEditar"],"nombre"=>$_POST["nombretxtEditar"]);
 
             	$respuesta = Datos::actualizarProductModel($datosController,"products");
-            	$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxtEditar"],"producto"=>$_POST["idProductEditar"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtEditar"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+            	
         		if ($respuesta=="success") {
-        			$datoscontroller2=
+        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxtEditar"],"producto"=>$_POST["idProductEditar"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxtEditar"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -514,6 +514,86 @@
 				</div>
 			</div>
         	<?php
+        }
+
+        public function actualizarStockController(){
+        	if(isset($_POST["addstocktxt"])){
+        		$datosController=array("id"=>$_POST["idProductAdd"],"stock"=>$_POST["addstocktxt"]);
+
+            	$respuesta = Datos::pushProductModel($datosController,"products");
+
+            	
+        		if ($respuesta=="success") {
+        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["addstocktxt"],"producto"=>$_POST["idProductAdd"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["addreferenciatxt"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Stock agregado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de agregar.
+							</div>
+						</div>
+					';
+				}
+        	}
+        }
+
+
+        /*Esta funcion actualiza y llama al modelo de la tabla producto a su bez inserta una nueva fila historial, si el updadte sle correcto elimina los productos entonces insetara la actualizacion en la tabla historial si todo sale bien mostrara un mensaje de error o de corrrecto dependiendo de la repsuesta*/
+        public function actualizarStockController(){
+        	if(isset($_POST["delstocktxt"])){
+        		$datosController=array("id"=>$_POST["idProductDel"],"stock"=>$_POST["delstocktxt"]);
+
+            	$respuesta = Datos::pullProductModel($datosController,"products");
+
+            	
+        		if ($respuesta=="success") {
+        			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["delstocktxt"],"producto"=>$_POST["idProductDel"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["delreferenciatxt"]);
+					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Stock disminuido con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de restar.
+							</div>
+						</div>
+					';
+				}
+        	}
         }
 
 	}
