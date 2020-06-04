@@ -557,7 +557,7 @@
 
 
         /*Esta funcion actualiza y llama al modelo de la tabla producto a su bez inserta una nueva fila historial, si el updadte sle correcto elimina los productos entonces insetara la actualizacion en la tabla historial si todo sale bien mostrara un mensaje de error o de corrrecto dependiendo de la repsuesta*/
-        public function actualizarStockController(){
+        public function actualizar2StockController(){
         	if(isset($_POST["delstocktxt"])){
         		$datosController=array("id"=>$_POST["idProductDel"],"stock"=>$_POST["delstocktxt"]);
 
@@ -596,6 +596,93 @@
         	}
         }
 
+        /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
+        public function delProductoController(){
+        	$datosController=$_GET["idProductDel"];
+        	$repsuesta=Datos::editarProductoModel("products");
+        	?>
+        	<div class="col-md-6 mt-3">
+				<div class="card card-danger">
+					<div class="card-header">
+						<h4><b>Eliminar</b> stock de Productos </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=inventario">
+							<input  class="form-control" type="hidden" name="idProductDel" id="idProductDel" value="<?php echo $respuesta["id"] ?>" required>
+							<div class="form-group">
+								<label for="stocktxt">Stock:</label>
+								<input  class="form-control" type="number" name="delstocktxt" min="1" value="1" id="delstocktxt" required>
+							</div>
+							<div class="form-group">
+								<label for="motivotxt">Motivo:</label>
+								<input  class="form-control" type="text" name="delreferenciatxt" id="motivotxt"  required>
+							</div>
+							<button class="btn btn-primary" type="submit">Guardar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+        	<?php
+        }
+
+        //CONTROLADOR HISTORIAL
+        /**/
+        public function vistaHistorialController(){
+        	$respuesta=Datos::vistaHistorialModel("historial");
+        	foreach ($repsuesta as $row => $item) {
+        		echo '
+        			<tr>
+        				<td>'.$item["usuario"].'</td>
+        				<td>'.$item["producto"].'</td>
+        				<td>'.$item["nota"].'</td>
+        				<td>'.$item["cantidad"].'</td>
+        				<td>'.$item["refenrecia"].'</td>
+        				<td>'.$item["fecha"].'</td>
+        			';
+        	}
+        }
+
+        //Controladores para cateogirias
+        /*Este controloador permite mostrar cada uno de los egistors que se tiene alacenados en la base de daots mediante el uso del moddelo que realiza la consulta y ene sta funcion slo se reocpila la informacion pbtenida de ahi y mostrada de manera coreecata medaunre el uso del ciclo for each*/
+        public function vistaHistorialController(){
+        	$respuesta=Datos::vistaHistorialModel("historial");
+        	foreach ($repsuesta as $row => $item) {
+        		echo '
+        			<tr>
+        				<td><a href="index.php?action=categotias&idCategoryEditar='.$item["idc"].'" class=btn btn-warning btn-sm btn-icon"></td>
+        				<td>'.$item["producto"].'</td>
+        				<td>'.$item["idc"].'</td>
+        				<td>'.$item["ncategoria"].'</td>
+        				<td>'.$item["dcategoria"].'</td>
+        				<td>'.$item["fcategoria"].'</td>
+        			';
+        	}
+        }
+
+        public function registarCategoryController(){
+        	?>
+        	<div class="col-md-6 mt-3">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de categorias </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=categorias">
+							<div class="form-group">
+								<label for="ncategoriatxt">Nombre de la categoria:</label>
+								<input  class="form-control" type="text" name="ncategoriatxt"id="ncategoriatxt" required placeholder="Ingrese nombre de la categoria">
+							</div>
+							<div class="form-group">
+								<label for="dcategoriatxt">Descripción de la categoria:</label>
+								<input  class="form-control" type="text" name="dcategoriatxt" id="dcategoriatxt"  required>
+							</div>
+							<button class="btn btn-primary" type="submit">Agregar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+        	<?php
+        }
 	}
 
 ?>
