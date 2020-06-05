@@ -156,6 +156,48 @@
 			$stmt->close();
 		}
 
+		public static function pullProductoModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET stock=stock - :stock WHERE id_product=:id AND stock >=:stock");
+			$stmt->bindParam(":stock",$datosModel["stock"],PDO::PARAM_INT);
+			$stmt->bindParam(":id",$datosModel["id"],PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
+		public static function acualizarProductoModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET code_producto=:codigo, name_product=:nombre, price_product=:precio,id_cateogry=:categoria, stock=:stock WHERE id_product=:id");
+			$stmt->bindParam(":codigo",$datosModel["codigo"], PDO::PARAM_STR);
+			$stmt->bindParam(":nombre",$datosModel["nombre"], PDO::PARAM_STR);
+			$stmt->bindParam(":precio",$datosModel["precio"], PDO::PARAM_STR);
+			$stmt->bindParam(":stock",$datosModel["stock"], PDO::PARAM_INT);
+			$stmt->bindParam(":categoria",$datosModel["categoria"], PDO::PARAM_INT);
+			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
+	
+			if($stmt->execute()){
+				return "success";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
+		public static function eliminarProductoModel($datosModel,$tabla){
+			$stmt=Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_product=:id");
+			$stmt->bindParam(":id",$datosModel, PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
         /*MODELOS CATEGORIAS*/
         //Este modelo se usa para obtener informacion de cada caeogria
 		public static function vistaCategoriesModel($tabla){
