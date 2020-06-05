@@ -789,6 +789,43 @@
         	}
         }
 
+        /*Este controlador sirve para eliminar la cateogria que se acabd de ingresar y notifica si se relaizo dicha actividad o si hubo algun error*/
+        public function eliminarUsuarioController(){
+        	if(isset($_GET["idBorrar"])){
+        		$datosController=$_GET["idBorrar"];
+        		//Manda parametros al modelo
+        		$respuesta=Datos::eliminaraCategoryModel($datosController,"categories");
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Categoria eliminado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de eliminar.
+							</div>
+						</div>
+					';
+				}
+        	}
+
+        }
+
 	}
 
 ?>
