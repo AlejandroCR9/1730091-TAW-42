@@ -122,7 +122,6 @@
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
 			$stmt->bindParam(":dcategoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
 			$stmt->bindParam(":ncategoria",$datosModel["descripcion_cateogria"], PDO::PARAM_STR);
-	
 
 			//regresar una respuesta satisfactoria o no
 
@@ -130,6 +129,43 @@
 				return "success";
 			}else{
 				//echo();
+				return "error";
+			}
+			$stmt->close();
+		}
+
+		public static function editarCategoryModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT id_cateogry AS 'id', name_category AS 'nombre_categoria', description_category AS 'descripcion_cateogria' FROM $tabla WHERE id_cateogry=:id");
+			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+		}
+
+		public static function actualizarUsuarioModel($datosModel,$tabla){
+			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET name_category=:nombre_categoria, description_category=:descripcion_cateogria WHERE id_cateogry=:id");
+
+			$stmt->bindParam(":descripcion_cateogria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
+			$stmt->bindParam(":nombre_categoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
+			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_STR);
+
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+
+		}
+
+		public static function eliminarCategoryModel($datosModel,$tabla){
+			$stmt=Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_cateogry=:id");
+			$stmt->bindParam(":id",$datosModel, PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
 				return "error";
 			}
 			$stmt->close();
