@@ -644,7 +644,7 @@
 
         //Controladores para cateogirias
         /*Este controloador permite mostrar cada uno de los egistors que se tiene alacenados en la base de daots mediante el uso del moddelo que realiza la consulta y ene sta funcion slo se reocpila la informacion pbtenida de ahi y mostrada de manera coreecata medaunre el uso del ciclo for each*/
-        public function vistaHistorialController(){
+        public function vistaCategoriasController(){
         	$respuesta=Datos::vistaHistorialModel("historial");
         	foreach ($repsuesta as $row => $item) {
         		echo '
@@ -683,6 +683,112 @@
 			</div>
         	<?php
         }
+
+        /*Este controlador sirve para insertar la categoria que acbad e ingresar el usuario y notiica si fue correcto o no*/
+        public function insertarCategoryController(){
+        	if(isset($_POST["ncateogriatxt"]) && isset($_POST["dcategoriatxt"])){
+        		$datosController=array("nombre_categoria"=>$_POST["ncateogriatxt"],"descripcion_categoria"=>$_POST["dcategoriatxt"]);
+
+            	$respuesta = Datos::insertarCategoryModel($datosController,"categories");
+
+            	
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Categoria agregada con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>s
+								Se ha producido un error al momento de agregar.
+							</div>
+						</div>
+					';
+				}
+        	}
+        }
+
+        /*Este controlador funciona para mostrar un formulario al usuario cargando los datos del producto que desea editar el uso de un modelo*/
+         public function editarCategoryController(){
+         	$datosController=$_GET["idCategoryEditar"];
+         	$respuesta=Datos::editarCategoryModel();
+        	?>
+        	<div class="col-md-6 mt-3">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de categorias </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=categorias">
+							<input  class="form-control" type="hidden" name="idCategoryEditar"id="idCategoryEditar" value="<?php echo $respuesta["id"]?>" required>
+							<div class="form-group">
+								<label for="ncategoriatxteditar">Nombre de la categoria:</label>
+								<input  class="form-control" type="text" name="ncategoriatxteditar"id="ncategoriatxteditar" value="<?php echo $respuesta["nombre_categoria"]?>" required placeholder="Ingrese nombre de la categoria">
+							</div>
+							<div class="form-group">
+								<label for="dcategoriatxteditar">Descripción de la categoria:</label>
+								<input  class="form-control" type="text" name="dcategoriatxteditar" id="dcategoriatxteditar" value="<?php echo $respuesta["descripcion_categoria"]?>"  required>
+							</div>
+							<button class="btn btn-primary" type="submit">Aceptar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+        	<?php
+        }
+
+        /*Este controlador sirve para actualizar la categoria que acbad e ingresar el usuario y notiica si fue correcto o no*/
+        public function actualizarCategoryController(){
+        	if(isset($_POST["ncateogriatxteditar"]) && isset($_POST["dcategoriatxteditar"])){
+        		$datosController=array("id"=>$_POST["idCategoryEditar"],"nombre_categoria"=>$_POST["ncateogriatxt"],"descripcion_categoria"=>$_POST["dcategoriatxt"]);
+
+            	$respuesta = Datos::actualizarCategoryModel($datosController,"categories");
+
+            	
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Categoria actualizada con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>s
+								Se ha producido un error al momento de actualizar.
+							</div>
+						</div>
+					';
+				}
+        	}
+        }
+
 	}
 
 ?>
