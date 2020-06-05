@@ -103,6 +103,59 @@
             $stmt->close();
         }
 
+        /////PRODUCTOSSS
+        public static function vistaProductsModel($tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT p.id_product AS 'id', p.code_producto AS 'codigo', p.name_product AS 'producto', p.date_added AS 'fecha', p.price_product AS 'precio', p.stock AS 'stock', c.name_category AS 'cateogria' FROM $tabla p INNER JOIN categories c ON p.id_cateogry=c.id_cateogry");
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+		public static function insertarProductoModel($datosModel,$tabla){
+			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (code_producto,name_product, price_product, stock, id_cateogry) VALUES(:codigo,:nombre,:precio, :stock,:cateogria)");
+
+			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
+			$stmt->bindParam(":codigo",$datosModel["codigo"], PDO::PARAM_STR);
+			$stmt->bindParam(":nombre",$datosModel["nombre"], PDO::PARAM_STR);
+			$stmt->bindParam(":precio",$datosModel["precio"], PDO::PARAM_STR);
+			$stmt->bindParam(":stock",$datosModel["stock"], PDO::PARAM_STR);
+			$stmt->bindParam(":categoria",$datosModel["categoria"], PDO::PARAM_STR);
+
+			//regresar una respuesta satisfactoria o no
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				//echo();
+				return "error";
+			}
+			$stmt->close();
+		}
+
+		public static function editarProductoModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT id_product AS 'id',code_producto AS 'codigo', name_product AS 'nombre', price_product AS 'precio', stock FROM $tabla WHERE id_product=:id");
+			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+		}
+
+		public static function pushProductoModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET stock=stock+:stock WHERE id_product=:id");
+			$stmt->bindParam(":stock",$datosModel["stock"],PDO::PARAM_INT);
+			$stmt->bindParam(":id",$datosModel["id"],PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				return "error";
+			}
+			$stmt->close();
+		}
+
         /*MODELOS CATEGORIAS*/
         //Este modelo se usa para obtener informacion de cada caeogria
 		public static function vistaCategoriesModel($tabla){
@@ -169,6 +222,14 @@
 				return "error";
 			}
 			$stmt->close();
+		}
+
+		//MODELOS PARA LOS SELECT
+		/*Permite crear un select y mostrar lo apartir de un select en php dando als cateogrias y nombres en el formulario prdiucto*/
+		public function obtenerCategoryModel($tabla){
+			$stmt=Conexion::conectar()->prepare("SELECT id_cateogry AS 'id',  name_category AS 'cateogria' FROM $tabla");
+			$stmt->execute();
+			return $stmt->fetchAll();
 		}
 
 	}
