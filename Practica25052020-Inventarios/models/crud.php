@@ -54,7 +54,6 @@
 		}
 		
 		
-
 		//Editar usuarios
 		public static function editarUsuarioModel($datosModel,$tabla){
 			$stmt =Conexion::conectar()->prepare("SELECT user_id AS 'id', firstname AS 'nusuario', lastname AS 'ausuario', user_name AS 'usuario', user_password AS 'contra', user_email AS 'email' FROM $tabla WHERE user_id=:id");
@@ -103,6 +102,38 @@
             return $stmt->fetch();
             $stmt->close();
         }
+
+        /*MODELOS CATEGORIAS*/
+        //Este modelo se usa para obtener informacion de cada caeogria
+		public static function vistaCategoriesModel($tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT id_cateogry AS 'idc', name_category as 'ncategoria', description_category AS 'dcategoria', date_added AS 'fcategoria' FROM $tabla");
+			$stmt->execute();
+
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+		//registo de usuarios
+		public static function insertarUsuarioModel($datosModel,$tabla){
+			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (name_category, description_category) VALUES(:ncategoria,:dcategoria)");
+
+			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
+			$stmt->bindParam(":dcategoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
+			$stmt->bindParam(":ncategoria",$datosModel["descripcion_cateogria"], PDO::PARAM_STR);
+	
+
+			//regresar una respuesta satisfactoria o no
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				//echo();
+				return "error";
+			}
+			$stmt->close();
+		}
 
 	}
 ?>
