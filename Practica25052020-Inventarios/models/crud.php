@@ -197,6 +197,20 @@
 			}
 			$stmt->close();
 		}
+		//////////////////////
+		public static function ultimoProductoModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT id_product AS 'id' FROM $tabla ORDER BY id_product DESC LIMIT 1");
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+		}
+
+		public static function vistaHistorialModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT CONCAT(u.firstname,':',u.user_name) AS 'usuario' p.name_product AS 'producto', h.date AS 'fecha', h.reference AS 'referencia', h.note AS 'nota'. h.quantity AS 'cantidad' FROM $tabla h INNER JOIN products p ON h.id_product=p.id_product INNER JOIN users u ON h.user_id=u.user_id");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+		}
 
         /*MODELOS CATEGORIAS*/
         //Este modelo se usa para obtener informacion de cada caeogria
