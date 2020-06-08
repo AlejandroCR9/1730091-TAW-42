@@ -2,7 +2,8 @@
 	//modelo de enlaces web
 	class Paginas{
 		public static function enlacesPaginasModel($enlaces){
-			if(($enlaces)== "login" || ($enlaces)== "tablero" || ($enlaces)== "usuarios" || ($enlaces)== "salir"){
+			if(($enlaces)== "login" || ($enlaces)== "tablero" || ($enlaces)== "usuarios" || ($enlaces)== "salir" 
+				|| ($enlaces)== "inventario" || ($enlaces)== "categorias" || ($enlaces)== "historial"){
 				$module="views/modules/".$enlaces.".php";
 			}else if ($enlaces=="index"){
 				$module="views/modules/login.php";

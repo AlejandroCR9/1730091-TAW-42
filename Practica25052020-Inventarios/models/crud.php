@@ -104,8 +104,8 @@
         }
 
         /////PRODUCTOSSS
-        public static function vistaProductsModel($tabla){
-			$stmt = Conexion::conectar()->prepare("SELECT p.id_product AS 'id', p.code_producto AS 'codigo', p.name_product AS 'producto', p.date_added AS 'fecha', p.price_product AS 'precio', p.stock AS 'stock', c.name_category AS 'cateogria' FROM $tabla p INNER JOIN categories c ON p.id_cateogry=c.id_cateogry");
+        public static function vistaProductoModel($tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT p.id_product AS 'id',p.code_product AS 'codigo', p.name_product AS 'producto',p.date_added AS 'fecha',p.price_product AS 'precio',p.stock AS 'stock',c.name_category AS 'categoria' FROM $tabla p INNER JOIN categories c ON p.id_category = c.id_category");
 			$stmt->execute();
 
 			return $stmt->fetchAll();
@@ -115,7 +115,7 @@
 
 		public static function insertarProductoModel($datosModel,$tabla){
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (code_producto,name_product, price_product, stock, id_cateogry) VALUES(:codigo,:nombre,:precio, :stock,:cateogria)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (code_product,name_product, price_product, stock, id_category) VALUES(:codigo,:nombre,:precio, :stock,:categoria)");
 
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
 			$stmt->bindParam(":codigo",$datosModel["codigo"], PDO::PARAM_STR);
@@ -198,19 +198,45 @@
 			$stmt->close();
 		}
 		//////////////////////
-		public static function ultimoProductoModel($datosModel,$tabla){
+		public static function ultimoProductoModel($tabla){
 			$stmt =Conexion::conectar()->prepare("SELECT id_product AS 'id' FROM $tabla ORDER BY id_product DESC LIMIT 1");
 			$stmt->execute();
 			return $stmt->fetch();
 			$stmt->close();
 		}
 
-		public static function vistaHistorialModel($datosModel,$tabla){
-			$stmt =Conexion::conectar()->prepare("SELECT CONCAT(u.firstname,':',u.user_name) AS 'usuario' p.name_product AS 'producto', h.date AS 'fecha', h.reference AS 'referencia', h.note AS 'nota'. h.quantity AS 'cantidad' FROM $tabla h INNER JOIN products p ON h.id_product=p.id_product INNER JOIN users u ON h.user_id=u.user_id");
+		public static function vistaHistorialModel($tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT CONCAT(u.firstname,':',u.user_name) AS 'usuario', p.
+            name_product AS 'producto',h.date AS 'fecha',h.reference AS 'referencia', h.note AS 'nota', h.
+            quantity AS 'cantidad' FROM $tabla h INNER JOIN products p ON h.id_producto = p.id_product INNER JOIN
+            users u ON h.user_id = u.user_id");
 			$stmt->execute();
 			return $stmt->fetchAll();
 			$stmt->close();
 		}
+
+		public static function insertarHistorialModel($datosModel,$tabla){
+			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (user_id, quantity,id_producto, note, reference) VALUES(:user,:cantidad,:producto,:note,:reference)");
+
+			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
+			$stmt->bindParam(":user",$datosModel["user"], PDO::PARAM_INT);
+			$stmt->bindParam(":cantidad",$datosModel["cantidad"], PDO::PARAM_STR);
+			$stmt->bindParam(":producto",$datosModel["producto"], PDO::PARAM_STR);
+			$stmt->bindParam(":note",$datosModel["note"], PDO::PARAM_STR);
+			$stmt->bindParam(":reference",$datosModel["reference"], PDO::PARAM_STR);
+
+			//regresar una respuesta satisfactoria o no
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				//echo();
+				return "error";
+			}
+			$stmt->close();
+		}
+
 
         /*MODELOS CATEGORIAS*/
         //Este modelo se usa para obtener informacion de cada caeogria
@@ -224,7 +250,7 @@
 		}
 
 		//registo de usuarios
-		public static function insertarUsuarioModel($datosModel,$tabla){
+		public static function insertarCategoryModel($datosModel,$tabla){
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (name_category, description_category) VALUES(:ncategoria,:dcategoria)");
 
@@ -251,7 +277,7 @@
 			$stmt->close();
 		}
 
-		public static function actualizarUsuarioModel($datosModel,$tabla){
+		public static function actualizarCategoryModel($datosModel,$tabla){
 			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET name_category=:nombre_categoria, description_category=:descripcion_cateogria WHERE id_cateogry=:id");
 
 			$stmt->bindParam(":descripcion_cateogria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
@@ -283,7 +309,7 @@
 		//MODELOS PARA LOS SELECT
 		/*Permite crear un select y mostrar lo apartir de un select en php dando als cateogrias y nombres en el formulario prdiucto*/
 		public function obtenerCategoryModel($tabla){
-			$stmt=Conexion::conectar()->prepare("SELECT id_cateogry AS 'id',  name_category AS 'cateogria' FROM $tabla");
+			$stmt=Conexion::conectar()->prepare("SELECT id_category AS 'id',  name_category AS 'categoria' FROM $tabla");
 			$stmt->execute();
 			return $stmt->fetchAll();
 		}

@@ -278,23 +278,22 @@
 
 
         //Vista de usuarios
-		public  function vistaProductosController(){
+		public  function vistaProductoController(){
 			$respuesta=Datos::vistaProductoModel("products");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
-						<td><a href=index.php?action=inventario&idProductEditar='.$item["user_id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
+						<td><a href=index.php?action=inventario&idProductEditar='.$item["id"].'><button class="btn btn-warning btn-sm btn-icon "><i class="fa fa-edit"></i>Editar</button></td>
 
-						<td><a href=index.php?action=inventario&idBorrar='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Editar</button>Borrar</button></td>
+						<td><a href=index.php?action=inventario&idBorrar='.$item["id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-thash"></i>Borrar</button></td>
 						<td>'.$item["id"].'</td>
 						<td>'.$item["codigo"].'</td>
 						<td>'.$item["producto"].'</td>
 						<td>'.$item["fecha"].'</td>
 						<td>'.$item["precio"].'</td>
-						<td>'.$item["stoc"].'</td>
+						<td>'.$item["stock"].'</td>
 						<td>'.$item["categoria"].'</td>
-						<td>'.$item["precio"].'</td>
-						<td><a href=index.php?action=inventario&idProductAdd='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
-						<td><a href=index.php?action=inventario&idProductDel='.$item["user_id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
+						<td><a href=index.php?action=inventario&idProductAdd='.$item["id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
+						<td><a href=index.php?action=inventario&idProductDel='.$item["id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
 					</tr>';
 			}
 		}
@@ -315,7 +314,7 @@
 							</div>
 							<div class="form-group">
 								<label for="nombretxt">Nombre:</label>
-								<input  class="form-control" type="text" name="ausuariotxt" id="nombretxt" required>
+								<input  class="form-control" type="text" name="nombretxt" id="nombretxt" required>
 							</div>
 							<div class="form-group">
 								<label for="preciotxt">Precio:</label>
@@ -323,15 +322,15 @@
 							</div>
 							<div class="form-group">
 								<label for="stocktxt">Stock:</label>
-								<input  class="form-control" type="number" name="ucontratxt" id="stocktxt" required>
+								<input  class="form-control" type="number" min="0" name="stocktxt" id="stocktxt" required>
 							</div>
 							<div class="form-group">
 								<label for="motivotxt">Motivo:</label>
 								<input  class="form-control" type="text" name="motivotxt" id="motivotxt" required>
 							</div>
 							<div class="form-group">
-								<label for="categoria">Cateogíra::</label>
-								<select class="form-control" type="text" name="cateogria" id="cateogira" required>
+								<label for="categoria">Categoria:</label>
+								<select class="form-control" type="text" name="categoria" id="categoria" required>
 									<?php
 										$respuesta_categoria= Datos::obtenerCategoryModel("categories");
 										foreach ($respuesta_categoria as $row => $item) {
@@ -361,9 +360,9 @@
 				$respuesta=Datos::insertarProductoModel($datosController,"products");
 
 				if ($respuesta=="success") {
-					$repsuesta3= Datos::ultimoProductoModel("products");
-					$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxt"],"producto"=>$respuesta3["id"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["referenciatxt"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					$respuesta3= Datos::ultimoProductoModel("products");
+					$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["stocktxt"],"producto"=>$respuesta3["id"],"note"=>$_SESSION["nombre_usuario"]." agrego/compro","reference"=>$_POST["motivotxt"]);
+					$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -375,7 +374,7 @@
 								Producto agregado con éxito.
 							</div>
 						</div>
-					';
+					'.$respuesta2;
 				}else{
 					echo ' 
 						<div class="col-md-6 mt-3">
@@ -388,7 +387,7 @@
 								Se ha producido un error al momento de agregar.
 							</div>
 						</div>
-					';
+					'.$datosController["codigo"]." ".$datosController["precio"]." " .$datosController["stock"]." ".$datosController["categoria"]." ".$datosController["nombre"];
 				}
 			}
 		}
@@ -485,6 +484,43 @@
 					';
 				}
         	}
+        }
+
+        /*Este controlador sirve para eliminar la cateogria que se acabd de ingresar y notifica si se relaizo dicha actividad o si hubo algun error*/
+        public function eliminarProductoController(){
+        	if(isset($_GET["idBorrar"])){
+        		$datosController=$_GET["idBorrar"];
+        		//Manda parametros al modelo
+        		$respuesta=Datos::eliminarProductoModel($datosController,"products");
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Producto eliminado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de eliminar.
+							</div>
+						</div>
+					';
+				}
+        	}
+
         }
 
         /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
@@ -629,14 +665,14 @@
         /**/
         public function vistaHistorialController(){
         	$respuesta=Datos::vistaHistorialModel("historial");
-        	foreach ($repsuesta as $row => $item) {
+        	foreach ($respuesta as $row => $item) {
         		echo '
         			<tr>
         				<td>'.$item["usuario"].'</td>
         				<td>'.$item["producto"].'</td>
         				<td>'.$item["nota"].'</td>
         				<td>'.$item["cantidad"].'</td>
-        				<td>'.$item["refenrecia"].'</td>
+        				<td>'.$item["referencia"].'</td>
         				<td>'.$item["fecha"].'</td>
         			';
         	}
@@ -790,7 +826,7 @@
         }
 
         /*Este controlador sirve para eliminar la cateogria que se acabd de ingresar y notifica si se relaizo dicha actividad o si hubo algun error*/
-        public function eliminarUsuarioController(){
+        public function eliminarCategoryController(){
         	if(isset($_GET["idBorrar"])){
         		$datosController=$_GET["idBorrar"];
         		//Manda parametros al modelo
