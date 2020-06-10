@@ -3,7 +3,7 @@
 	class Paginas{
 		public static function enlacesPaginasModel($enlaces){
 			if(($enlaces)== "login" || ($enlaces)== "tablero" || ($enlaces)== "usuarios" || ($enlaces)== "salir" 
-				|| ($enlaces)== "inventario" || ($enlaces)== "categorias" || ($enlaces)== "historial"){
+				|| ($enlaces)== "inventario" || ($enlaces)== "categoria" || ($enlaces)== "historial"){
 				$module="views/modules/".$enlaces.".php";
 			}else if ($enlaces=="index"){
 				$module="views/modules/login.php";

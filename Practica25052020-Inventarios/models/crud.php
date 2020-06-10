@@ -136,7 +136,7 @@
 		}
 
 		public static function editarProductoModel($datosModel,$tabla){
-			$stmt =Conexion::conectar()->prepare("SELECT id_product AS 'id',code_producto AS 'codigo', name_product AS 'nombre', price_product AS 'precio', stock FROM $tabla WHERE id_product=:id");
+			$stmt =Conexion::conectar()->prepare("SELECT id_product AS 'id',code_product AS 'codigo', name_product AS 'nombre', price_product AS 'precio', stock FROM $tabla WHERE id_product=:id");
 			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
 			$stmt->execute();
 			return $stmt->fetch();
@@ -169,8 +169,8 @@
 			$stmt->close();
 		}
 
-		public static function acualizarProductoModel($datosModel,$tabla){
-			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET code_producto=:codigo, name_product=:nombre, price_product=:precio,id_cateogry=:categoria, stock=:stock WHERE id_product=:id");
+		public static function actualizarProductModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET code_product=:codigo, name_product=:nombre, price_product=:precio, id_category=:categoria, stock=:stock WHERE id_product=:id");
 			$stmt->bindParam(":codigo",$datosModel["codigo"], PDO::PARAM_STR);
 			$stmt->bindParam(":nombre",$datosModel["nombre"], PDO::PARAM_STR);
 			$stmt->bindParam(":precio",$datosModel["precio"], PDO::PARAM_STR);
@@ -181,7 +181,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -241,7 +242,7 @@
         /*MODELOS CATEGORIAS*/
         //Este modelo se usa para obtener informacion de cada caeogria
 		public static function vistaCategoriesModel($tabla){
-			$stmt = Conexion::conectar()->prepare("SELECT id_cateogry AS 'idc', name_category as 'ncategoria', description_category AS 'dcategoria', date_added AS 'fcategoria' FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT id_category AS 'idc', name_category as 'ncategoria', description_category AS 'dcategoria', date_added AS 'fcategoria' FROM $tabla");
 			$stmt->execute();
 
 			return $stmt->fetchAll();
@@ -255,8 +256,8 @@
 			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (name_category, description_category) VALUES(:ncategoria,:dcategoria)");
 
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
-			$stmt->bindParam(":dcategoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
-			$stmt->bindParam(":ncategoria",$datosModel["descripcion_cateogria"], PDO::PARAM_STR);
+			$stmt->bindParam(":ncategoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
+			$stmt->bindParam(":dcategoria",$datosModel["descripcion_categoria"], PDO::PARAM_STR);
 
 			//regresar una respuesta satisfactoria o no
 
@@ -270,7 +271,7 @@
 		}
 
 		public static function editarCategoryModel($datosModel,$tabla){
-			$stmt =Conexion::conectar()->prepare("SELECT id_cateogry AS 'id', name_category AS 'nombre_categoria', description_category AS 'descripcion_cateogria' FROM $tabla WHERE id_cateogry=:id");
+			$stmt =Conexion::conectar()->prepare("SELECT id_category AS 'id', name_category AS 'nombre_categoria', description_category AS 'descripcion_categoria' FROM $tabla WHERE id_category=:id");
 			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
 			$stmt->execute();
 			return $stmt->fetch();
@@ -278,11 +279,11 @@
 		}
 
 		public static function actualizarCategoryModel($datosModel,$tabla){
-			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET name_category=:nombre_categoria, description_category=:descripcion_cateogria WHERE id_cateogry=:id");
+			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET name_category=:nombre_categoria, description_category=:descripcion_categoria WHERE id_category=:id");
 
-			$stmt->bindParam(":descripcion_cateogria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
+			$stmt->bindParam(":descripcion_categoria",$datosModel["descripcion_categoria"], PDO::PARAM_STR);
 			$stmt->bindParam(":nombre_categoria",$datosModel["nombre_categoria"], PDO::PARAM_STR);
-			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_STR);
+			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
 
 
 			if($stmt->execute()){

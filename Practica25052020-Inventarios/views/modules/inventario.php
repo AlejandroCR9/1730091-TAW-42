@@ -38,8 +38,8 @@
 			<div id="example2-wrapper" class="dataTables_wrapper dt-bootstrap4">
 				<div class="row">
 					<div class="col-sm-12">
-						<table id="example1" class="table table-hover table-bordered">
-							<thead class="table-info"> 
+						<table id="example1" class="table table-bordered table-striped">
+							<thead class="table-success"> 
 								<tr>
 									<th>¿Editar?</th>
 									<th>¿Eliminar?</th>
