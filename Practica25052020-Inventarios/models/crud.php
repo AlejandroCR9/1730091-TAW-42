@@ -143,7 +143,7 @@
 			$stmt->close();
 		}
 
-		public static function pushProductoModel($datosModel,$tabla){
+		public static function pushProductModel($datosModel,$tabla){
 			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET stock=stock+:stock WHERE id_product=:id");
 			$stmt->bindParam(":stock",$datosModel["stock"],PDO::PARAM_INT);
 			$stmt->bindParam(":id",$datosModel["id"],PDO::PARAM_INT);
@@ -156,7 +156,7 @@
 			$stmt->close();
 		}
 
-		public static function pullProductoModel($datosModel,$tabla){
+		public static function pullProductModel($datosModel,$tabla){
 			$stmt =Conexion::conectar()->prepare("UPDATE $tabla SET stock=stock - :stock WHERE id_product=:id AND stock >=:stock");
 			$stmt->bindParam(":stock",$datosModel["stock"],PDO::PARAM_INT);
 			$stmt->bindParam(":id",$datosModel["id"],PDO::PARAM_INT);

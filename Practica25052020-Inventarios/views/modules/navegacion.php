@@ -70,6 +70,14 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="index.php?action=ventas" class="nav-link">
+					<i class="nav-icon fas fa-cart-plus"></i>
+						<p>
+							Vender
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="index.php?action=salir" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>

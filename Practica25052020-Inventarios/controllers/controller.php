@@ -18,7 +18,7 @@
 			include $respuesta;
 		}
 
-		//INgreso usuarios
+		//Ingreso usuarios
 		public function ingresoUsuarioController(){
 			if(isset($_POST["usuarioIngreso"])){
 				$datosController= array("usuario"=>$_POST["usuarioIngreso"],"password"=>$_POST["passwordIngreso"]);
@@ -257,23 +257,54 @@
         /*Este controlador sirve para mostrale al usuaroo las cajas done se tiene inforamcion sobre los usuarios, prpductos, ventas registradas, asi com los movimientos que se tienen en el historial, y las ganacinas que se tienen*/
         public function contarFilas(){
         	$respuesta_users=Datos::contarFilasModel("users");
-        	//$respuesta_users=Datos::contrarFilasModel("users"); products
-        	//$respuesta_users=Datos::contrarFilasModel("users"); cateogries 
+        	$respuesta_p=Datos::contarFilasModel("products"); 
+        	$respuesta_c=Datos::contarFilasModel("categories"); 
         	//$respuesta_users=Datos::contrarFilasModel("users"); //historial
-        	echo '
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>'.$respuesta_users["filas"].'</h3>
-                            <p>Total de Usuarios</p>
-                        </div>
-                        <div class="icon">
-                            <i class="far fa-address-card"></i>
-                        </div>
-                        <a class="small-box-footer" href="index.php?action=usuarios">Más <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
+			echo '
+				<div class="row">
+					<div class="col-lg-3 col-6">
+						<div class="small-box bg-info">
+							<div class="inner">
+								<h3>'.$respuesta_users["filas"].'</h3>
+								<p>Total de Usuarios</p>
+							</div>
+							<div class="icon">
+								<i class="far fa-address-card"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=usuarios">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
                 ';
+                echo '
+					<div class="col-lg-3 col-6">
+						<div class="small-box bg-info">
+							<div class="inner">
+								<h3>'.$respuesta_p["filas"].'</h3>
+								<p>Total de Productos</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-list"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=inventario">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+                ';
+                echo '
+					<div class="col-lg-3 col-6">
+						<div class="small-box bg-info">
+							<div class="inner">
+								<h3>'.$respuesta_c["filas"].'</h3>
+								<p>Total de Categorias</p>
+							</div>
+							<div class="icon">
+								<i class="fas fa-poll-h"></i>
+							</div>
+							<a class="small-box-footer" href="index.php?action=categoria">Más <i class="fas fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+                ';
+                
         }
 
 
@@ -294,6 +325,18 @@
 						<td>'.$item["categoria"].'</td>
 						<td><a href=index.php?action=inventario&idProductAdd='.$item["id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Agregar Stock</button></td>
 						<td><a href=index.php?action=inventario&idProductDel='.$item["id"].'><button class="btn btn-danger btn-sm btn-icon"><i class="fa fa-edit"></i>Quitar Stock</button></td>
+					</tr>';
+			}
+		}
+
+		//Vista de productos para ventas
+		public  function vistaProducto2Controller(){
+			$respuesta=Datos::vistaProductoModel("products");
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+						<td>'.$item["producto"].'</td>
+						<td>$ '.$item["precio"].'</td>
+						<td>'.$item["stock"].'</td>
 					</tr>';
 			}
 		}
@@ -526,7 +569,7 @@
         /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
         public function addProductoController(){
         	$datosController=$_GET["idProductAdd"];
-        	$repsuesta=Datos::editarProductoModel("products");
+        	$respuesta=Datos::editarProductoModel($datosController,"products");
         	?>
         	<div class="col-md-6 mt-3">
 				<div class="card card-warning">
@@ -535,7 +578,7 @@
 					</div>
 					<div class="card-body">
 						<form method="post" action="index.php?action=inventario">
-							<input  class="form-control" type="hidden" name="idProductEditar" id="idProductEditar" value="<?php echo $respuesta["id"] ?>" required>
+							<input  class="form-control" type="hidden" name="idProductAdd" id="idProductAdd" value="<?php echo $respuesta["id"] ?>" required>
 							<div class="form-group">
 								<label for="stocktxt">Stock:</label>
 								<input  class="form-control" type="number" name="addstocktxt" min="1" value="1" id="addstocktxt" required>
@@ -561,7 +604,7 @@
             	
         		if ($respuesta=="success") {
         			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["addstocktxt"],"producto"=>$_POST["idProductAdd"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["addreferenciatxt"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -602,7 +645,7 @@
             	
         		if ($respuesta=="success") {
         			$datoscontroller2=array("user"=>$_SESSION["id"],"cantidad"=>$_POST["delstocktxt"],"producto"=>$_POST["idProductDel"],"note"=>$_SESSION["nombre_usuario"]."agrego/compro","reference"=>$_POST["delreferenciatxt"]);
-					$respuesta2=Datos::instertarHistorialModel($datoscontroller2,"historial");
+					$respuesta2=Datos::insertarHistorialModel($datoscontroller2,"historial");
 					echo ' 
 						<div class="col-md-6 mt-3">
 							<div class="alert alert-success alert-dismissible">
@@ -635,7 +678,7 @@
         /*Permite agregar productos al stock atraves del boton y un formulariopara agregar dicha canidad al producto se llama al modelo correspondiente para si apsar al contolador qye actulliza dicho modelo*/
         public function delProductoController(){
         	$datosController=$_GET["idProductDel"];
-        	$repsuesta=Datos::editarProductoModel("products");
+        	$respuesta=Datos::editarProductoModel($datosController,"products");
         	?>
         	<div class="col-md-6 mt-3">
 				<div class="card card-danger">
