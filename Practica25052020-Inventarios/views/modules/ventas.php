@@ -17,7 +17,7 @@
                 <div id="example2-wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-lg-12">
-                            <table id="example1" class="table table-striped dispaly">
+                            <table id="example1" class="table table-bordered table-hover dataTable">
                                 <thead class="table-info"> 
                                     <tr>
                                         <th>Nombre</th>
@@ -31,7 +31,16 @@
                                 
                             </table>	
                         </div>
-                    </div>	
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <a href="index.php" class="btn btn-light btn btn-outline-success col-8">Pagar</a>
+                        </div>
+                        <div class="col col-lg-2">
+                            <a href="index.php?action=usuarios&registar" class="btn btn-light btn btn-outline-danger">Cancelar</a>
+                        </div>
+                    </div>		
                 </div>
             </div>
         </div>
@@ -43,7 +52,7 @@
                 <div id="example2-wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-lg-12">
-                            <table id="example1" class="table table-striped dispaly">
+                            <table id="example2" class="table table-striped dispaly">
                                 <thead class="table-info"> 
                                     <tr>
                                         <th>Nombre</th>
@@ -51,6 +60,8 @@
                                         <th>Total</th>
                                     </tr>
                                 </thead>
+                                <tbody id="cuerpo">
+                                </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="2">Total a pagar: </td>

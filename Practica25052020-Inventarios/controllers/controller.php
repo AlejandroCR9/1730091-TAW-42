@@ -333,11 +333,11 @@
 		public  function vistaProducto2Controller(){
 			$respuesta=Datos::vistaProductoModel("products");
 			foreach ($respuesta as $row => $item) {
-				echo '<tr>
-						<td>'.$item["producto"].'</td>
-						<td>$ '.$item["precio"].'</td>
-						<td>'.$item["stock"].'</td>
-					</tr>';
+				echo '<tr id="f'.$item["id"].'" onclick="agregar('.$item["id"].')">
+						<td id="'.$item["id"].'p" value="'.$item["producto"].'">'.$item["producto"].'</td>
+						<td id="'.$item["id"].'pe" value="'.$item["precio"].'">$ '.$item["precio"].'</td>
+						<td id="'.$item["id"].'s" value="'.$item["stock"].'">'.$item["stock"].'</td>
+					 </tr>';
 			}
 		}
 
@@ -560,7 +560,7 @@
 								Se ha producido un error al momento de eliminar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
 
@@ -629,7 +629,7 @@
 								Se ha producido un error al momento de agregar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
         }
@@ -670,7 +670,7 @@
 								Se ha producido un error al momento de restar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
         }

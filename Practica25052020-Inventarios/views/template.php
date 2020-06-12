@@ -113,6 +113,8 @@
         $("#example1").DataTable();
         $("#example2").DataTable();
     });
+     
     </script>
+    <script type="text/javascript" src="views/assets/dist/js/venta.js"></script>
 </body>
 </html>

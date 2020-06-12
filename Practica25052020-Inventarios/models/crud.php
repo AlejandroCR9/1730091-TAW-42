@@ -47,8 +47,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				//echo();
-				return $datosModel["nusuario"]." ".$datosModel["ausuario"]." ".$datosModel["usuario"]." ".$datosModel["contra"]." ".$datosModel["email"]." ".$fecha;
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -76,7 +76,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return $datosModel["nusuario"]." ".$datosModel["ausuario"]." ".$datosModel["usuario"]." ".$datosModel["contra"]." ".$datosModel["email"]." ".$datosModel["id"];
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 
@@ -89,7 +90,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -130,7 +132,8 @@
 				return "success";
 			}else{
 				//echo();
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -151,7 +154,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -164,7 +168,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -194,7 +199,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -233,7 +239,8 @@
 				return "success";
 			}else{
 				//echo();
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -265,7 +272,8 @@
 				return "success";
 			}else{
 				//echo();
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 		}
@@ -289,7 +297,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
 
@@ -302,7 +311,8 @@
 			if($stmt->execute()){
 				return "success";
 			}else{
-				return "error";
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.s
 			}
 			$stmt->close();
 		}
