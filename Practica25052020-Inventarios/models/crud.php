@@ -32,7 +32,7 @@
 			date_default_timezone_set('America/Mexico_City');
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
 			$fecha=date("Y").'/'.date("m").'/'.date("d");
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (firstname,lastname,user_name, user_password,user_email, date_added) VALUES(:nusuario,:ausuario,:usuario,:contra,:email)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (firstname,lastname,user_name, user_password,user_email) VALUES(:nusuario,:ausuario,:usuario,:contra,:email)");
 
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
 			$stmt->bindParam(":nusuario",$datosModel["nusuario"], PDO::PARAM_STR);

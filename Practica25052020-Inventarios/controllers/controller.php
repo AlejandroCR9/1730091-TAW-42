@@ -27,9 +27,13 @@
 				if($respuesta["usuario"]==$_POST["usuarioIngreso"] && password_verify($_POST["passwordIngreso"], $respuesta["contrasena"])){
 					//session_start();
 					$_SESSION["validar"]=true;
+					$_SESSION["tipo"]=$respuesta["typeu"];
 					$_SESSION["nombre_usuario"]=$respuesta["usuario"];
 					$_SESSION["id"]=$respuesta["id"];
-					header("Location:index.php?action=tablero");
+					if($_SESSION["tipo"]==1)
+						header("Location:index.php?action=tablero");
+					else
+						header("Location:index.php?action=ventas");
 					
 				}else{
 					header("Location:index.php?action=fallo&res=fallo");

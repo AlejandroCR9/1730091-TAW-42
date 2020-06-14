@@ -33,50 +33,51 @@
 				<a href="index.php?action=tablero" class="d-block"><?php /*Muestra el nombre del usuario actual*/ if(isset($_SESSION['nombre_usuario'])){echo $_SESSION['nombre_usuario'];}?></a>
 			</div>
 		</div>
-
 		<!--sidebar menu-->
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-				<li class="nav-item">
-					<a href="index.php?action=tablero" class="nav-link">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
-						<p>
-							Tablero
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="index.php?action=usuarios" class="nav-link">
-						<i class="nav-icon fas fa-users"></i>
-						<p>
-							Usuarios
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="index.php?action=inventario" class="nav-link">
-						<i class="nav-icon fas fa-box"></i>
-						<p>
-							Productos
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="index.php?action=categoria" class="nav-link">
-						<i class="nav-icon fas fa-tag"></i>
-						<p>
-							Categorias
-						</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="index.php?action=clientes" class="nav-link">
-						<i class="nav-icon fas fa-users"></i>
-						<p>
-							Clientes
-						</p>
-					</a>
-				</li>
+				<?php if($_SESSION["tipo"]==1){?>
+					<li class="nav-item">
+						<a href="index.php?action=tablero" class="nav-link">
+							<i class="nav-icon fas fa-tachometer-alt"></i>
+							<p>
+								Tablero
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="index.php?action=usuarios" class="nav-link">
+							<i class="nav-icon fas fa-users"></i>
+							<p>
+								Usuarios
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="index.php?action=inventario" class="nav-link">
+							<i class="nav-icon fas fa-box"></i>
+							<p>
+								Productos
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="index.php?action=categoria" class="nav-link">
+							<i class="nav-icon fas fa-tag"></i>
+							<p>
+								Categorias
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="index.php?action=clientes" class="nav-link">
+							<i class="nav-icon fas fa-users"></i>
+							<p>
+								Clientes
+							</p>
+						</a>
+					</li>
+				<?php }?>
 				<li class="nav-item">
 					<a href="index.php?action=ventas" class="nav-link">
 					<i class="nav-icon fas fa-cart-plus"></i>
