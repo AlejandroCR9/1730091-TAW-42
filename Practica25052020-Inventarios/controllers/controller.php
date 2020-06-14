@@ -37,7 +37,6 @@
 			}
 		}
 
-
 		//Vista de usuarios
 		public  function vistaUsuarioController(){
 			$respuesta=Datos::vistaUsuarioModel("users");
@@ -130,7 +129,7 @@
 								Se ha producido un error al momento de agregar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
 			}
 		}
@@ -798,7 +797,7 @@
 								Se ha producido un error al momento de agregar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
         }
@@ -865,7 +864,7 @@
 								Se ha producido un error al momento de actualizar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
         }
@@ -901,7 +900,215 @@
 								Se ha producido un error al momento de eliminar.
 							</div>
 						</div>
+					'.$respuesta;
+				}
+        	}
+
+		}
+		
+
+		/*========================CLIENTES==========================*/
+
+		//Vista de usuarios
+		public  function vistaClienteController(){
+			$respuesta=Datos::vistaClienteModel("clients");
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+						<td><a href=index.php?action=clientes&idClientEditar='.$item["idClient"].'><button class="btn btn-primary">Editar</button></td>
+
+						<td><a href=index.php?action=clientes&idBorrar='.$item["idClient"].'><button class="btn btn-primary">Borrar</button></td>
+						<td>'.$item["firstname"].'</td>
+						<td>'.$item["lastname"].'</td>
+						<td>'.$item["address"].'</td>
+						<td>'.$item["client_email"].'</td>
+						<td>'.$item["date_added"].'</td>
+						
+					</tr>';
+			}
+		}
+
+		/*--Este controlador se encarga de mostrar el formualrio al usuario para registrase*/
+		public function registrarClienteController(){
+			?>
+			<div class="col-md-6 mt-6">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h4><b>Registro</b> de cliente </h4>
+					</div>
+					<div class="card-body">
+						<form method="post" action="index.php?action=clientes">
+							<div class="form-group">
+								<label for="nclientetxt">Nombre:</label>
+								<input  class="form-control" type="text" name="nclientetxt" id="nclientetxt" required>
+							</div>
+							<div class="form-group">
+								<label for="aclientetxt">Apellidos:</label>
+								<input  class="form-control" type="text" name="aclientetxt" id="aclientetxt" required>
+							</div>
+							<div class="form-group">
+								<label for="domiciliotxt">Domicilio:</label>
+								<input  class="form-control" type="text" name="domiciliotxt" id="domiciliotxt" required> 
+							</div>
+							<div class="form-group">
+								<label for="emailtxt">Correo Electronico:</label>
+								<input  class="form-control" type="text" name="emailtxt" id="emailtxt" required>
+							</div>
+							<button class="btn btn-primary" type="submit">Agregar</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<?php
+		}
+
+		/*Este contorlador sirve para insertar el cliente que se acaba de ingresar en el formularip y notifica si se realizo dicha actividad o si hubo algun error, en el caso de la contsaseñan*/
+		public function insertarClienteController(){
+			if(isset($_POST["nclientetxt"])){
+
+				//Almacenar en un array los valores de los text del metodo "registrarUserController"
+				$datosController=array("ncliente"=>$_POST["nclientetxt"],"acliente"=>$_POST["aclientetxt"],"domicilio"=>$_POST["domiciliotxt"], "email"=>$_POST["emailtxt"]);
+
+				$respuesta=Datos::insertarClienteModel($datosController,"clients");
+
+				if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Cliente agregado con éxito.
+							</div>
+						</div>
 					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de agregar.
+							</div>
+						</div>
+					'.$respuesta;
+				}
+			}
+		}
+
+		/*Este contorlador se encarga de mostar el formulario para editar sus daos, la contraseña no se carga debido a como esta iencripara, no es optimo */
+		public function editarClienteController() {
+            $datosController = $_GET["idClientEditar"];
+            //envío de datos al mododelo
+            $respuesta = Datos::editarClienteModel($datosController,"clients");
+            ?>
+            <div class="col-md-6 mt-3">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h4><b>Editor</b> de Clientes</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="index.php?action=clientes">
+                            <div class="form-group">
+                                <input type="hidden" name="idClientEditar" class="form-control" value="<?php echo $respuesta["id"]; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nclientetxtEditar">Nombre: </label>
+                                <input class="form-control" type="text" name="nclientetxtEditar" id="nclientetxtEditar" placeholder="Ingrese el nuevo nombre" value="<?php echo $respuesta["ncliente"]; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="aclientetxtEditar">Apellido: </label>
+                                <input class="form-control" type="text" name="aclientetxtEditar" id="aclientetxtEditar" placeholder="Ingrese el nuevo apellido" value="<?php echo $respuesta["acliente"]; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="domiciliotxtEditar">Domicilio: </label>
+                                <input class="form-control" type="text" name="domiciliotxtEditar" id="domiciliotxtEditar" placeholder="Ingrese el nuevo domicilio" value="<?php echo $respuesta["domicilio"]; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailtxtEditar">Correo Electrónico: </label>
+                                <input class="form-control" type="email" name="emailtxtEditar" id="emailtxtEditar" placeholder="Ingrese el nuevo correo electrónico" value="<?php echo $respuesta["email"]; ?>" required>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Editar</button>
+                        </form>
+                    </div>
+                    </div>
+            </div>
+            <?php
+        }
+
+        /*este controlador sirve para actuaizat el usuario que se acaba de ingresar y notifica si se reliazo dicha actividad o hubo algun error*/
+        public function actualizarClienteController(){
+        	if(isset($_POST["nclientetxtEditar"])){
+
+        		$datosController=array("id" => $_POST["idClientEditar"],"ncliente"=>$_POST["nclientetxtEditar"],"acliente"=>$_POST["aclientetxtEditar"],"domicilio"=>$_POST["domiciliotxtEditar"],"email"=>$_POST["emailtxtEditar"]);
+
+            	$respuesta = Datos::actualizarClienteModel($datosController,"clients");
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Cliente editado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de editar.
+							</div>
+						</div>
+					'.$respuesta;
+				}
+        	}
+        }
+
+        /*Este controlador sirve para eliminar el usuario que se acabd de ingresar y notifica si se relaizo dicha actividad o si hubo algun error*/
+        public function eliminarClienteController(){
+        	if(isset($_GET["idBorrar"])){
+        		$datosController=$_GET["idBorrar"];
+        		//Manda parametros al modelo
+        		$respuesta=Datos::eliminarClienteModel($datosController,"clients");
+        		if ($respuesta=="success") {
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-success alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-check"></i>
+									Exito!
+								</h5>
+								Cliente eliminado con éxito.
+							</div>
+						</div>
+					';
+				}else{
+					echo ' 
+						<div class="col-md-6 mt-3">
+							<div class="alert alert-danger alert-dismissible">
+								<button class="close" type="button" data-miss="alert" aria-hidden="true">x</button>
+								<h5>
+									<i class="icon fas fa-ban"></i>
+									Error!
+								</h5>
+								Se ha producido un error al momento de eliminar.
+							</div>
+						</div>
+					'.$respuesta;
 				}
         	}
 

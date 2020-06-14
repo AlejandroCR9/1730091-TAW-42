@@ -7,7 +7,7 @@
 
 		//modelo ingresoUsuarioModel
 		public static function ingresoUsuarioModel($datosModel,$tabla){
-			$stmt = Conexion::conectar()->prepare("SELECT CONCAT(firstname, ' ', lastname) AS 'nombre_usuario', user_name AS 'usuario', user_password AS 'contrasena', user_id AS 'id' FROM $tabla WHERE user_name=:usuario");
+			$stmt = Conexion::conectar()->prepare("SELECT CONCAT(firstname, ' ', lastname) AS 'nombre_usuario', user_name AS 'usuario', user_password AS 'contrasena', user_id AS 'id', typeu FROM $tabla WHERE user_name=:usuario");
 			$stmt->bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 			$stmt->execute();
 			//fetch() Obtiene una fila de un conjunto de resultados 
@@ -32,7 +32,7 @@
 			date_default_timezone_set('America/Mexico_City');
 			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
 			$fecha=date("Y").'/'.date("m").'/'.date("d");
-			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (firstname,lastname,user_name, user_password,user_email, date_added) VALUES(:nusuario,:ausuario,:usuario,:contra,:email,:added)");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (firstname,lastname,user_name, user_password,user_email, date_added) VALUES(:nusuario,:ausuario,:usuario,:contra,:email)");
 
 			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
 			$stmt->bindParam(":nusuario",$datosModel["nusuario"], PDO::PARAM_STR);
@@ -40,7 +40,6 @@
 			$stmt->bindParam(":usuario",$datosModel["usuario"], PDO::PARAM_STR);
 			$stmt->bindParam(":contra",$datosModel["contra"], PDO::PARAM_STR);
 			$stmt->bindParam(":email",$datosModel["email"], PDO::PARAM_STR);
-			$stmt->bindParam(":added",$fecha, PDO::PARAM_STR);
 
 			//regresar una respuesta satisfactoria o no
 
@@ -323,6 +322,84 @@
 			$stmt=Conexion::conectar()->prepare("SELECT id_category AS 'id',  name_category AS 'categoria' FROM $tabla");
 			$stmt->execute();
 			return $stmt->fetchAll();
+		}
+
+		/*========================CLIENTES==========================*/
+
+		//Hace la consulta select a la tabla clients para traer a todos los clientes que hay en la base de datos y asi poder mostrarlos en la vista
+		public static function vistaClienteModel($tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT idClient, firstname,lastname,address,client_email, date_added FROM $tabla");
+			$stmt->execute();
+			//fetchAll: obtiene todas las fils de un conjunto asociado al objeto PDO statment (stmt)
+
+			return $stmt->fetchAll();
+			$stmt->close();
+
+		}
+
+		//registo de usuariosclietes
+		public static function insertarClienteModel($datosModel,$tabla){
+			date_default_timezone_set('America/Mexico_City');
+			//prepare() Prepara la sentencia de sql para que sea ejectuada por el metodo Postantment. la sentencia de sql se puede contener desde 0 para ejectuat mas parametos
+			$fecha=date("Y").'/'.date("m").'/'.date("d");
+			$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (firstname,lastname,address,client_email) VALUES(:ncliente,:acliente,:domicilio,:email)");
+
+			//bindParam() vincula una variable de php a un parametro de sustituion con nombre correspondiente a la sentencia SQL que fue usada para preparar la sentencia
+			$stmt->bindParam(":ncliente",$datosModel["ncliente"], PDO::PARAM_STR);
+			$stmt->bindParam(":acliente",$datosModel["acliente"], PDO::PARAM_STR);
+			$stmt->bindParam(":domicilio",$datosModel["domicilio"], PDO::PARAM_STR);
+			$stmt->bindParam(":email",$datosModel["email"], PDO::PARAM_STR);
+
+			//regresar una respuesta satisfactoria o no
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
+			}
+			$stmt->close();
+		}
+		
+		//Editar usuarios
+		public static function editarClienteModel($datosModel,$tabla){
+			$stmt =Conexion::conectar()->prepare("SELECT idClient AS 'id', firstname AS 'ncliente', lastname AS 'acliente', address AS 'domicilio', client_email AS 'email' FROM $tabla WHERE idClient=:id");
+			$stmt->bindParam(":id",$datosModel,PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+		}
+
+		public static function actualizarClienteModel($datosModel,$tabla){
+			$stmt=Conexion::conectar()->prepare("UPDATE $tabla SET firstname=:ncliente, lastname=:acliente,  address=:domicilio, client_email=:email WHERE idClient=:id");
+
+			$stmt->bindParam(":ncliente",$datosModel["ncliente"], PDO::PARAM_STR);
+			$stmt->bindParam(":acliente",$datosModel["acliente"], PDO::PARAM_STR);
+			$stmt->bindParam(":domicilio",$datosModel["domicilio"], PDO::PARAM_STR);
+			$stmt->bindParam(":email",$datosModel["email"], PDO::PARAM_STR);
+			$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_STR);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
+			}
+			$stmt->close();
+
+		}
+
+		public static function eliminarClienteModel($datosModel,$tabla){
+			$stmt=Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idClient=:id");
+			$stmt->bindParam(":id",$datosModel, PDO::PARAM_INT);
+
+			if($stmt->execute()){
+				return "success";
+			}else{
+				$a=$stmt->errorInfo(); //Retorna un array con el error en al bd 
+				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
+			}
+			$stmt->close();
 		}
 
 	}
