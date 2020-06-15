@@ -111,7 +111,15 @@
     <script>
     $(function () {
         $("#example1").DataTable();
-        $("#example2").DataTable();
+        $("#example2").DataTable({
+            "columnDefs": [
+                {
+                    "targets": [ 0 ],
+                    "visible": false,
+                }
+            ]
+        });
+        /**/
     });
      
     </script>

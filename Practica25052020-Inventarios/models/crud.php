@@ -16,6 +16,17 @@
 			$stmt->close();
 		}
 
+		//modelo ingresoUsuarioModel
+		public static function adminModel($datosModel,$tabla){
+			$stmt = Conexion::conectar()->prepare("SELECT  user_password AS 'contrasena' FROM $tabla WHERE user_name=:usuario");
+			$stmt->bindParam(":usuario", $datosModel, PDO::PARAM_STR);
+			$stmt->execute();
+			//fetch() Obtiene una fila de un conjunto de resultados 
+			return $stmt->fetch();
+
+			$stmt->close();
+		}
+
 		//MOdelo vistaUsuarioModel
 		public static function vistaUsuarioModel($tabla){
 			$stmt = Conexion::conectar()->prepare("SELECT user_id, firstname,lastname,user_name, user_password,user_email,date_added FROM $tabla");
@@ -400,6 +411,14 @@
 				return "error".$a[2];  //La posicion 1 del array es el numero del error y la 2 es el texto descriptivo de ese error.
 			}
 			$stmt->close();
+		}
+
+		//
+		/*Permite crear un select html y mostrarlo apartir de un select en php dando el id y nombres de los clientes en el formulario ventas*/
+		public function obtenerClientesModel($tabla){
+			$stmt=Conexion::conectar()->prepare("SELECT idClient AS 'id',  CONCAT(firstname,' ',lastname) AS 'name' FROM $tabla");
+			$stmt->execute();
+			return $stmt->fetchAll();
 		}
 
 	}

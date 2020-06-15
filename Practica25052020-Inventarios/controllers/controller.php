@@ -214,7 +214,7 @@
 								Se ha producido un error al momento de editar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
         }
@@ -250,7 +250,7 @@
 								Se ha producido un error al momento de eliminar.
 							</div>
 						</div>
-					';
+					'.$respuesta;
 				}
         	}
 
@@ -265,6 +265,9 @@
         	//$respuesta_users=Datos::contrarFilasModel("users"); //historial
 			echo '
 				<div class="row">
+					<div class="col-2">
+						
+					</div>
 					<div class="col-lg-3 col-6">
 						<div class="small-box bg-info">
 							<div class="inner">
@@ -280,7 +283,7 @@
                 ';
                 echo '
 					<div class="col-lg-3 col-6">
-						<div class="small-box bg-info">
+						<div class="small-box bg-green">
 							<div class="inner">
 								<h3>'.$respuesta_p["filas"].'</h3>
 								<p>Total de Productos</p>
@@ -294,7 +297,7 @@
                 ';
                 echo '
 					<div class="col-lg-3 col-6">
-						<div class="small-box bg-info">
+						<div class="small-box bg-red">
 							<div class="inner">
 								<h3>'.$respuesta_c["filas"].'</h3>
 								<p>Total de Categorias</p>
@@ -337,9 +340,9 @@
 			$respuesta=Datos::vistaProductoModel("products");
 			foreach ($respuesta as $row => $item) {
 				echo '<tr id="f'.$item["id"].'" onclick="agregar('.$item["id"].')">
-						<td id="'.$item["id"].'p" value="'.$item["producto"].'">'.$item["producto"].'</td>
-						<td id="'.$item["id"].'pe" value="'.$item["precio"].'">$ '.$item["precio"].'</td>
-						<td id="'.$item["id"].'s" value="'.$item["stock"].'">'.$item["stock"].'</td>
+						<td id="'.$item["id"].'p">'.$item["producto"].'</td>
+						<td id="'.$item["id"].'pe">$ '.$item["precio"].'</td>
+						<td id="'.$item["id"].'s">'.$item["stock"].'</td>
 					 </tr>';
 			}
 		}
