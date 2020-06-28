@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::resource('empleados', 'empleadosController');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'empleadosController@index');
 
-Route::get('/productos', function(){
+/*Route::get('/productos', function(){
     return ('Listado de productos');
 });
 
@@ -44,4 +42,4 @@ Route::get('saludo/{nombre}/{apodo?}', function($nombre, $apodo=null){
 });
 
 //Metodos para obtención y eliminacion de datos:
-//get (listado u obtener), post(guardar), put(actualizar), delete
+//get (listado u obtener), post(guardar), put(actualizar), delete*/

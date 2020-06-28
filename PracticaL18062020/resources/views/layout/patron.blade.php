@@ -53,18 +53,18 @@
   <link href="{{ asset('css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
 </head>
 
-<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+
 
 <body class="nav-md">
     <div class="container body">
-        <div class="main-container">
+        <div class="main_container">
             <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border:0;">
-                        <a href="{{url('/')}}" class="site_title"><span style="font_size: 19px;">Sistema control de empelados</span></a>
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="{{url('/')}}" class="site_title"><span style="font_size: 19px;">Sistema control de empleados</span></a>
                     </div>
                     <div class="clearfix"></div>
-                    <br />
+                    <br/>
 
                     <!--Sidebar menu-->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -74,7 +74,7 @@
                                 <li><a href="{{url('dashboard')}}">Inicio</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a><i class="fas fa-user-shiled"></i>&nbsp;&nbsp;&nbsp;&nbsp;Empleados<span style="float: right" class="fa fa-cheveron-down"></span></a>
+                                <li><a><i class="fas fa-user-shield"></i>&nbsp;&nbsp;&nbsp;&nbsp;Empleados<span style="float: right" class="fas fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{url('empleados/create')}}">Agregar Empledado</a></li>
                                         <li><a href="{{url('empleados')}}">Consultar Empledados</a></li>
@@ -114,6 +114,7 @@
     @include('sweetalert::alert')
 </body>
 </html>
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <!-- jQuery -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <!-- Bootstrap -->
@@ -188,6 +189,7 @@
 <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
 <!-- Sweet Alert -->
 <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
+
 <!-- Datatables -->
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>

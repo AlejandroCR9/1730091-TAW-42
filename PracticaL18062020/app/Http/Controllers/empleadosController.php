@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Empleado;
-use BD;
+//use BD; no existe
+use Alert;
 class empleadosController extends Controller{
     //
     public function index(){
@@ -22,10 +23,18 @@ class empleadosController extends Controller{
 
     public function store(Request $request){
         //Retirar los datos del request
-        $datosEmpleados=request()->except('empleado');
-
+        //$datosEmpleados=request()->except('empleado');
+        $empleado = new Empleado;
+        $empleado->nombres = $request->nombre;
+        $empleado->apellidos = $request->apellidos;
+        $empleado->cedula = $request->cedula;
+        $empleado->email = $request->email;
+        $empleado->sexo = $request->sexo;
+        $empleado->estado_civil = $request->estado_civil;
+        $empleado->telefono = $request->telefono;
+        $empleado->save();
         //instertar en la tabla empleado los datos para la creación de un nuevo registro
-        $id=DB::table('empleados')->insertGetId($datosEmpleado);
+        //$id=DB::table('empleados')->insertGetId($datosEmpleado);
         Alert::success('Datos guardados con exito');
         return redirect('empleados');
     }
@@ -39,6 +48,8 @@ class empleadosController extends Controller{
 
     //Controlador para eliminar empleado
     public function destroy($id){
+        $empleado=Empleado::findOrFail($id);
+        $empleado->delete();
         Alert::success('Datos eliminados de la base de datos');
         return redirect('empleados');
     }
