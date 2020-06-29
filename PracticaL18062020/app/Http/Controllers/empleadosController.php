@@ -41,11 +41,25 @@ class empleadosController extends Controller{
 
     //Controlador para editar 
     public function edit($id){
-        $empleados=Empleado::findOrFail($id);
+        $empleado=Empleado::findOrFail($id);
         //Mostrar la vista
         return view('empleados.editar_empleado',compact('empleado'));
     }
 
+    public function update(Request $request){
+        $empleado = Empleado::findOrFail($request->id);
+        $empleado->nombres = $request->nombre;
+        $empleado->apellidos = $request->apellidos;
+        $empleado->cedula = $request->cedula;
+        $empleado->email = $request->email;
+        $empleado->sexo = $request->sexo;
+        $empleado->estado_civil = $request->estado_civil;
+        $empleado->telefono = $request->telefono;
+        $empleado->save();
+        
+        Alert::success('Datos actualizados con exito');
+        return redirect('empleados');
+    }
     //Controlador para eliminar empleado
     public function destroy($id){
         $empleado=Empleado::findOrFail($id);
