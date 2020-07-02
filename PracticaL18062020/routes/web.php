@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource('empleados', 'empleadosController');
-
+Route::resource('departamentos', 'departamentosController');
 Route::get('/', 'empleadosController@index');
 Route::put('empleados/{id}', 'empleadosController@update');
+
 
 /*Route::get('/productos', function(){
     return ('Listado de productos');

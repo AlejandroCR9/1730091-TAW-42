@@ -81,6 +81,14 @@
                                     </ul>
                                 </li>
                             </ul>
+                            <ul class="nav side-menu">
+                                <li><a><i class="fas fa-user-shield"></i>&nbsp;&nbsp;&nbsp;&nbsp;Departamentos<span style="float: right" class="fas fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{url('departamentos/create')}}">Agregar Departementos</a></li>
+                                        <li><a href="{{url('departamentos')}}">Consultar Departamentos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <!--Sidebar menu-->

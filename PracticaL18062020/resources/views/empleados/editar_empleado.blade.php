@@ -48,6 +48,14 @@
                             <input type="text" id="email" name="email" value="{{$empleado->email}}" required="required" class="form-control">
                         </div>
                     </div>
+                    <div class="item form-group">
+						<label class="col-form-label col-md-3 col-sm-3 label-align" for="Departamento">Departamento*:</label>
+						<select class="form-control col-md-6 col-sm-6" type="text" name="idDepartamento" id="idDepartamento" required>
+							@foreach ($departamentos as $departamento)  
+                                <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                            @endforeach
+                        </select>
+					</div>
                     <!--<div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="lugar_nacimiento"> Lugar de nacimiento <spam class="required">*</spam>
                         </label>

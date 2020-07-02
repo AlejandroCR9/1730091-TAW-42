@@ -22,6 +22,8 @@ class CreateEmpleadosTable extends Migration
             $table->enum('sexo',['masculino','femenino', 'no definido']);
             $table->enum('estado_civil',['soltero','casado']);
             $table->integer('telefono');
+            $table->integer('idDepartamento');
+            $table->foreign('idDepartamento')->references('id')->on('departamentos');
             $table->timestamps();
         });
     }
