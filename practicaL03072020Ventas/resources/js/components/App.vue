@@ -13,10 +13,10 @@
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i> Productos</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <router-link to="/public/" class="nav-link"><i class="icon-bag"></i> Ver Productos</router-link>
+                                <router-link to="/Alex/1730091-TAW-42/practicaL03072020Ventas/public/" class="nav-link"><i class="icon-bag"></i> Ver Productos</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/public/crear" class="nav-link"><i class="icon-bag"></i> Insertar Productos</router-link>
+                                <router-link to="/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear" class="nav-link"><i class="icon-bag"></i> Insertar Productos</router-link>
                             </li>
                         </ul>
                     </li>

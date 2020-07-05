@@ -40,17 +40,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const routes = [
     {
         name: 'crear',
-        path: '/public/crear',
+        path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear',
         component: CreateComponent
     },
     {
         name: 'tabla',
-        path: '/public/',
+        path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/',
         component: IndexComponent
     },
     {
         name: 'edit',
-        path: '/public/edit/:id',
+        path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/edit/:id',
         component: EditComponent
     }
   ];

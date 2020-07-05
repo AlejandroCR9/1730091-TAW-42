@@ -37852,7 +37852,13 @@ var render = function() {
                   [
                     _c(
                       "router-link",
-                      { staticClass: "nav-link", attrs: { to: "/public/" } },
+                      {
+                        staticClass: "nav-link",
+                        attrs: {
+                          to:
+                            "/Alex/1730091-TAW-42/practicaL03072020Ventas/public/"
+                        }
+                      },
                       [
                         _c("i", { staticClass: "icon-bag" }),
                         _vm._v(" Ver Productos")
@@ -37870,7 +37876,10 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: { to: "/public/crear" }
+                        attrs: {
+                          to:
+                            "/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear"
+                        }
                       },
                       [
                         _c("i", { staticClass: "icon-bag" }),
@@ -53690,15 +53699,15 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 var routes = [{
   name: 'crear',
-  path: '/public/crear',
+  path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear',
   component: _components_crearProducto_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: 'tabla',
-  path: '/public/',
+  path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/',
   component: _components_TableComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'edit',
-  path: '/public/edit/:id',
+  path: '/Alex/1730091-TAW-42/practicaL03072020Ventas/public/edit/:id',
   component: _components_editarProducto_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
