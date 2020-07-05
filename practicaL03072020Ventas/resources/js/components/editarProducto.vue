@@ -52,14 +52,14 @@
         }
       },
       created() {
-        let uri = `http://localhost/tecnologias/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/edit/${this.$route.params.id}`;
+        let uri = `http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/edit/${this.$route.params.id}`;
         this.axios.get(uri).then((response) => {
             this.producto = response.data;
         });
       },
       methods: {
         updateProducto() {
-          let uri = `http://localhost/tecnologias/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/update/${this.$route.params.id}`;
+          let uri = `http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/update/${this.$route.params.id}`;
           this.axios.post(uri, this.producto).then((response) => {
             this.$router.push({name: 'tabla'});
           });
