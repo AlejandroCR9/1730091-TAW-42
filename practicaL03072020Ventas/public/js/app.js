@@ -53695,7 +53695,7 @@ var routes = [{
   component: _components_TableComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   name: 'edit',
-  path: 'edit/:id',
+  path: '/edit/:id',
   component: _components_editarProducto_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({

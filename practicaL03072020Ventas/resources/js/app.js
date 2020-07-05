@@ -50,7 +50,7 @@ const routes = [
     },
     {
         name: 'edit',
-        path: 'edit/:id',
+        path: '/edit/:id',
         component: EditComponent
     }
   ];
