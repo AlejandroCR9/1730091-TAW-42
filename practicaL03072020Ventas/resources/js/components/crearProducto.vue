@@ -53,7 +53,7 @@
     },
     methods: {
       addProducto(){
-        let uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/create';
+        let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/create';
         this.axios.post(uri, this.producto).then((response) => {
             this.$router.push({name: 'tabla'});
         });

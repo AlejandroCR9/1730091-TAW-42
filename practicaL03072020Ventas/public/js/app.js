@@ -2093,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
     this.axios.get(uri).then(function (response) {
       _this.productos = response.data;
     });
@@ -2102,7 +2102,7 @@ __webpack_require__.r(__webpack_exports__);
     deleteProducto: function deleteProducto(id) {
       var _this2 = this;
 
-      var uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/' + id;
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/' + id;
       this.axios["delete"](uri).then(function (response) {
         _this2.productos.splice(_this2.productos.indexOf(id), 1);
       });
@@ -2177,7 +2177,7 @@ __webpack_require__.r(__webpack_exports__);
     addProducto: function addProducto() {
       var _this = this;
 
-      var uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/create';
       this.axios.post(uri, this.producto).then(function (response) {
         _this.$router.push({
           name: 'tabla'
@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = "http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.producto = response.data;
     });
@@ -2261,7 +2261,7 @@ __webpack_require__.r(__webpack_exports__);
     updateProducto: function updateProducto() {
       var _this2 = this;
 
-      var uri = "http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.producto).then(function (response) {
         _this2.$router.push({
           name: 'tabla'

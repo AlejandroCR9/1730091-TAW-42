@@ -102,7 +102,7 @@
         }
       },
       created() {
-      let uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
+      let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
       this.axios.get(uri).then(response => {
         this.productos = response.data;
       });
@@ -110,7 +110,7 @@
     methods: {
       deleteProducto(id)
       {
-        let uri = 'http://localhost/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/'+id;
+        let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/'+id;
         this.axios.delete(uri).then(response => {
           this.productos.splice(this.productos.indexOf(id), 1);
         });
