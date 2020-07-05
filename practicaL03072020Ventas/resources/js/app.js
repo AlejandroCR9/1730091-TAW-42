@@ -40,7 +40,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const routes = [
     {
         name: 'crear',
-        path: '/practicaL03072020Ventas/public/index/crear',
+        path: '/crear',
         component: CreateComponent
     },
     {
