@@ -18,9 +18,9 @@ Route::get('/{any}', function () {
     return view('welcome');
   })->where('any', '.*');
 
-Route::post('/producto/create', 'PproductosController@store');
+/*Route::post('/producto/create', 'PproductosController@store');
 Route::get('/producto/edit/{id}', 'productosController@edit');
 Route::post('/producto/update/{id}', 'productosController@update');
 Route::delete('/producto/delete/{id}', 'productosController@delete');
-Route::get('/producto', 'productosController@index');
+Route::get('/producto', 'productosController@index');*/
 //Route::resource('productos', 'productosController');
