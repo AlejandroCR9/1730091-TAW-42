@@ -38006,23 +38006,32 @@ var render = function() {
           [
             _c("i", { staticClass: "fa fa-align-justify" }),
             _vm._v(" Productos\n                "),
-            _c("router-link", { attrs: { to: "/crear" } }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-secondary",
-                  attrs: {
-                    type: "button",
-                    "data-toggle": "modal",
-                    "data-target": "#modalNuevo"
-                  }
-                },
-                [
-                  _c("i", { staticClass: "icon-plus" }),
-                  _vm._v(" Nuevo\n                ")
-                ]
-              )
-            ])
+            _c(
+              "router-link",
+              {
+                attrs: {
+                  to:
+                    "/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear"
+                }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#modalNuevo"
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "icon-plus" }),
+                    _vm._v(" Nuevo\n                ")
+                  ]
+                )
+              ]
+            )
           ],
           1
         ),

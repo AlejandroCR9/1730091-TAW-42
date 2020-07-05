@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Productos
-                <router-link to="/crear"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
+                <router-link to="/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button></router-link>
             </div>
