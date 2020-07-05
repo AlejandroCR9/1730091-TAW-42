@@ -371,17 +371,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const routes = [
     {
         name: 'crear',
-        path: '/crear',
+        path: '/public/crear',
         component: CreateComponent
     },
     {
         name: 'tabla',
-        path: '/',
+        path: '/public/',
         component: IndexComponent
     },
     {
         name: 'edit',
-        path: '/edit/:id',
+        path: '/public/edit/:id',
         component: EditComponent
     }
   ];
