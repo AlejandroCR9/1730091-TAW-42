@@ -53687,7 +53687,7 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 var routes = [{
   name: 'crear',
-  path: '/crear',
+  path: '/practicaL03072020Ventas/public/index/crear',
   component: _components_crearProducto_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: 'tabla',
