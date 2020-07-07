@@ -2067,13 +2067,14 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    /*deleteProducto(id)
-    {
-      let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/'+id;
-      this.axios.delete(uri).then(response => {
-        this.productos.splice(this.productos.indexOf(id), 1);
+    deleteProducto: function deleteProducto(id) {
+      var _this2 = this;
+
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/' + id;
+      this.axios["delete"](uri).then(function (response) {
+        _this2.productos.splice(_this2.productos.indexOf(id), 1);
       });
-    }*/
+    }
   }
 });
 
@@ -2114,7 +2115,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    console.log('Component mounted Modal.');
+  }
+});
 
 /***/ }),
 
@@ -38048,7 +38053,7 @@ var render = function() {
                                 "data-target": "#modalEliminar"
                               }
                             },
-                            [_vm._v(">Borrar")]
+                            [_vm._v("Borrar")]
                           )
                         ],
                         1
