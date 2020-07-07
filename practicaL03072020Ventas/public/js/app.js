@@ -38042,7 +38042,7 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                return _vm.deleteProducto(_vm.post.id, num)
+                                return _vm.deleteProducto(producto.id, num)
                               }
                             }
                           },
