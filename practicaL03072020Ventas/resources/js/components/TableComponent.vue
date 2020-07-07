@@ -89,8 +89,9 @@
             </div>
         </div>
         <!-- Fin ejemplo de tabla Listado -->
+         <borrarModal></borrarModal>
     </div>
-     <borrarModal></borrarModal>
+    
 </main>
 <!-- /Fin del contenido principal -->
 </template>
