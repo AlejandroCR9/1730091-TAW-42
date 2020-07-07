@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Productos
-                <router-link to="/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
+                <router-link to="{ name: 'create' }"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button></router-link>
             </div>
@@ -81,7 +81,7 @@
                                 <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
                                <router-link :to="{name: 'edit', params: { id: producto.id }}" class="btn btn-primary">Editar</router-link>
                                <!--Botón que borra la tarea que seleccionemos-->
-                               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar">Borrar</button>
+                               <button type="button" class="btn btn-danger" @click.prevent="deletePost(post.id)" data-toggle="modal" data-target="#modalEliminar">Borrar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <!-- Fin ejemplo de tabla Listado -->
-         <borrarModal></borrarModal>
+        <button type="button" class="btn" @click="showModal"></button>
     </div>
     
 </main>
@@ -97,17 +97,19 @@
 </template>
 
 <script>
+    import modal from './borrarModal.vue';
     export default {
       data() {
         return {
-          productos: []
+            isModalVisible: false,
+            productos: []
         }
       },
       created() {
-      let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
-      this.axios.get(uri).then(response => {
-        this.productos = response.data;
-      });
+          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto';
+          this.axios.get(uri).then(response => {
+             this.productos = response.data;
+          });
     },
     methods: {
       deleteProducto(id)
@@ -116,6 +118,9 @@
         this.axios.delete(uri).then(response => {
           this.productos.splice(this.productos.indexOf(id), 1);
         });
+      },
+      showModal() {
+        this.isModalVisible = true;
       }
     }
   }

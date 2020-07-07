@@ -1955,6 +1955,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _borrarModal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./borrarModal.vue */ "./resources/js/components/borrarModal.vue");
 //
 //
 //
@@ -2053,9 +2054,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      isModalVisible: false,
       productos: []
     };
   },
@@ -2075,6 +2078,9 @@ __webpack_require__.r(__webpack_exports__);
       this.axios["delete"](uri).then(function (response) {
         _this2.productos.splice(_this2.productos.indexOf(id), 1);
       });
+    },
+    showModal: function showModal() {
+      this.isModalVisible = true;
     }
   }
 });
@@ -37963,115 +37969,108 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", { staticClass: "main" }, [
-    _c(
-      "div",
-      { staticClass: "container-fluid" },
-      [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-header" },
-            [
-              _c("i", { staticClass: "fa fa-align-justify" }),
-              _vm._v(" Productos\n                "),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-header" },
+          [
+            _c("i", { staticClass: "fa fa-align-justify" }),
+            _vm._v(" Productos\n                "),
+            _c("router-link", { attrs: { to: "{ name: 'create' }" } }, [
               _c(
-                "router-link",
+                "button",
                 {
+                  staticClass: "btn btn-secondary",
                   attrs: {
-                    to:
-                      "/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear"
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#modalNuevo"
                   }
                 },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: {
-                        type: "button",
-                        "data-toggle": "modal",
-                        "data-target": "#modalNuevo"
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "icon-plus" }),
-                      _vm._v(" Nuevo\n                ")
-                    ]
-                  )
+                  _c("i", { staticClass: "icon-plus" }),
+                  _vm._v(" Nuevo\n                ")
                 ]
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              { staticClass: "table table-bordered table-striped table-sm" },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.productos, function(producto) {
-                    return _c("tr", { key: producto.id }, [
-                      _c("td", {
-                        domProps: { textContent: _vm._s(producto.nombre) }
-                      }),
-                      _vm._v(" "),
-                      _c("td", {
-                        domProps: { textContent: _vm._s(producto.cantidad) }
-                      }),
-                      _vm._v(" "),
-                      _c("td", {
-                        domProps: { textContent: _vm._s(producto.precio) }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: {
-                                to: {
-                                  name: "edit",
-                                  params: { id: producto.id }
-                                }
-                              }
-                            },
-                            [_vm._v("Editar")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              attrs: {
-                                type: "button",
-                                "data-toggle": "modal",
-                                "data-target": "#modalEliminar"
-                              }
-                            },
-                            [_vm._v("Borrar")]
-                          )
-                        ],
-                        1
-                      )
-                    ])
-                  }),
-                  0
-                )
-              ]
-            )
-          ])
-        ]),
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
-        _c("borrarModal")
-      ],
-      1
-    )
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "table",
+            { staticClass: "table table-bordered table-striped table-sm" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.productos, function(producto) {
+                  return _c("tr", { key: producto.id }, [
+                    _c("td", {
+                      domProps: { textContent: _vm._s(producto.nombre) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(producto.cantidad) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(producto.precio) }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: {
+                              to: { name: "edit", params: { id: producto.id } }
+                            }
+                          },
+                          [_vm._v("Editar")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "modal",
+                              "data-target": "#modalEliminar"
+                            },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.deletePost(_vm.post.id)
+                              }
+                            }
+                          },
+                          [_vm._v("Borrar")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn",
+        attrs: { type: "button" },
+        on: { click: _vm.showModal }
+      })
+    ])
   ])
 }
 var staticRenderFns = [
