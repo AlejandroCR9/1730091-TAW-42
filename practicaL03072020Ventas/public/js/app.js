@@ -1955,7 +1955,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _borrarModal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./borrarModal.vue */ "./resources/js/components/borrarModal.vue");
 //
 //
 //
@@ -2054,11 +2053,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isModalVisible: false,
       productos: []
     };
   },
@@ -2071,12 +2068,12 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    deleteProducto: function deleteProducto(id) {
+    deleteProducto: function deleteProducto(id, num) {
       var _this2 = this;
 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/' + id;
       this.axios["delete"](uri).then(function (response) {
-        _this2.productos.splice(_this2.productos.indexOf(id), 1);
+        _this2.productos.splice(num, 1);
       });
     },
     showModal: function showModal() {
@@ -38007,7 +38004,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.productos, function(producto) {
+                _vm._l(_vm.productos, function(producto, num) {
                   return _c("tr", { key: producto.id }, [
                     _c("td", {
                       domProps: { textContent: _vm._s(producto.nombre) }
@@ -38039,15 +38036,11 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-danger",
-                            attrs: {
-                              type: "button",
-                              "data-toggle": "modal",
-                              "data-target": "#modalEliminar"
-                            },
+                            attrs: { type: "button" },
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                return _vm.deletePost(_vm.post.id)
+                                return _vm.deletePost(_vm.post.id, num)
                               }
                             }
                           },

@@ -73,7 +73,7 @@
                                 <span class="badge badge-secondary">Inactivo</span>
                             </td>
                         </tr>-->
-                        <tr v-for="producto in productos" :key="producto.id"> <!--Recorremos el array y cargamos nuestra tabla-->
+                        <tr v-for="(producto, num) in productos" :key="producto.id"> <!--Recorremos el array y cargamos nuestra tabla-->
                             <td v-text="producto.nombre"></td>
                             <td v-text="producto.cantidad"></td>
                             <td v-text="producto.precio"></td>
@@ -81,7 +81,7 @@
                                 <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
                                <router-link :to="{name: 'edit', params: { id: producto.id }}" class="btn btn-primary">Editar</router-link>
                                <!--Botón que borra la tarea que seleccionemos-->
-                               <button type="button" class="btn btn-danger" @click.prevent="deletePost(post.id)" data-toggle="modal" data-target="#modalEliminar">Borrar</button>
+                               <button type="button" class="btn btn-danger" @click.prevent="deletePost(post.id, num)" >Borrar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -97,11 +97,9 @@
 </template>
 
 <script>
-    import modal from './borrarModal.vue';
     export default {
       data() {
         return {
-            isModalVisible: false,
             productos: []
         }
       },
@@ -112,11 +110,11 @@
           });
     },
     methods: {
-      deleteProducto(id)
+      deleteProducto(id, num)
       {
         let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/'+id;
         this.axios.delete(uri).then(response => {
-          this.productos.splice(this.productos.indexOf(id), 1);
+          this.productos.splice(num, 1);
         });
       },
       showModal() {
