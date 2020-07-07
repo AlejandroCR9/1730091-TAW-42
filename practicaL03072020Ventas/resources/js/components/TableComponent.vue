@@ -7,7 +7,7 @@
             <div class="card-header">
                 <i class="fa fa-align-justify"></i> Productos
                 <!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
-                <router-link :to="{ name: 'create' }"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
+                <router-link :to="{ name: 'crear' }"><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button></router-link>
             </div>

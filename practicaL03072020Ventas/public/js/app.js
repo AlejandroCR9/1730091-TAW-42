@@ -37782,7 +37782,7 @@ var render = function() {
             _c("i", { staticClass: "fa fa-align-justify" }),
             _vm._v(" Productos\n                "),
             _vm._v(" "),
-            _c("router-link", { attrs: { to: { name: "create" } } }, [
+            _c("router-link", { attrs: { to: { name: "crear" } } }, [
               _c(
                 "button",
                 {
