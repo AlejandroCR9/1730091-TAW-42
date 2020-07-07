@@ -13,8 +13,8 @@ class productosController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
-        return $productos;
+        $productos = Producto::all(); //Trae todos los registro de la bd
+        return $productos; //Regresa esos registros
     }
 
     /**
@@ -25,11 +25,13 @@ class productosController extends Controller
      */
     public function store(Request $request)
     {
-        $producto = new Producto();
-        $producto->nombre = $request->nombre;
+        $producto = new Producto(); //Crea un nuevo producto de la tabla
+        //Recupera los datos del request
+        $producto->nombre = $request->nombre; 
         $producto->cantidad = $request->cantidad;
         $producto->precio = $request->precio;
-        $producto->save();
+        $producto->save(); //Guarda los datos
+        return $producto;
     }
 
     /**
@@ -40,8 +42,8 @@ class productosController extends Controller
      */
     public function edit($id)
     {
-        $producto = Producto::findOrFail($id);
-        return $producto; 
+        $producto = Producto::findOrFail($id); //Busca el registro en la bd o falla
+        return $producto;  //Regresa el producto encontrado
     }
 
     /**
@@ -53,12 +55,12 @@ class productosController extends Controller
     public function update($id, Request $request)
     {
         
-        $producto = Producto::findOrFail($id);
-
+        $producto = Producto::findOrFail($id); //Busca primero el producto 
+        //Obtiene los datos del request y actualiza los nuevos datos
         $producto->nombre = $request->nombre;
         $producto->cantidad = $request->cantidad;
         $producto->precio = $request->precio;
-        $producto->save();
+        $producto->save(); //Garda el cambio
 
         return $producto;
     }
@@ -71,8 +73,8 @@ class productosController extends Controller
      */
     public function destroy($id)
     {
-        $producto = Producto::find($id);
-        $producto->delete();
+        $producto = Producto::find($id); //Busca el producto a eliminar
+        $producto->delete(); //Borra el producto encontrado
         return $producto;
     }
 }

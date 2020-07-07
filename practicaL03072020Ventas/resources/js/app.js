@@ -7,18 +7,18 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import VueRouter from 'vue-router';
+import VueRouter from 'vue-router'; //Import de la dependencia nesesaria para usar las rutas
 Vue.use(VueRouter);
 
-import VueAxios from 'vue-axios';
+import VueAxios from 'vue-axios'; //Import de la dependecia para mandar los request
 import axios from 'axios';
-
-import App from './components/App.vue';
 Vue.use(VueAxios, axios);
 
-import CreateComponent from './components/crearProducto.vue';
-import IndexComponent from './components/TableComponent.vue';
-import EditComponent from './components/editarProducto.vue';
+//Importamos los componentes que tenemos
+import App from './components/nav.vue'; //Contiene el componente de la navbar
+import CreateComponent from './components/crearProducto.vue'; //Contiene el formulario para crear nuevos registros
+import IndexComponent from './components/TableComponent.vue';//Contiene la tabla de productos
+import EditComponent from './components/editarProducto.vue'; //contiene el formularo para editar
 
 /**
  * The following block of code may be used to automatically register your
@@ -35,8 +35,8 @@ import EditComponent from './components/editarProducto.vue';
 //Vue.component('table-component', require('./components/TableComponent.vue').default);
 //Vue.component('crear-component', require('./components/crearProducto.vue').default);
 //Vue.component('editar-component', require('./components/editarProducto.vue').default);
-//Vue.component('nav-component', require('./components/App.vue').default);
-Vue.component('borarModal', require('./components/borrarModal.vue').default);
+//Vue.component('nav-component', require('./components/nav.vue').default);
+//Se crea el catalogo de rutas para cada compoente que tenemos
 const routes = [
     {
         name: 'crear',
@@ -55,13 +55,13 @@ const routes = [
     }
   ];
 
-const router = new VueRouter({ mode: 'history', routes: routes});
+const router = new VueRouter({ mode: 'history', routes: routes}); //Crea las rutas en modo history
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app');
+const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app'); //Agrega las rutas a la app y monta el sidebar
 //const app = new Vue({
   //  el: '#app',
 //});

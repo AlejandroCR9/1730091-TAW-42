@@ -72,6 +72,8 @@
                 </li>
             </ul>
 </header>
+
+    <!--aqui se muestra el contenido del nav-->
     <div id="app" class="content">
             
             <!--coontenido-->
