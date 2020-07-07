@@ -81,7 +81,7 @@
                                 <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
                                <router-link :to="{name: 'edit', params: { id: producto.id }}" class="btn btn-primary">Editar</router-link>
                                <!--Botón que borra la tarea que seleccionemos-->
-                               <button type="button" class="btn btn-danger" @click.prevent="deletePost(post.id, num)" >Borrar</button>
+                               <button type="button" class="btn btn-danger" @click.prevent="deleteProducto(post.id, num)" >Borrar</button>
                             </td>
                         </tr>
                     </tbody>
