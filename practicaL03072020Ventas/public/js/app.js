@@ -2067,14 +2067,13 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    deleteProducto: function deleteProducto(id) {
-      var _this2 = this;
-
-      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/' + id;
-      this.axios["delete"](uri).then(function (response) {
-        _this2.productos.splice(_this2.productos.indexOf(id), 1);
+    /*deleteProducto(id)
+    {
+      let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/practicaL03072020Ventas/public/index.php/api/producto/delete/'+id;
+      this.axios.delete(uri).then(response => {
+        this.productos.splice(this.productos.indexOf(id), 1);
       });
-    }
+    }*/
   }
 });
 
@@ -38044,6 +38043,7 @@ var render = function() {
                             {
                               staticClass: "btn btn-danger",
                               attrs: {
+                                type: "button",
                                 "data-toggle": "modal",
                                 "data-target": "#modalEliminar"
                               }
