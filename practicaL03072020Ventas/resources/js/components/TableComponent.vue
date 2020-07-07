@@ -90,6 +90,7 @@
         </div>
         <!-- Fin ejemplo de tabla Listado -->
     </div>
+     <borrarModal></borrarModal>
 </main>
 <!-- /Fin del contenido principal -->
 </template>

@@ -78,7 +78,7 @@
         
                
             
-                <borrarModal></borrarModal>
+               
             
                 
             <!--fin contendio-->
