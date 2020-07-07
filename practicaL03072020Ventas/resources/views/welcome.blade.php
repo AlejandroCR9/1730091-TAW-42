@@ -78,7 +78,7 @@
         
                
             
-                <example-component></example-component>
+                <borrarModal></borrarModal>
             
                 
             <!--fin contendio-->

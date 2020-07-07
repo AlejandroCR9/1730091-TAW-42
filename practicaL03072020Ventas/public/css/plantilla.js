@@ -367,7 +367,7 @@ import EditComponent from './components/editarProducto.vue';
 //Vue.component('crear-component', require('./components/crearProducto.vue').default);
 //Vue.component('editar-component', require('./components/editarProducto.vue').default);
 //Vue.component('nav-component', require('./components/App.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('borarModal', require('./components/borrarModal.vue').default);
 const routes = [
     {
         name: 'crear',
