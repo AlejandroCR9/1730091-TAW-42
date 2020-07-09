@@ -17,7 +17,7 @@ Vue.use(VueAxios, axios);
 //Importamos los componentes que tenemos
 import App from './components/nav.vue'; //Contiene el componente de la navbar
 import CreateComponent from './components/crearProducto.vue'; //Contiene el formulario para crear nuevos registros
-import IndexComponent from './components/TableComponent.vue';//Contiene la tabla de productos
+import IndexComponent from './components/padecimientos/TableComponent.vue';//Contiene la tabla de productos
 import EditComponent from './components/editarProducto.vue'; //contiene el formularo para editar
 
 /**

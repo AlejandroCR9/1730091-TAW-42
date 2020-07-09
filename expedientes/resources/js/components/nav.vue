@@ -9,7 +9,7 @@
                     <li class="nav-title">
                         Menu
                     </li>
-                    <li class="nav-item nav-dropdown active">
+                    <!--<li class="nav-item nav-dropdown active">
                         <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i> Productos</a>
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
@@ -19,7 +19,7 @@
                                 <router-link to="/Alex/1730091-TAW-42/practicaL03072020Ventas/public/crear" class="nav-link"><i class="icon-bag"></i> Insertar Productos</router-link>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                 </ul>
             </nav>
             <button class="sidebar-minimizer brand-minimizer" type="button"></button>
