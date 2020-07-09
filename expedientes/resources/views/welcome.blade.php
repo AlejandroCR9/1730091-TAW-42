@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema Ventas</title>
+    <title>Expedientes</title>
     <!-- Main styles for this application -->
     <link href="css/all.css" rel="stylesheet">
     
