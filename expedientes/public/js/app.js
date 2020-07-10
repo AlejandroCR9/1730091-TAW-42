@@ -39117,14 +39117,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
-                _vm._v(
-                  "\n                            Alergias\n                            "
-                ),
-                _c("i", {
-                  staticClass:
-                    "metismenu-state-icon pe-7s-angle-down caret-left"
-                }),
+                _vm._m(3),
                 _vm._v(" "),
                 _c("ul", [
                   _c(
@@ -39168,7 +39161,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _vm._m(3),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("ul", [
                   _c(
@@ -39216,7 +39209,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _vm._m(4),
+                _vm._m(5),
                 _vm._v(" "),
                 _c("ul", [
                   _c(
@@ -39333,6 +39326,20 @@ var staticRenderFns = [
           ]
         )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "" } }, [
+      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+      _vm._v(
+        "\n                            Alergias\n                            "
+      ),
+      _c("i", {
+        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
+      })
     ])
   },
   function() {

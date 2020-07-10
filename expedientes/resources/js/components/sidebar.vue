@@ -42,11 +42,11 @@
                         </li>
                         <li class="app-sidebar__heading">Seccion 1</li>
                         <li>
-                          
+                            <a href="">
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Alergias
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                           
+                            </a>
                             <ul>
                                 <li>
                                     <router-link :to="{name: 'veralergia'}">
