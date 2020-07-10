@@ -36,44 +36,44 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Dashboard</li>
                         <li>
-                            <router-link to="/Alex/1730091-TAW-42/expedientes/public/" class="mm-active">
+                            <router-link :to="{name: 'dash'}" class="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Inicio
                             </router-link>
                         </li>
                         <li class="app-sidebar__heading">Seccion 1</li>
                         <li>
-                            <a href="#">
+                          
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Alergias
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                            </a>
+                           
                             <ul>
                                 <li>
-                                    <router-link to="/Alex/1730091-TAW-42/expedientes/public/alergias">
+                                    <router-link :to="{name: 'veralergia'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Ver Alergias
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/Alex/1730091-TAW-42/expedientes/public/alergias/crear">
+                                    <router-link :to="{name: 'crearalergia'}>
                                         <i class="metismenu-icon pe-7s-rocket"></i>Registrar Alergia
                                     </router-link>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Padecimientos
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul>
                                 <li>
-                                    <router-link to="/Alex/1730091-TAW-42/expedientes/public/padecimientos">
+                                    <router-link :to="{name: 'verpadecimiento'}>
                                         <i class="metismenu-icon pe-7s-rocket"></i>Ver Padecimientos
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/Alex/1730091-TAW-42/expedientes/public/padecimientos/crear">
+                                    <router-link :to="{name: 'crearpadecimiento'}>
                                         <i class="metismenu-icon pe-7s-rocket"></i>Registrar Padecimiento
                                     </router-link>
                                 </li>
