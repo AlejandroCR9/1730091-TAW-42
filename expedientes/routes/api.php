@@ -18,8 +18,31 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/producto/create', 'productosController@store');
-Route::get('/producto/edit/{id}', 'productosController@edit');
-Route::post('/producto/update/{id}', 'productosController@update');
-Route::delete('/producto/delete/{id}', 'productosController@destroy');
-Route::get('/producto', 'productosController@index');
+//==================RUTAS ALERGIAS
+Route::post('/alergia/create', 'alergiasController@store');
+Route::get('/alergia/edit/{id}', 'alergiasController@edit');
+Route::post('/alergia/update/{id}', 'alergiasController@update');
+Route::delete('/alergia/delete/{id}', 'alergiasController@destroy');
+Route::get('/alergia', 'alergiasController@index');
+
+//================RUTAS PADECIMIENTOS
+
+Route::post('/padecimiento/create', 'padecimientosController@store');
+Route::get('/padecimiento/edit/{id}', 'padecimientosController@edit');
+Route::post('/padecimiento/update/{id}', 'padecimientosController@update');
+Route::delete('/padecimiento/delete/{id}', 'padecimientosController@destroy');
+Route::get('/padecimiento', 'padecimientosController@index');
+
+//================RUTAS MEDICAMENTOS
+Route::post('/medicamento/create', 'medicamentosController@store');
+Route::get('/medicamento/edit/{id}', 'medicamentosController@edit');
+Route::post('/medicamento/update/{id}', 'medicamentosController@update');
+Route::delete('/medicamento/delete/{id}', 'medicamentosController@destroy');
+Route::get('/medicamento', 'medicamentosController@index');
+
+//================RUTAS PACIENTES
+Route::post('/paciente/create', 'pacientesController@store');
+Route::get('/paciente/edit/{id}', 'pacientesController@edit');
+Route::post('/paciente/update/{id}', 'pacientesController@update');
+Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
+Route::get('/paciente', 'pacientesController@index');
