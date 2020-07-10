@@ -39099,7 +39099,10 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { staticClass: "mm-active", attrs: { to: "/" } },
+                    {
+                      staticClass: "mm-active",
+                      attrs: { to: { name: "dash" } }
+                    },
                     [
                       _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
                       _vm._v(" Inicio\n                        ")
@@ -39114,72 +39117,40 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _vm._m(3),
+                _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+                _vm._v(
+                  "\n                            Alergias\n                            "
+                ),
+                _c("i", {
+                  staticClass:
+                    "metismenu-state-icon pe-7s-angle-down caret-left"
+                }),
                 _vm._v(" "),
                 _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: "/alergias" } }, [
-                        _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                        _vm._v("Ver Alergias\n                                ")
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: "/alergias/crear" } }, [
-                        _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                        _vm._v(
-                          "Registrar Alergia\n                                "
-                        )
-                      ])
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(4),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: "/padecimientos" } }, [
-                        _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                        _vm._v(
-                          "Ver Padecimientos\n                                "
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
                   _c(
                     "li",
                     [
                       _c(
                         "router-link",
-                        { attrs: { to: "/padecimientos/crear" } },
+                        { attrs: { to: { name: "veralergia" } } },
                         [
                           _c("i", {
                             staticClass: "metismenu-icon pe-7s-rocket"
                           }),
                           _vm._v(
-                            "Registrar Padecimiento\n                                "
+                            "Ver Alergias\n                                "
                           )
                         ]
                       )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3)
                 ])
               ]),
+              _vm._v(" "),
+              _vm._m(4),
               _vm._v(" "),
               _c("li", { staticClass: "app-sidebar__heading" }, [
                 _vm._v("Seccion 2")
@@ -39309,28 +39280,37 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
-      _vm._v(
-        "\n                            Alergias\n                            "
-      ),
-      _c("i", {
-        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
-      })
+    return _c("li", [
+      _vm._v('">'),
+      _vm._v("Registrar Alergia\n                                ")
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
-      _vm._v(
-        "\n                            Padecimientos\n                            "
-      ),
-      _c("i", {
-        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
-      })
+    return _c("li", [
+      _c("a", { attrs: { href: "" } }, [
+        _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+        _vm._v(
+          "\n                            Padecimientos\n                            "
+        ),
+        _c("i", {
+          staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
+        })
+      ]),
+      _vm._v(" "),
+      _c("ul", [
+        _c("li", [
+          _vm._v('">'),
+          _vm._v("Ver Padecimientos\n                                ")
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _vm._v('">'),
+          _vm._v("Registrar Padecimiento\n                                ")
+        ])
+      ])
     ])
   },
   function() {
@@ -55192,8 +55172,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\expedientes\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\expedientes\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\Tecnologias\1730091-TAW-42\expedientes\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\Tecnologias\1730091-TAW-42\expedientes\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
