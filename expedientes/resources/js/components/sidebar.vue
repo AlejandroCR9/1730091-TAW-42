@@ -54,7 +54,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link :to="{name: 'crearalergia'}>
+                                    <router-link :to="{name: 'crearalergia'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Registrar Alergia
                                     </router-link>
                                 </li>
@@ -68,12 +68,12 @@
                             </a>
                             <ul>
                                 <li>
-                                    <router-link :to="{name: 'verpadecimiento'}>
+                                    <router-link :to="{name: 'verpadecimiento'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Ver Padecimientos
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link :to="{name: 'crearpadecimiento'}>
+                                    <router-link :to="{name: 'crearpadecimiento'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Registrar Padecimiento
                                     </router-link>
                                 </li>

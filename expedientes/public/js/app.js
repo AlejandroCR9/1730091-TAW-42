@@ -39146,18 +39146,77 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "crearalergia" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Registrar Alergia\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(4),
+              _c("li", [
+                _vm._m(3),
+                _vm._v(" "),
+                _c("ul", [
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "verpadecimiento" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Ver Padecimientos\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "crearpadecimiento" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Registrar Padecimiento\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
               _vm._v(" "),
               _c("li", { staticClass: "app-sidebar__heading" }, [
                 _vm._v("Seccion 2")
               ]),
               _vm._v(" "),
               _c("li", [
-                _vm._m(5),
+                _vm._m(4),
                 _vm._v(" "),
                 _c("ul", [
                   _c(
@@ -39280,37 +39339,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _vm._v('">'),
-      _vm._v("Registrar Alergia\n                                ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "" } }, [
-        _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
-        _vm._v(
-          "\n                            Padecimientos\n                            "
-        ),
-        _c("i", {
-          staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
-        })
-      ]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("li", [
-          _vm._v('">'),
-          _vm._v("Ver Padecimientos\n                                ")
-        ]),
-        _vm._v(" "),
-        _c("li", [
-          _vm._v('">'),
-          _vm._v("Registrar Padecimiento\n                                ")
-        ])
-      ])
+    return _c("a", { attrs: { href: "" } }, [
+      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+      _vm._v(
+        "\n                            Padecimientos\n                            "
+      ),
+      _c("i", {
+        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
+      })
     ])
   },
   function() {
