@@ -74,7 +74,7 @@
         },
         addAlergia(){
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia/create';
+            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/create';
             this.axios.post(uri, this.alergia).then((response) => {
                 this.$router.push({name: 'veralergia'}); //vuelve a renderizar la tabla a la vista de la tabla
             });

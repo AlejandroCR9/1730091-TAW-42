@@ -74,7 +74,7 @@
         },
         addPadecimiento(){
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/create';
+            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/create';
             this.axios.post(uri, this.padecimiento).then((response) => {
                 this.$router.push({name: 'verpadecimiento'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
