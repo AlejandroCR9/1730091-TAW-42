@@ -74,7 +74,7 @@
       //Se ejecuta una cuando se crea el componente
       created() {
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento';
+          let uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/padecimiento';
 
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(uri).then(response => {
@@ -85,7 +85,7 @@
       deletePadecimiento(id, num)
       {
           //Url directa del metodo en larvave que me obtiene valores de la bd
-        let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/delete/'+id;
+        let uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/delete/'+id;
          //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
         this.axios.delete(uri).then(response => {
           this.padecimientos.splice(num, 1); //Borra la fila en el indice dado

@@ -1985,7 +1985,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/alergia'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.alergias = response.data;
@@ -1996,7 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/alergia/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.alergias.splice(num, 1); //Borra la fila en el indice dado
@@ -2380,7 +2380,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/padecimiento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.padecimientos = response.data;
@@ -2391,7 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'localhost/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.padecimientos.splice(num, 1); //Borra la fila en el indice dado
@@ -54594,6 +54594,7 @@ __webpack_require__.r(__webpack_exports__);
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
+ * //DB_PASSWORD=770056391dda2ccecf16b57f70a278120f81e8f74c571e94
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 

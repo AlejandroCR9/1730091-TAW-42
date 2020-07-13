@@ -2,6 +2,7 @@
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
+ * //DB_PASSWORD=770056391dda2ccecf16b57f70a278120f81e8f74c571e94
  */
 
 require('./bootstrap');
