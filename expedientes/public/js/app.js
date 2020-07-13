@@ -1987,7 +1987,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/create';
       this.axios.post(uri, this.alergia).then(function (response) {
         _this.$router.push({
           name: 'veralergia'
@@ -2071,7 +2071,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.alergia = response.data;
     });
@@ -2096,7 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.alergia).then(function (response) {
         _this2.$router.push({
           name: 'veralergia'
@@ -2195,7 +2195,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.alergias = response.data;
@@ -2206,7 +2206,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/alergia/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.alergias.splice(num, 1); //Borra la fila en el indice dado
@@ -2424,7 +2424,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/medicamento/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/create';
       this.axios.post(uri, this.medicamento).then(function (response) {
         _this.$router.push({
           name: 'vermedicamento'
@@ -2522,7 +2522,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/medicamento/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.medicamento = response.data;
     });
@@ -2547,7 +2547,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/medicamento/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.medicamento).then(function (response) {
         _this2.$router.push({
           name: 'vermedicamento'
@@ -2644,7 +2644,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/medicamento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.medicamentos = response.data;
@@ -2655,7 +2655,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medicamento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.medicamentos.splice(num, 1); //Borra la fila en el indice dado
@@ -2755,7 +2755,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/create';
       this.axios.post(uri, this.padecimiento).then(function (response) {
         _this.$router.push({
           name: 'verpadecimiento'
@@ -2839,7 +2839,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.padecimiento = response.data;
     });
@@ -2864,7 +2864,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = "http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.padecimiento).then(function (response) {
         _this2.$router.push({
           name: 'verpadecimiento'
@@ -2963,7 +2963,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.padecimientos = response.data;
@@ -2974,7 +2974,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.padecimientos.splice(num, 1); //Borra la fila en el indice dado
