@@ -30,6 +30,11 @@ import CreatePadecimientoComponent from './components/padecimientos/crearPadecim
 import ViewPadecimientoComponent from './components/padecimientos/indexPadecimiento.vue';//Contiene la tabla de padecieminto
 import EditPadecimientoComponent from './components/padecimientos/editarPadecimiento.vue'; //contiene el formularo para editar
 
+//Medicamentos
+import CreateMedicamentoComponent from './components/medicamentos/crearMedicamento.vue'; //Contiene el formulario para crear nuevos registros
+import ViewMedicamentoComponent from './components/medicamentos/indexMedicamento.vue';//Contiene la tabla de padecieminto
+import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
+
 //Se crea el catalogo de rutas para cada compoente que tenemos
 const routes = [
     {
@@ -58,14 +63,29 @@ const routes = [
         component: ViewPadecimientoComponent
     },
     {
-        name: 'crearpadecimientos',
+        name: 'crearpadecimiento',
         path: '/Alex/1730091-TAW-42/expedientes/public/padecimientos/crear',
         component: CreatePadecimientoComponent
     },
     {
-        name: 'editpadecimientos',
-        path: '/padecimientos/edit/:id',
+        name: 'editpadecimiento',
+        path: '/Alex/1730091-TAW-42/expedientes/public/padecimientos/edit/:id',
         component: EditPadecimientoComponent
+    }, ///MEDICAMENTOS
+    {
+        name: 'vermedicamento',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos',
+        component: ViewMedicamentoComponent
+    },
+    {
+        name: 'crearmedicamento',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos/crear',
+        component: CreateMedicamentoComponent
+    },
+    {
+        name: 'editmedicamento',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos/edit/:id',
+        component: EditMedicamentoComponent
     }
   ];
 

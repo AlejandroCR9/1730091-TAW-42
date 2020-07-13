@@ -79,6 +79,25 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="">
+                                <i class="metismenu-icon pe-7s-car"></i>
+                                Medicamentos
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link :to="{name: 'vermedicamento'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Medicamentos
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'crearmedicamento'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Medicamentos
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="app-sidebar__heading">Seccion 2</li>
                         <li>
                             <a href="#">
@@ -104,9 +123,9 @@
                 </div>
             </div>
         </div>
-        <transition>
+        
             <router-view></router-view>
-        </transition>
+        
     </div>
 </template>
 

@@ -28,7 +28,7 @@ class padecimientosController extends Controller
         $padecimiento = new Padecimiento(); //Crea un nuevo padecimiento de la tabla
         //Recupera los datos del request
         $padecimiento->nombre = $request->nombre; 
-        $padecimiento->cantidad = $request->descripcion;
+        $padecimiento->descripcion = $request->descripcion;
         $padecimiento->save(); //Guarda los datos
         return $padecimiento;
     }
@@ -57,7 +57,7 @@ class padecimientosController extends Controller
         $padecimiento = Padecimiento::findOrFail($id); //Busca primero el padecimiento 
         //Obtiene los datos del request y actualiza los nuevos datos
         $padecimiento->nombre = $request->nombre;
-        $padecimiento->cantidad = $request->descripcion;
+        $padecimiento->descripcion = $request->descripcion;
         $padecimiento->save(); //Garda el cambio
 
         return $padecimiento;

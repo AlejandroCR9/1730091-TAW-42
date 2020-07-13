@@ -30,7 +30,7 @@ class medicamentosController extends Controller
         $medicamento->nombre = $request->nombre;
         $medicamento->presentacion = $request->presentacion;
         $medicamento->descripcion= $request->descripcion;
-        $medicamento->precio = $request->precio;
+        $medicamento->percio = $request->precio;
         $medicamento->save(); //Guarda los datos
         return $medicamento;
     }
@@ -61,7 +61,7 @@ class medicamentosController extends Controller
         $medicamento->nombre = $request->nombre;
         $medicamento->presentacion = $request->presentacion;
         $medicamento->descripcion= $request->descripcion;
-        $medicamento->precio = $request->precio;
+        $medicamento->percio = $request->percio;
         $medicamento->save(); //Guarda el cambio
 
         return $medicamento;

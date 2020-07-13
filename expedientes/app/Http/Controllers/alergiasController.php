@@ -28,7 +28,7 @@ class alergiasController extends Controller
         $alergia = new Alergia(); //Crea un nuevo alergia de la tabla
         //Recupera los datos del request
         $alergia->nombre = $request->nombre; 
-        $alergia->cantidad = $request->descripcion;
+        $alergia->descripcion = $request->descripcion;
         $alergia->save(); //Guarda los datos
         return $alergia;
     }
@@ -57,7 +57,7 @@ class alergiasController extends Controller
         $alergia = Alergia::findOrFail($id); //Busca primero el alergia 
         //Obtiene los datos del request y actualiza los nuevos datos
         $alergia->nombre = $request->nombre;
-        $alergia->cantidad = $request->descripcion;
+        $alergia->descripcion = $request->descripcion;
         $alergia->save(); //Garda el cambio
 
         return $alergia;

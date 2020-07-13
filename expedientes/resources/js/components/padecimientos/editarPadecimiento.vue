@@ -1,13 +1,49 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <div class="app-main__outer">
+        <div class="app-main__inner">
+            <div class="app-page-title">
+                <div class="page-title-wrapper">
+                    <div class="page-title-heading">
+                        <div class="page-title-icon">
+                            <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                            </i>
+                        </div>
+                        <div>Padecimientos
+                            <div class="page-title-subheading">Esta editando una padecimiento.
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar padecimiento</h5>
+                    <form class="needs-validation" @submit.prevent="updatePadecimiento">
+                        <div class="form-row">
+                            <div class="col-md-12 mb-3">
+                                <label for="validationCustom01">Nombre</label>
+                                <input type="text" class="form-control" v-model="padecimiento.nombre" placeholder="Escriba el nombre de la padecimiento" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 mb-6">
+                                <label for="validationCustom02">Descripción</label>
+                                <textarea name="text" v-model="padecimiento.descripcion"  placeholder="Escriba la descripción de la padecimiento" class="form-control" style="height: 200px;" required></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <button class="btn btn-primary" type="submit">Guardar</button>
+                        </div>
+                    </form>
 
-                    <div class="card-body">
-                        I'm an example component padecimiento.
-                    </div>
                 </div>
             </div>
         </div>
@@ -16,8 +52,42 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data(){
+            return {
+                //NUestro array donde se almacena los datos
+            padecimiento:{}
+            }
+        }, 
+        created() {
+            let uri = `http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/edit/${this.$route.params.id}`;
+            this.axios.get(uri).then((response) => {
+                this.padecimiento = response.data;
+            });
+        },
+        methods: {
+        validar(){
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            },
+            updatePadecimiento(){
+                //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+                let uri = `http://161.35.13.32/1730091-TAW-42/expedientes/public/api/padecimiento/update/${this.$route.params.id}`;
+                this.axios.post(uri, this.padecimiento).then((response) => {
+                    this.$router.push({name: 'verpadecimiento'}); //vuelve a renderizar la tabla a la vista de la tabla
+                });
+            }
         }
     }
+    
+
 </script>
