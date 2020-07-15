@@ -19,4 +19,4 @@ Route::get('/{any}', function () {
 */
 Auth::routes();
 
-Route::get('/Alex/1730091-TAW-42/expedientes/public/{any}', 'HomeController@index')->name('home')->where('any', '.*');
+Route::get('/{any}', 'HomeController@index')->name('home')->where('any', '.*');
