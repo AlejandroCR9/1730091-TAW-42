@@ -48,8 +48,8 @@ Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
 Route::get('/paciente', 'pacientesController@index');
 
 //================RUTAS PACIENTES
-Route::post('/paciente/create', 'pacientesController@store');
-Route::get('/paciente/edit/{id}', 'pacientesController@edit');
-Route::post('/paciente/update/{id}', 'pacientesController@update');
-Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
+//Route::post('/paciente/create', 'pacientesController@store');
+//Route::get('/paciente/edit/{id}', 'pacientesController@edit');
+//Route::post('/paciente/update/{id}', 'pacientesController@update');
+//Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
 Route::get('/medico', 'medicosController@index');

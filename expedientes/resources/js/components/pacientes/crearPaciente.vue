@@ -78,7 +78,7 @@
                         <div class="form-row">
                             <div class="col-md-12 mb-6">
                                 <label for="validationCustom02">Domicilio</label>
-                                <textarea name="text" v-model="paciente.descripcion"  placeholder="Escriba el domicilio de la paciente" class="form-control" style="height: 200px;" required></textarea>
+                                <textarea name="text" v-model="paciente.domicilio"  placeholder="Escriba el domicilio de la paciente" class="form-control" style="height: 200px;" required></textarea>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

@@ -40841,8 +40841,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.paciente.descripcion,
-                        expression: "paciente.descripcion"
+                        value: _vm.paciente.domicilio,
+                        expression: "paciente.domicilio"
                       }
                     ],
                     staticClass: "form-control",
@@ -40852,17 +40852,13 @@ var render = function() {
                       placeholder: "Escriba el domicilio de la paciente",
                       required: ""
                     },
-                    domProps: { value: _vm.paciente.descripcion },
+                    domProps: { value: _vm.paciente.domicilio },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.paciente,
-                          "descripcion",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.paciente, "domicilio", $event.target.value)
                       }
                     }
                   }),
