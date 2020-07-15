@@ -57583,11 +57583,11 @@ Vue.component('nav-component', __webpack_require__(/*! ./components/sidebar.vue 
 
 var routes = [{
   name: 'dash',
-  path: '/',
+  path: '/Alex/1730091-TAW-42/expedientes/public//',
   component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: 'dash',
-  path: '/home',
+  path: '/Alex/1730091-TAW-42/expedientes/public//home',
   component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, //ALERGIAS
 {
@@ -57631,15 +57631,15 @@ var routes = [{
 }, ///PACIENTE
 {
   name: 'verpaciente',
-  path: '/pacientes',
+  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes',
   component: _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   name: 'crearpaciente',
-  path: '/pacientes/crear',
+  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/crear',
   component: _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   name: 'editpaciente',
-  path: '/pacientes/edit/:id',
+  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/edit/:id',
   component: _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }];
 /**
