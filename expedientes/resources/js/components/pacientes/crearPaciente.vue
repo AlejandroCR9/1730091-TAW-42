@@ -107,8 +107,8 @@
     },//Se ejecuta una cuando se crea el componente
       created() {
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          //let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico';
-          let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico';
+          //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(uri).then(response => {
              this.medicos = response.data;

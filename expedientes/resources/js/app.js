@@ -45,12 +45,12 @@ Vue.component('nav-component', require('./components/sidebar.vue').default);
 const routes = [
     {
         name: 'dash',
-        path: '/Alex/1730091-TAW-42/expedientes/public//',
+        path: '/Alex/1730091-TAW-42/expedientes/public/',
         component: dashboard
     },
     {
         name: 'dash',
-        path: '/Alex/1730091-TAW-42/expedientes/public//home',
+        path: '/Alex/1730091-TAW-42/expedientes/public/home',
         component: dashboard
     },//ALERGIAS
     {
@@ -100,17 +100,17 @@ const routes = [
     }, ///PACIENTE
     {
         name: 'verpaciente',
-        path: '/Alex/1730091-TAW-42/expedientes/public//pacientes',
+        path: '/Alex/1730091-TAW-42/expedientes/public/pacientes',
         component: ViewPacienteComponent
     },
     {
         name: 'crearpaciente',
-        path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/crear',
+        path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/crear',
         component: CreatePacienteComponent
     },
     {
         name: 'editpaciente',
-        path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/edit/:id',
+        path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/edit/:id',
         component: EditPacienteComponent
     }
   ];

@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Expediente') }}</title>
 
     <!-- Scripts -->
-    <script src="js/app.js" defer></script>
+    
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -103,5 +103,6 @@
         </main>
     </div>
 </body>
+<script src="js/app.js"></script>
 <script type="text/javascript" src="scripts/main.js"></script></body>
 </html>

@@ -2787,8 +2787,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    //let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico';
-    var uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.medicos = response.data;
@@ -57583,11 +57583,11 @@ Vue.component('nav-component', __webpack_require__(/*! ./components/sidebar.vue 
 
 var routes = [{
   name: 'dash',
-  path: '/Alex/1730091-TAW-42/expedientes/public//',
+  path: '/Alex/1730091-TAW-42/expedientes/public/',
   component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   name: 'dash',
-  path: '/Alex/1730091-TAW-42/expedientes/public//home',
+  path: '/Alex/1730091-TAW-42/expedientes/public/home',
   component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, //ALERGIAS
 {
@@ -57631,15 +57631,15 @@ var routes = [{
 }, ///PACIENTE
 {
   name: 'verpaciente',
-  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes',
+  path: '/Alex/1730091-TAW-42/expedientes/public/pacientes',
   component: _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   name: 'crearpaciente',
-  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/crear',
+  path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/crear',
   component: _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, {
   name: 'editpaciente',
-  path: '/Alex/1730091-TAW-42/expedientes/public//pacientes/edit/:id',
+  path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/edit/:id',
   component: _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }];
 /**
