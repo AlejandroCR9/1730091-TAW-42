@@ -35,11 +35,22 @@ import CreateMedicamentoComponent from './components/medicamentos/crearMedicamen
 import ViewMedicamentoComponent from './components/medicamentos/indexMedicamento.vue';//Contiene la tabla de padecieminto
 import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
 
+//Paciente
+import CreatePacienteComponent from './components/pacientes/crearPaciente.vue'; //Contiene el formulario para crear nuevos registros
+import ViewPacienteComponent from './components/pacientes/indexPaciente.vue';//Contiene la tabla de padecieminto
+import EditPacienteComponent from './components/pacientes/editarPaciente.vue'; //contiene el formularo para editar
+
+Vue.component('nav-component', require('./components/sidebar.vue').default);
 //Se crea el catalogo de rutas para cada compoente que tenemos
 const routes = [
     {
         name: 'dash',
-        path: '/Alex/1730091-TAW-42/expedientes/public/',
+        path: '/',
+        component: dashboard
+    },
+    {
+        name: 'dash',
+        path: '/home',
         component: dashboard
     },//ALERGIAS
     {
@@ -86,6 +97,21 @@ const routes = [
         name: 'editmedicamento',
         path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos/edit/:id',
         component: EditMedicamentoComponent
+    }, ///PACIENTE
+    {
+        name: 'verpaciente',
+        path: '/pacientes',
+        component: ViewPacienteComponent
+    },
+    {
+        name: 'crearpaciente',
+        path: '/pacientes/crear',
+        component: CreatePacienteComponent
+    },
+    {
+        name: 'editpaciente',
+        path: '/pacientes/edit/:id',
+        component: EditPacienteComponent
     }
   ];
 
@@ -96,4 +122,10 @@ const routes = [
  */
 
 const router = new VueRouter({ mode: 'history', routes: routes}); //Crea las rutas en modo history
-const app = new Vue(Vue.util.extend({ router }, App)).$mount('#app'); //Agrega las rutas a la app y monta el sidebar
+
+var vm = new Vue({
+    el: "#app",
+    router,
+    
+})
+//const app = new Vue(Vue.util.extend({ router }, App)); //Agrega las rutas a la app y monta el sidebar

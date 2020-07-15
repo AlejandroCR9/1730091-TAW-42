@@ -102,6 +102,25 @@
                         <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
+                                Pacientes
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link :to="{name: 'verpaciente'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Pacientes
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'crearpaciente'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Paciente
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-car"></i>
                                 Otra lista
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>

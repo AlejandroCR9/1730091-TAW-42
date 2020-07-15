@@ -28,9 +28,11 @@ class pacientesController extends Controller
         $paciente = new Paciente(); //Crea un nuevo paciente de la tabla
         //Recupera los datos del request
         $paciente->nombre = $request->nombre;
-        $paciente->presentacion = $request->presentacion;
-        $paciente->descripcion= $request->descripcion;
-        $paciente->precio = $request->precio;
+        $paciente->apellidos = $request->apellidos;
+        $paciente->domicilio= $request->domicilio;
+        $paciente->fecha_nacimiento = $request->fecha_nacimiento;
+        $paciente->telefono = $request->telefono;
+        $paciente->email = $request->email;
         $paciente->save(); //Guarda los datos
         return $paciente;
     }
