@@ -2667,6 +2667,272 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      medico: {},
+      ultimo: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.medicos = response.data;
+    });
+  },
+  methods: {
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    addMedico: function addMedico() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/create';
+      this.axios.post(uri, this.medico).then(function (response) {
+        _this2.$router.push({
+          name: 'vermedico'
+        }); //vuelve a renderizar la tabla a la vista de la tabla
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //Array donde se guardarna los datos de la bd
+      medicos: []
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.medicos = response.data;
+    });
+  },
+  methods: {
+    deleteMedico: function deleteMedico(id, num) {
+      var _this2 = this;
+
+      //Url directa del metodo en larvave que me obtiene valores de la bd
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+
+      this.axios["delete"](uri).then(function (response) {
+        _this2.medicos.splice(num, 1); //Borra la fila en el indice dado
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/crearPaciente.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pacientes/crearPaciente.vue?vue&type=script&lang=js& ***!
@@ -2774,12 +3040,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
       paciente: {},
-      medicos: {}
+      medicos: {},
+      ultimo: {}
     };
   },
   //Se ejecuta una cuando se crea el componente
@@ -2902,19 +3170,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
-      medicamento: {}
+      paciente: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
-      _this.medicamento = response.data;
+      _this.paciente = response.data;
     });
   },
   methods: {
@@ -2933,14 +3235,81 @@ __webpack_require__.r(__webpack_exports__);
         }, false);
       });
     },
-    addMedicamento: function addMedicamento() {
+    addPaciente: function addPaciente() {
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/update/".concat(this.$route.params.id);
-      this.axios.post(uri, this.medicamento).then(function (response) {
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/update/".concat(this.$route.params.id);
+      this.axios.post(uri, this.paciente).then(function (response) {
         _this2.$router.push({
-          name: 'vermedicamento'
+          name: 'verpaciente'
+        }); //vuelve a renderizar la tabla a la vista de la tabla
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      paciente: {},
+      medicos: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.medicos = response.data;
+    });
+    paciente.idPaciente = this.$route.params.id;
+  },
+  methods: {
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    addExpediente: function addExpediente() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/expediente/create';
+      this.axios.post(uri, this.paciente).then(function (response) {
+        _this2.$router.push({
+          name: 'verpaciente'
         }); //vuelve a renderizar la tabla a la vista de la tabla
 
       });
@@ -2959,6 +3328,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -3380,6 +3750,272 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      secretaria: {},
+      ultimo: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/secretaria';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.secretarias = response.data;
+    });
+  },
+  methods: {
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    addSecretaria: function addSecretaria() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/create';
+      this.axios.post(uri, this.secretaria).then(function (response) {
+        _this2.$router.push({
+          name: 'versecretaria'
+        }); //vuelve a renderizar la tabla a la vista de la tabla
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //Array donde se guardarna los datos de la bd
+      secretarias: []
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.secretarias = response.data;
+    });
+  },
+  methods: {
+    deleteSecretaria: function deleteSecretaria(id, num) {
+      var _this2 = this;
+
+      //Url directa del metodo en larvave que me obtiene valores de la bd
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+
+      this.axios["delete"](uri).then(function (response) {
+        _this2.secretarias.splice(num, 1); //Borra la fila en el indice dado
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/sidebar.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/sidebar.vue?vue&type=script&lang=js& ***!
@@ -3539,10 +4175,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
-  }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -39137,6 +39812,140 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
+/***/ "./node_modules/vue-cookies/vue-cookies.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Vue Cookies v1.7.2
+ * https://github.com/cmp-cc/vue-cookies
+ *
+ * Copyright 2016, cmp-cc
+ * Released under the MIT license
+ */
+
+(function() {
+
+    var defaultConfig = {
+        expires : '1d',
+        path : '; path=/',
+        domain:'',
+        secure:'',
+        sameSite:''
+    }
+
+    var VueCookies = {
+        // install of Vue
+        install: function(Vue) {
+            Vue.prototype.$cookies = this
+            Vue.$cookies = this
+        },
+        config : function(expireTimes,path,domain,secure,sameSite) {
+            defaultConfig.expires = expireTimes ? expireTimes : '1d';
+            defaultConfig.path = path ? '; path=' + path : '; path=/';
+            defaultConfig.domain = domain ? '; domain=' + domain : '';
+            defaultConfig.secure = secure ? '; Secure' : '';
+            defaultConfig.sameSite = sameSite ? '; SameSite=' + sameSite : '';
+        },
+        get: function(key) {
+            var value = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null
+
+            if(value && value.substring(0,1) === "{" && value.substring(value.length-1,value.length) === "}") {
+                try {
+                    value = JSON.parse(value)
+                }catch (e) {
+                    return value;
+                }
+            }
+            return value;
+        },
+        set: function(key, value, expireTimes, path, domain, secure, sameSite) {
+            if (!key) {
+                throw new Error("Cookie name is not find in first argument.")
+            }else if(/^(?:expires|max\-age|path|domain|secure|SameSite)$/i.test(key)){
+                throw new Error("Cookie key name illegality, Cannot be set to ['expires','max-age','path','domain','secure','SameSite']\t current key name: " + key);
+            }
+            // support json object
+            if(value && value.constructor === Object) {
+                value = JSON.stringify(value);
+            }
+            var _expires = "";
+            expireTimes = expireTimes === undefined ? defaultConfig.expires : expireTimes;
+            if (expireTimes && expireTimes != 0) {
+                switch (expireTimes.constructor) {
+                    case Number:
+                        if(expireTimes === Infinity || expireTimes === -1) _expires = "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                        else _expires = "; max-age=" + expireTimes;
+                        break;
+                    case String:
+                        if (/^(?:\d{1,}(y|m|d|h|min|s))$/i.test(expireTimes)) {
+                            // get capture number group
+                            var _expireTime = expireTimes.replace(/^(\d{1,})(?:y|m|d|h|min|s)$/i, "$1");
+                            // get capture type group , to lower case
+                            switch (expireTimes.replace(/^(?:\d{1,})(y|m|d|h|min|s)$/i, "$1").toLowerCase()) {
+                                // Frequency sorting
+                                case 'm':  _expires = "; max-age=" + +_expireTime * 2592000; break; // 60 * 60 * 24 * 30
+                                case 'd':  _expires = "; max-age=" + +_expireTime * 86400; break; // 60 * 60 * 24
+                                case 'h': _expires = "; max-age=" + +_expireTime * 3600; break; // 60 * 60
+                                case 'min':  _expires = "; max-age=" + +_expireTime * 60; break; // 60
+                                case 's': _expires = "; max-age=" + _expireTime; break;
+                                case 'y': _expires = "; max-age=" + +_expireTime * 31104000; break; // 60 * 60 * 24 * 30 * 12
+                                default: new Error("unknown exception of 'set operation'");
+                            }
+                        } else {
+                            _expires = "; expires=" + expireTimes;
+                        }
+                        break;
+                    case Date:
+                        _expires = "; expires=" + expireTimes.toUTCString();
+                        break;
+                }
+            }
+            document.cookie =
+                encodeURIComponent(key) + "=" + encodeURIComponent(value) +
+                _expires +
+                (domain ? "; domain=" + domain : defaultConfig.domain) +
+                (path ? "; path=" + path : defaultConfig.path) +
+                (secure === undefined ? defaultConfig.secure : secure ? "; Secure" : "") +
+                (sameSite === undefined ? defaultConfig.sameSite : (sameSite ? "; SameSite=" + sameSite : ""));
+            return this;
+        },
+        remove: function(key, path, domain) {
+            if (!key || !this.isKey(key)) {
+                return false;
+            }
+            document.cookie = encodeURIComponent(key) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (domain ? "; domain=" + domain : defaultConfig.domain) + (path ? "; path=" + path : defaultConfig.path);
+            return this;
+        },
+        isKey: function(key) {
+            return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+        },
+        keys:  function() {
+            if(!document.cookie) return [];
+            var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+            for (var _index = 0; _index < _keys.length; _index++) {
+                _keys[_index] = decodeURIComponent(_keys[_index]);
+            }
+            return _keys;
+        }
+    }
+
+    if (true) {
+        module.exports = VueCookies;
+    } else {}
+    // vue-cookies can exist independently,no dependencies library
+    if(typeof window!=="undefined"){
+        window.$cookies = VueCookies;
+    }
+
+})()
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/alergias/crearAlergia.vue?vue&type=template&id=c4089030&":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/alergias/crearAlergia.vue?vue&type=template&id=c4089030& ***!
@@ -40481,6 +41290,557 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Crear nuevo medico")
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addMedico($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Nombre")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.name,
+                        expression: "medico.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el nombre de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Apellidos")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.apellidos,
+                        expression: "medico.apellidos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los apellidos de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.apellidos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "apellidos", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Cedula")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.cedula,
+                        expression: "medico.cedula"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la cedula del medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.cedula },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "cedula", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Telefono")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.telefono,
+                        expression: "medico.telefono"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el telefono de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.telefono },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "telefono", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Usuario")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.user,
+                        expression: "medico.user"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la usuario de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.user },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "user", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Correo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.email,
+                        expression: "medico.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los correo de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "email", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Contraseña")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.password,
+                        expression: "medico.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Escriba la contraseña de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "password", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Domicilio")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.medico.domicilio,
+                        expression: "medico.domicilio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba el domicilio de la medico",
+                      required: ""
+                    },
+                    domProps: { value: _vm.medico.domicilio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.medico, "domicilio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Médico\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Esta registrando una nuevo medico.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "main-card mb-3 card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Medicos\n                    ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "align-middle mb-0 table table-borderless table-striped table-hover"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.medicos, function(medico, num) {
+                      return _c("tr", { key: medico.id }, [
+                        _c("td", {
+                          staticClass: "text-center text-muted",
+                          domProps: { textContent: _vm._s(medico.id) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(medico.name) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(medico.apellidos) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(medico.domicilio) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(medico.telefono) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(medico.email) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteMedico(medico.id, num)
+                                }
+                              }
+                            },
+                            [_vm._v("Borrar")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Medico\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Listado de medicos registrados en el sistema.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Apellidos")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Domicilio")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/crearPaciente.vue?vue&type=template&id=724846f0&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pacientes/crearPaciente.vue?vue&type=template&id=724846f0& ***!
@@ -40712,121 +42072,6 @@ var render = function() {
                       "\n                                Looks good!\n                            "
                     )
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                  _c("label", { attrs: { for: "validationCustom01" } }, [
-                    _vm._v("Médico:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.paciente.idMedico,
-                          expression: "paciente.idMedico"
-                        }
-                      ],
-                      staticClass: "form-control col-md-6 col-sm-6",
-                      attrs: { type: "text", required: "" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.paciente,
-                            "idMedico",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    _vm._l(_vm.medicos, function(medico) {
-                      return _c(
-                        "option",
-                        {
-                          key: medico.id,
-                          attrs: { selected: "" },
-                          domProps: { value: medico.id }
-                        },
-                        [_vm._v(_vm._s(medico.name))]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "valid-feedback" }, [
-                    _vm._v(
-                      "\n                                Looks good!\n                            "
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                  _c("label", { attrs: { for: "validationCustom01" } }, [
-                    _vm._v("Sexo:")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.paciente.sexo,
-                          expression: "paciente.sexo"
-                        }
-                      ],
-                      staticClass: "form-control col-md-6 col-sm-6",
-                      attrs: { type: "text", required: "" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.paciente,
-                            "sexo",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "masculino" } }, [
-                        _vm._v("Masculino")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "femenino" } }, [
-                        _vm._v("Femenino")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "valid-feedback" }, [
-                    _vm._v(
-                      "\n                                Looks good!\n                            "
-                    )
-                  ])
                 ])
               ]),
               _vm._v(" "),
@@ -40945,9 +42190,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "main-card mb-3 card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _c("h5", { staticClass: "card-title" }, [
-            _vm._v("Crear nuevo medicamento")
-          ]),
+          _c("h5", { staticClass: "card-title" }, [_vm._v("Editar paciente")]),
           _vm._v(" "),
           _c(
             "form",
@@ -40956,7 +42199,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.addMedicamento($event)
+                  return _vm.addPaciente($event)
                 }
               }
             },
@@ -40972,23 +42215,23 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.medicamento.nombre,
-                        expression: "medicamento.nombre"
+                        value: _vm.paciente.nombre,
+                        expression: "paciente.nombre"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "Escriba el nombre de la medicamento",
+                      placeholder: "Escriba el nombre de la paciente",
                       required: ""
                     },
-                    domProps: { value: _vm.medicamento.nombre },
+                    domProps: { value: _vm.paciente.nombre },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.medicamento, "nombre", $event.target.value)
+                        _vm.$set(_vm.paciente, "nombre", $event.target.value)
                       }
                     }
                   }),
@@ -41002,7 +42245,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-12 mb-3" }, [
                   _c("label", { attrs: { for: "validationCustom01" } }, [
-                    _vm._v("Presentación")
+                    _vm._v("Apellidos")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -41010,25 +42253,64 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.medicamento.presentacion,
-                        expression: "medicamento.presentacion"
+                        value: _vm.paciente.apellidos,
+                        expression: "paciente.apellidos"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      placeholder: "Escriba la presentación de la medicamento",
+                      placeholder: "Escriba los apellidos de la paciente",
                       required: ""
                     },
-                    domProps: { value: _vm.medicamento.presentacion },
+                    domProps: { value: _vm.paciente.apellidos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.paciente, "apellidos", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Fecha de nacimiento")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.paciente.fecha_nacimiento,
+                        expression: "paciente.fecha_nacimiento"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "date",
+                      placeholder:
+                        "Escriba la fecha de nacimiento del paciente",
+                      required: ""
+                    },
+                    domProps: { value: _vm.paciente.fecha_nacimiento },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(
-                          _vm.medicamento,
-                          "presentacion",
+                          _vm.paciente,
+                          "fecha_nacimiento",
                           $event.target.value
                         )
                       }
@@ -41044,7 +42326,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-12 mb-3" }, [
                   _c("label", { attrs: { for: "validationCustom01" } }, [
-                    _vm._v("Precio")
+                    _vm._v("Telefono")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -41052,25 +42334,61 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.medicamento.percio,
-                        expression: "medicamento.percio"
+                        value: _vm.paciente.telefono,
+                        expression: "paciente.telefono"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
-                      type: "number",
-                      min: "0",
-                      value: "0",
-                      placeholder: "Escriba el precio del medicamento",
+                      type: "text",
+                      placeholder: "Escriba el telefono de la paciente",
                       required: ""
                     },
-                    domProps: { value: _vm.medicamento.percio },
+                    domProps: { value: _vm.paciente.telefono },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.medicamento, "percio", $event.target.value)
+                        _vm.$set(_vm.paciente, "telefono", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Correo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.paciente.email,
+                        expression: "paciente.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los apellidos de la paciente",
+                      required: ""
+                    },
+                    domProps: { value: _vm.paciente.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.paciente, "email", $event.target.value)
                       }
                     }
                   }),
@@ -41086,7 +42404,7 @@ var render = function() {
               _c("div", { staticClass: "form-row" }, [
                 _c("div", { staticClass: "col-md-12 mb-6" }, [
                   _c("label", { attrs: { for: "validationCustom02" } }, [
-                    _vm._v("Descripción")
+                    _vm._v("Domicilio")
                   ]),
                   _vm._v(" "),
                   _c("textarea", {
@@ -41094,28 +42412,24 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.medicamento.descripcion,
-                        expression: "medicamento.descripcion"
+                        value: _vm.paciente.domicilio,
+                        expression: "paciente.domicilio"
                       }
                     ],
                     staticClass: "form-control",
                     staticStyle: { height: "200px" },
                     attrs: {
                       name: "text",
-                      placeholder: "Escriba la descripción de la medicamento",
+                      placeholder: "Escriba el domicilio de la paciente",
                       required: ""
                     },
-                    domProps: { value: _vm.medicamento.descripcion },
+                    domProps: { value: _vm.paciente.domicilio },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.medicamento,
-                          "descripcion",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.paciente, "domicilio", $event.target.value)
                       }
                     }
                   }),
@@ -41151,10 +42465,10 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v("Medicamento\n                        "),
+            _vm._v("Paciente\n                        "),
             _c("div", { staticClass: "page-title-subheading" }, [
               _vm._v(
-                "Esta registrando una nuevo medicamento.\n                        "
+                "Esta editando una nuevo paciente.\n                        "
               )
             ])
           ])
@@ -41175,6 +42489,30 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41874,6 +43212,580 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Crear nuevo secretaria")
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addSecretaria($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Nombre")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.name,
+                        expression: "secretaria.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el nombre de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Apellidos")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.apellidos,
+                        expression: "secretaria.apellidos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los apellidos de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.apellidos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "apellidos",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Cedula")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.cedula,
+                        expression: "secretaria.cedula"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la cedula del secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.cedula },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "cedula", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Telefono")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.telefono,
+                        expression: "secretaria.telefono"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el telefono de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.telefono },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "telefono",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Usuario")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.user,
+                        expression: "secretaria.user"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la usuario de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.user },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "user", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Correo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.email,
+                        expression: "secretaria.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los correo de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "email", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Contraseña")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.password,
+                        expression: "secretaria.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Escriba la contraseña de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "password",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Domicilio")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.domicilio,
+                        expression: "secretaria.domicilio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba el domicilio de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.domicilio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "domicilio",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Secretaria\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Esta registrando una nuevo secretaria.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "main-card mb-3 card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Secretarias\n                    ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "align-middle mb-0 table table-borderless table-striped table-hover"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.secretarias, function(secretaria, num) {
+                      return _c("tr", { key: secretaria.id }, [
+                        _c("td", {
+                          staticClass: "text-center text-muted",
+                          domProps: { textContent: _vm._s(secretaria.id) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(secretaria.name) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: {
+                            textContent: _vm._s(secretaria.apellidos)
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: {
+                            textContent: _vm._s(secretaria.domicilio)
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(secretaria.telefono) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass: "text-center",
+                          domProps: { textContent: _vm._s(secretaria.email) }
+                        }),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteSecretaria(
+                                    secretaria.id,
+                                    num
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Borrar")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Secretaria\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Listado de secretarias registrados en el sistema.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Apellidos")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Domicilio")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/sidebar.vue?vue&type=template&id=5b987ee1&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/sidebar.vue?vue&type=template&id=5b987ee1& ***!
@@ -42118,6 +44030,94 @@ var render = function() {
                     [
                       _c(
                         "router-link",
+                        { attrs: { to: { name: "vermedico" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Ver Médicos\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "crearmedico" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Registrar Médico\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._m(8),
+                _vm._v(" "),
+                _c("ul", [
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "versecretaria" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Ver Secretaria\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "crearsecretaria" } } },
+                        [
+                          _c("i", {
+                            staticClass: "metismenu-icon pe-7s-rocket"
+                          }),
+                          _vm._v(
+                            "Registrar Secretaria\n                                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _vm._m(9),
+                _vm._v(" "),
+                _c("ul", [
+                  _c(
+                    "li",
+                    [
+                      _c(
+                        "router-link",
                         { staticClass: "mm-active", attrs: { to: "" } },
                         [
                           _c("i", {
@@ -42279,6 +44279,34 @@ var staticRenderFns = [
       _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
       _vm._v(
         "\n                            Pacientes\n                            "
+      ),
+      _c("i", {
+        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+      _vm._v(
+        "\n                            Médicos\n                            "
+      ),
+      _c("i", {
+        staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
+      _vm._v(
+        "\n                            Secretario(a)s\n                            "
       ),
       _c("i", {
         staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
@@ -57506,25 +59534,32 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_sidebar_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/sidebar.vue */ "./resources/js/components/sidebar.vue");
-/* harmony import */ var _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue");
-/* harmony import */ var _components_alergias_crearAlergia_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/alergias/crearAlergia.vue */ "./resources/js/components/alergias/crearAlergia.vue");
-/* harmony import */ var _components_alergias_indexAlergia_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/alergias/indexAlergia.vue */ "./resources/js/components/alergias/indexAlergia.vue");
-/* harmony import */ var _components_alergias_editarAlergia_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/alergias/editarAlergia.vue */ "./resources/js/components/alergias/editarAlergia.vue");
-/* harmony import */ var _components_padecimientos_crearPadecimiento_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/padecimientos/crearPadecimiento.vue */ "./resources/js/components/padecimientos/crearPadecimiento.vue");
-/* harmony import */ var _components_padecimientos_indexPadecimiento_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/padecimientos/indexPadecimiento.vue */ "./resources/js/components/padecimientos/indexPadecimiento.vue");
-/* harmony import */ var _components_padecimientos_editarPadecimiento_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/padecimientos/editarPadecimiento.vue */ "./resources/js/components/padecimientos/editarPadecimiento.vue");
-/* harmony import */ var _components_medicamentos_crearMedicamento_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/medicamentos/crearMedicamento.vue */ "./resources/js/components/medicamentos/crearMedicamento.vue");
-/* harmony import */ var _components_medicamentos_indexMedicamento_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/medicamentos/indexMedicamento.vue */ "./resources/js/components/medicamentos/indexMedicamento.vue");
-/* harmony import */ var _components_medicamentos_editarMedicamento_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/medicamentos/editarMedicamento.vue */ "./resources/js/components/medicamentos/editarMedicamento.vue");
-/* harmony import */ var _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pacientes/crearPaciente.vue */ "./resources/js/components/pacientes/crearPaciente.vue");
-/* harmony import */ var _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/pacientes/indexPaciente.vue */ "./resources/js/components/pacientes/indexPaciente.vue");
-/* harmony import */ var _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/pacientes/editarPaciente.vue */ "./resources/js/components/pacientes/editarPaciente.vue");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_sidebar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sidebar.vue */ "./resources/js/components/sidebar.vue");
+/* harmony import */ var _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/dashboard.vue */ "./resources/js/components/dashboard.vue");
+/* harmony import */ var _components_alergias_crearAlergia_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/alergias/crearAlergia.vue */ "./resources/js/components/alergias/crearAlergia.vue");
+/* harmony import */ var _components_alergias_indexAlergia_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/alergias/indexAlergia.vue */ "./resources/js/components/alergias/indexAlergia.vue");
+/* harmony import */ var _components_alergias_editarAlergia_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/alergias/editarAlergia.vue */ "./resources/js/components/alergias/editarAlergia.vue");
+/* harmony import */ var _components_padecimientos_crearPadecimiento_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/padecimientos/crearPadecimiento.vue */ "./resources/js/components/padecimientos/crearPadecimiento.vue");
+/* harmony import */ var _components_padecimientos_indexPadecimiento_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/padecimientos/indexPadecimiento.vue */ "./resources/js/components/padecimientos/indexPadecimiento.vue");
+/* harmony import */ var _components_padecimientos_editarPadecimiento_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/padecimientos/editarPadecimiento.vue */ "./resources/js/components/padecimientos/editarPadecimiento.vue");
+/* harmony import */ var _components_medicamentos_crearMedicamento_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/medicamentos/crearMedicamento.vue */ "./resources/js/components/medicamentos/crearMedicamento.vue");
+/* harmony import */ var _components_medicamentos_indexMedicamento_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/medicamentos/indexMedicamento.vue */ "./resources/js/components/medicamentos/indexMedicamento.vue");
+/* harmony import */ var _components_medicamentos_editarMedicamento_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/medicamentos/editarMedicamento.vue */ "./resources/js/components/medicamentos/editarMedicamento.vue");
+/* harmony import */ var _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/pacientes/crearPaciente.vue */ "./resources/js/components/pacientes/crearPaciente.vue");
+/* harmony import */ var _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/pacientes/indexPaciente.vue */ "./resources/js/components/pacientes/indexPaciente.vue");
+/* harmony import */ var _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/pacientes/editarPaciente.vue */ "./resources/js/components/pacientes/editarPaciente.vue");
+/* harmony import */ var _components_pacientes_expediente_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/pacientes/expediente.vue */ "./resources/js/components/pacientes/expediente.vue");
+/* harmony import */ var _components_secretarias_crearSecretaria_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/secretarias/crearSecretaria.vue */ "./resources/js/components/secretarias/crearSecretaria.vue");
+/* harmony import */ var _components_secretarias_indexSecretaria_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/secretarias/indexSecretaria.vue */ "./resources/js/components/secretarias/indexSecretaria.vue");
+/* harmony import */ var _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/medicos/crearMedico.vue */ "./resources/js/components/medicos/crearMedico.vue");
+/* harmony import */ var _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/medicos/indexMedico.vue */ "./resources/js/components/medicos/indexMedico.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -57534,14 +59569,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+Vue.use(__webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js"));
+
+Vue.use(vue_cookies__WEBPACK_IMPORTED_MODULE_0___default.a);
  //Import de la dependencia nesesaria para usar las rutas
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
  //Import de la dependecia para mandar los request
 
 
-Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a); //Importamos los componentes que tenemos
+Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_2___default.a, axios__WEBPACK_IMPORTED_MODULE_3___default.a); //Importamos los componentes que tenemos
 
  //Contiene el componente de la navbar
 
@@ -57575,68 +59612,101 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTE
 
  //contiene el formularo para editar
 
+ //Contiene la tabla de padecieminto
+//Secre
+
+ //Contiene el formulario para crear nuevos registros
+
+ //Contiene la tabla de padecieminto
+//import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
+//med
+
+ //Contiene el formulario para crear nuevos registros
+
+ //Contiene la tabla de padecieminto
+
 Vue.component('nav-component', __webpack_require__(/*! ./components/sidebar.vue */ "./resources/js/components/sidebar.vue")["default"]); //Se crea el catalogo de rutas para cada compoente que tenemos
 
 var routes = [{
   name: 'dash',
   path: '/Alex/1730091-TAW-42/expedientes/public/',
-  component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  name: 'dash',
+  name: 'dash2',
   path: '/Alex/1730091-TAW-42/expedientes/public/home',
-  component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  component: _components_dashboard_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, //ALERGIAS
 {
   name: 'veralergia',
   path: '/Alex/1730091-TAW-42/expedientes/public/alergias',
-  component: _components_alergias_indexAlergia_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _components_alergias_indexAlergia_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
   name: 'crearalergia',
   path: '/Alex/1730091-TAW-42/expedientes/public/alergias/crear',
-  component: _components_alergias_crearAlergia_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  component: _components_alergias_crearAlergia_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
   name: 'editalergia',
   path: '/Alex/1730091-TAW-42/expedientes/public/alergias/edit/:id',
-  component: _components_alergias_editarAlergia_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_alergias_editarAlergia_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }, ///PADECIENTOS
 {
   name: 'verpadecimiento',
   path: '/Alex/1730091-TAW-42/expedientes/public/padecimientos',
-  component: _components_padecimientos_indexPadecimiento_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+  component: _components_padecimientos_indexPadecimiento_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
 }, {
   name: 'crearpadecimiento',
   path: '/Alex/1730091-TAW-42/expedientes/public/padecimientos/crear',
-  component: _components_padecimientos_crearPadecimiento_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  component: _components_padecimientos_crearPadecimiento_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
 }, {
   name: 'editpadecimiento',
   path: '/Alex/1730091-TAW-42/expedientes/public/padecimientos/edit/:id',
-  component: _components_padecimientos_editarPadecimiento_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
+  component: _components_padecimientos_editarPadecimiento_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
 }, ///MEDICAMENTOS
 {
   name: 'vermedicamento',
   path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos',
-  component: _components_medicamentos_indexMedicamento_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
+  component: _components_medicamentos_indexMedicamento_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
 }, {
   name: 'crearmedicamento',
   path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos/crear',
-  component: _components_medicamentos_crearMedicamento_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
+  component: _components_medicamentos_crearMedicamento_vue__WEBPACK_IMPORTED_MODULE_12__["default"]
 }, {
   name: 'editmedicamento',
   path: '/Alex/1730091-TAW-42/expedientes/public/medicamentos/edit/:id',
-  component: _components_medicamentos_editarMedicamento_vue__WEBPACK_IMPORTED_MODULE_13__["default"]
+  component: _components_medicamentos_editarMedicamento_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
 }, ///PACIENTE
 {
   name: 'verpaciente',
   path: '/Alex/1730091-TAW-42/expedientes/public/pacientes',
-  component: _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
+  component: _components_pacientes_indexPaciente_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
 }, {
   name: 'crearpaciente',
   path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/crear',
-  component: _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_14__["default"]
+  component: _components_pacientes_crearPaciente_vue__WEBPACK_IMPORTED_MODULE_15__["default"]
 }, {
   name: 'editpaciente',
   path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/edit/:id',
-  component: _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_16__["default"]
+  component: _components_pacientes_editarPaciente_vue__WEBPACK_IMPORTED_MODULE_17__["default"]
+}, {
+  name: 'genpaciente',
+  path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
+  component: _components_pacientes_expediente_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
+}, {
+  name: 'versecretaria',
+  path: '/Alex/1730091-TAW-42/expedientes/public/secretaria',
+  component: _components_secretarias_indexSecretaria_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
+}, {
+  name: 'crearsecretaria',
+  path: '/Alex/1730091-TAW-42/expedientes/public/secretaria/crear',
+  component: _components_secretarias_crearSecretaria_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
+}, {
+  name: 'vermedico',
+  path: '/Alex/1730091-TAW-42/expedientes/public/medicos',
+  component: _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+}, {
+  name: 'crearmedico',
+  path: '/Alex/1730091-TAW-42/expedientes/public/medico/crear',
+  component: _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
 }];
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -57644,7 +59714,7 @@ var routes = [{
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: routes
 }); //Crea las rutas en modo history
@@ -58184,6 +60254,144 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/medicos/crearMedico.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/medicos/crearMedico.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./crearMedico.vue?vue&type=template&id=32fddaf0& */ "./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0&");
+/* harmony import */ var _crearMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./crearMedico.vue?vue&type=script&lang=js& */ "./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _crearMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/medicos/crearMedico.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearMedico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/crearMedico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearMedico.vue?vue&type=template&id=32fddaf0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/crearMedico.vue?vue&type=template&id=32fddaf0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearMedico_vue_vue_type_template_id_32fddaf0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/medicos/indexMedico.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/medicos/indexMedico.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexMedico.vue?vue&type=template&id=744af17b& */ "./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b&");
+/* harmony import */ var _indexMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexMedico.vue?vue&type=script&lang=js& */ "./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _indexMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/medicos/indexMedico.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexMedico.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/indexMedico.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexMedico_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexMedico.vue?vue&type=template&id=744af17b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/medicos/indexMedico.vue?vue&type=template&id=744af17b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexMedico_vue_vue_type_template_id_744af17b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/pacientes/crearPaciente.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/pacientes/crearPaciente.vue ***!
@@ -58317,6 +60525,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarPaciente_vue_vue_type_template_id_0e6c5cb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarPaciente_vue_vue_type_template_id_0e6c5cb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/pacientes/expediente.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/pacientes/expediente.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./expediente.vue?vue&type=template&id=72555ac2& */ "./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2&");
+/* harmony import */ var _expediente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./expediente.vue?vue&type=script&lang=js& */ "./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _expediente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/pacientes/expediente.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_expediente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./expediente.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/expediente.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_expediente_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./expediente.vue?vue&type=template&id=72555ac2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/pacientes/expediente.vue?vue&type=template&id=72555ac2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_expediente_vue_vue_type_template_id_72555ac2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -58593,6 +60870,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexPadecimiento_vue_vue_type_template_id_e9ae904a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexPadecimiento_vue_vue_type_template_id_e9ae904a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/crearSecretaria.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/secretarias/crearSecretaria.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./crearSecretaria.vue?vue&type=template&id=224a6af0& */ "./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0&");
+/* harmony import */ var _crearSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./crearSecretaria.vue?vue&type=script&lang=js& */ "./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _crearSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/secretarias/crearSecretaria.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearSecretaria.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearSecretaria.vue?vue&type=template&id=224a6af0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/crearSecretaria.vue?vue&type=template&id=224a6af0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearSecretaria_vue_vue_type_template_id_224a6af0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/indexSecretaria.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/secretarias/indexSecretaria.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexSecretaria.vue?vue&type=template&id=32c343fb& */ "./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb&");
+/* harmony import */ var _indexSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexSecretaria.vue?vue&type=script&lang=js& */ "./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _indexSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/secretarias/indexSecretaria.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexSecretaria.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexSecretaria.vue?vue&type=template&id=32c343fb& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexSecretaria_vue_vue_type_template_id_32c343fb___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

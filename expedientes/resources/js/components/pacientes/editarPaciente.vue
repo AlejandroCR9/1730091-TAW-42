@@ -1,5 +1,5 @@
 <template>
-    <div class="app-main__outer">
+        <div class="app-main__outer">
         <div class="app-main__inner">
             <div class="app-page-title">
                 <div class="page-title-wrapper">
@@ -8,8 +8,8 @@
                             <i class="pe-7s-car icon-gradient bg-mean-fruit">
                             </i>
                         </div>
-                        <div>Medicamento
-                            <div class="page-title-subheading">Esta registrando una nuevo medicamento.
+                        <div>Paciente
+                            <div class="page-title-subheading">Esta editando una nuevo paciente.
                             </div>
                         </div>
                     </div>    
@@ -17,41 +17,75 @@
             </div> 
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Crear nuevo medicamento</h5>
-                    <form class="needs-validation" @submit.prevent="addMedicamento">
+                    <h5 class="card-title">Editar paciente</h5>
+                    <form class="needs-validation" @submit.prevent="addPaciente">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Nombre</label>
-                                <input type="text" class="form-control" v-model="medicamento.nombre" placeholder="Escriba el nombre de la medicamento" required>
+                                <input type="text" class="form-control" v-model="paciente.nombre" placeholder="Escriba el nombre de la paciente" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="validationCustom01">Presentación</label>
-                                <input type="text" class="form-control" v-model="medicamento.presentacion" placeholder="Escriba la presentación de la medicamento" required>
+                                <label for="validationCustom01">Apellidos</label>
+                                <input type="text" class="form-control" v-model="paciente.apellidos" placeholder="Escriba los apellidos de la paciente" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="validationCustom01">Precio</label>
-                                <input type="number" class="form-control" v-model="medicamento.percio" min=0 value=0 placeholder="Escriba el precio del medicamento" required>
+                                <label for="validationCustom01">Fecha de nacimiento</label>
+                                <input type="date" class="form-control" v-model="paciente.fecha_nacimiento" placeholder="Escriba la fecha de nacimiento del paciente" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
-                            
+                            <div class="col-md-12 mb-3">
+                                <label for="validationCustom01">Telefono</label>
+                                <input type="text" class="form-control" v-model="paciente.telefono" placeholder="Escriba el telefono de la paciente" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="validationCustom01">Correo</label>
+                                <input type="text" class="form-control" v-model="paciente.email" placeholder="Escriba los apellidos de la paciente" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <!--<div class="col-md-12 mb-3">
+                                <label for="validationCustom01">Médico:</label>
+                                <select class="form-control col-md-6 col-sm-6" type="text" v-model="paciente.idMedico" required> 
+                                    <option v-for="(medico) in medicos" :key="medico.id" v-bind:value="medico.id" selected>{{ medico.name }}</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="validationCustom01">Sexo:</label>
+                                <select class="form-control col-md-6 col-sm-6" type="text" v-model="paciente.sexo" required> 
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>-->
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-6">
-                                <label for="validationCustom02">Descripción</label>
-                                <textarea name="text" v-model="medicamento.descripcion"  placeholder="Escriba la descripción de la medicamento" class="form-control" style="height: 200px;" required></textarea>
+                                <label for="validationCustom02">Domicilio</label>
+                                <textarea name="text" v-model="paciente.domicilio"  placeholder="Escriba el domicilio de la paciente" class="form-control" style="height: 200px;" required></textarea>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                         </div>
+                        
+                        
                         <br>
                         <div class="form-row">
                             <button class="btn btn-primary" type="submit">Guardar</button>
@@ -69,13 +103,13 @@
         data(){
         return {
             //NUestro array donde se almacena los datos
-          medicamento:{}
+          paciente:{}
         }
     },
     created() {
-        let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/edit/${this.$route.params.id}`;
+        let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/edit/${this.$route.params.id}`;
         this.axios.get(uri).then((response) => {
-            this.medicamento = response.data;
+            this.paciente = response.data;
         });
     }, 
     methods: {
@@ -93,11 +127,11 @@
                 }, false);
             });
         },
-        addMedicamento(){
+        addPaciente(){
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/update/${this.$route.params.id}`;
-            this.axios.post(uri, this.medicamento).then((response) => {
-                this.$router.push({name: 'vermedicamento'}); //vuelve a renderizar la tabla a la vista de la tabla
+            let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/update/${this.$route.params.id}`;
+            this.axios.post(uri, this.paciente).then((response) => {
+                this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }
     }

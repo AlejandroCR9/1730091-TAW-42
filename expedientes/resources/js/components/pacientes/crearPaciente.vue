@@ -55,7 +55,7 @@
                                     Looks good!
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <!--<div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Médico:</label>
                                 <select class="form-control col-md-6 col-sm-6" type="text" v-model="paciente.idMedico" required> 
                                     <option v-for="(medico) in medicos" :key="medico.id" v-bind:value="medico.id" selected>{{ medico.name }}</option>
@@ -73,7 +73,7 @@
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-6">
@@ -84,6 +84,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <br>
                         <div class="form-row">
                             <button class="btn btn-primary" type="submit">Guardar</button>
@@ -102,7 +103,8 @@
         return {
             //NUestro array donde se almacena los datos
           paciente:{},
-          medicos:{}
+          medicos:{},
+          ultimo:{}
         }
     },//Se ejecuta una cuando se crea el componente
       created() {
@@ -113,6 +115,7 @@
           this.axios.get(uri).then(response => {
              this.medicos = response.data;
           });
+          
     }, methods: {
       validar(){
             // Fetch all the forms we want to apply custom Bootstrap validation styles to

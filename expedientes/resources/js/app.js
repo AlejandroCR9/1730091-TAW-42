@@ -8,7 +8,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-window.Vue = require('vue');
+Vue.use(require('vue-cookies'));
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
 import VueRouter from 'vue-router'; //Import de la dependencia nesesaria para usar las rutas
 Vue.use(VueRouter);
 
@@ -39,8 +41,18 @@ import EditMedicamentoComponent from './components/medicamentos/editarMedicament
 import CreatePacienteComponent from './components/pacientes/crearPaciente.vue'; //Contiene el formulario para crear nuevos registros
 import ViewPacienteComponent from './components/pacientes/indexPaciente.vue';//Contiene la tabla de padecieminto
 import EditPacienteComponent from './components/pacientes/editarPaciente.vue'; //contiene el formularo para editar
+import ViewExpedienteComponent from './components/pacientes/expediente.vue';//Contiene la tabla de padecieminto
 
-Vue.component('nav-component', require('./components/sidebar.vue').default);
+//Secre
+import CreateSecretariaComponent from './components/secretarias/crearSecretaria.vue'; //Contiene el formulario para crear nuevos registros
+import ViewSecretariaComponent from './components/secretarias/indexSecretaria.vue';//Contiene la tabla de padecieminto
+//import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
+
+//med
+import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Contiene el formulario para crear nuevos registros
+import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de padecieminto
+
+Vue.component('nav-component', require('./components/sidebar.vue').default );
 //Se crea el catalogo de rutas para cada compoente que tenemos
 const routes = [
     {
@@ -49,7 +61,7 @@ const routes = [
         component: dashboard
     },
     {
-        name: 'dash',
+        name: 'dash2',
         path: '/Alex/1730091-TAW-42/expedientes/public/home',
         component: dashboard
     },//ALERGIAS
@@ -112,6 +124,31 @@ const routes = [
         name: 'editpaciente',
         path: '/Alex/1730091-TAW-42/expedientes/public/pacientes/edit/:id',
         component: EditPacienteComponent
+    },
+    {
+        name: 'genpaciente',
+        path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
+        component: ViewExpedienteComponent
+    },
+    {
+        name: 'versecretaria',
+        path: '/Alex/1730091-TAW-42/expedientes/public/secretaria',
+        component: ViewSecretariaComponent
+    },
+    {
+        name: 'crearsecretaria',
+        path: '/Alex/1730091-TAW-42/expedientes/public/secretaria/crear',
+        component: CreateSecretariaComponent
+    },
+    {
+        name: 'vermedico',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medicos',
+        component: ViewMedicoComponent
+    },
+    {
+        name: 'crearmedico',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medico/crear',
+        component: CreateMedicoComponent
     }
   ];
 

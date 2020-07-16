@@ -121,6 +121,44 @@
                         <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
+                                Médicos
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link :to="{name: 'vermedico'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Médicos
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'crearmedico'}" >
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Médico
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-car"></i>
+                                Secretario(a)s
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link :to="{name: 'versecretaria'}" >
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Secretaria
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link :to="{name: 'crearsecretaria'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Secretaria
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-car"></i>
                                 Otra lista
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
@@ -149,9 +187,16 @@
 </template>
 
 <script>
+       
     export default {
+        
         mounted() {
             console.log('Component mounted.')
+           
+            
+        }, methods: {
+            
         }
     }
+    
 </script>

@@ -44,7 +44,8 @@
                                     <td v-text="paciente.telefono" class="text-center"> </td>
                                     <td v-text="paciente.email" class="text-center"> </td>
                                     <td class="text-center">
-                                         <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
+                                        <!--<router-link :to="{name: 'genpaciente', params: { id: paciente.id }}" class="btn btn-primary">Generar Expediente</router-link> 
+                                         Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
                                         <router-link :to="{name: 'editpaciente', params: { id: paciente.id }}" class="btn btn-primary">Editar</router-link> <!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
                                         <!--Botón que borra la tarea que seleccionemos-->
                                         <button type="button" class="btn btn-danger" @click.prevent="deletePaciente(paciente.id, num)" >Borrar</button>

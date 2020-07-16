@@ -70,8 +70,10 @@
                                             </li>
                                         @endif
                                     @else
+                                        <?php setcookie('tipouser',Auth::user()->tipo,time()+86400,'/') ?>
+    
                                         <div class="widget-heading">
-                                            {{ Auth::user()->name }} 
+                                            {{ __(Auth::user()->name." ".Auth::user()->apellidos)}} 
                                         </div>
                                         <div class="widget-subheading">
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -82,6 +84,7 @@
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
+                                                {{setcookie('tipouser',Auth::user()->tipo,time()-1,'/')}} 
                                             </form>
                                         </div>
                                     @endguest

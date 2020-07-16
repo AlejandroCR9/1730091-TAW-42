@@ -25,10 +25,61 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="user" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
+                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
 
                             <div class="col-md-6">
-                                <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="name" autofocus>
+                                <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}" required autocomplete="apellidos">
+
+                                @error('apellidos')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cedula') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula">
+
+                                @error('cedula')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="domicilio" class="col-md-4 col-form-label text-md-right">{{ __('Domicilio') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea name="domicilio" id="domicilio"  placeholder="" class="form-control @error('cedula') is-invalid @enderror" style="height: 200px;" value="{{ old('domicilio') }}" required autocomplete="domicilio"></textarea>
+                                @error('domicilio')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Telefono') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="telefono" autofocus>
+
+                                @error('telefono')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="user" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
+                            <input id="tipo" type="text" class="form-control" name="tipo" value="3" hidden>
+                            <div class="col-md-6">
+                                <input id="user" type="text" class="form-control @error('user') is-invalid @enderror" name="user" value="{{ old('user') }}" required autocomplete="user" autofocus>
 
                                 @error('user')
                                     <span class="invalid-feedback" role="alert">
