@@ -26,7 +26,7 @@ class medicosController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {   
         $user= new User(); //Crea un nuevo medicamento de la tabla
         //Recupera los datos del request
