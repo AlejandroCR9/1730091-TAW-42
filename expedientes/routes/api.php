@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 //==================RUTAS ALERGIAS
 Route::post('/alergia/create', 'alergiasController@store');
 Route::get('/alergia/edit/{id}', 'alergiasController@edit');
@@ -56,8 +57,8 @@ Route::get('/medico', 'medicosController@index');
 
 //================RUTAS SECRE
 Route::post('/secretaria/create', 'medicosController@create2');
-//Route::get('/secretaria/edit/{id}', 'pacientesController@edit');
-//Route::post('/secretaria/update/{id}', 'pacientesController@update');
+Route::get('/secretaria/edit/{id}', 'medicosController@edit2');
+Route::post('/secretaria/update/{id}', 'medicosController@update2');
 Route::delete('/secretaria/delete/{id}', 'medicosController@destroy');
 Route::get('/secretaria', 'medicosController@index2');
 

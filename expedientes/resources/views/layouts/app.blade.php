@@ -70,9 +70,12 @@
                                             </li>
                                         @endif
                                     @else
-                                        <?php setcookie('tipouser',Auth::user()->tipo,time()+86400,'/') ?>
+                                        <?php
+                                            //setcookie('tipouser',Auth::user()->tipo,time()+86400,'/') 
+                                        ?>
     
                                         <div class="widget-heading">
+                                            <input type="text" id="a" value="{{ __(Auth::user()->tipo)}}" hidden>
                                             {{ __(Auth::user()->name." ".Auth::user()->apellidos)}} 
                                         </div>
                                         <div class="widget-subheading">
@@ -84,7 +87,8 @@
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
-                                                {{setcookie('tipouser',Auth::user()->tipo,time()-1,'/')}} 
+                                                
+                                              
                                             </form>
                                         </div>
                                     @endguest
@@ -109,3 +113,4 @@
 <script src="js/app.js"></script>
 <script type="text/javascript" src="scripts/main.js"></script></body>
 </html>
+

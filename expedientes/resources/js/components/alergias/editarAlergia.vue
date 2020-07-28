@@ -52,7 +52,11 @@
 
 <script>
     export default {
-        data(){
+        mounted() {
+          if(this.$cookies.get("tipo")!=1){
+              this.$router.go(-1);
+          }
+        },data(){
             return {
                 //NUestro array donde se almacena los datos
             alergia:{}

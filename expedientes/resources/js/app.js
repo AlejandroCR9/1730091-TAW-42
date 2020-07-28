@@ -46,7 +46,7 @@ import ViewExpedienteComponent from './components/pacientes/expediente.vue';//Co
 //Secre
 import CreateSecretariaComponent from './components/secretarias/crearSecretaria.vue'; //Contiene el formulario para crear nuevos registros
 import ViewSecretariaComponent from './components/secretarias/indexSecretaria.vue';//Contiene la tabla de padecieminto
-//import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
+import EditSecretariaComponent from './components/secretarias/editarSecretaria.vue'; //contiene el formularo para editar
 
 //med
 import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Contiene el formulario para crear nuevos registros
@@ -130,7 +130,7 @@ const routes = [
         path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
         component: ViewExpedienteComponent
     },
-    {
+    {//SECRETARIA
         name: 'versecretaria',
         path: '/Alex/1730091-TAW-42/expedientes/public/secretaria',
         component: ViewSecretariaComponent
@@ -141,6 +141,11 @@ const routes = [
         component: CreateSecretariaComponent
     },
     {
+        name: 'editsecretaria',
+        path: '/Alex/1730091-TAW-42/expedientes/public/secretaria/edit/:id',
+        component: EditSecretariaComponent
+    },
+    {//MEDICO
         name: 'vermedico',
         path: '/Alex/1730091-TAW-42/expedientes/public/medicos',
         component: ViewMedicoComponent
@@ -160,9 +165,10 @@ const routes = [
 
 const router = new VueRouter({ mode: 'history', routes: routes}); //Crea las rutas en modo history
 
+$cookies.set("tipo",document.getElementById('a').value,"0");
+
 var vm = new Vue({
     el: "#app",
     router,
-    
 })
 //const app = new Vue(Vue.util.extend({ router }, App)); //Agrega las rutas a la app y monta el sidebar

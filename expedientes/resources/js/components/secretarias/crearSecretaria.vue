@@ -94,22 +94,16 @@
 
 <script>
     export default {
-        data(){
+        mounted() {
+          if(this.$cookies.get("tipo")==3){
+              this.$router.go(-1);
+          }
+        },data(){
         return {
             //NUestro array donde se almacena los datos
           secretaria:{},
           ultimo:{}
         }
-    },//Se ejecuta una cuando se crea el componente
-      created() {
-          //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
-          //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/secretaria';
-          //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-          this.axios.get(uri).then(response => {
-             this.secretarias = response.data;
-          });
-          
     }, methods: {
       validar(){
             // Fetch all the forms we want to apply custom Bootstrap validation styles to

@@ -43,8 +43,8 @@
                                     <td v-text="secretaria.email" class="text-center"> </td>
                                     <td class="text-center">
                                      
-                                         <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada
-                                        <router-link :to="{name: 'editpaciente', params: { id: paciente.id }}" class="btn btn-primary">Editar</router-link> --><!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
+                                         <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
+                                        <router-link :to="{name: 'editsecretaria', params: { id: secretaria.id }}" class="btn btn-primary">Editar</router-link> <!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
                                         <!--Botón que borra la tarea que seleccionemos-->
                                         <button type="button" class="btn btn-danger" @click.prevent="deleteSecretaria(secretaria.id, num)" >Borrar</button>
                                     </td>
@@ -66,7 +66,11 @@
 
 <script>
     export default {
-      data() {
+      mounted() {
+          if(this.$cookies.get("tipo")==3){
+              this.$router.go(-1);
+          }
+        },data() {
         return {
             //Array donde se guardarna los datos de la bd
             secretarias: []
@@ -75,7 +79,7 @@
       //Se ejecuta una cuando se crea el componente
       created() {
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
+          let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
 
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(uri).then(response => {

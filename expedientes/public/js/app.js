@@ -1961,6 +1961,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -2062,6 +2067,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -2184,6 +2194,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //Array donde se guardarna los datos de la bd
@@ -2227,6 +2242,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2398,6 +2414,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -2513,6 +2534,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -2633,6 +2659,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //Array donde se guardarna los datos de la bd
@@ -3493,6 +3524,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -3594,6 +3630,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
@@ -3716,6 +3757,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") != 1) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //Array donde se guardarna los datos de la bd
@@ -3854,24 +3900,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") == 3) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
       secretaria: {},
       ultimo: {}
     };
-  },
-  //Se ejecuta una cuando se crea el componente
-  created: function created() {
-    var _this = this;
-
-    //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/secretaria';
-    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-
-    this.axios.get(uri).then(function (response) {
-      _this.secretarias = response.data;
-    });
   },
   methods: {
     validar: function validar() {
@@ -3890,10 +3929,173 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     addSecretaria: function addSecretaria() {
-      var _this2 = this;
+      var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/create';
+      this.axios.post(uri, this.secretaria).then(function (response) {
+        _this.$router.push({
+          name: 'versecretaria'
+        }); //vuelve a renderizar la tabla a la vista de la tabla
+
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") == 3) {
+      this.$router.go(-1);
+    }
+  },
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      secretaria: {},
+      ultimo: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //URL del API para obtener los datos de la secretaria a editar
+    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/edit/".concat(this.$route.params.id);
+    this.axios.get(uri).then(function (response) {
+      _this.secretaria = response.data; //Respuesta, se actualizan los campos con los valores
+    });
+  },
+  methods: {
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    updateSecretaria: function updateSecretaria() {
+      var _this2 = this;
+
+      if (document.getElementById("contra").value != "") {
+        this.secretaria.password = document.getElementById("contra").value;
+      } //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+
+
+      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.secretaria).then(function (response) {
         _this2.$router.push({
           name: 'versecretaria'
@@ -3982,6 +4184,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    if (this.$cookies.get("tipo") == 3) {
+      this.$router.go(-1);
+    }
+  },
   data: function data() {
     return {
       //Array donde se guardarna los datos de la bd
@@ -3993,7 +4200,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.secretarias = response.data;
@@ -4213,8 +4420,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    console.log(this.$cookies.get("tipo")); //Cookie del tipo de usuario en sesion
+
     console.log('Component mounted.');
   },
   methods: {}
@@ -40578,6 +40790,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
+          _vm._v("\n            Hola\n            "),
           _c("div", { staticClass: "tab-content" }, [
             _c(
               "div",
@@ -43627,6 +43840,406 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [
+            _vm._v("Editando secretaria")
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.updateSecretaria($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Nombre")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.name,
+                        expression: "secretaria.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el nombre de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Apellidos")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.apellidos,
+                        expression: "secretaria.apellidos"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los apellidos de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.apellidos },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "apellidos",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Cedula")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.cedula,
+                        expression: "secretaria.cedula"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la cedula del secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.cedula },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "cedula", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Telefono")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.telefono,
+                        expression: "secretaria.telefono"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba el telefono de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.telefono },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "telefono",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Usuario")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.user,
+                        expression: "secretaria.user"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba la usuario de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.user },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "user", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Correo")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.email,
+                        expression: "secretaria.email"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Escriba los correo de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.secretaria, "email", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Domicilio")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.secretaria.domicilio,
+                        expression: "secretaria.domicilio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba el domicilio de la secretaria",
+                      required: ""
+                    },
+                    domProps: { value: _vm.secretaria.domicilio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.secretaria,
+                          "domicilio",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(2)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Secretaria\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Esta editando una nuevo secretaria.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12 mb-3" }, [
+      _c("label", { attrs: { for: "validationCustom01" } }, [
+        _vm._v("Contraseña")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "password",
+          id: "contra",
+          placeholder: "Escriba la contraseña de la secretaria"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "valid-feedback" }, [
+        _vm._v(
+          "\n                                Looks good!\n                            "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/secretarias/indexSecretaria.vue?vue&type=template&id=32c343fb& ***!
@@ -43701,25 +44314,44 @@ var render = function() {
                           domProps: { textContent: _vm._s(secretaria.email) }
                         }),
                         _vm._v(" "),
-                        _c("td", { staticClass: "text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.deleteSecretaria(
-                                    secretaria.id,
-                                    num
-                                  )
+                        _c(
+                          "td",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: {
+                                  to: {
+                                    name: "editsecretaria",
+                                    params: { id: secretaria.id }
+                                  }
                                 }
-                              }
-                            },
-                            [_vm._v("Borrar")]
-                          )
-                        ])
+                              },
+                              [_vm._v("Editar")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.deleteSecretaria(
+                                      secretaria.id,
+                                      num
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Borrar")]
+                            )
+                          ],
+                          1
+                        )
                       ])
                     }),
                     0
@@ -43822,156 +44454,153 @@ var render = function() {
               _c(
                 "li",
                 [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "mm-active",
-                      attrs: { to: { name: "dash" } }
-                    },
-                    [
-                      _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                      _vm._v(" Inicio\n                        ")
-                    ]
-                  )
+                  _c("router-link", { attrs: { to: { name: "dash" } } }, [
+                    _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
+                    _vm._v(" Inicio\n                        ")
+                  ])
                 ],
                 1
               ),
               _vm._v(" "),
-              _c("li", { staticClass: "app-sidebar__heading" }, [
-                _vm._v("Seccion 1")
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(3),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "veralergia" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Ver Alergias\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "crearalergia" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Registrar Alergia\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(4),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "verpadecimiento" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Ver Padecimientos\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "crearpadecimiento" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Registrar Padecimiento\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(5),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "vermedicamento" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Ver Medicamentos\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "crearmedicamento" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Registrar Medicamentos\n                                "
-                          )
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ]),
+              this.$cookies.get("tipo") == 1
+                ? _c("div", [
+                    _c("li", { staticClass: "app-sidebar__heading" }, [
+                      _vm._v("Seccion 1")
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "veralergia" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Alergias\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearalergia" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Alergia\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "verpadecimiento" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Padecimientos\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearpadecimiento" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Padecimiento\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "vermedicamento" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Medicamentos\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearmedicamento" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Medicamentos\n                                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("li", { staticClass: "app-sidebar__heading" }, [
                 _vm._v("Seccion 2")
@@ -44021,93 +44650,97 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("li", [
-                _vm._m(7),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
+              this.$cookies.get("tipo") == 1
+                ? _c("li", [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("ul", [
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "vermedico" } } },
+                        "li",
                         [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Ver Médicos\n                                "
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "vermedico" } } },
+                            [
+                              _c("i", {
+                                staticClass: "metismenu-icon pe-7s-rocket"
+                              }),
+                              _vm._v(
+                                "Ver Médicos\n                                "
+                              )
+                            ]
                           )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "crearmedico" } } },
+                        "li",
                         [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Registrar Médico\n                                "
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "crearmedico" } } },
+                            [
+                              _c("i", {
+                                staticClass: "metismenu-icon pe-7s-rocket"
+                              }),
+                              _vm._v(
+                                "Registrar Médico\n                                "
+                              )
+                            ]
                           )
-                        ]
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ])
-              ]),
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("li", [
-                _vm._m(8),
-                _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
+              this.$cookies.get("tipo") != 3
+                ? _c("li", [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("ul", [
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "versecretaria" } } },
+                        "li",
                         [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Ver Secretaria\n                                "
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "versecretaria" } } },
+                            [
+                              _c("i", {
+                                staticClass: "metismenu-icon pe-7s-rocket"
+                              }),
+                              _vm._v(
+                                "Ver Secretaria\n                                "
+                              )
+                            ]
                           )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "router-link",
-                        { attrs: { to: { name: "crearsecretaria" } } },
+                        "li",
                         [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(
-                            "Registrar Secretaria\n                                "
+                          _c(
+                            "router-link",
+                            { attrs: { to: { name: "crearsecretaria" } } },
+                            [
+                              _c("i", {
+                                staticClass: "metismenu-icon pe-7s-rocket"
+                              }),
+                              _vm._v(
+                                "Registrar Secretaria\n                                "
+                              )
+                            ]
                           )
-                        ]
+                        ],
+                        1
                       )
-                    ],
-                    1
-                  )
-                ])
-              ]),
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("li", [
                 _vm._m(9),
@@ -44236,7 +44869,7 @@ var staticRenderFns = [
     return _c("a", { attrs: { href: "" } }, [
       _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
       _vm._v(
-        "\n                            Alergias\n                            "
+        "\n                                Alergias\n                                "
       ),
       _c("i", {
         staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
@@ -44250,7 +44883,7 @@ var staticRenderFns = [
     return _c("a", { attrs: { href: "" } }, [
       _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
       _vm._v(
-        "\n                            Padecimientos\n                            "
+        "\n                                Padecimientos\n                                "
       ),
       _c("i", {
         staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
@@ -44264,7 +44897,7 @@ var staticRenderFns = [
     return _c("a", { attrs: { href: "" } }, [
       _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
       _vm._v(
-        "\n                            Medicamentos\n                            "
+        "\n                                Medicamentos\n                                "
       ),
       _c("i", {
         staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
@@ -44320,7 +44953,7 @@ var staticRenderFns = [
     return _c("a", { attrs: { href: "#" } }, [
       _c("i", { staticClass: "metismenu-icon pe-7s-car" }),
       _vm._v(
-        "\n                            Otra lista\n                            "
+        "\n                                Citas\n                            "
       ),
       _c("i", {
         staticClass: "metismenu-state-icon pe-7s-angle-down caret-left"
@@ -59558,8 +60191,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pacientes_expediente_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/pacientes/expediente.vue */ "./resources/js/components/pacientes/expediente.vue");
 /* harmony import */ var _components_secretarias_crearSecretaria_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/secretarias/crearSecretaria.vue */ "./resources/js/components/secretarias/crearSecretaria.vue");
 /* harmony import */ var _components_secretarias_indexSecretaria_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/secretarias/indexSecretaria.vue */ "./resources/js/components/secretarias/indexSecretaria.vue");
-/* harmony import */ var _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/medicos/crearMedico.vue */ "./resources/js/components/medicos/crearMedico.vue");
-/* harmony import */ var _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/medicos/indexMedico.vue */ "./resources/js/components/medicos/indexMedico.vue");
+/* harmony import */ var _components_secretarias_editarSecretaria_vue__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/secretarias/editarSecretaria.vue */ "./resources/js/components/secretarias/editarSecretaria.vue");
+/* harmony import */ var _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/medicos/crearMedico.vue */ "./resources/js/components/medicos/crearMedico.vue");
+/* harmony import */ var _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/medicos/indexMedico.vue */ "./resources/js/components/medicos/indexMedico.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -59618,7 +60252,8 @@ Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_2___default.a, axios__WEBPACK_IMPORTE
  //Contiene el formulario para crear nuevos registros
 
  //Contiene la tabla de padecieminto
-//import EditMedicamentoComponent from './components/medicamentos/editarMedicamento.vue'; //contiene el formularo para editar
+
+ //contiene el formularo para editar
 //med
 
  //Contiene el formulario para crear nuevos registros
@@ -59692,6 +60327,7 @@ var routes = [{
   path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
   component: _components_pacientes_expediente_vue__WEBPACK_IMPORTED_MODULE_18__["default"]
 }, {
+  //SECRETARIA
   name: 'versecretaria',
   path: '/Alex/1730091-TAW-42/expedientes/public/secretaria',
   component: _components_secretarias_indexSecretaria_vue__WEBPACK_IMPORTED_MODULE_20__["default"]
@@ -59700,13 +60336,18 @@ var routes = [{
   path: '/Alex/1730091-TAW-42/expedientes/public/secretaria/crear',
   component: _components_secretarias_crearSecretaria_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
+  name: 'editsecretaria',
+  path: '/Alex/1730091-TAW-42/expedientes/public/secretaria/edit/:id',
+  component: _components_secretarias_editarSecretaria_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+}, {
+  //MEDICO
   name: 'vermedico',
   path: '/Alex/1730091-TAW-42/expedientes/public/medicos',
-  component: _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
+  component: _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_23__["default"]
 }, {
   name: 'crearmedico',
   path: '/Alex/1730091-TAW-42/expedientes/public/medico/crear',
-  component: _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_21__["default"]
+  component: _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_22__["default"]
 }];
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -59719,6 +60360,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
 }); //Crea las rutas en modo history
 
+$cookies.set("tipo", document.getElementById('a').value, "0");
 var vm = new Vue({
   el: "#app",
   router: router
@@ -60944,6 +61586,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/secretarias/editarSecretaria.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/secretarias/editarSecretaria.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editarSecretaria.vue?vue&type=template&id=7b9c24b4& */ "./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4&");
+/* harmony import */ var _editarSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editarSecretaria.vue?vue&type=script&lang=js& */ "./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _editarSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/secretarias/editarSecretaria.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editarSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./editarSecretaria.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editarSecretaria_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./editarSecretaria.vue?vue&type=template&id=7b9c24b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/secretarias/editarSecretaria.vue?vue&type=template&id=7b9c24b4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarSecretaria_vue_vue_type_template_id_7b9c24b4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/secretarias/indexSecretaria.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/secretarias/indexSecretaria.vue ***!
@@ -61100,8 +61811,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\1730091-TAW-42\expedientes\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\1730091-TAW-42\expedientes\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Alex\1730091-TAW-42\expedientes\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Alex\1730091-TAW-42\expedientes\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

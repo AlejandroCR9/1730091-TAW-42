@@ -36,68 +36,71 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Dashboard</li>
                         <li>
-                            <router-link :to="{name: 'dash'}" class="mm-active">
+                            <router-link :to="{name: 'dash'}">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Inicio
                             </router-link>
                         </li>
-                        <li class="app-sidebar__heading">Seccion 1</li>
-                        <li>
-                            <a href="">
-                                <i class="metismenu-icon pe-7s-car"></i>
-                                Alergias
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <router-link :to="{name: 'veralergia'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Alergias
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'crearalergia'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Alergia
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="metismenu-icon pe-7s-car"></i>
-                                Padecimientos
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <router-link :to="{name: 'verpadecimiento'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Padecimientos
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'crearpadecimiento'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Padecimiento
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="metismenu-icon pe-7s-car"></i>
-                                Medicamentos
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <router-link :to="{name: 'vermedicamento'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Medicamentos
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{name: 'crearmedicamento'}">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Medicamentos
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
+                        
+                        <div v-if="this.$cookies.get('tipo') ==1"> <!--Esta seccion no la debe de ver el usuario-->
+                            <li class="app-sidebar__heading">Seccion 1</li>
+                            <li>
+                                <a href="">
+                                    <i class="metismenu-icon pe-7s-car"></i>
+                                    Alergias
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <router-link :to="{name: 'veralergia'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Ver Alergias
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name: 'crearalergia'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Registrar Alergia
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="metismenu-icon pe-7s-car"></i>
+                                    Padecimientos
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <router-link :to="{name: 'verpadecimiento'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Ver Padecimientos
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name: 'crearpadecimiento'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Registrar Padecimiento
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="metismenu-icon pe-7s-car"></i>
+                                    Medicamentos
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <router-link :to="{name: 'vermedicamento'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Ver Medicamentos
+                                        </router-link>
+                                    </li>
+                                    <li>
+                                        <router-link :to="{name: 'crearmedicamento'}">
+                                            <i class="metismenu-icon pe-7s-rocket"></i>Registrar Medicamentos
+                                        </router-link>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
                         <li class="app-sidebar__heading">Seccion 2</li>
                         <li>
                             <a href="#">
@@ -118,7 +121,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li v-if="this.$cookies.get('tipo') == 1"><!--Solo el admin puede registrar medicos-->
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Médicos
@@ -137,7 +140,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li v-if="this.$cookies.get('tipo') != 3"> <!--Esta seccion no la debe de ber la secre-->
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Secretario(a)s
@@ -159,7 +162,7 @@
                         <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
-                                Otra lista
+                                    Citas
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul>
@@ -175,13 +178,13 @@
                                 </li>
                             </ul>
                         </li>
-
+                        
                     </ul>
                 </div>
             </div>
         </div>
         
-            <router-view></router-view>
+        <router-view></router-view>
         
     </div>
 </template>
@@ -191,9 +194,8 @@
     export default {
         
         mounted() {
-            console.log('Component mounted.')
-           
-            
+            console.log(this.$cookies.get("tipo")) //Cookie del tipo de usuario en sesion
+            console.log('Component mounted.')    
         }, methods: {
             
         }

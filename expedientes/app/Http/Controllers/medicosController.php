@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 class medicosController extends Controller
 {   
@@ -43,7 +45,7 @@ class medicosController extends Controller
         return $user;
           
     }
-
+    ////////////SECRTEARIASSSS
     /**
      * Display a listing of the resource.
      *
@@ -87,8 +89,49 @@ class medicosController extends Controller
         return $user;
           
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit2($id)
+    {
+        $sec= User::findOrFail($id); //Busca el registro en la bd o falla
+        return $sec;  //Regresa el padecimiento encontrado
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update2($id, Request $request)
+    {
+        
+        $user = User::findOrFail($id); //Busca primero el user 
+        //Obtiene los datos del request y actualiza los nuevos datos
+        $user->name = $request->name;
+        $user->apellidos = $request->apellidos;
+        $user->cedula = $request->cedula;
+        $user->domicilio = $request->domicilio;
+        $user->tipo = 3;
+        $user->telefono = $request->telefono;
+        $user->user = $request->user;
+        $user->email=  $request->email;
+        if (Hash::needsRehash($request->password)) {
+            $user->password = Hash::make($request->password);
+        }else{
+            $user->password=$request->password;
+        }
+        $user->save(); //Guarda los datos
+
+        return $user;
+    }
     
-    
+    //SIRVE PARA AMBOS YA ESTAN EN LA MISMA TABLA
     /**
      * Remove the specified resource from storage.
      *

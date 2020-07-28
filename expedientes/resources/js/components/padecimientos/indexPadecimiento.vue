@@ -65,7 +65,11 @@
 
 <script>
     export default {
-      data() {
+      mounted() {
+          if(this.$cookies.get("tipo")!=1){
+              this.$router.go(-1);
+          }
+        },data() {
         return {
             //Array donde se guardarna los datos de la bd
             padecimientos: []
