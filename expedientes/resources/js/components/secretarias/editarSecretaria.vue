@@ -9,7 +9,7 @@
                             </i>
                         </div>
                         <div>Secretaria
-                            <div class="page-title-subheading">Esta editando una nuevo secretaria.
+                            <div class="page-title-subheading">Esta editando una secretaria.
                             </div>
                         </div>
                     </div>    
@@ -128,6 +128,7 @@
             });
         },
         updateSecretaria(){
+             //Para saber si se cambio la contra, si no se deja igual
             if(document.getElementById("contra").value!=""){
                 this.secretaria.password=document.getElementById("contra").value;
             }

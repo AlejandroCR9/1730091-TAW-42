@@ -45,6 +45,34 @@ class medicosController extends Controller
         return $user;
           
     }
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id, Request $request)
+    {
+        
+        $user = User::findOrFail($id); //Busca primero el user 
+        //Obtiene los datos del request y actualiza los nuevos datos
+        $user->name = $request->name;
+        $user->apellidos = $request->apellidos;
+        $user->cedula = $request->cedula;
+        $user->domicilio = $request->domicilio;
+        $user->tipo = 2;
+        $user->telefono = $request->telefono;
+        $user->user = $request->user;
+        $user->email=  $request->email;
+        if (Hash::needsRehash($request->password)) {
+            $user->password = Hash::make($request->password);
+        }else{
+            $user->password=$request->password;
+        }
+        $user->save(); //Guarda los datos
+
+        return $user;
+    }
     ////////////SECRTEARIASSSS
     /**
      * Display a listing of the resource.
@@ -91,18 +119,19 @@ class medicosController extends Controller
     }
 
     /**
+     * Sirve para medicos y secretarias
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit2($id)
+    public function edit($id)
     {
         $sec= User::findOrFail($id); //Busca el registro en la bd o falla
         return $sec;  //Regresa el padecimiento encontrado
     }
 
-    /**
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -130,7 +159,7 @@ class medicosController extends Controller
 
         return $user;
     }
-    
+
     //SIRVE PARA AMBOS YA ESTAN EN LA MISMA TABLA
     /**
      * Remove the specified resource from storage.

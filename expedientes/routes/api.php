@@ -47,17 +47,18 @@ Route::get('/paciente/edit/{id}', 'pacientesController@edit');
 Route::post('/paciente/update/{id}', 'pacientesController@update');
 Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
 Route::get('/paciente', 'pacientesController@index');
+Route::get('/pu', 'pacientesController@ultimo');
 
 //================RUTAS Medicos
 Route::post('/medico/create', 'medicosController@create');
-//Route::get('/medico/edit/{id}', 'pacientesController@edit');
-//Route::post('/medico/update/{id}', 'pacientesController@update');
+Route::get('/medico/edit/{id}', 'medicosController@edit');
+Route::post('/medico/update/{id}', 'medicosController@update');
 Route::delete('/medico/delete/{id}', 'medicosController@destroy');
 Route::get('/medico', 'medicosController@index');
 
 //================RUTAS SECRE
 Route::post('/secretaria/create', 'medicosController@create2');
-Route::get('/secretaria/edit/{id}', 'medicosController@edit2');
+Route::get('/secretaria/edit/{id}', 'medicosController@edit');
 Route::post('/secretaria/update/{id}', 'medicosController@update2');
 Route::delete('/secretaria/delete/{id}', 'medicosController@destroy');
 Route::get('/secretaria', 'medicosController@index2');

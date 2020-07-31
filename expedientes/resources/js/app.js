@@ -51,6 +51,7 @@ import EditSecretariaComponent from './components/secretarias/editarSecretaria.v
 //med
 import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Contiene el formulario para crear nuevos registros
 import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de padecieminto
+import EditMedicoComponent from './components/medicos/editarMedico.vue'; //contiene el formularo para editar
 
 Vue.component('nav-component', require('./components/sidebar.vue').default );
 //Se crea el catalogo de rutas para cada compoente que tenemos
@@ -154,6 +155,11 @@ const routes = [
         name: 'crearmedico',
         path: '/Alex/1730091-TAW-42/expedientes/public/medico/crear',
         component: CreateMedicoComponent
+    },
+    {
+        name: 'editmedico',
+        path: '/Alex/1730091-TAW-42/expedientes/public/medico/edit/:id',
+        component: EditMedicoComponent
     }
   ];
 

@@ -9,7 +9,7 @@
                             </i>
                         </div>
                         <div>Médico
-                            <div class="page-title-subheading">Esta registrando una nuevo medico.
+                            <div class="page-title-subheading">Esta editando una medico.
                             </div>
                         </div>
                     </div>    
@@ -17,8 +17,8 @@
             </div> 
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Crear nuevo medico</h5>
-                    <form class="needs-validation" @submit.prevent="addMedico">
+                    <h5 class="card-title">Editar medico</h5>
+                    <form class="needs-validation" @submit.prevent="updateMedico">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Nombre</label>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Contraseña</label>
-                                <input type="password" class="form-control" v-model="medico.password" placeholder="Escriba la contraseña de la medico" required>
+                                <input type="password" class="form-control" id="contra" placeholder="Escribir contraseña nueva, dejar en blanco sin no hay cambio">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -104,6 +104,15 @@
           medico:{},
           ultimo:{}
         }
+    },//Se ejecuta una cuando se crea el componente
+      created() {
+          //Url directa del metodo en laravel que me obtiene valores de la bd
+          let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico/edit/${this.$route.params.id}`;
+          //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+          this.axios.get(uri).then(response => {
+             this.medico = response.data;
+          });
+          
     }, methods: {
       validar(){
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -119,9 +128,13 @@
                 }, false);
             });
         },
-        addMedico(){
+        updateMedico(){
+            //Para saber si se cambio la contra, si no se deja igual
+           if(document.getElementById("contra").value!=""){
+                this.medico.password=document.getElementById("contra").value;
+            }
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/create';
+            let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico/update/${this.$route.params.id}`;
             this.axios.post(uri, this.medico).then((response) => {
                 this.$router.push({name: 'vermedico'}); //vuelve a renderizar la tabla a la vista de la tabla
             });

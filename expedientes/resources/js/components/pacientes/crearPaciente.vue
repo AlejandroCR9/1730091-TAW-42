@@ -21,6 +21,7 @@
                     <form class="needs-validation" @submit.prevent="addPaciente">
                         <div class="form-row">
                             <div class="col-md-12 mb-3">
+                                
                                 <label for="validationCustom01">Nombre</label>
                                 <input type="text" class="form-control" v-model="paciente.nombre" placeholder="Escriba el nombre de la paciente" required>
                                 <div class="valid-feedback">
@@ -55,7 +56,7 @@
                                     Looks good!
                                 </div>
                             </div>
-                            <!--<div class="col-md-12 mb-3">
+                            <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Médico:</label>
                                 <select class="form-control col-md-6 col-sm-6" type="text" v-model="paciente.idMedico" required> 
                                     <option v-for="(medico) in medicos" :key="medico.id" v-bind:value="medico.id" selected>{{ medico.name }}</option>
@@ -73,7 +74,7 @@
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
-                            </div>-->
+                            </div><!---->
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 mb-6">
@@ -109,11 +110,19 @@
     },//Se ejecuta una cuando se crea el componente
       created() {
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico';
+          let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico';
           //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(uri).then(response => {
              this.medicos = response.data;
+          });
+
+          //Url directa del metodo en laravel que me obtiene valores de la bd
+          let url = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/pu';
+          //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+          //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+          this.axios.get(url).then(response => {
+             this.ultimo = response.data;
           });
           
     }, methods: {
@@ -132,8 +141,10 @@
             });
         },
         addPaciente(){
+            this.paciente.id=(this.ultimo+1);
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
+            let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
+            console.log(this.paciente);
             this.axios.post(uri, this.paciente).then((response) => {
                 this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
