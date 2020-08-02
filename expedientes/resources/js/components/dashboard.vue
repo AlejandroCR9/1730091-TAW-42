@@ -57,29 +57,15 @@
                 </div>
             </div>
             <div class="row">
-                Hola
                 <div class="tab-content">
                     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
                         <div class="main-card mb-3 card">
                             <div class="card-body">
-                                <div id='calendar'></div>
+                                <!--<div id='calendar'></div>-->
+                                
                             </div>
                         </div>
                     </div>
-                    <!--<div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
-                        <div class="main-card mb-3 card">
-                            <div class="card-body">
-                                <div id='calendar-list'></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
-                        <div class="main-card mb-3 card">
-                            <div class="card-body">
-                                <div id="calendar-bg-events"></div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -90,6 +76,8 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+            
+       
 
         }
     }

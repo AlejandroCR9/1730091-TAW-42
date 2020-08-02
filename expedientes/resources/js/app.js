@@ -18,6 +18,11 @@ import VueAxios from 'vue-axios'; //Import de la dependecia para mandar los requ
 import axios from 'axios';
 Vue.use(VueAxios, axios);
 
+
+
+Vue.config.productionTip = false
+
+
 //Importamos los componentes que tenemos
 import App from './components/sidebar.vue'; //Contiene el componente de la navbar
 import dashboard from './components/dashboard.vue'; //Contiene el componente de la ndash
@@ -41,19 +46,21 @@ import EditMedicamentoComponent from './components/medicamentos/editarMedicament
 import CreatePacienteComponent from './components/pacientes/crearPaciente.vue'; //Contiene el formulario para crear nuevos registros
 import ViewPacienteComponent from './components/pacientes/indexPaciente.vue';//Contiene la tabla de padecieminto
 import EditPacienteComponent from './components/pacientes/editarPaciente.vue'; //contiene el formularo para editar
-import ViewExpedienteComponent from './components/pacientes/expediente.vue';//Contiene la tabla de padecieminto
+import ViewExpedienteComponent from './components/pacientes/expediente.vue';//Contiene la tabla de paciente
+
 
 //Secre
 import CreateSecretariaComponent from './components/secretarias/crearSecretaria.vue'; //Contiene el formulario para crear nuevos registros
-import ViewSecretariaComponent from './components/secretarias/indexSecretaria.vue';//Contiene la tabla de padecieminto
+import ViewSecretariaComponent from './components/secretarias/indexSecretaria.vue';//Contiene la tabla de secre
 import EditSecretariaComponent from './components/secretarias/editarSecretaria.vue'; //contiene el formularo para editar
 
 //med
 import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Contiene el formulario para crear nuevos registros
-import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de padecieminto
+import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de doc
 import EditMedicoComponent from './components/medicos/editarMedico.vue'; //contiene el formularo para editar
 
 Vue.component('nav-component', require('./components/sidebar.vue').default );
+Vue.component('cal-component', require('./components/calendario.vue').default );
 //Se crea el catalogo de rutas para cada compoente que tenemos
 const routes = [
     {
@@ -127,7 +134,7 @@ const routes = [
         component: EditPacienteComponent
     },
     {
-        name: 'genpaciente',
+        name: 'verexpediente',
         path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
         component: ViewExpedienteComponent
     },

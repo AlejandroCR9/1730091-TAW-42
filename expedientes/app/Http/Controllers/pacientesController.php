@@ -12,8 +12,7 @@ class pacientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $pacientes = Paciente::all(); //Trae todos los registro de la bd
         return $pacientes; //Regresa esos registros
     }
@@ -23,10 +22,8 @@ class pacientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function ultimo()
-    {
-        
-        $paciente = Paciente::orderBy('id','desc')->value('id'); //Trae todos los registro de la bd
+    public function ultimo() { 
+        $paciente = Paciente::orderBy('id','desc')->value('id'); //Trae el ultimo id de los registro de la bd
         return $paciente; //Regresa esos registros
     }
 
@@ -36,8 +33,7 @@ class pacientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $paciente = new Paciente(); //Crea un nuevo paciente de la tabla
         $expediente = new Expediente(); //Crea un nuevo paciente de la tabla
         
@@ -64,8 +60,7 @@ class pacientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeE(Request $request)
-    {
+    public function storeE(Request $request){
         $expediente = new Expediente(); //Crea un nuevo paciente de la tabla
         
         $expediente->idPaciente=$request->id;
@@ -81,8 +76,7 @@ class pacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         $paciente = Paciente::findOrFail($id); //Busca el registro en la bd o falla
         return $paciente;  //Regresa el paciente encontrado
     }
@@ -93,8 +87,7 @@ class pacientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
-    {
+    public function update($id, Request $request){
         
         $paciente = Paciente::findOrFail($id); //Busca primero el paciente 
         //Obtiene los datos del request y actualiza los nuevos datos
@@ -115,10 +108,46 @@ class pacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $paciente = Paciente::find($id); //Busca el paciente a eliminar
         $paciente->delete(); //Borra el paciente encontrado
         return $paciente;
     }
+
+    //======================EXPEDEINTE=========================
+    /**
+     * Show the info from the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verExpediente($id){
+        //Se trae la info del paciente y la de su expediente
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','expedientes.sexo','users.name AS medico','users.apellidos AS medico2')->where("expedientes.idPaciente","=",$id)->get();
+        json_encode($paciente);
+        return $paciente[0];//se hace esto debido aque la consulta devuelve un array 
+    }
+
+    /**
+     * Show the info from the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verAlergias($id){
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientealergias', 'expedientealergias.idExpediente', '=', 'expedientes.id')->join('alergias', 'alergias.id', '=', 'expedientealergias.idAlergia')->select('alergias.nombre AS alergian','alergias.descripcion AS alergiades')->where("expedientes.idPaciente","=",$id)->get();
+        return $paciente[0];  //Regresa las alergias enocntradas
+    }
+
+    /**
+     * Show the info from the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verPadecimientos($id){
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientepadecimientos', 'expedientepadecimientos.idExpediente', '=', 'expedientes.id')->join('padecimientos', 'padecimientos.id', '=', 'expedientepadecimientos.idPadecimiento')->select('padecimientos.nombre AS padn','padecimientos.descripcion AS paddes')->where("expedientes.idPaciente","=",$id)->get();
+        return $paciente[0];  //Regresa padeicmientos
+    }
+
 }

@@ -48,6 +48,11 @@ Route::post('/paciente/update/{id}', 'pacientesController@update');
 Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
 Route::get('/paciente', 'pacientesController@index');
 Route::get('/pu', 'pacientesController@ultimo');
+//==============RUTAS PARA EL EXPEDIENTE
+Route::get('/paciente/expediente/{id}', 'pacientesController@verExpediente');
+Route::get('/paciente/alergias/{id}', 'pacientesController@verAlergias');
+Route::get('/paciente/padecimientos/{id}', 'pacientesController@verPadecimientos');
+Route::get('/paciente/comentarios/{id}', 'pacientesController@verComentarios');
 
 //================RUTAS Medicos
 Route::post('/medico/create', 'medicosController@create');

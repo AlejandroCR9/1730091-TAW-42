@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/cal.css" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -111,6 +112,7 @@
     </div>
 </body>
 <script src="js/app.js"></script>
-<script type="text/javascript" src="scripts/main.js"></script></body>
+<script type="text/javascript" src="scripts/main.js"></script>
+
 </html>
 
