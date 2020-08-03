@@ -105,6 +105,32 @@
                         <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
+                                    Citas
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <router-link to="">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Citas
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Cita
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
+                            <router-link :to="{name: 'vermispacientes'}">
+                                <i class="metismenu-icon pe-7s-rocket"></i> Mis pacientes
+                            </router-link>
+                        </li>
+                        
+                        <li class="app-sidebar__heading">Seccion 3</li>
+                        <li v-if="this.$cookies.get('tipo') == 1 || this.$cookies.get('tipo') == 3"> <!--Solo las secretarias y el admin puede registrar pacientes-->
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-car"></i>
                                 Pacientes
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
@@ -158,27 +184,7 @@
                                     </router-link>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="metismenu-icon pe-7s-car"></i>
-                                    Citas
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <router-link to="" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Ver Citas
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="" class="mm-active">
-                                        <i class="metismenu-icon pe-7s-rocket"></i>Registrar Cita
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-                        
+                        </li>                       
                     </ul>
                 </div>
             </div>

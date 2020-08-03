@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@andresouzaabreu/vue-data-table": "^2.0.1",
         "dayspan": "^1.1.0",
         "dayspan-vuetify": "^0.4.0",
         "fullcalendar": "^5.2.0",

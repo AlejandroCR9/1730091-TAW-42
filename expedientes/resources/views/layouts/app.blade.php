@@ -18,14 +18,21 @@
 
     <!-- Styles -->
     <link href="css/main.css" rel="stylesheet">
-    <link href="css/cal.css" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
         @auth
         <nav class="app-header header-shadow">
             <div class="app-header__logo">
-                    <div class="logo-src">Expedientes</div>
+                    <div class="logo-src">
+                        <div class="app-page-title">
+                            <div class="page-title-wrapper">
+                                <div class="page-title-heading">
+                                    <div>Secretaria</div>
+                                </div>    
+                            </div>
+                        </div>   
+                    </div>
                     <div class="header__pane ml-auto">
                         <div>
                             <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -77,6 +84,7 @@
     
                                         <div class="widget-heading">
                                             <input type="text" id="a" value="{{ __(Auth::user()->tipo)}}" hidden>
+                                            <input type="text" id="i" value="{{ __(Auth::user()->id)}}" hidden>
                                             {{ __(Auth::user()->name." ".Auth::user()->apellidos)}} 
                                         </div>
                                         <div class="widget-subheading">
@@ -113,6 +121,5 @@
 </body>
 <script src="js/app.js"></script>
 <script type="text/javascript" src="scripts/main.js"></script>
-
 </html>
 

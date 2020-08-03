@@ -22,8 +22,18 @@ class pacientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function mispacientes($id){
+        $pacientes=Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','pacientes.domicilio','pacientes.id','pacientes.email')->where("expedientes.idMedico","=",$id)->get();
+        return $pacientes; //Regresa esos registros
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function ultimo() { 
-        $paciente = Paciente::orderBy('id','desc')->value('id'); //Trae el ultimo id de los registro de la bd
+        $paciente = DB::select(DB::raw("SELECT AUTO_INCREMENT AS id FROM information_schema.tables WHERE TABLE_SCHEMA='expedientes' AND TABLE_NAME='pacientes'")); //Trae el ultimo id de los registro de la bd
         return $paciente; //Regresa esos registros
     }
 
@@ -110,6 +120,8 @@ class pacientesController extends Controller
      */
     public function destroy($id){
         $paciente = Paciente::find($id); //Busca el paciente a eliminar
+        $expe= Expediente::where('idPaciente',$id);
+        $expe->delete();
         $paciente->delete(); //Borra el paciente encontrado
         return $paciente;
     }
@@ -135,8 +147,8 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verAlergias($id){
-        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientealergias', 'expedientealergias.idExpediente', '=', 'expedientes.id')->join('alergias', 'alergias.id', '=', 'expedientealergias.idAlergia')->select('alergias.nombre AS alergian','alergias.descripcion AS alergiades')->where("expedientes.idPaciente","=",$id)->get();
-        return $paciente[0];  //Regresa las alergias enocntradas
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientealergias', 'expedientealergias.idExpediente', '=', 'expedientes.id')->join('alergias', 'alergias.id', '=', 'expedientealergias.idAlergia')->select('alergias.nombre AS alergian','alergias.descripcion AS alergiades','alergias.id')->where("expedientes.idPaciente","=",$id)->get();
+        return $paciente;  //Regresa las alergias enocntradas
     }
 
     /**
@@ -146,8 +158,8 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verPadecimientos($id){
-        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientepadecimientos', 'expedientepadecimientos.idExpediente', '=', 'expedientes.id')->join('padecimientos', 'padecimientos.id', '=', 'expedientepadecimientos.idPadecimiento')->select('padecimientos.nombre AS padn','padecimientos.descripcion AS paddes')->where("expedientes.idPaciente","=",$id)->get();
-        return $paciente[0];  //Regresa padeicmientos
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('expedientepadecimientos', 'expedientepadecimientos.idExpediente', '=', 'expedientes.id')->join('padecimientos', 'padecimientos.id', '=', 'expedientepadecimientos.idPadecimiento')->select('padecimientos.nombre AS padn','padecimientos.descripcion AS paddes','padecimientos.id')->where("expedientes.idPaciente","=",$id)->get();
+        return $paciente;  //Regresa padeicmientos
     }
 
 }

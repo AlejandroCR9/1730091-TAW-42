@@ -21,37 +21,10 @@
                         <div class="card-header">Secretarias
                         </div>
                         <div class="table-responsive">
-                            <table class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Apellidos</th>
-                                    <th class="text-center">Domicilio</th>
-                                    <th class="text-center">Telefono</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="(secretaria, num) in secretarias" :key="secretaria.id">
-                                    <td v-text="secretaria.id" class="text-center text-muted"></td>
-                                    <td v-text="secretaria.name" class="text-center"> </td>
-                                    <td v-text="secretaria.apellidos" class="text-center"> </td>
-                                    <td v-text="secretaria.domicilio" class="text-center"> </td>
-                                    <td v-text="secretaria.telefono" class="text-center"> </td>
-                                    <td v-text="secretaria.email" class="text-center"> </td>
-                                    <td class="text-center">
-                                     
-                                         <!--Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
-                                        <router-link :to="{name: 'editsecretaria', params: { id: secretaria.id }}" class="btn btn-primary">Editar</router-link> <!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
-                                        <!--Botón que borra la tarea que seleccionemos-->
-                                        <button type="button" class="btn btn-danger" @click.prevent="deleteSecretaria(secretaria.id, num)" >Borrar</button>
-                                    </td>
-                                </tr>
-                                
-                                </tbody>
-                            </table>
+                            <div id="example1" class="datable">
+                                <!--Se manda llamar el datatable con las configuraciones y seteamos metodo que catpura las acciones-->
+                                <data-table v-bind="parametersTable1" @actionTriggered="handleAction"/>
+                            </div>
                         </div>
                         <!--<div class="d-block text-center card-footer">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
@@ -66,36 +39,82 @@
 
 <script>
     export default {
-      mounted() {
-          if(this.$cookies.get("tipo")==3){
-              this.$router.go(-1);
-          }
-        },data() {
-        return {
-            //Array donde se guardarna los datos de la bd
-            secretarias: []
-        }
-      },
-      //Se ejecuta una cuando se crea el componente
-      created() {
-          //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
+        mounted() {
+            if(this.$cookies.get("tipo")==3){
+                this.$router.go(-1);
+            }
+        },
+        data() {
+            return {
+                //Array donde se guardarna los datos de la bd
+                secretarias: []
+            }
+        },
+        computed:{
+            //Configuramos nuestro datable
+            parametersTable1(){
+                return {
+                    data: this.secretarias, //Array que se cargara
+                    lang: "es", //Asignamos el idioma
+                    actionMode: "multiple", //Columna individual paa cada accion
+                    showDownloadButton: false, //Descarga de la tabla(da errores por eso se desactiva)
+                    //Las sig. dos lineas son estilos
+                    tableClass: "table table-striped", 
+                    tableWrapper: "data-table-wrapper",
+                    actions: ["edit", "delete"], //Acciones que tendra el datatable
+                    //Corregimos los textos que veian por defecto en el idioma
+                    text: {
+                        searchText: "Buscar:",
+                        paginationSearchButtonText: "Ir"
+                    },
+                    //Los identificadores que tendra la columna
+                    columnKeys: [
+                    "id",
+                    "name",
+                    "apellidos",
+                    "domicilio",
+                    "cedula",
+                    "telefono",
+                    "email"
+                    ]
+                };
+            }
+        },
+        //Se ejecuta una cuando se crea el componente
+        created() {
+            this.cargar()
+        },
+        methods: {
+            cargar(){
+                //Url directa del metodo en laravel que me obtiene valores de la bd
+                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
 
-          //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-          this.axios.get(uri).then(response => {
-             this.secretarias = response.data;
-          });
-    },
-    methods: {
-      deleteSecretaria(id, num)
-      {
-          //Url directa del metodo en larvave que me obtiene valores de la bd
-        let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/delete/'+id;
-         //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
-        this.axios.delete(uri).then(response => {
-          this.secretarias.splice(num, 1); //Borra la fila en el indice dado
-        });
-      }
+                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+                this.axios.get(uri).then(response => {
+                    this.secretarias = response.data;
+                });
+            },
+            //Recibe las acciones de nuestras filas
+            handleAction(actionName, data) {
+                console.log(actionName, data);
+                console.log(data.id)
+                 switch(actionName) { //Verificamos que accion se presiono
+                    case "edit":
+                        this.$router.push({name: 'editsecretaria', params: { id: data.id } }); //va a la ventana de edicion
+                        break;
+                    case "delete":
+                        this.deleteSecretaria(data.id); //borra el regisro
+                }
+            },
+            deleteSecretaria(id, num)
+            {
+                //Url directa del metodo en larvave que me obtiene valores de la bd
+                let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/delete/'+id;
+                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+                this.axios.delete(uri).then(response => {
+                    this.cargar()
+                });
+            }
+        }
     }
-  }
 </script>

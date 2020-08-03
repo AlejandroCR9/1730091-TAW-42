@@ -18,7 +18,9 @@ import VueAxios from 'vue-axios'; //Import de la dependecia para mandar los requ
 import axios from 'axios';
 Vue.use(VueAxios, axios);
 
-
+import DataTable from '@andresouzaabreu/vue-data-table'
+Vue.component("data-table", DataTable)
+import '@andresouzaabreu/vue-data-table/dist/DataTable.css'
 
 Vue.config.productionTip = false
 
@@ -47,6 +49,7 @@ import CreatePacienteComponent from './components/pacientes/crearPaciente.vue'; 
 import ViewPacienteComponent from './components/pacientes/indexPaciente.vue';//Contiene la tabla de padecieminto
 import EditPacienteComponent from './components/pacientes/editarPaciente.vue'; //contiene el formularo para editar
 import ViewExpedienteComponent from './components/pacientes/expediente.vue';//Contiene la tabla de paciente
+import ViewMisPacientesComponent from './components/pacientes/mispacientes.vue';//Contiene la tabla de mis paciente para cada doc
 
 
 //Secre
@@ -138,6 +141,11 @@ const routes = [
         path: '/Alex/1730091-TAW-42/expedientes/public/expediente/:id',
         component: ViewExpedienteComponent
     },
+    {
+        name: 'vermispacientes',
+        path: '/Alex/1730091-TAW-42/expedientes/public/mispacientes',
+        component: ViewMisPacientesComponent
+    },
     {//SECRETARIA
         name: 'versecretaria',
         path: '/Alex/1730091-TAW-42/expedientes/public/secretaria',
@@ -179,6 +187,7 @@ const routes = [
 const router = new VueRouter({ mode: 'history', routes: routes}); //Crea las rutas en modo history
 
 $cookies.set("tipo",document.getElementById('a').value,"0");
+$cookies.set("id",document.getElementById('i').value,"0");
 
 var vm = new Vue({
     el: "#app",

@@ -61,6 +61,7 @@ Route::post('/medico/update/{id}', 'medicosController@update');
 Route::delete('/medico/delete/{id}', 'medicosController@destroy');
 Route::get('/medico', 'medicosController@index');
 
+Route::get('/mispacientes/{id}', 'pacientesController@mispacientes');
 //================RUTAS SECRE
 Route::post('/secretaria/create', 'medicosController@create2');
 Route::get('/secretaria/edit/{id}', 'medicosController@edit');

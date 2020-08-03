@@ -123,9 +123,11 @@
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(url).then(response => {
              this.ultimo = response.data;
+             //console.log(this.ultimo[0].id)
           });
           
     }, methods: {
+    
       validar(){
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             var forms = document.getElementsByClassName('needs-validation');
@@ -141,7 +143,7 @@
             });
         },
         addPaciente(){
-            this.paciente.id=(this.ultimo+1);
+            this.paciente.id=this.ultimo[0].id;
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
             let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
             console.log(this.paciente);
