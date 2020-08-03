@@ -47,7 +47,7 @@ class citasController extends Controller
             $cita->idExpediente = $expediente;
             $cita->observaciones = $request->observaciones; 
             $cita->fechaAsignada = $request->fechaAsignada;
-            //$cita->save(); //Guarda los datos
+            $cita->save(); //Guarda los datos
 
             return $cita;
         }

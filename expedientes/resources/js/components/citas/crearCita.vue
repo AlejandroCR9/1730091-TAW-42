@@ -126,7 +126,6 @@
                     if(response.data=="error"){
                         alert("La fecha y hora ya estan registradas")
                     }else{
-                         
                         this.$router.push({name: 'vercita'}); //vuelve a renderizar la tabla a la vista de la tabla
                     }
                 });

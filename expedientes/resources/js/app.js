@@ -22,6 +22,13 @@ import DataTable from '@andresouzaabreu/vue-data-table'
 Vue.component("data-table", DataTable)
 import '@andresouzaabreu/vue-data-table/dist/DataTable.css'
 
+import VueSweetalert2 from 'vue-sweetalert2';
+ 
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+ 
+Vue.use(VueSweetalert2);
+
 Vue.config.productionTip = false
 
 

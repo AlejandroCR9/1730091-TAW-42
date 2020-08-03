@@ -103,8 +103,28 @@
                     this.$router.push({name: 'editpadecimiento', params: { id: data.id } });
                     break;
                 case "delete":
-                    this.deletePadecimiento(data.id);
+                    this.confirmar(data.id);
                 }
+            },
+            confirmar(id){
+                this.$swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esto no se revertira",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar'
+                }).then((result) => {
+                if (result.value) {
+                    deletePadecimiento(id)
+                    this.$swal.fire(
+                    '¡Borrado!',
+                    'Se borro el registro',
+                    'success'
+                    )
+                }
+                })
             },
             deletePadecimiento(id, num)
             {

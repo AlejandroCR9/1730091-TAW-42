@@ -28,8 +28,10 @@
         "dayspan": "^1.1.0",
         "dayspan-vuetify": "^0.4.0",
         "fullcalendar": "^5.2.0",
+        "sweetalert2": "^9.17.1",
         "vue-axios": "^2.1.5",
         "vue-cookies": "^1.7.2",
-        "vue-router": "^3.3.4"
+        "vue-router": "^3.3.4",
+        "vue-sweetalert2": "^3.0.6"
     }
 }

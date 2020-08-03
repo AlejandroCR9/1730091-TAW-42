@@ -102,8 +102,28 @@
                         this.$router.push({name: 'verexpediente', params: { id: data.idPaciente }}); //va al expediente de la persona
                         break;
                     case "delete":
-                        this.deletePaciente(data.id); //borra el regisro
+                        this.confirmar(data.id); //borra el regisro
                 }
+            },
+            confirmar(id){
+                this.$swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esto no se revertira",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar'
+                    }).then((result) => {
+                    if (result.value) {
+                        deletePaciente(id)
+                        this.$swal.fire(
+                        '¡Borrado!',
+                        'Se borro el registro',
+                        'success'
+                        )
+                    }
+                    })
             },
             deletePaciente(id)
             {

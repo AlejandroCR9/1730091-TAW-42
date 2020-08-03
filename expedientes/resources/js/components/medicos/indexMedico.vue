@@ -98,8 +98,28 @@
                         this.$router.push({name: 'editmedico', params: { id: data.id } }); //va a la ventana de edicion
                         break;
                     case "delete":
-                        this.deleteMedico(data.id); //borra el regisro
+                        this.confirmar(data.id); //borra el regisro
                 }
+            },
+            confirmar(id){
+                this.$swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esto no se revertira",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar'
+                }).then((result) => {
+                if (result.value) {
+                    deleteMedico(id)
+                    this.$swal.fire(
+                    '¡Borrado!',
+                    'Se borro el registro',
+                    'success'
+                    )
+                }
+                })
             },
             deleteMedico(id, num)
             {

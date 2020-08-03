@@ -63,11 +63,11 @@
                                 <div class="card-header">
                                    <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-primary">Agregar Alergia</button>
+                                            <button class="btn btn-primary"  @click.prevent="hola()">Agregar Alergia</button>
                                         </div>
 
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary">Agregar Padecimiento</button>
+                                            <button class="btn btn-primary" @click.prevent="hola()">Agregar Padecimiento</button>
                                         </div>
                                     </div>
                                 </div>
@@ -140,6 +140,7 @@
 </template>
 
 <script>
+    
     export default {
         
         data(){
@@ -204,14 +205,16 @@
                 }, false);
             });
         },
-        addPaciente(){
-            this.paciente.id=(this.ultimo+1);
-            //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
-            console.log(this.paciente);
-            this.axios.post(uri, this.paciente).then((response) => {
-                this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
-            });
+        hola(){
+            this.$swal.fire({
+                title: 'No disponible',
+                text: "Aun no",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                
+                })
         }
     }
   }

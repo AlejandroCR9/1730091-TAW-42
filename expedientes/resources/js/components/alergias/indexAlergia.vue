@@ -102,10 +102,30 @@
                     this.$router.push({name: 'editalergia', params: { id: data.id } });
                     break;
                 case "delete":
-                    this.deleteAlergia(data.id);
+                    this.confirmar(data.id);
                 }
             },
-            deleteAlergia(id, num)
+            confirmar(id){
+                this.$swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esto no se revertira",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar'
+                    }).then((result) => {
+                    if (result.value) {
+                        deleteAlergia(id)
+                        this.$swal.fire(
+                        '¡Borrado!',
+                        'Se borro el registro',
+                        'success'
+                        )
+                    }
+                    })
+            },
+            deleteAlergia(id)
             {
                 //Url directa del metodo en larvave que me obtiene valores de la bd
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/delete/'+id;
