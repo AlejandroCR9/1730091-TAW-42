@@ -9073,7 +9073,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deleteAlergia(id);
+          _this2.deleteAlergia(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -9547,7 +9547,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deletePaciente(id);
+          _this2.deletePaciente(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -10166,7 +10166,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deleteMedicamento(id);
+          _this2.deleteMedicamento(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -10633,7 +10633,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deleteMedico(id);
+          _this2.deleteMedico(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -11358,7 +11358,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deletePaciente(id);
+          _this2.deletePaciente(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -11880,7 +11880,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deletePadecimiento(id);
+          _this2.deletePadecimiento(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
@@ -12351,7 +12351,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
-          deleteSecretaria(id);
+          _this2.deleteSecretaria(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }

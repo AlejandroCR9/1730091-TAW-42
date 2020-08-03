@@ -115,7 +115,7 @@
                     confirmButtonText: 'Continuar'
                     }).then((result) => {
                     if (result.value) {
-                        deleteMedicamento(id)
+                        this.deleteMedicamento(id)
                         this.$swal.fire(
                         '¡Borrado!',
                         'Se borro el registro',

@@ -117,7 +117,7 @@
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
                 if (result.value) {
-                    deleteSecretaria(id)
+                    this.deleteSecretaria(id)
                     this.$swal.fire(
                     '¡Borrado!',
                     'Se borro el registro',
