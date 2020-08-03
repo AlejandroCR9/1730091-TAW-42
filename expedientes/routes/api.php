@@ -69,6 +69,12 @@ Route::post('/secretaria/update/{id}', 'medicosController@update2');
 Route::delete('/secretaria/delete/{id}', 'medicosController@destroy');
 Route::get('/secretaria', 'medicosController@index2');
 
+//================RUTAS CITAS
+Route::post('/cita/create', 'citasController@store');
+Route::get('/cita/edit/{id}', 'citasController@edit');
+Route::post('/cita/update/{id}', 'citasController@update');
+Route::delete('/cita/delete/{id}', 'citasController@destroy');
+Route::get('/cita', 'citasController@index');
 
-
-Route::post('/expediente/create', 'pacientesController@storeE');
+Route::get('/miscitas/{id}', 'citasController@miscitas');
+//Route::post('/expediente/create', 'pacientesController@storeE');

@@ -9075,10 +9075,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9096,6 +9096,584 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      cita: {},
+      pacientes: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.pacientes = response.data;
+    });
+    console.log(this.getHoy());
+  },
+  methods: {
+    //Obtener la fecha de hoy para que no haya citas con dias pasados
+    getHoy: function getHoy() {
+      var hoy = new Date(); //Se obtiene la fecha de hoy
+
+      var dia;
+      var mes; //Se le da formato de dos digitos al dia
+
+      if (hoy.getDate() < 10) {
+        dia = "0" + hoy.getDate();
+      } else {
+        dia = hoy.getDate();
+      } //Se le da formato de dos digitos al mes
+
+
+      if (hoy.getMonth() < 10) {
+        mes = "0" + (hoy.getMonth() + 1);
+      } else {
+        mes = hoy.getMonth() + 1;
+      } //Se regresa la concatenacion de todo
+
+
+      return hoy.getFullYear() + "-" + mes + "-" + dia + "T00:00";
+    },
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    addCita: function addCita() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/create';
+      console.log(this.cita);
+      this.axios.post(uri, this.cita).then(function (response) {
+        //Si ya esciste la fecha y hora
+        if (response.data == "error") {
+          alert("La fecha y hora ya estan registradas");
+        } else {
+          _this2.$router.push({
+            name: 'vercita'
+          }); //vuelve a renderizar la tabla a la vista de la tabla
+
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      cita: {},
+      pacientes: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.cita = response.data;
+    }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.pacientes = response.data;
+    }); //console.log(this.getHoy())            
+  },
+  methods: {
+    //Obtener la fecha de hoy para que no haya citas con dias pasados
+    getHoy: function getHoy() {
+      var hoy = new Date(); //Se obtiene la fecha de hoy
+
+      var dia;
+      var mes; //Se le da formato de dos digitos al dia
+
+      if (hoy.getDate() < 10) {
+        dia = "0" + hoy.getDate();
+      } else {
+        dia = hoy.getDate();
+      } //Se le da formato de dos digitos al mes
+
+
+      if (hoy.getMonth() < 10) {
+        mes = "0" + (hoy.getMonth() + 1);
+      } else {
+        mes = hoy.getMonth() + 1;
+      } //Se regresa la concatenacion de todo
+
+
+      return hoy.getFullYear() + "-" + mes + "-" + dia + "T00:00";
+    },
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    updateAlergia: function updateAlergia() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/update/".concat(this.$route.params.id);
+      this.axios.post(uri, this.cita).then(function (response) {
+        //Si ya esciste la fecha y hora
+        if (response.data == "error") {
+          alert("La fecha y hora ya estan registradas");
+        } else {
+          _this2.$router.push({
+            name: 'vercita'
+          }); //vuelve a renderizar la tabla a la vista de la tabla
+
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //Array donde se guardarna los datos de la bd
+      citas: []
+    };
+  },
+  computed: {
+    //Configuramos nuestro datable
+    parametersTable1: function parametersTable1() {
+      return {
+        data: this.citas,
+        //Array que se cargara
+        lang: "es",
+        //Asignamos el idioma
+        actionMode: "multiple",
+        //Columna individual paa cada accion
+        showDownloadButton: false,
+        //Descarga de la tabla(da errores por eso se desactiva)
+        //Las sig. dos lineas son estilos
+        tableClass: "table table-striped",
+        tableWrapper: "data-table-wrapper",
+        //Corregimos los textos que veian por defecto en el idioma
+        text: {
+          searchText: "Buscar:",
+          paginationSearchButtonText: "Ir"
+        },
+        //Los identificadores que tendra la columna
+        columnKeys: ["id", "idPaciente", "nombre", "apellidos", "observaciones", "telefono", "fecha"]
+      };
+    }
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    this.cargar(); //Metodo que carga los datos de la bd
+  },
+  methods: {
+    cargar: function cargar() {
+      var _this = this;
+
+      //Url directa del metodo en laravel que me obtiene valores de la bd
+      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.citas = response.data;
+      });
+    },
+    //Recibe las acciones de nuestras filas
+    handleAction: function handleAction(actionName, data) {
+      console.log(actionName, data);
+      console.log(data.id);
+
+      switch (actionName) {
+        //Verificamos que accion se presiono
+        case "edit":
+          this.$router.push({
+            name: 'editcita',
+            params: {
+              id: data.id
+            }
+          }); //va a la ventana de edicion
+
+          break;
+
+        case "view":
+          this.$router.push({
+            name: 'verexpediente',
+            params: {
+              id: data.idPaciente
+            }
+          }); //va al expediente de la persona
+
+          break;
+
+        case "delete":
+          this.deletePaciente(data.id);
+        //borra el regisro
+      }
+    },
+    deletePaciente: function deletePaciente(id) {
+      var _this2 = this;
+
+      //Url directa del metodo en larvave que me obtiene valores de la bd
+      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+
+      this.axios["delete"](uri).then(function (response) {
+        _this2.cargar();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //Array donde se guardarna los datos de la bd
+      citas: []
+    };
+  },
+  computed: {
+    //Configuramos nuestro datable
+    parametersTable1: function parametersTable1() {
+      return {
+        data: this.citas,
+        //Array que se cargara
+        lang: "es",
+        //Asignamos el idioma
+        actionMode: "multiple",
+        //Columna individual paa cada accion
+        showDownloadButton: false,
+        //Descarga de la tabla(da errores por eso se desactiva)
+        //Las sig. dos lineas son estilos
+        tableClass: "table table-striped",
+        tableWrapper: "data-table-wrapper",
+        actions: ["edit", "delete"],
+        //Acciones que tendra el datatable
+        //Corregimos los textos que veian por defecto en el idioma
+        text: {
+          searchText: "Buscar:",
+          paginationSearchButtonText: "Ir"
+        },
+        //Los identificadores que tendra la columna
+        columnKeys: ["id", "fecha", "idPaciente", "nombre", "apellidos", "observaciones", "telefono"]
+      };
+    }
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    this.cargar();
+  },
+  methods: {
+    cargar: function cargar() {
+      var _this = this;
+
+      //Url directa del metodo en laravel que me obtiene valores de la bd
+      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/miscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.citas = response.data;
+      });
+    },
+    //Recibe las acciones de nuestras filas
+    handleAction: function handleAction(actionName, data) {
+      console.log(actionName, data);
+      console.log(data.id);
+
+      switch (actionName) {
+        //Verificamos que accion se presiono
+        case "edit":
+          this.$router.push({
+            name: 'editcita',
+            params: {
+              id: data.id
+            }
+          }); //va a la ventana de edicion
+
+          break;
+
+        case "delete":
+          this.deletePaciente(data.id);
+        //borra el regisro
+      }
+    },
+    deletePaciente: function deletePaciente(id) {
+      var _this2 = this;
+
+      //Url directa del metodo en larvave que me obtiene valores de la bd
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+
+      this.axios["delete"](uri).then(function (response) {
+        _this2.cargar();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -10759,39 +11337,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -10799,27 +11344,86 @@ __webpack_require__.r(__webpack_exports__);
       pacientes: []
     };
   },
+  computed: {
+    //Configuramos nuestro datable
+    parametersTable1: function parametersTable1() {
+      return {
+        data: this.pacientes,
+        //Array que se cargara
+        lang: "es",
+        //Asignamos el idioma
+        actionMode: "multiple",
+        //Columna individual paa cada accion
+        showDownloadButton: false,
+        //Descarga de la tabla(da errores por eso se desactiva)
+        //Las sig. dos lineas son estilos
+        tableClass: "table table-striped",
+        tableWrapper: "data-table-wrapper",
+        //Corregimos los textos que veian por defecto en el idioma
+        text: {
+          searchText: "Buscar:",
+          paginationSearchButtonText: "Ir"
+        },
+        //Los identificadores que tendra la columna
+        columnKeys: ["id", "nombre", "apellidos", "domicilio", "fecha_nacimiento", "telefono", "email"]
+      };
+    }
+  },
   //Se ejecuta una cuando se crea el componente
   created: function created() {
-    var _this = this;
-
-    //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/mispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-
-    this.axios.get(uri).then(function (response) {
-      _this.pacientes = response.data;
-    });
+    this.cargar();
   },
   methods: {
-    deletePaciente: function deletePaciente(id, num) {
+    cargar: function cargar() {
+      var _this = this;
+
+      //Url directa del metodo en laravel que me obtiene valores de la bd
+      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/mispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.pacientes = response.data;
+      });
+    },
+    //Recibe las acciones de nuestras filas
+    handleAction: function handleAction(actionName, data) {
+      console.log(actionName, data);
+      console.log(data.id);
+
+      switch (actionName) {
+        //Verificamos que accion se presiono
+        case "edit":
+          this.$router.push({
+            name: 'editpaciente',
+            params: {
+              id: data.id
+            }
+          }); //va a la ventana de edicion
+
+          break;
+
+        case "view":
+          this.$router.push({
+            name: 'verexpediente',
+            params: {
+              id: data.id
+            }
+          }); //va al expediente de la persona
+
+          break;
+
+        case "delete":
+          this.deletePaciente(data.id);
+        //borra el regisro
+      }
+    },
+    deletePaciente: function deletePaciente(id) {
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
-        _this2.pacientes.splice(num, 1); //Borra la fila en el indice dado
-
+        _this2.cargar();
       });
     }
   }
@@ -11648,6 +12252,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -48720,6 +49330,638 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [_vm._v("Crear nueva cita")]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addCita($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Paciente:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cita.idPaciente,
+                          expression: "cita.idPaciente"
+                        }
+                      ],
+                      staticClass: "form-control col-md-6 col-sm-6",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Seleccione...",
+                        required: ""
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.cita,
+                            "idPaciente",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.pacientes, function(paciente) {
+                      return _c(
+                        "option",
+                        {
+                          key: paciente.id,
+                          attrs: { selected: "" },
+                          domProps: { value: paciente.id }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(paciente.nombre + " " + paciente.apellidos)
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Fecha de la cita")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.fechaAsignada,
+                        expression: "cita.fechaAsignada"
+                      }
+                    ],
+                    staticClass: "form-control col-md-6 col-sm-6",
+                    attrs: {
+                      type: "datetime-local",
+                      min: this.getHoy(),
+                      required: ""
+                    },
+                    domProps: { value: _vm.cita.fechaAsignada },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "fechaAsignada", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Observaciones")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.observaciones,
+                        expression: "cita.observaciones"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba las observaciones",
+                      maxlength: "200",
+                      required: ""
+                    },
+                    domProps: { value: _vm.cita.observaciones },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "observaciones", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Cita\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Esta registrando una nueva cita.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [_vm._v("Editar cita")]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.updateCita($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Paciente:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cita.idPaciente,
+                          expression: "cita.idPaciente"
+                        }
+                      ],
+                      staticClass: "form-control col-md-6 col-sm-6",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Seleccione...",
+                        required: ""
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.cita,
+                            "idPaciente",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.pacientes, function(paciente) {
+                      return _c(
+                        "option",
+                        {
+                          key: paciente.id,
+                          attrs: { selected: "" },
+                          domProps: { value: paciente.id }
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(paciente.nombre + " " + paciente.apellidos)
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Fecha de la cita")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.fechaAsignada,
+                        expression: "cita.fechaAsignada"
+                      }
+                    ],
+                    staticClass: "form-control col-md-6 col-sm-6",
+                    attrs: {
+                      type: "datetime-local",
+                      min: this.getHoy(),
+                      required: ""
+                    },
+                    domProps: { value: _vm.cita.fechaAsignada },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "fechaAsignada", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Observaciones")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.observaciones,
+                        expression: "cita.observaciones"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba las observaciones",
+                      maxlength: "200",
+                      required: ""
+                    },
+                    domProps: { value: _vm.cita.observaciones },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "observaciones", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Cita\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v("Esta editando una  cita.\n                        ")
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "main-card mb-3 card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Citas\n                    ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "div",
+                { staticClass: "datable", attrs: { id: "example1" } },
+                [
+                  _c(
+                    "data-table",
+                    _vm._b(
+                      { on: { actionTriggered: _vm.handleAction } },
+                      "data-table",
+                      _vm.parametersTable1,
+                      false
+                    )
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Citas\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v(
+                "Listado de citas en el sistema.\n                        "
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "main-card mb-3 card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Citas\n                    ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "table-responsive" }, [
+              _c(
+                "div",
+                { staticClass: "datable", attrs: { id: "example1" } },
+                [
+                  _c(
+                    "data-table",
+                    _vm._b(
+                      { on: { actionTriggered: _vm.handleAction } },
+                      "data-table",
+                      _vm.parametersTable1,
+                      false
+                    )
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-page-title" }, [
+      _c("div", { staticClass: "page-title-wrapper" }, [
+        _c("div", { staticClass: "page-title-heading" }, [
+          _c("div", { staticClass: "page-title-icon" }, [
+            _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _vm._v("Citas\n                        "),
+            _c("div", { staticClass: "page-title-subheading" }, [
+              _vm._v("Listado de citas.\n                        ")
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/dashboard.vue?vue&type=template&id=57220a4e&":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/dashboard.vue?vue&type=template&id=57220a4e& ***!
@@ -48850,23 +50092,6 @@ var staticRenderFns = [
                     ])
                   ]
                 )
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "tab-content" }, [
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane tabs-animation fade show active",
-                attrs: { id: "tab-content-0", role: "tabpanel" }
-              },
-              [
-                _c("div", { staticClass: "main-card mb-3 card" }, [
-                  _c("div", { staticClass: "card-body" })
-                ])
               ]
             )
           ])
@@ -51702,116 +52927,20 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "table-responsive" }, [
               _c(
-                "table",
-                {
-                  staticClass:
-                    "align-middle mb-0 table table-borderless table-striped table-hover"
-                },
+                "div",
+                { staticClass: "datable", attrs: { id: "example1" } },
                 [
-                  _vm._m(1),
-                  _vm._v(" "),
                   _c(
-                    "tbody",
-                    _vm._l(_vm.pacientes, function(paciente, num) {
-                      return _c("tr", { key: paciente.id }, [
-                        _c("td", {
-                          staticClass: "text-center text-muted",
-                          domProps: { textContent: _vm._s(paciente.id) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: { textContent: _vm._s(paciente.nombre) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: { textContent: _vm._s(paciente.apellidos) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: { textContent: _vm._s(paciente.domicilio) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: {
-                            textContent: _vm._s(paciente.fecha_nacimiento)
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: { textContent: _vm._s(paciente.telefono) }
-                        }),
-                        _vm._v(" "),
-                        _c("td", {
-                          staticClass: "text-center",
-                          domProps: { textContent: _vm._s(paciente.email) }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "text-center" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-success",
-                                attrs: {
-                                  to: {
-                                    name: "verexpediente",
-                                    params: { id: paciente.id }
-                                  }
-                                }
-                              },
-                              [_vm._v("Ver")]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "text-center" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-primary",
-                                attrs: {
-                                  to: {
-                                    name: "editpaciente",
-                                    params: { id: paciente.id }
-                                  }
-                                }
-                              },
-                              [_vm._v("Editar")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deletePaciente(paciente.id, num)
-                                  }
-                                }
-                              },
-                              [_vm._v("Borrar")]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    }),
-                    0
+                    "data-table",
+                    _vm._b(
+                      { on: { actionTriggered: _vm.handleAction } },
+                      "data-table",
+                      _vm.parametersTable1,
+                      false
+                    )
                   )
-                ]
+                ],
+                1
               )
             ])
           ])
@@ -51835,38 +52964,10 @@ var staticRenderFns = [
           _c("div", [
             _vm._v("Paciente\n                        "),
             _c("div", { staticClass: "page-title-subheading" }, [
-              _vm._v(
-                "Listado de pacientes registrados en el sistema.\n                        "
-              )
+              _vm._v("Listado de pacientes .\n                        ")
             ])
           ])
         ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Apellidos")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Domicilio")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Fecha Nacimiento")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Telefono")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Expediente")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-center" }, [_vm._v("Acciones")])
       ])
     ])
   }
@@ -53236,361 +54337,403 @@ var render = function() {
         _vm._v(" "),
         _vm._m(2),
         _vm._v(" "),
-        _c("div", { staticClass: "scrollbar-sidebar" }, [
-          _c("div", { staticClass: "app-sidebar__inner" }, [
-            _c("ul", { staticClass: "vertical-nav-menu" }, [
-              _c("li", { staticClass: "app-sidebar__heading" }, [
-                _vm._v("Dashboard")
-              ]),
-              _vm._v(" "),
-              _c(
-                "li",
-                [
-                  _c("router-link", { attrs: { to: { name: "dash" } } }, [
-                    _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                    _vm._v(" Inicio\n                        ")
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              this.$cookies.get("tipo") == 1
-                ? _c("div", [
-                    _c("li", { staticClass: "app-sidebar__heading" }, [
-                      _vm._v("Seccion 1")
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("ul", [
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "veralergia" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Ver Alergias\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "crearalergia" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Registrar Alergia\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._m(4),
-                      _vm._v(" "),
-                      _c("ul", [
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "verpadecimiento" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Ver Padecimientos\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "crearpadecimiento" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Registrar Padecimiento\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c("ul", [
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "vermedicamento" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Ver Medicamentos\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { to: { name: "crearmedicamento" } } },
-                              [
-                                _c("i", {
-                                  staticClass: "metismenu-icon pe-7s-rocket"
-                                }),
-                                _vm._v(
-                                  "Registrar Medicamentos\n                                    "
-                                )
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ])
-                    ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("li", { staticClass: "app-sidebar__heading" }, [
-                _vm._v("Seccion 2")
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _vm._m(6),
+        _c(
+          "div",
+          { staticClass: "scrollbar-sidebar scrollbar-container ps--active-y" },
+          [
+            _c("div", { staticClass: "app-sidebar__inner" }, [
+              _c("ul", { staticClass: "vertical-nav-menu" }, [
+                _c("li", { staticClass: "app-sidebar__heading" }, [
+                  _vm._v("Dashboard")
+                ]),
                 _vm._v(" "),
-                _c("ul", [
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: "" } }, [
-                        _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                        _vm._v("Ver Citas\n                                ")
+                _c(
+                  "li",
+                  [
+                    _c("router-link", { attrs: { to: { name: "dash" } } }, [
+                      _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
+                      _vm._v(" Inicio\n                        ")
+                    ])
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 1
+                  ? _c("div", [
+                      _c("li", { staticClass: "app-sidebar__heading" }, [
+                        _vm._v("Seccion 1")
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "veralergia" } } },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Ver Alergias\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "crearalergia" } } },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Registrar Alergia\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "verpadecimiento" } } },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Ver Padecimientos\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  attrs: { to: { name: "crearpadecimiento" } }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Registrar Padecimiento\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("ul", [
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "vermedicamento" } } },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Ver Medicamentos\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "li",
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "crearmedicamento" } } },
+                                [
+                                  _c("i", {
+                                    staticClass: "metismenu-icon pe-7s-rocket"
+                                  }),
+                                  _vm._v(
+                                    "Registrar Medicamentos\n                                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ])
                       ])
-                    ],
-                    1
-                  ),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("li", { staticClass: "app-sidebar__heading" }, [
+                  _vm._v("Seccion 2")
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _vm._m(6),
                   _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _c("router-link", { attrs: { to: "" } }, [
-                        _c("i", { staticClass: "metismenu-icon pe-7s-rocket" }),
-                        _vm._v(
-                          "Registrar Cita\n                                "
+                  _c("ul", [
+                    this.$cookies.get("tipo") == 1 ||
+                    this.$cookies.get("tipo") == 3
+                      ? _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "vercita" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Citas\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "crearcita" } } },
+                          [
+                            _c("i", {
+                              staticClass: "metismenu-icon pe-7s-rocket"
+                            }),
+                            _vm._v(
+                              "Registrar Cita\n                                "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 2
+                  ? _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "vermispacientes" } } },
+                          [
+                            _c("i", {
+                              staticClass: "metismenu-icon pe-7s-rocket"
+                            }),
+                            _vm._v(" Mis pacientes\n                        ")
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 2
+                  ? _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { name: "vermiscitas" } } },
+                          [
+                            _c("i", {
+                              staticClass: "metismenu-icon pe-7s-rocket"
+                            }),
+                            _vm._v(" Mis citas\n                        ")
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("li", { staticClass: "app-sidebar__heading" }, [
+                  _vm._v("Seccion 3")
+                ]),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 1 || this.$cookies.get("tipo") == 3
+                  ? _c("li", [
+                      _vm._m(7),
+                      _vm._v(" "),
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "verpaciente" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Pacientes\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearpaciente" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Paciente\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
                         )
                       ])
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              this.$cookies.get("tipo") == 2
-                ? _c(
-                    "li",
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: { name: "vermispacientes" } } },
-                        [
-                          _c("i", {
-                            staticClass: "metismenu-icon pe-7s-rocket"
-                          }),
-                          _vm._v(" Mis pacientes\n                        ")
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c("li", { staticClass: "app-sidebar__heading" }, [
-                _vm._v("Seccion 3")
-              ]),
-              _vm._v(" "),
-              this.$cookies.get("tipo") == 1 || this.$cookies.get("tipo") == 3
-                ? _c("li", [
-                    _vm._m(7),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "verpaciente" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Ver Pacientes\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "crearpaciente" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Registrar Paciente\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
                     ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              this.$cookies.get("tipo") == 1
-                ? _c("li", [
-                    _vm._m(8),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "vermedico" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Ver Médicos\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      ),
+                  : _vm._e(),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 1
+                  ? _c("li", [
+                      _vm._m(8),
                       _vm._v(" "),
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "crearmedico" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Registrar Médico\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "vermedico" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Médicos\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearmedico" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Médico\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     ])
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              this.$cookies.get("tipo") != 3
-                ? _c("li", [
-                    _vm._m(9),
-                    _vm._v(" "),
-                    _c("ul", [
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "versecretaria" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Ver Secretaria\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      ),
+                  : _vm._e(),
+                _vm._v(" "),
+                this.$cookies.get("tipo") != 3
+                  ? _c("li", [
+                      _vm._m(9),
                       _vm._v(" "),
-                      _c(
-                        "li",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: { name: "crearsecretaria" } } },
-                            [
-                              _c("i", {
-                                staticClass: "metismenu-icon pe-7s-rocket"
-                              }),
-                              _vm._v(
-                                "Registrar Secretaria\n                                "
-                              )
-                            ]
-                          )
-                        ],
-                        1
-                      )
+                      _c("ul", [
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "versecretaria" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Ver Secretaria\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: { name: "crearsecretaria" } } },
+                              [
+                                _c("i", {
+                                  staticClass: "metismenu-icon pe-7s-rocket"
+                                }),
+                                _vm._v(
+                                  "Registrar Secretaria\n                                "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     ])
-                  ])
-                : _vm._e()
+                  : _vm._e()
+              ])
             ])
-          ])
-        ])
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("router-view")
@@ -69005,6 +70148,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_medicos_crearMedico_vue__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/medicos/crearMedico.vue */ "./resources/js/components/medicos/crearMedico.vue");
 /* harmony import */ var _components_medicos_indexMedico_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/medicos/indexMedico.vue */ "./resources/js/components/medicos/indexMedico.vue");
 /* harmony import */ var _components_medicos_editarMedico_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/medicos/editarMedico.vue */ "./resources/js/components/medicos/editarMedico.vue");
+/* harmony import */ var _components_citas_crearCita_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/citas/crearCita.vue */ "./resources/js/components/citas/crearCita.vue");
+/* harmony import */ var _components_citas_indexCitas_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/citas/indexCitas.vue */ "./resources/js/components/citas/indexCitas.vue");
+/* harmony import */ var _components_citas_editarCita_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/citas/editarCita.vue */ "./resources/js/components/citas/editarCita.vue");
+/* harmony import */ var _components_citas_miscitas_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/citas/miscitas.vue */ "./resources/js/components/citas/miscitas.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -69078,6 +70225,15 @@ Vue.config.productionTip = false; //Importamos los componentes que tenemos
  //Contiene la tabla de doc
 
  //contiene el formularo para editar
+//CITAS
+
+ //Contiene el formulario para crear nuevos registros
+
+ //Contiene la tabla de citas
+
+ //contiene el formularo para editar
+
+ //Contiene la tabla de mis citas para cada doc
 
 Vue.component('nav-component', __webpack_require__(/*! ./components/sidebar.vue */ "./resources/js/components/sidebar.vue")["default"]);
 Vue.component('cal-component', __webpack_require__(/*! ./components/calendario.vue */ "./resources/js/components/calendario.vue")["default"]); //Se crea el catalogo de rutas para cada compoente que tenemos
@@ -69176,6 +70332,23 @@ var routes = [{
   name: 'editmedico',
   path: '/Alex/1730091-TAW-42/expedientes/public/medico/edit/:id',
   component: _components_medicos_editarMedico_vue__WEBPACK_IMPORTED_MODULE_27__["default"]
+}, {
+  //CITAS
+  name: 'vercita',
+  path: '/Alex/1730091-TAW-42/expedientes/public/citas',
+  component: _components_citas_indexCitas_vue__WEBPACK_IMPORTED_MODULE_29__["default"]
+}, {
+  name: 'crearcita',
+  path: '/Alex/1730091-TAW-42/expedientes/public/citas/crear',
+  component: _components_citas_crearCita_vue__WEBPACK_IMPORTED_MODULE_28__["default"]
+}, {
+  name: 'editcita',
+  path: '/Alex/1730091-TAW-42/expedientes/public/citas/edit/:id',
+  component: _components_citas_editarCita_vue__WEBPACK_IMPORTED_MODULE_30__["default"]
+}, {
+  name: 'vermiscitas',
+  path: '/Alex/1730091-TAW-42/expedientes/public/miscitas/:id',
+  component: _components_citas_miscitas_vue__WEBPACK_IMPORTED_MODULE_31__["default"]
 }];
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -69496,6 +70669,282 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 component.options.__file = "resources/js/components/calendario.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/crearCita.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/citas/crearCita.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./crearCita.vue?vue&type=template&id=141d4fb0& */ "./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0&");
+/* harmony import */ var _crearCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./crearCita.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _crearCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/crearCita.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearCita.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_crearCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./crearCita.vue?vue&type=template&id=141d4fb0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_crearCita_vue_vue_type_template_id_141d4fb0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/editarCita.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/citas/editarCita.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editarCita.vue?vue&type=template&id=75532130& */ "./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130&");
+/* harmony import */ var _editarCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./editarCita.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _editarCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/editarCita.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editarCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./editarCita.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/editarCita.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_editarCita_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./editarCita.vue?vue&type=template&id=75532130& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/editarCita.vue?vue&type=template&id=75532130&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_editarCita_vue_vue_type_template_id_75532130___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/indexCitas.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/citas/indexCitas.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./indexCitas.vue?vue&type=template&id=09f8b388& */ "./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388&");
+/* harmony import */ var _indexCitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./indexCitas.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _indexCitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/indexCitas.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCitas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/indexCitas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./indexCitas.vue?vue&type=template&id=09f8b388& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/indexCitas.vue?vue&type=template&id=09f8b388&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_indexCitas_vue_vue_type_template_id_09f8b388___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/miscitas.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/citas/miscitas.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./miscitas.vue?vue&type=template&id=01751c43& */ "./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43&");
+/* harmony import */ var _miscitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./miscitas.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _miscitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/miscitas.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./miscitas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/miscitas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./miscitas.vue?vue&type=template&id=01751c43& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/miscitas.vue?vue&type=template&id=01751c43&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

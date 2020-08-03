@@ -25,13 +25,7 @@
         <nav class="app-header header-shadow">
             <div class="app-header__logo">
                     <div class="logo-src">
-                        <div class="app-page-title">
-                            <div class="page-title-wrapper">
-                                <div class="page-title-heading">
-                                    <div>Secretaria</div>
-                                </div>    
-                            </div>
-                        </div>   
+                        <h5>Expedientes </h5>
                     </div>
                     <div class="header__pane ml-auto">
                         <div>

@@ -62,6 +62,12 @@ import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Cont
 import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de doc
 import EditMedicoComponent from './components/medicos/editarMedico.vue'; //contiene el formularo para editar
 
+//CITAS
+import CreateCitaComponent from './components/citas/crearCita.vue'; //Contiene el formulario para crear nuevos registros
+import ViewCitaComponent from './components/citas/indexCitas.vue';//Contiene la tabla de citas
+import EditCitaComponent from './components/citas/editarCita.vue'; //contiene el formularo para editar
+import ViewMisCitasComponent from './components/citas/miscitas.vue';//Contiene la tabla de mis citas para cada doc
+
 Vue.component('nav-component', require('./components/sidebar.vue').default );
 Vue.component('cal-component', require('./components/calendario.vue').default );
 //Se crea el catalogo de rutas para cada compoente que tenemos
@@ -175,6 +181,26 @@ const routes = [
         name: 'editmedico',
         path: '/Alex/1730091-TAW-42/expedientes/public/medico/edit/:id',
         component: EditMedicoComponent
+    },
+    {//CITAS
+        name: 'vercita',
+        path: '/Alex/1730091-TAW-42/expedientes/public/citas',
+        component: ViewCitaComponent
+    },
+    {
+        name: 'crearcita',
+        path: '/Alex/1730091-TAW-42/expedientes/public/citas/crear',
+        component: CreateCitaComponent
+    },
+    {
+        name: 'editcita',
+        path: '/Alex/1730091-TAW-42/expedientes/public/citas/edit/:id',
+        component: EditCitaComponent
+    },
+    {
+        name: 'vermiscitas',
+        path: '/Alex/1730091-TAW-42/expedientes/public/miscitas/:id',
+        component: ViewMisCitasComponent
     }
   ];
 

@@ -31,7 +31,7 @@
                     </button>
                 </span>
             </div>    
-            <div class="scrollbar-sidebar">
+            <div class="scrollbar-sidebar scrollbar-container ps--active-y">
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Dashboard</li>
@@ -109,13 +109,14 @@
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul>
-                                <li>
-                                    <router-link to="">
+                                <!--El medico no podra ver las citas de otros medicos-->
+                                <li v-if="this.$cookies.get('tipo') == 1 || this.$cookies.get('tipo') == 3">
+                                    <router-link :to="{name: 'vercita'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Ver Citas
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="">
+                                    <router-link :to="{name: 'crearcita'}">
                                         <i class="metismenu-icon pe-7s-rocket"></i>Registrar Cita
                                     </router-link>
                                 </li>
@@ -124,6 +125,11 @@
                         <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
                             <router-link :to="{name: 'vermispacientes'}">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Mis pacientes
+                            </router-link>
+                        </li>
+                        <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
+                            <router-link :to="{name: 'vermiscitas'}">
+                                <i class="metismenu-icon pe-7s-rocket"></i> Mis citas
                             </router-link>
                         </li>
                         

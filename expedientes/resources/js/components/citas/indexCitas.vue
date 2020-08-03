@@ -9,7 +9,7 @@
                             </i>
                         </div>
                         <div>Citas
-                            <div class="page-title-subheading">Registro de todas las citas.
+                            <div class="page-title-subheading">Listado de citas en el sistema.
                             </div>
                         </div>
                     </div>    
@@ -18,46 +18,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="main-card mb-3 card">
-                        <div class="card-header">Pacientes
+                        <div class="card-header">Citas
                         </div>
                         <div class="table-responsive">
-                            <table id="example1" class="align-middle mb-0 table table-borderless table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Nombre</th>
-                                    <th class="text-center">Apellidos</th>
-                                    <th class="text-center">Domicilio</th>
-                                    <th class="text-center">Fecha Nacimiento</th>
-                                    <th class="text-center">Telefono</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Expediente</th>
-                                    <th class="text-center">Acciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="(paciente, num) in pacientes" :key="paciente.id">
-                                    <td v-text="paciente.id" class="text-center text-muted"></td>
-                                    <td v-text="paciente.nombre" class="text-center"> </td>
-                                    <td v-text="paciente.apellidos" class="text-center"> </td>
-                                    <td v-text="paciente.domicilio" class="text-center"> </td>
-                                    <td v-text="paciente.fecha_nacimiento" class="text-center"></td>
-                                    <td v-text="paciente.telefono" class="text-center"> </td>
-                                    <td v-text="paciente.email" class="text-center"> </td>
-                                    <td  class="text-center"> 
-                                        <router-link :to="{name: 'verexpediente', params: { id: paciente.id }}" class="btn btn-success">Ver</router-link>
-                                    </td>
-                                    <td class="text-center">
-                                        <!--<router-link :to="{name: 'genpaciente', params: { id: paciente.id }}" class="btn btn-primary">Generar Expediente</router-link> 
-                                         Botón modificar, que carga los datos del formulario con la tarea seleccionada-->
-                                        <router-link :to="{name: 'editpaciente', params: { id: paciente.id }}" class="btn btn-primary">Editar</router-link> <!--Etiqueta que nos redirecciona a la siguiente vista y la rendereiza en las etiquetas  <router-view></router-view> ubicadas en el compoente nav-->
-                                        <!--Botón que borra la tarea que seleccionemos-->
-                                        <button type="button" class="btn btn-danger" @click.prevent="deletePaciente(paciente.id, num)" >Borrar</button>
-                                    </td>
-                                </tr>
-                                
-                                </tbody>
-                            </table>
+                            <div id="example1" class="datable">
+                                <!--Se manda llamar el datatable con las configuraciones y seteamos metodo que catpura las acciones-->
+                                <data-table v-bind="parametersTable1" @actionTriggered="handleAction"/>
+                            </div>
                         </div>
                         <!--<div class="d-block text-center card-footer">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
@@ -72,33 +39,80 @@
 </template>
 
 <script>
+    
     export default {
         data() {
             return {
                 //Array donde se guardarna los datos de la bd
-                pacientes: [],
+                citas: [],
+            }
+        },
+        computed:{
+            //Configuramos nuestro datable
+            parametersTable1(){
+                return {
+                    data: this.citas, //Array que se cargara
+                    lang: "es", //Asignamos el idioma
+                    actionMode: "multiple", //Columna individual paa cada accion
+                    showDownloadButton: false, //Descarga de la tabla(da errores por eso se desactiva)
+                    //Las sig. dos lineas son estilos
+                    tableClass: "table table-striped", 
+                    tableWrapper: "data-table-wrapper",
+                    //Corregimos los textos que veian por defecto en el idioma
+                    text: {
+                        searchText: "Buscar:",
+                        paginationSearchButtonText: "Ir"
+                    },
+                    //Los identificadores que tendra la columna
+                    columnKeys: [
+                    "id",
+                    "idPaciente",
+                    "nombre",
+                    "apellidos",
+                    "observaciones",
+                    "telefono",
+                    "fecha"
+                    ]
+                };
             }
         },
         //Se ejecuta una cuando se crea el componente
         created() {
-           
-            //Url directa del metodo en laravel que me obtiene valores de la bd
-            let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente';
-
-            //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-            this.axios.get(uri).then(response => {
-                this.pacientes = response.data;
-            });
+            this.cargar(); //Metodo que carga los datos de la bd
         },
         methods: {
-           
-            deletePaciente(id, num)
+            cargar(){
+                //Url directa del metodo en laravel que me obtiene valores de la bd
+                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita';
+
+                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+                this.axios.get(uri).then(response => {
+                    this.citas = response.data;
+                });
+            },
+            //Recibe las acciones de nuestras filas
+            handleAction(actionName, data) {
+                console.log(actionName, data);
+                console.log(data.id)
+                 switch(actionName) { //Verificamos que accion se presiono
+                    case "edit":
+                        this.$router.push({name: 'editcita', params: { id: data.id } }); //va a la ventana de edicion
+                        break;
+                    case "view":
+                        this.$router.push({name: 'verexpediente', params: { id: data.idPaciente }}); //va al expediente de la persona
+                        break;
+                    case "delete":
+                        this.deletePaciente(data.id); //borra el regisro
+                }
+            },
+            deletePaciente(id)
             {
                 //Url directa del metodo en larvave que me obtiene valores de la bd
-                let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/delete/'+id;
+                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/'+id;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
                 this.axios.delete(uri).then(response => {
-                this.pacientes.splice(num, 1); //Borra la fila en el indice dado
+                    this.cargar();
+               
                 });
             }
         }
