@@ -107,7 +107,7 @@
     },//Se ejecuta una cuando se crea el componente
       created() {
           //URL del API para obtener los datos de la secretaria a editar
-          let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/edit/${this.$route.params.id}`;
+          let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/edit/${this.$route.params.id}`;
           this.axios.get(uri).then((response) => {
               this.secretaria = response.data; //Respuesta, se actualizan los campos con los valores
           });
@@ -133,7 +133,7 @@
                 this.secretaria.password=document.getElementById("contra").value;
             }
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/${this.$route.params.id}`;
+            let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/${this.$route.params.id}`;
             this.axios.post(uri, this.secretaria).then((response) => {
                 this.$router.push({name: 'versecretaria'}); //vuelve a renderizar la tabla a la vista de la tabla
             });

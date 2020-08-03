@@ -9160,7 +9160,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
@@ -9211,7 +9211,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/create';
       console.log(this.cita);
       this.axios.post(uri, this.cita).then(function (response) {
         //Si ya esciste la fecha y hora
@@ -9313,13 +9313,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.cita = response.data;
     }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
@@ -9369,7 +9369,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.cita).then(function (response) {
         //Si ya esciste la fecha y hora
         if (response.data == "error") {
@@ -9477,7 +9477,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.citas = response.data;
@@ -9519,7 +9519,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.cargar();
@@ -9622,7 +9622,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/miscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.citas = response.data;
@@ -10400,7 +10400,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico/edit/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/edit/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.medico = response.data;
@@ -10431,7 +10431,7 @@ __webpack_require__.r(__webpack_exports__);
       } //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
 
 
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.medico).then(function (response) {
         _this2.$router.push({
           name: 'vermedico'
@@ -10701,14 +10701,14 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
-    var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.medicos = response.data;
     }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    var url = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/pu'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    var url = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/pu'; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(url).then(function (response) {
@@ -10736,7 +10736,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.paciente.id = this.ultimo[0].id; //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
 
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
       console.log(this.paciente);
       this.axios.post(uri, this.paciente).then(function (response) {
         _this2.$router.push({
@@ -11074,20 +11074,20 @@ __webpack_require__.r(__webpack_exports__);
 
     //Url directa del metodo en laravel que me obtiene valores de la bd
     //let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/${this.$route.params.id}`;
-    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo paciente
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo paciente
 
     this.axios.get(uri).then(function (response) {
       _this.paciente = response.data; //console.log("HOLA"+this.paciente.fecha_nacimiento);
     }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/alergias/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/alergias/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
       _this.ale = response.data;
     }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/padecimientos/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/padecimientos/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
@@ -11131,7 +11131,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.paciente.id = this.ultimo + 1; //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
 
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
       console.log(this.paciente);
       this.axios.post(uri, this.paciente).then(function (response) {
         _this2.$router.push({
@@ -11235,7 +11235,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.pacientes = response.data;
@@ -11277,7 +11277,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       //Url directa del metodo en larvave que me obtiene valores de la bd
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/delete/' + id; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
 
       this.axios["delete"](uri).then(function (response) {
         _this2.cargar();
@@ -11378,7 +11378,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/mispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/mispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.pacientes = response.data;
@@ -12061,7 +12061,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //URL del API para obtener los datos de la secretaria a editar
-    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/edit/".concat(this.$route.params.id);
+    var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.secretaria = response.data; //Respuesta, se actualizan los campos con los valores
     });
@@ -12091,7 +12091,7 @@ __webpack_require__.r(__webpack_exports__);
       } //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
 
 
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/".concat(this.$route.params.id);
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.secretaria).then(function (response) {
         _this2.$router.push({
           name: 'versecretaria'
@@ -12200,7 +12200,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.secretarias = response.data;

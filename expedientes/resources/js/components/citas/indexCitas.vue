@@ -83,7 +83,7 @@
         methods: {
             cargar(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita';
+                let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita';
 
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
@@ -108,7 +108,7 @@
             deletePaciente(id)
             {
                 //Url directa del metodo en larvave que me obtiene valores de la bd
-                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/'+id;
+                let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/delete/'+id;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
                 this.axios.delete(uri).then(response => {
                     this.cargar();

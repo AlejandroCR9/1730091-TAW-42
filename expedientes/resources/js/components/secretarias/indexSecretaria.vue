@@ -87,7 +87,7 @@
         methods: {
             cargar(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
+                let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria';
 
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {

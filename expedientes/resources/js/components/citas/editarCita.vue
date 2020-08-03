@@ -71,14 +71,14 @@
         }, 
         created() {
             //Url directa del metodo en laravel que me obtiene valores de la bd
-            uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/${this.$route.params.id}`;
+            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/${this.$route.params.id}`;
             //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
             this.axios.get(uri).then((response) => {
                 this.cita = response.data;
 
             });
             //Url directa del metodo en laravel que me obtiene valores de la bd
-            let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente';
+            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente';
             //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
             //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
             this.axios.get(uri).then(response => {
@@ -125,7 +125,7 @@
             },           
             updateAlergia(){
                 //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-                let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/update/${this.$route.params.id}`;
+                let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/update/${this.$route.params.id}`;
                 this.axios.post(uri, this.cita).then((response) => {
                     //Si ya esciste la fecha y hora
                     if(response.data=="error"){

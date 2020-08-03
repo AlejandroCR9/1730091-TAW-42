@@ -110,7 +110,7 @@
     },//Se ejecuta una cuando se crea el componente
       created() {
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/medico';
+          let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico';
           //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(uri).then(response => {
@@ -118,7 +118,7 @@
           });
 
           //Url directa del metodo en laravel que me obtiene valores de la bd
-          let url = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/pu';
+          let url = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/pu';
           //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
           //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
           this.axios.get(url).then(response => {
@@ -145,7 +145,7 @@
         addPaciente(){
             this.paciente.id=this.ultimo[0].id;
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
-            let uri = 'http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
+            let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
             console.log(this.paciente);
             this.axios.post(uri, this.paciente).then((response) => {
                 this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
