@@ -101,7 +101,7 @@
                         this.$router.push({name: 'editmedicamento', params: { id: data.id } }); //va a la ventana de edicion
                         break;
                     case "delete":
-                        this.confrimar(data.id); //borra el regisro
+                        this.confirmar(data.id); //borra el regisro
                 }
             },
             confirmar(id){

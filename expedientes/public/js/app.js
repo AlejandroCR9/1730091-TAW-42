@@ -10149,7 +10149,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "delete":
-          this.confrimar(data.id);
+          this.confirmar(data.id);
         //borra el regisro
       }
     },
