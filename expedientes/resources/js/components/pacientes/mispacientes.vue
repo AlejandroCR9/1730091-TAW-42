@@ -89,7 +89,7 @@
                     this.pacientes = response.data;
                 });
             },
-            //Recibe las acciones de nuestras filas
+           //Recibe las acciones de nuestras filas
             handleAction(actionName, data) {
                 console.log(actionName, data);
                 console.log(data.id)
@@ -101,9 +101,29 @@
                         this.$router.push({name: 'verexpediente', params: { id: data.id }}); //va al expediente de la persona
                         break;
                     case "delete":
-                        this.deletePaciente(data.id); //borra el regisro
+                        this.confirmar(data.id); //borra el regisro
                 }
-            },            
+            },
+            confirmar(id){
+                this.$swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esto no se revertira",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Continuar'
+                }).then((result) => {
+                if (result.value) {
+                    this.deletePaciente(id)
+                    this.$swal.fire(
+                    '¡Borrado!',
+                    'Se borro el registro',
+                    'success'
+                    )
+                }
+                })
+            },
             deletePaciente(id)
             {
                 //Url directa del metodo en larvave que me obtiene valores de la bd
@@ -111,6 +131,7 @@
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
                 this.axios.delete(uri).then(response => {
                     this.cargar();
+               
                 });
             }
         }
