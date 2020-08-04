@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <!--<div class="card">
                             <div id="headingThree" class="card-header">
                                 <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="false" aria-controls="collapseThree" class="text-left m-0 p-0 btn btn-link btn-block"><h3 class="m-0 p-0">Historial Clinico</h3></button>
                             </div>
@@ -130,7 +130,7 @@
                                     VHS.
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     
                 </div>

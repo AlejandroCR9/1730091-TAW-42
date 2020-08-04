@@ -53564,11 +53564,7 @@ var render = function() {
                     )
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _vm._m(12),
-              _vm._v(" "),
-              _vm._m(13)
+              ])
             ]
           )
         ])
@@ -53717,82 +53713,6 @@ var staticRenderFns = [
           _vm._v("Padecimientos")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header", attrs: { id: "headingThree" } }, [
-        _c(
-          "button",
-          {
-            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#collapseOne3",
-              "aria-expanded": "false",
-              "aria-controls": "collapseThree"
-            }
-          },
-          [_c("h5", { staticClass: "m-0 p-0" }, [_vm._v("Historial Clinico")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse",
-          attrs: { "data-parent": "#accordion", id: "collapseOne3" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
-            )
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header", attrs: { id: "headingFour" } }, [
-        _c(
-          "button",
-          {
-            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#collapseOne4",
-              "aria-expanded": "false",
-              "aria-controls": "collapseFour"
-            }
-          },
-          [_c("h5", { staticClass: "m-0 p-0" }, [_vm._v("Comentarios")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse",
-          attrs: { "data-parent": "#accordion", id: "collapseOne4" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
-            )
-          ])
-        ]
-      )
     ])
   }
 ]
@@ -57489,11 +57409,7 @@ var render = function() {
                     )
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _vm._m(11),
-              _vm._v(" "),
-              _vm._m(12)
+              ])
             ]
           )
         ])
@@ -57634,82 +57550,6 @@ var staticRenderFns = [
           _vm._v("Padecimientos")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header", attrs: { id: "headingThree" } }, [
-        _c(
-          "button",
-          {
-            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#collapseOne3",
-              "aria-expanded": "false",
-              "aria-controls": "collapseThree"
-            }
-          },
-          [_c("h3", { staticClass: "m-0 p-0" }, [_vm._v("Historial Clinico")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse",
-          attrs: { "data-parent": "#accordion", id: "collapseOne3" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
-            )
-          ])
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header", attrs: { id: "headingFour" } }, [
-        _c(
-          "button",
-          {
-            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
-            attrs: {
-              type: "button",
-              "data-toggle": "collapse",
-              "data-target": "#collapseOne4",
-              "aria-expanded": "false",
-              "aria-controls": "collapseFour"
-            }
-          },
-          [_c("h3", { staticClass: "m-0 p-0" }, [_vm._v("Comentarios")])]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse",
-          attrs: { "data-parent": "#accordion", id: "collapseOne4" }
-        },
-        [
-          _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
-            )
-          ])
-        ]
-      )
     ])
   }
 ]
