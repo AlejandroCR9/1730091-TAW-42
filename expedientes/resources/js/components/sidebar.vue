@@ -128,8 +128,13 @@
                             </router-link>
                         </li>
                         <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
-                            <router-link :to="{name: 'vermiscitas'}">
-                                <i class="metismenu-icon pe-7s-rocket"></i> Mis citas
+                            <router-link :to="{name: 'vermiscitas' , params: { mis: 1 }}">
+                                <i class="metismenu-icon pe-7s-rocket"></i> Citas sin atender
+                            </router-link>
+                        </li>
+                        <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
+                            <router-link :to="{name: 'vermiscitas' , params: { mis: 2 }}">
+                                <i class="metismenu-icon pe-7s-rocket"></i> Historial de Citas
                             </router-link>
                         </li>
                         

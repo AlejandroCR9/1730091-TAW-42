@@ -74,6 +74,9 @@ import CreateCitaComponent from './components/citas/crearCita.vue'; //Contiene e
 import ViewCitaComponent from './components/citas/indexCitas.vue';//Contiene la tabla de citas
 import EditCitaComponent from './components/citas/editarCita.vue'; //contiene el formularo para editar
 import ViewMisCitasComponent from './components/citas/miscitas.vue';//Contiene la tabla de mis citas para cada doc
+import ViewConsultaComponent from './components/citas/consulta.vue';//vista para hacer la consulta del paciente
+
+import CreateRecetaComponent from './components/citas/recetaMedicamento.vue';
 
 Vue.component('nav-component', require('./components/sidebar.vue').default );
 Vue.component('cal-component', require('./components/calendario.vue').default );
@@ -206,8 +209,18 @@ const routes = [
     },
     {
         name: 'vermiscitas',
-        path: '/Alex/1730091-TAW-42/expedientes/public/miscitas/:id',
+        path: '/Alex/1730091-TAW-42/expedientes/public/miscita/:mis',
         component: ViewMisCitasComponent
+    },
+    {
+        name: 'verconsulta',
+        path: '/Alex/1730091-TAW-42/expedientes/public/consulta/:id/:idcita',
+        component: ViewConsultaComponent
+    },
+    {
+        name: 'receta',
+        path: '/Alex/1730091-TAW-42/expedientes/public/consulta/:idcita',
+        component: CreateRecetaComponent
     }
   ];
 

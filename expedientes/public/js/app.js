@@ -9094,6 +9094,306 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/consulta.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/consulta.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      paciente: {},
+      consulta: {},
+      cita: {},
+      ale: {},
+      //alergias
+      pad: {},
+      //padecimientos
+      band: "a"
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    var _this = this;
+
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+    //let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/${this.$route.params.id}`;
+    var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/".concat(this.$route.params.id); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo paciente
+
+    this.axios.get(uri).then(function (response) {
+      _this.paciente = response.data; //console.log("HOLA"+this.paciente.fecha_nacimiento);
+    }); //Url directa del metodo en laravel que me obtiene valores de la bd
+    //let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/expediente/${this.$route.params.id}`;
+
+    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/edit/".concat(this.$route.params.idcita); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo paciente
+
+    this.axios.get(uri).then(function (response) {
+      _this.cita = response.data; //console.log("HOLA"+this.paciente.fecha_nacimiento);
+    }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/alergias/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.ale = response.data;
+    }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+    uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/paciente/padecimientos/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.pad = response.data;
+    });
+  },
+  methods: {
+    getEdad: function getEdad(dateString) {
+      var hoy = new Date(); //Se obtiene la fecha de hoy
+
+      var fechaNacimiento = new Date(dateString); //El Strign con la fecha de nacimiento se pasa a tipo date
+
+      var edad = hoy.getFullYear() - fechaNacimiento.getFullYear(); //Se saca la diferencia de años
+
+      var diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth(); //Se saca la diferencia de meses
+      //Se comprieba si ya si ya se paso su mes y dia.
+
+      if (diferenciaMeses < 0 || diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate()) {
+        edad--; //Si aun no ha pasado se reste un año
+      }
+
+      return edad; //Se regresa la fecha
+    },
+    validar: function validar() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
+
+      var validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    },
+    addConsulta: function addConsulta() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      this.cita.estadoCita = 2;
+      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cita/update/".concat(this.$route.params.idcita);
+      console.log(this.cita);
+      this.axios.post(uri, this.cita).then(function (response) {
+        if (response.data == "error") {
+          alert("La fecha y hora ya estan registradas");
+        } else {
+          if (_this2.band == "a") {
+            console.log("ERRORR" + _this2.band);
+
+            _this2.$router.push({
+              name: 'vermiscitas',
+              params: {
+                mis: 1
+              }
+            }); //vuelve a renderizar la tabla a la vista de la tabla
+
+          }
+        }
+      });
+    },
+    recetar: function recetar(id) {
+      var _this3 = this;
+
+      this.$swal.fire({
+        title: '¿Estás seguro?',
+        text: "Se marcara como atendida la cita",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Continuar'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.band = "b";
+          console.log("ER" + _this3.band);
+
+          _this3.addConsulta();
+
+          _this3.$router.push({
+            name: 'receta',
+            params: {
+              idcita: id
+            }
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/crearCita.vue?vue&type=script&lang=js& ***!
@@ -9384,7 +9684,7 @@ __webpack_require__.r(__webpack_exports__);
         }, false);
       });
     },
-    updateAlergia: function updateAlergia() {
+    updateCita: function updateCita() {
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
@@ -9617,11 +9917,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       //Array donde se guardarna los datos de la bd
-      citas: []
+      citas: [],
+      texto: ""
     };
   },
   computed: {
@@ -9639,15 +9944,37 @@ __webpack_require__.r(__webpack_exports__);
         //Las sig. dos lineas son estilos
         tableClass: "table table-striped",
         tableWrapper: "data-table-wrapper",
-        actions: ["edit", "delete"],
-        //Acciones que tendra el datatable
         //Corregimos los textos que veian por defecto en el idioma
         text: {
           searchText: "Buscar:",
           paginationSearchButtonText: "Ir"
         },
         //Los identificadores que tendra la columna
-        columnKeys: ["id", "fecha", "idPaciente", "nombre", "apellidos", "observaciones", "telefono"]
+        columnKeys: ["id", "idPaciente", "fecha", "nombre", "apellidos", "observaciones", "telefono"]
+      };
+    },
+    parametersTable2: function parametersTable2() {
+      return {
+        data: this.citas,
+        //Array que se cargara
+        lang: "es",
+        //Asignamos el idioma
+        actionMode: "multiple",
+        //Columna individual paa cada accion
+        showDownloadButton: false,
+        //Descarga de la tabla(da errores por eso se desactiva)
+        //Las sig. dos lineas son estilos
+        tableClass: "table table-striped",
+        tableWrapper: "data-table-wrapper",
+        actions: ["edit", "delete"],
+        //acciones que tendra el datatable
+        //Corregimos los textos que veian por defecto en el idioma
+        text: {
+          searchText: "Buscar:",
+          paginationSearchButtonText: "Ir"
+        },
+        //Los identificadores que tendra la columna
+        columnKeys: ["id", "idPaciente", "fecha", "nombre", "apellidos", "observaciones", "telefono"]
       };
     }
   },
@@ -9655,12 +9982,34 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.cargar();
   },
+  watch: {
+    $route: function $route(to, from) {
+      // react to route changes...
+      if (this.$route.params.mis == 1) {
+        this.texto = " sin atender";
+      } else {
+        this.texto = " atendidas";
+      }
+
+      this.cargar();
+    }
+  },
   methods: {
     cargar: function cargar() {
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri;
+      console.log(this.$route.params.mis);
+
+      if (this.$route.params.mis == 1) {
+        this.texto = " sin atender";
+        uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas/".concat(this.$cookies.get('id'));
+      } else {
+        uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas2/".concat(this.$cookies.get('id'));
+        this.texto = " atendidas";
+      } //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
 
       this.axios.get(uri).then(function (response) {
         _this.citas = response.data;
@@ -9683,6 +10032,17 @@ __webpack_require__.r(__webpack_exports__);
 
           break;
 
+        case "view":
+          this.$router.push({
+            name: 'verconsulta',
+            params: {
+              id: data.idPaciente,
+              idcita: data.id
+            }
+          }); //va al expediente de la persona
+
+          break;
+
         case "delete":
           this.deletePaciente(data.id);
         //borra el regisro
@@ -9696,6 +10056,187 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios["delete"](uri).then(function (response) {
         _this2.cargar();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      //NUestro array donde se almacena los datos
+      receta: {},
+      receta2: {},
+      medicamentos: {}
+    };
+  },
+  //Se ejecuta una cuando se crea el componente
+  created: function created() {
+    this.cargar();
+    this.receta.idCita = this.$route.params.idcita;
+  },
+  methods: {
+    cargar: function cargar() {
+      var _this = this;
+
+      //Url directa del metodo en laravel que me obtiene valores de la bd
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento'; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.medicamentos = response.data;
+      }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+      uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/receta/".concat(this.$route.params.idcita); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.receta2 = response.data;
+      });
+    },
+    addMedi: function addMedi() {
+      var _this2 = this;
+
+      //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
+      var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/receta/create';
+      console.log(this.receta);
+      this.axios.post(uri, this.receta).then(function (response) {
+        _this2.cargar(); //vuelve a renderizar la tabla a la vista de la tabla
+
+      });
+    },
+    salir: function salir() {
+      var _this3 = this;
+
+      this.$swal.fire({
+        title: '¿Estás seguro?',
+        text: "Ya no se podra regresar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Continuar'
+      }).then(function (result) {
+        if (result.value) {
+          _this3.$router.push({
+            name: 'vermiscitas',
+            params: {
+              mis: 1
+            }
+          });
+        }
       });
     }
   }
@@ -12381,6 +12922,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52698,6 +53244,564 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _c("div", { staticClass: "app-page-title" }, [
+        _c("div", { staticClass: "page-title-wrapper" }, [
+          _c("div", { staticClass: "page-title-heading" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", [
+              _c("h4", [
+                _vm._v(
+                  "Esta consultando a " +
+                    _vm._s(_vm.paciente.nombre + " " + _vm.paciente.apellidos)
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "page-title-subheading" }, [
+                _vm._v(
+                  "Esta consultando un paciente, encontrara el expediente completo y si es necesario recetar un medicamento o agregar observaciones extra.\n                        "
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c(
+          "form",
+          {
+            staticClass: "needs-validation",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addConsulta($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h5", { staticClass: "card-title" }, [_vm._v("Consultando")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.id,
+                        expression: "cita.id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { placeholder: "and...", type: "text", hidden: "" },
+                    domProps: { value: _vm.cita.id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "id", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "validationCustom02" } }, [
+                    _vm._v("Observaciones:")
+                  ]),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.cita.observaciones,
+                        expression: "cita.observaciones"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    staticStyle: { height: "200px" },
+                    attrs: {
+                      name: "text",
+                      placeholder: "Escriba las observaciones",
+                      maxlength: "200",
+                      required: ""
+                    },
+                    domProps: { value: _vm.cita.observaciones },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.cita, "observaciones", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\n                                Looks good!\n                            "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-block text-center card-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn-wide btn btn-warning",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.recetar(_vm.cita.id)
+                    }
+                  }
+                },
+                [_vm._v("Recetar Medicamento")]
+              ),
+              _vm._v(" "),
+              _c("button", { staticClass: "btn-wide btn btn-success" }, [
+                _vm._v("Terminar")
+              ])
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "div",
+            {
+              staticClass: "accordion-wrapper mb-3",
+              attrs: { id: "accordion" }
+            },
+            [
+              _c("div", { staticClass: "card" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse show",
+                    attrs: {
+                      "data-parent": "#accordion",
+                      id: "collapseOne1",
+                      "aria-labelledby": "headingOne"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "form-row" }, [
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(3),
+                          _c("i", [
+                            _vm._v(
+                              " " +
+                                _vm._s(
+                                  " " +
+                                    _vm.paciente.nombre +
+                                    " " +
+                                    _vm.paciente.apellidos
+                                )
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(4),
+                          _c("i", [_vm._v(_vm._s(" " + _vm.paciente.sexo))])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(5),
+                          _c("i", [
+                            _vm._v(_vm._s(" " + _vm.paciente.fecha_nacimiento))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(6),
+                          _c("i", [
+                            _vm._v(
+                              _vm._s(
+                                " " + _vm.getEdad(_vm.paciente.fecha_nacimiento)
+                              )
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(7),
+                          _c("i", [_vm._v(_vm._s(" " + _vm.paciente.telefono))])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-12 mb-3" }, [
+                          _vm._m(8),
+                          _c("i", [
+                            _vm._v(
+                              _vm._s(
+                                " " +
+                                  _vm.paciente.medico +
+                                  " " +
+                                  _vm.paciente.medico2
+                              )
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card" }, [
+                _vm._m(9),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse",
+                    attrs: { "data-parent": "#accordion", id: "collapseOne2" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "card-body" },
+                      [
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _vm._l(_vm.ale, function(a) {
+                          return _c(
+                            "div",
+                            { key: a.id, staticClass: "form-row" },
+                            [
+                              _c("div", [
+                                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "validationCustom01" } },
+                                    [_vm._v("Nombre: ")]
+                                  ),
+                                  _c("i", [_vm._v(" " + _vm._s(a.alergian))])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "validationCustom01" } },
+                                    [_vm._v("Descripción: ")]
+                                  ),
+                                  _c("i", [_vm._v(_vm._s(a.alergiades))])
+                                ])
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "card-body" },
+                      [
+                        _vm._m(11),
+                        _vm._v(" "),
+                        _vm._l(_vm.pad, function(p) {
+                          return _c(
+                            "div",
+                            { key: p.id, staticClass: "form-row" },
+                            [
+                              _c("div", [
+                                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "validationCustom01" } },
+                                    [_vm._v("Nombre: ")]
+                                  ),
+                                  _c("i", [_vm._v(" " + _vm._s(p.padn))])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "validationCustom01" } },
+                                    [_vm._v("Descripción: ")]
+                                  ),
+                                  _c("i", [_vm._v(_vm._s(p.paddes))])
+                                ])
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(12),
+              _vm._v(" "),
+              _vm._m(13)
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-title-icon" }, [
+      _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Expediente")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card-header", attrs: { id: "headingOne" } },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#collapseOne1",
+              "aria-expanded": "true",
+              "aria-controls": "collapseOne"
+            }
+          },
+          [_c("h5", { staticClass: "m-0 p-0" }, [_vm._v("Datos Personales")])]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Nombre:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Sexo:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Fecha de nacimiento:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Edad:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Telefono:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "validationCustom01" } }, [
+      _c("b", [_vm._v("Médico:")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "b-radius-0 card-header", attrs: { id: "headingTwo" } },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#collapseOne2",
+              "aria-expanded": "false",
+              "aria-controls": "collapseTwo"
+            }
+          },
+          [
+            _c("h5", { staticClass: "m-0 p-0" }, [
+              _vm._v("Alergias y Padecimientos")
+            ])
+          ]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _c("b", [
+        _c("label", { attrs: { for: "validationCustom01" } }, [
+          _vm._v("Alergias")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [
+      _c("b", [
+        _c("label", { attrs: { for: "validationCustom01" } }, [
+          _vm._v("Padecimientos")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header", attrs: { id: "headingThree" } }, [
+        _c(
+          "button",
+          {
+            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#collapseOne3",
+              "aria-expanded": "false",
+              "aria-controls": "collapseThree"
+            }
+          },
+          [_c("h5", { staticClass: "m-0 p-0" }, [_vm._v("Historial Clinico")])]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "collapse",
+          attrs: { "data-parent": "#accordion", id: "collapseOne3" }
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
+            )
+          ])
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header", attrs: { id: "headingFour" } }, [
+        _c(
+          "button",
+          {
+            staticClass: "text-left m-0 p-0 btn btn-link btn-block",
+            attrs: {
+              type: "button",
+              "data-toggle": "collapse",
+              "data-target": "#collapseOne4",
+              "aria-expanded": "false",
+              "aria-controls": "collapseFour"
+            }
+          },
+          [_c("h5", { staticClass: "m-0 p-0" }, [_vm._v("Comentarios")])]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "collapse",
+          attrs: { "data-parent": "#accordion", id: "collapseOne4" }
+        },
+        [
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa\n                                nesciunt\n                                laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt\n                                sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable\n                                VHS.\n                            "
+            )
+          ])
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/crearCita.vue?vue&type=template&id=141d4fb0& ***!
@@ -53268,7 +54372,24 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "app-main__outer" }, [
     _c("div", { staticClass: "app-main__inner" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "app-page-title" }, [
+        _c("div", { staticClass: "page-title-wrapper" }, [
+          _c("div", { staticClass: "page-title-heading" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", [
+              _vm._v("Citas\n                        "),
+              _c("div", { staticClass: "page-title-subheading" }, [
+                _vm._v(
+                  "Listado de citas " +
+                    _vm._s(this.texto) +
+                    ".\n                        "
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
@@ -53278,21 +54399,397 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "table-responsive" }, [
-              _c(
-                "div",
-                { staticClass: "datable", attrs: { id: "example1" } },
-                [
-                  _c(
-                    "data-table",
-                    _vm._b(
-                      { on: { actionTriggered: _vm.handleAction } },
-                      "data-table",
-                      _vm.parametersTable1,
-                      false
-                    )
+              this.$route.params.mis == 1
+                ? _c(
+                    "div",
+                    { staticClass: "datable", attrs: { id: "example1" } },
+                    [
+                      _c(
+                        "data-table",
+                        _vm._b(
+                          { on: { actionTriggered: _vm.handleAction } },
+                          "data-table",
+                          _vm.parametersTable1,
+                          false
+                        )
+                      )
+                    ],
+                    1
                   )
+                : _vm._e(),
+              _vm._v(" "),
+              this.$route.params.mis == 2
+                ? _c(
+                    "div",
+                    { staticClass: "datable", attrs: { id: "example1" } },
+                    [
+                      _c(
+                        "data-table",
+                        _vm._b(
+                          { on: { actionTriggered: _vm.handleAction } },
+                          "data-table",
+                          _vm.parametersTable2,
+                          false
+                        )
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-title-icon" }, [
+      _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-main__outer" }, [
+    _c("div", { staticClass: "app-main__inner" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("h5", { staticClass: "card-title" }, [_vm._v("Receta")]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              staticClass: "needs-validation",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.addMedi($event)
+                }
+              }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.receta.idCita,
+                    expression: "receta.idCita"
+                  }
                 ],
-                1
+                staticClass: "form-control",
+                attrs: { type: "text", hidden: "" },
+                domProps: { value: _vm.receta.idCita },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.receta, "idCita", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Medicamento:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.receta.idMedicamento,
+                          expression: "receta.idMedicamento"
+                        }
+                      ],
+                      staticClass: "form-control col-md-6 col-sm-6",
+                      attrs: { type: "text", required: "" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.receta,
+                            "idMedicamento",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.medicamentos, function(medicamento) {
+                      return _c(
+                        "option",
+                        {
+                          key: medicamento.id,
+                          attrs: { selected: "" },
+                          domProps: { value: medicamento.id }
+                        },
+                        [_vm._v(_vm._s(medicamento.nombre))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\r\n                                    Looks good!\r\n                                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Dosis")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.receta.dosis,
+                        expression: "receta.dosis"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder:
+                        "Describa la dosis en la que se tomara el medicamento",
+                      required: ""
+                    },
+                    domProps: { value: _vm.receta.dosis },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.receta, "dosis", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\r\n                                    Looks good!\r\n                                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Frecuencia")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.receta.frecuencia,
+                        expression: "receta.frecuencia"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Describa la frecuencia",
+                      required: ""
+                    },
+                    domProps: { value: _vm.receta.frecuencia },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.receta, "frecuencia", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\r\n                                    Looks good!\r\n                                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Duración")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.receta.duracion,
+                        expression: "receta.duracion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Describa la duracion del tratamiento",
+                      required: ""
+                    },
+                    domProps: { value: _vm.receta.duracion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.receta, "duracion", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\r\n                                    Looks good!\r\n                                "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 mb-3" }, [
+                  _c("label", { attrs: { for: "validationCustom01" } }, [
+                    _vm._v("Via Administracion")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.receta.viaAdministracion,
+                        expression: "receta.viaAdministracion"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Describa la via donde se administrara",
+                      required: ""
+                    },
+                    domProps: { value: _vm.receta.viaAdministracion },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.receta,
+                          "viaAdministracion",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "valid-feedback" }, [
+                    _vm._v(
+                      "\r\n                                    Looks good!\r\n                                "
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "d-block text-center card-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-wide btn btn-warning",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.salir()
+                      }
+                    }
+                  },
+                  [_vm._v("Salir")]
+                ),
+                _vm._v(" "),
+                _c("button", { staticClass: "btn-wide btn btn-success" }, [
+                  _vm._v("Registrar")
+                ])
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "main-card mb-3 card" }, [
+        _c("div", { staticClass: "form-row" }, [
+          _c("div", { staticClass: "col-md-12 mb-3" }, [
+            _c("table", { staticClass: "mb-0 table table-borderless" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.receta2, function(re) {
+                  return _c("tr", { key: re.id }, [
+                    _c("td", {
+                      domProps: { textContent: _vm._s(re.nombremedicamento) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", { domProps: { textContent: _vm._s(re.percio) } }),
+                    _vm._v(" "),
+                    _c("td", { domProps: { textContent: _vm._s(re.dosis) } }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(re.frecuencia) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(re.viaAdministracion) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", { domProps: { textContent: _vm._s(re.duracion) } })
+                  ])
+                }),
+                0
               )
             ])
           ])
@@ -53314,12 +54811,34 @@ var staticRenderFns = [
           ]),
           _vm._v(" "),
           _c("div", [
-            _vm._v("Citas\n                        "),
+            _vm._v("Receta\r\n                            "),
             _c("div", { staticClass: "page-title-subheading" }, [
-              _vm._v("Listado de citas.\n                        ")
+              _vm._v(
+                "Esta creando una receta, en la parte de abajo se listaran los medicamentos que le vaya recetando.\r\n                            "
+              )
             ])
           ])
         ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Dosis")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Frecuencia")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Via")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Duracion")])
       ])
     ])
   }
@@ -57958,12 +59477,43 @@ var render = function() {
                       [
                         _c(
                           "router-link",
-                          { attrs: { to: { name: "vermiscitas" } } },
+                          {
+                            attrs: {
+                              to: { name: "vermiscitas", params: { mis: 1 } }
+                            }
+                          },
                           [
                             _c("i", {
                               staticClass: "metismenu-icon pe-7s-rocket"
                             }),
-                            _vm._v(" Mis citas\n                        ")
+                            _vm._v(
+                              " Citas sin atender\n                        "
+                            )
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                this.$cookies.get("tipo") == 2
+                  ? _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: { name: "vermiscitas", params: { mis: 2 } }
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "metismenu-icon pe-7s-rocket"
+                            }),
+                            _vm._v(
+                              " Historial de Citas\n                        "
+                            )
                           ]
                         )
                       ],
@@ -73588,6 +75138,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_citas_indexCitas_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/citas/indexCitas.vue */ "./resources/js/components/citas/indexCitas.vue");
 /* harmony import */ var _components_citas_editarCita_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/citas/editarCita.vue */ "./resources/js/components/citas/editarCita.vue");
 /* harmony import */ var _components_citas_miscitas_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./components/citas/miscitas.vue */ "./resources/js/components/citas/miscitas.vue");
+/* harmony import */ var _components_citas_consulta_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./components/citas/consulta.vue */ "./resources/js/components/citas/consulta.vue");
+/* harmony import */ var _components_citas_recetaMedicamento_vue__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./components/citas/recetaMedicamento.vue */ "./resources/js/components/citas/recetaMedicamento.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -73674,6 +75226,9 @@ Vue.config.productionTip = false; //Importamos los componentes que tenemos
  //contiene el formularo para editar
 
  //Contiene la tabla de mis citas para cada doc
+
+ //vista para hacer la consulta del paciente
+
 
 Vue.component('nav-component', __webpack_require__(/*! ./components/sidebar.vue */ "./resources/js/components/sidebar.vue")["default"]);
 Vue.component('cal-component', __webpack_require__(/*! ./components/calendario.vue */ "./resources/js/components/calendario.vue")["default"]); //Se crea el catalogo de rutas para cada compoente que tenemos
@@ -73787,8 +75342,16 @@ var routes = [{
   component: _components_citas_editarCita_vue__WEBPACK_IMPORTED_MODULE_32__["default"]
 }, {
   name: 'vermiscitas',
-  path: '/Alex/1730091-TAW-42/expedientes/public/miscitas/:id',
+  path: '/Alex/1730091-TAW-42/expedientes/public/miscita/:mis',
   component: _components_citas_miscitas_vue__WEBPACK_IMPORTED_MODULE_33__["default"]
+}, {
+  name: 'verconsulta',
+  path: '/Alex/1730091-TAW-42/expedientes/public/consulta/:id/:idcita',
+  component: _components_citas_consulta_vue__WEBPACK_IMPORTED_MODULE_34__["default"]
+}, {
+  name: 'receta',
+  path: '/Alex/1730091-TAW-42/expedientes/public/consulta/:idcita',
+  component: _components_citas_recetaMedicamento_vue__WEBPACK_IMPORTED_MODULE_35__["default"]
 }];
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -74112,6 +75675,75 @@ component.options.__file = "resources/js/components/calendario.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/citas/consulta.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/citas/consulta.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./consulta.vue?vue&type=template&id=07833eaf& */ "./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf&");
+/* harmony import */ var _consulta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./consulta.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/consulta.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _consulta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/consulta.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/consulta.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/citas/consulta.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_consulta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./consulta.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/consulta.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_consulta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./consulta.vue?vue&type=template&id=07833eaf& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/consulta.vue?vue&type=template&id=07833eaf&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_consulta_vue_vue_type_template_id_07833eaf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/citas/crearCita.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/citas/crearCita.vue ***!
@@ -74383,6 +76015,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_miscitas_vue_vue_type_template_id_01751c43___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/recetaMedicamento.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/citas/recetaMedicamento.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./recetaMedicamento.vue?vue&type=template&id=8d4c176c& */ "./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c&");
+/* harmony import */ var _recetaMedicamento_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./recetaMedicamento.vue?vue&type=script&lang=js& */ "./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _recetaMedicamento_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/citas/recetaMedicamento.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_recetaMedicamento_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./recetaMedicamento.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/recetaMedicamento.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_recetaMedicamento_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./recetaMedicamento.vue?vue&type=template&id=8d4c176c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/citas/recetaMedicamento.vue?vue&type=template&id=8d4c176c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_recetaMedicamento_vue_vue_type_template_id_8d4c176c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

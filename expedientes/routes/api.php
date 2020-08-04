@@ -77,4 +77,8 @@ Route::delete('/cita/delete/{id}', 'citasController@destroy');
 Route::get('/cita', 'citasController@index');
 
 Route::get('/miscitas/{id}', 'citasController@miscitas');
+Route::get('/miscitas2/{id}', 'citasController@miscitas2');
+
+Route::get('/receta/{id}', 'citasController@recetasCitas');
+Route::post('/receta/create', 'citasController@guardarReceta');
 //Route::post('/expediente/create', 'pacientesController@storeE');

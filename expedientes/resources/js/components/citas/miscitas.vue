@@ -9,7 +9,7 @@
                             </i>
                         </div>
                         <div>Citas
-                            <div class="page-title-subheading">Listado de citas.
+                            <div class="page-title-subheading">Listado de citas {{this.texto}}.
                             </div>
                         </div>
                     </div>    
@@ -21,9 +21,13 @@
                         <div class="card-header">Citas
                         </div>
                         <div class="table-responsive">
-                            <div id="example1" class="datable">
+                            <div v-if="this.$route.params.mis==1" id="example1" class="datable">
                                 <!--Se manda llamar el datatable con las configuraciones y seteamos metodo que catpura las acciones-->
                                 <data-table v-bind="parametersTable1" @actionTriggered="handleAction"/>
+                            </div>
+                            <div v-if="this.$route.params.mis==2" id="example1" class="datable">
+                                <!--Se manda llamar el datatable con las configuraciones y seteamos metodo que catpura las acciones-->
+                                <data-table v-bind="parametersTable2" @actionTriggered="handleAction"/>
                             </div>
                         </div>
                         <!--<div class="d-block text-center card-footer">
@@ -45,6 +49,7 @@
             return {
                 //Array donde se guardarna los datos de la bd
                 citas: [],
+                texto: ""
             }
         },
         computed:{
@@ -58,7 +63,6 @@
                     //Las sig. dos lineas son estilos
                     tableClass: "table table-striped", 
                     tableWrapper: "data-table-wrapper",
-                    actions: ["edit", "delete"], //Acciones que tendra el datatable
                     //Corregimos los textos que veian por defecto en el idioma
                     text: {
                         searchText: "Buscar:",
@@ -67,8 +71,36 @@
                     //Los identificadores que tendra la columna
                     columnKeys: [
                         "id",
-                        "fecha",
                         "idPaciente",
+                        "fecha",
+                        "nombre",
+                        "apellidos",
+                        "observaciones",
+                        "telefono",
+                        
+                    ]
+                };
+            },
+            parametersTable2(){
+                return {
+                    data: this.citas, //Array que se cargara
+                    lang: "es", //Asignamos el idioma
+                    actionMode: "multiple", //Columna individual paa cada accion
+                    showDownloadButton: false, //Descarga de la tabla(da errores por eso se desactiva)
+                    //Las sig. dos lineas son estilos
+                    tableClass: "table table-striped", 
+                    tableWrapper: "data-table-wrapper",
+                    actions: ["edit", "delete"], //acciones que tendra el datatable
+                    //Corregimos los textos que veian por defecto en el idioma
+                    text: {
+                        searchText: "Buscar:",
+                        paginationSearchButtonText: "Ir"
+                    },
+                    //Los identificadores que tendra la columna
+                    columnKeys: [
+                        "id",
+                        "idPaciente",
+                        "fecha",
                         "nombre",
                         "apellidos",
                         "observaciones",
@@ -81,11 +113,31 @@
         //Se ejecuta una cuando se crea el componente
         created() {
             this.cargar();
+        },watch: {
+            $route(to, from) {
+            // react to route changes...
+                if(this.$route.params.mis==1){
+
+                    this.texto = " sin atender";
+                }else{
+                    this.texto= " atendidas"
+
+                }
+                this.cargar()
+            }
         },
         methods: { 
             cargar(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas/${this.$cookies.get('id')}`;
+                let uri
+                console.log(this.$route.params.mis)
+                if(this.$route.params.mis==1){
+                     this.texto = " sin atender";
+                    uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas/${this.$cookies.get('id')}`;
+                }else{
+                    uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/miscitas2/${this.$cookies.get('id')}`;
+                    this.texto= " atendidas"
+                }
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
                     this.citas = response.data;
@@ -98,6 +150,9 @@
                  switch(actionName) { //Verificamos que accion se presiono
                     case "edit":
                         this.$router.push({name: 'editcita', params: { id: data.id } }); //va a la ventana de edicion
+                        break;
+                    case "view":
+                        this.$router.push({name: 'verconsulta', params: { id: data.idPaciente, idcita: data.id }}); //va al expediente de la persona
                         break;
                     case "delete":
                         this.deletePaciente(data.id); //borra el regisro
