@@ -172,7 +172,7 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verComentarios($id){
-        $paciente = ExpedienteComentario::join('expedientes', 'expedientes.id', '=', 'expedientecomentarios.idExpediente')->join('users', 'users.id', '=', 'expedientecomentarios.idMedico')->select('expedientecomentarios.comentario', 'expedientecomentarios.created_at AS fecha','users.name AS nombre','users.apellidos AS apellidos','expedientecomentarios.id')->where("expedientes.id","=",$id)->orderBy('expedientecomentarios.created_At','ASC')->get();
+        $paciente = ExpedienteComentario::join('expedientes', 'expedientes.id', '=', 'expedientecomentarios.idExpediente')->join('users', 'users.id', '=', 'expedientecomentarios.idMedico')->select('expedientecomentarios.comentario', 'expedientecomentarios.created_at AS fecha','users.name AS nombre','users.apellidos AS apellidos','expedientecomentarios.id')->where("expedientes.idPaciente","=",$id)->orderBy('expedientecomentarios.created_At','ASC')->get();
         return $paciente;  //Regresa padeicmientos
     }
 
@@ -183,7 +183,7 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function verHistorialCitas($id){
-        $paciente = Expediente::join('citas', 'citas.idExpediente', '=', 'expedientes.id')->select('citas.fechaAsignada AS fecha','citas.observaciones AS observaciones','citas.id')->where("expedientes.id","=",$id)->where('estadoCita',2)->orderBy('citas.fechaAsignada','ASC')->get();
+        $paciente = Expediente::join('citas', 'citas.idExpediente', '=', 'expedientes.id')->select('citas.fechaAsignada AS fecha','citas.observaciones AS observaciones','citas.id')->where("expedientes.idPaciente","=",$id)->where('estadoCita',2)->orderBy('citas.fechaAsignada','ASC')->get();
         return $paciente;  //Regresa padeicmientos
     }
 
