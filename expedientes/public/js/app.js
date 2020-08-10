@@ -11359,7 +11359,7 @@ __webpack_require__.r(__webpack_exports__);
           paginationSearchButtonText: "Ir"
         },
         //Los identificadores que tendra la columna
-        columnKeys: ["id", "nombremedico", "apellidosmedico", "expediente"]
+        columnKeys: ["id", "nombremedico", "apellidosmedico", "paciente"]
       };
     }
   },

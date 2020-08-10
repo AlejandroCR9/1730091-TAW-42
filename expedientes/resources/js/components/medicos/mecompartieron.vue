@@ -69,7 +69,7 @@
                     "id",
                     "nombremedico",
                     "apellidosmedico",
-                    "expediente",
+                    "paciente",
                     ]
                 };
             }

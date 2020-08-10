@@ -251,7 +251,7 @@ class pacientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function mecompartieron($id){
-        $pacientes=ExpedienteCompartido::join('expedientes', 'expedientescompartidos.idExpediente', '=', 'expedientes.id')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('expedientescompartidos.id','expedientescompartidos.idExpediente AS expediente','users.name AS nombremedico','users.apellidos AS apellidosmedico')->where("expedientescompartidos.idMedico","=",$id)->get();
+        $pacientes=ExpedienteCompartido::join('expedientes', 'expedientescompartidos.idExpediente', '=', 'expedientes.id')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('expedientescompartidos.id','expedientes.idPaciente AS paciente','users.name AS nombremedico','users.apellidos AS apellidosmedico')->where("expedientescompartidos.idMedico","=",$id)->get();
         return $pacientes; //Regresa esos registros
     }
 }
