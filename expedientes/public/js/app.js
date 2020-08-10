@@ -12180,8 +12180,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     this.axios.get(uri).then(function (response) {
       _this.historialcitas = response.data;
-      console.log(Object.keys(_this.historialcitas));
-      console.log(_this.historialcitas.observaciones);
     }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
     uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico"; //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
@@ -12286,8 +12284,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/compartir';
+      console.log("a" + this.paciente.idExpediente);
+      console.log("a" + m);
       this.axios.post(uri, {
-        "idExpediente": this.$route.params.id,
+        "idExpediente": this.paciente.idExpediente,
         "idMedico": m
       }).then(function (response) {
         if (response.data == "error") {

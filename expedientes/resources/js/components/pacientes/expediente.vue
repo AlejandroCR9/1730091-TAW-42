@@ -256,8 +256,6 @@
             //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
             this.axios.get(uri).then(response => {
                 this.historialcitas = response.data;
-                console.log(Object.keys(this.historialcitas))
-                console.log(this.historialcitas.observaciones)
             });
 
             //Url directa del metodo en laravel que me obtiene valores de la bd
@@ -336,7 +334,9 @@
             //Metodo para que registra el expediente que se va a compartir
             guardarCompartido(m){
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/compartir';
-                    this.axios.post(uri, { "idExpediente": this.$route.params.id, "idMedico": m }).then((response) => {
+                    console.log("a"+this.paciente.idExpediente)
+                    console.log("a"+m)
+                    this.axios.post(uri, { "idExpediente": this.paciente.idExpediente, "idMedico": m }).then((response) => {
                         if(response.data=="error"){
                             this.$swal.fire({ //En caso de que el expediente ya este compartido con esa persona
                                 title: 'Error',
