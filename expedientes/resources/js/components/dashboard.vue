@@ -32,10 +32,12 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-3 widget-content bg-arielle-smile">
                         <div class="widget-content-wrapper text-white">
+                            <!--Muestra el recuento informativo para el admin-->
                             <div class="widget-content-left" v-if="this.$cookies.get('tipo') == 1">
                                 <div class="widget-heading">Secretarias</div>
                                 <div class="widget-subheading">Total de Secretarias</div>
                             </div>
+                            <!--Muestra el recuento informativo para el medico-->
                             <div class="widget-content-left" v-if="this.$cookies.get('tipo') == 2">
                                 <div class="widget-heading">Citas Totales</div>
                                 <div class="widget-subheading">Total de Citas</div>
@@ -49,10 +51,12 @@
                 <div class="col-md-6 col-xl-4">
                     <div class="card mb-3 widget-content bg-grow-early">
                         <div class="widget-content-wrapper text-white">
+                            <!--Muestra el recuento informativo para el admin-->
                             <div class="widget-content-left" v-if="this.$cookies.get('tipo') == 1">
                                 <div class="widget-heading">Médicos</div>
                                 <div class="widget-subheading">Total de Medicos</div>
                             </div>
+                            <!--Muestra el recuento informativo para el medico-->
                             <div class="widget-content-left" v-if="this.$cookies.get('tipo') == 2">
                                 <div class="widget-heading">Citas</div>
                                 <div class="widget-subheading">Citas Pendientes</div>
@@ -92,47 +96,49 @@
         methods:{
              cargar(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantpacientes`;
+                let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantpacientes`;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
                     this.cant1 = response.data;
                 });
 
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmedicos`;
-                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-                this.axios.get(uri).then(response => {
-                    this.cant3 = response.data;
-                });
-
-                //Url directa del metodo en laravel que me obtiene valores de la bd
-                uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantsecretarias`;
+                uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantsecretarias`;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
                     this.cant2 = response.data;
                 });
+
+                //Url directa del metodo en laravel que me obtiene valores de la bd
+                uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmedicos`;
+                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+                this.axios.get(uri).then(response => {
+                    this.cant3 = response.data;
+                });
+                
             },
             cargar2(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                let uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmispacientes/${this.$cookies.get('id')}`;
+                let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmispacientes/${this.$cookies.get('id')}`;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
                     this.cant1 = response.data;
                 });
 
                 //Url directa del metodo en laravel que me obtiene valores de la bd
-                uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitas/${this.$cookies.get('id')}`;
+                uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitastotales/${this.$cookies.get('id')}`;
+                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+                this.axios.get(uri).then(response => {
+                    this.cant2 = response.data;
+                });
+
+                //Url directa del metodo en laravel que me obtiene valores de la bd
+                uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitas/${this.$cookies.get('id')}`;
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
                 this.axios.get(uri).then(response => {
                     this.cant3 = response.data;
                 });
 
-                //Url directa del metodo en laravel que me obtiene valores de la bd
-                uri = `http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitastotales/${this.$cookies.get('id')}`;
-                //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-                this.axios.get(uri).then(response => {
-                    this.cant2 = response.data;
-                });
             }
 
         }

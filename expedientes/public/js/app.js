@@ -10335,6 +10335,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -10359,44 +10363,44 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantpacientes"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantpacientes"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.cant1 = response.data;
       }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-      uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmedicos"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-
-      this.axios.get(uri).then(function (response) {
-        _this.cant3 = response.data;
-      }); //Url directa del metodo en laravel que me obtiene valores de la bd
-
-      uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantsecretarias"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantsecretarias"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this.cant2 = response.data;
+      }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+      uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmedicos"; //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this.cant3 = response.data;
       });
     },
     cargar2: function cargar2() {
       var _this2 = this;
 
       //Url directa del metodo en laravel que me obtiene valores de la bd
-      var uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmispacientes/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this2.cant1 = response.data;
       }); //Url directa del metodo en laravel que me obtiene valores de la bd
 
-      uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
-
-      this.axios.get(uri).then(function (response) {
-        _this2.cant3 = response.data;
-      }); //Url directa del metodo en laravel que me obtiene valores de la bd
-
-      uri = "http://localhost/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitastotales/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+      uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitastotales/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
       this.axios.get(uri).then(function (response) {
         _this2.cant2 = response.data;
+      }); //Url directa del metodo en laravel que me obtiene valores de la bd
+
+      uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cantmiscitas/".concat(this.$cookies.get('id')); //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+      this.axios.get(uri).then(function (response) {
+        _this2.cant3 = response.data;
       });
     }
   }
