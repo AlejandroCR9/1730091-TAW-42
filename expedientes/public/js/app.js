@@ -12167,7 +12167,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }); //SE TRAE LOS COMENTARIOS QUE HA TENIDO EL EXPEDIENTE
     //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/".concat(this.paciente.idExpediente); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {
@@ -12175,7 +12175,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }); //SE TRAE LAS CITAS QUE HA TENIDO EL EXPEDIENTE
     //Url directa del metodo en laravel que me obtiene valores de la bd
 
-    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/historialcitas/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/historialcitas/".concat(this.paciente.idExpediente); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
     //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
 
     this.axios.get(uri).then(function (response) {

@@ -242,7 +242,7 @@
 
                 //SE TRAE LOS COMENTARIOS QUE HA TENIDO EL EXPEDIENTE
             //Url directa del metodo en laravel que me obtiene valores de la bd
-            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/${this.$route.params.id}`;
+            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/${this.paciente.idExpediente}`;
             //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
             //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
             this.axios.get(uri).then(response => {
@@ -251,7 +251,7 @@
 
             //SE TRAE LAS CITAS QUE HA TENIDO EL EXPEDIENTE
             //Url directa del metodo en laravel que me obtiene valores de la bd
-            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/historialcitas/${this.$route.params.id}`;
+            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/historialcitas/${this.paciente.idExpediente}`;
             //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
             //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
             this.axios.get(uri).then(response => {
