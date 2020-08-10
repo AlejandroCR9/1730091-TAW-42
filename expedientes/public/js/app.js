@@ -11389,7 +11389,7 @@ __webpack_require__.r(__webpack_exports__);
           this.$router.push({
             name: 'verexpediente',
             params: {
-              id: data.expediente
+              id: data.paciente
             }
           }); //va al expediente de la persona
 

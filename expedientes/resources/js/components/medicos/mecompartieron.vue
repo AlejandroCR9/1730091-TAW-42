@@ -93,7 +93,7 @@
                 console.log(data.id)
                  switch(actionName) { //Verificamos que accion se presiono
                     case "view":
-                        this.$router.push({name: 'verexpediente', params: { id: data.expediente }}); //va al expediente de la persona
+                        this.$router.push({name: 'verexpediente', params: { id: data.paciente }}); //va al expediente de la persona
                         break;
                 }
             },
