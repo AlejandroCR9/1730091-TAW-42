@@ -138,9 +138,9 @@ class pacientesController extends Controller
      */
     public function verExpediente($id){
         //Se trae la info del paciente y la de su expediente
-        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','expedientes.sexo','users.name AS medico','users.apellidos AS medico2','expedientes.idMedico AS idmedi','expedientes.id AS idExpediente')->where("expedientes.idPaciente","=",$id)->get();
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','expedientes.sexo','users.name AS medico','users.apellidos AS medico2','expedientes.idMedico AS idmedi','expedientes.id AS idExpediente')->where("expedientes.idPaciente","=",$id)->first();
         json_encode($paciente);
-        return $paciente[0];//se hace esto debido aque la consulta devuelve un array 
+        return $paciente;//se hace esto debido aque la consulta devuelve un array 
     }
 
     /**
