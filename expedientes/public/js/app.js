@@ -12284,8 +12284,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/compartir';
-      console.log("a" + this.paciente.idExpediente);
-      console.log("a" + m);
       this.axios.post(uri, {
         "idExpediente": this.paciente.idExpediente,
         "idMedico": m
@@ -12341,7 +12339,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/guardarcomentario';
       this.axios.post(uri, {
-        "idExpediente": this.$route.params.id,
+        "idExpediente": this.paciente.idExpediente,
         "idMedico": this.$cookies.get('id'),
         "comentario": this.coment.com
       }).then(function (response) {

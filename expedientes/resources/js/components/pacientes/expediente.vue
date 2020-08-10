@@ -334,8 +334,6 @@
             //Metodo para que registra el expediente que se va a compartir
             guardarCompartido(m){
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/compartir';
-                    console.log("a"+this.paciente.idExpediente)
-                    console.log("a"+m)
                     this.axios.post(uri, { "idExpediente": this.paciente.idExpediente, "idMedico": m }).then((response) => {
                         if(response.data=="error"){
                             this.$swal.fire({ //En caso de que el expediente ya este compartido con esa persona
@@ -387,7 +385,7 @@
             addCom(){
     
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/guardarcomentario';
-                this.axios.post(uri, { "idExpediente": this.$route.params.id, "idMedico": this.$cookies.get('id'), 
+                this.axios.post(uri, { "idExpediente": this.paciente.idExpediente, "idMedico": this.$cookies.get('id'), 
                 "comentario": this.coment.com }).then((response) => {
                     //Muestra el mensaje de exito en el servidor
                     this.$swal.fire(
