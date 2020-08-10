@@ -127,6 +127,25 @@
                                 <i class="metismenu-icon pe-7s-rocket"></i> Mis pacientes
                             </router-link>
                         </li>
+                        <li v-if="this.$cookies.get('tipo') == 2"> <!--Solo a los doctores se les comparten-->
+                            <a href="">
+                                <i class="metismenu-icon pe-7s-car"></i>
+                                 Expedientes compartidos
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li><!--Solo el doctor tiene pacientes asignados-->
+                                    <router-link :to="{name: 'miscompartidos'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Compartidos con otros
+                                    </router-link>
+                                </li>
+                                <li><!--Solo el doctor tiene pacientes asignados-->
+                                    <router-link :to="{name: 'mecompartieron'}">
+                                        <i class="metismenu-icon pe-7s-rocket"></i>Compartidos conmigo
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
                         <li v-if="this.$cookies.get('tipo') == 2"><!--Solo el doctor tiene pacientes asignados-->
                             <router-link :to="{name: 'vermiscitas' , params: { mis: 1 }}">
                                 <i class="metismenu-icon pe-7s-rocket"></i> Citas sin atender
@@ -211,7 +230,7 @@
     export default {
         
         mounted() {
-            console.log(this.$cookies.get("tipo")) //Cookie del tipo de usuario en sesion
+            //console.log() //Cookie del tipo de usuario en sesion
             console.log('Component mounted.')    
         }, methods: {
             

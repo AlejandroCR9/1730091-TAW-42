@@ -21,6 +21,7 @@ class medicosController extends Controller
         $medicos = User::where("tipo","=","2")->get(); //Trae todos los registro de la bd
         return $medicos; //Regresa esos registros
     }
+    
 
     /**
      * Create a new user instance after a valid registration.

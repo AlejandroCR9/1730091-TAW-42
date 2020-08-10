@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Paciente;
 use App\Expediente;
+use App\ExpedienteCompartido;
+use App\ExpedienteComentario;
+
 class pacientesController extends Controller
 {
     /**
@@ -135,7 +138,7 @@ class pacientesController extends Controller
      */
     public function verExpediente($id){
         //Se trae la info del paciente y la de su expediente
-        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','expedientes.sexo','users.name AS medico','users.apellidos AS medico2')->where("expedientes.idPaciente","=",$id)->get();
+        $paciente = Paciente::join('expedientes', 'pacientes.id', '=', 'expedientes.idPaciente')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('pacientes.nombre','pacientes.apellidos', 'pacientes.fecha_nacimiento','pacientes.telefono','expedientes.sexo','users.name AS medico','users.apellidos AS medico2','expedientes.idMedico AS idmedi')->where("expedientes.idPaciente","=",$id)->get();
         json_encode($paciente);
         return $paciente[0];//se hace esto debido aque la consulta devuelve un array 
     }
@@ -162,4 +165,93 @@ class pacientesController extends Controller
         return $paciente;  //Regresa padeicmientos
     }
 
+    /**
+     * Show the info from the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verComentarios($id){
+        $paciente = ExpedienteComentario::join('expedientes', 'expedientes.id', '=', 'expedientecomentarios.idExpediente')->join('users', 'users.id', '=', 'expedientecomentarios.idMedico')->select('expedientecomentarios.comentario', 'expedientecomentarios.created_at AS fecha','users.name AS nombre','users.apellidos AS apellidos','expedientecomentarios.id')->where("expedientes.id","=",$id)->orderBy('expedientecomentarios.created_At','ASC')->get();
+        return $paciente;  //Regresa padeicmientos
+    }
+
+    /**
+     * Show the info from the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verHistorialCitas($id){
+        $paciente = Expediente::join('citas', 'citas.idExpediente', '=', 'expedientes.id')->select('citas.fechaAsignada AS fecha','citas.observaciones AS observaciones','citas.id')->where("expedientes.id","=",$id)->where('estadoCita',2)->orderBy('citas.fechaAsignada','ASC')->get();
+        return $paciente;  //Regresa padeicmientos
+    }
+
+
+    //====================COMPARTIDOS
+    /**
+     * Store a resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function guardarCompartido(Request $request){
+        $comp= new ExpedienteCompartido();
+        if(ExpedienteCompartido::where('idMedico',$request->idMedico)->where('idExpediente',$request->idExpediente)->first()){
+            return 'error';
+        }else{
+            $comp->idExpediente=$request->idExpediente;
+            $comp->idMedico=$request->idMedico;
+            $comp->save();
+            return $comp;
+        }
+        
+    } 
+
+    /**
+     * Store a resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function guardarcomentario(Request $request){
+        $comp= new ExpedienteComentario();
+        $elim=ExpedienteCompartido::where('idMedico',$request->idMedico)->where('idExpediente',$request->idExpediente)->first();
+        $comp->idExpediente=$request->idExpediente;
+        $comp->idMedico=$request->idMedico;
+        $comp->comentario=$request->comentario;
+        $comp->save();
+        $elim->delete();
+        return $comp;
+    } 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function miscompartidos($id){
+        $pacientes=ExpedienteCompartido::join('expedientes', 'expedientescompartidos.idExpediente', '=', 'expedientes.id')->join('users', 'users.id', '=', 'expedientescompartidos.idMedico')->select('expedientescompartidos.id','users.name AS nombremedico','users.apellidos AS apellidosmedico','expedientescompartidos.idExpediente AS expediente')->where("expedientes.idMedico","=",$id)->get();
+        return $pacientes; //Regresa esos registros
+    }
+
+      /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function eliminarCompartido($id){
+        $com = ExpedienteCompartido::find($id); //Busca el paciente a eliminar
+        $com->delete(); //Borra el paciente encontrado
+        return $com;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function mecompartieron($id){
+        $pacientes=ExpedienteCompartido::join('expedientes', 'expedientescompartidos.idExpediente', '=', 'expedientes.id')->join('users', 'users.id', '=', 'expedientes.idMedico')->select('expedientescompartidos.id','expedientescompartidos.idExpediente AS expediente','users.name AS nombremedico','users.apellidos AS apellidosmedico')->where("expedientescompartidos.idMedico","=",$id)->get();
+        return $pacientes; //Regresa esos registros
+    }
 }

@@ -48,11 +48,14 @@ Route::post('/paciente/update/{id}', 'pacientesController@update');
 Route::delete('/paciente/delete/{id}', 'pacientesController@destroy');
 Route::get('/paciente', 'pacientesController@index');
 Route::get('/pu', 'pacientesController@ultimo');
+
 //==============RUTAS PARA EL EXPEDIENTE
 Route::get('/paciente/expediente/{id}', 'pacientesController@verExpediente');
 Route::get('/paciente/alergias/{id}', 'pacientesController@verAlergias');
 Route::get('/paciente/padecimientos/{id}', 'pacientesController@verPadecimientos');
 Route::get('/paciente/comentarios/{id}', 'pacientesController@verComentarios');
+Route::get('/paciente/historialcitas/{id}', 'pacientesController@verHistorialCitas');
+Route::post('/compartir', 'pacientesController@guardarCompartido');
 
 //================RUTAS Medicos
 Route::post('/medico/create', 'medicosController@create');
@@ -60,6 +63,12 @@ Route::get('/medico/edit/{id}', 'medicosController@edit');
 Route::post('/medico/update/{id}', 'medicosController@update');
 Route::delete('/medico/delete/{id}', 'medicosController@destroy');
 Route::get('/medico', 'medicosController@index');
+
+
+Route::get('/miscompartidos/{id}', 'pacientesController@miscompartidos');
+Route::delete('/miscompartidos/delete/{id}', 'pacientesController@eliminarCompartido');
+Route::post('/guardarcomentario', 'pacientesController@guardarcomentario');
+Route::get('/mecompartieron/{id}', 'pacientesController@mecompartieron');
 
 Route::get('/mispacientes/{id}', 'pacientesController@mispacientes');
 //================RUTAS SECRE
@@ -82,3 +91,13 @@ Route::get('/miscitas2/{id}', 'citasController@miscitas2');
 Route::get('/receta/{id}', 'citasController@recetasCitas');
 Route::post('/receta/create', 'citasController@guardarReceta');
 //Route::post('/expediente/create', 'pacientesController@storeE');
+
+
+//====================DASHBOARD
+Route::get('/cantpacientes', 'dashboardController@cantPacientes');
+Route::get('/cantmedicos', 'dashboardController@cantMedicos');
+Route::get('/cantsecretarias', 'dashboardController@cantSecretarias');
+
+Route::get('/cantmispacientes/{id}', 'dashboardController@cantmispacientes');
+Route::get('/cantmiscitas/{id}', 'dashboardController@cantmiscitas');
+Route::get('/cantmiscitastotales/{id}', 'dashboardController@cantmiscitastotales');

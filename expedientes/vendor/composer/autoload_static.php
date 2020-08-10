@@ -486,8 +486,11 @@ class ComposerStaticInit7b79d34db5ff1b9ecca28760ad536aee
 
     public static $classMap = array (
         'App\\Alergia' => __DIR__ . '/../..' . '/app/Alergia.php',
+        'App\\Cita' => __DIR__ . '/../..' . '/app/Cita.php',
+        'App\\CitasMedicamento' => __DIR__ . '/../..' . '/app/CitasMedicamento.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Expediente' => __DIR__ . '/../..' . '/app/Expediente.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -497,6 +500,7 @@ class ComposerStaticInit7b79d34db5ff1b9ecca28760ad536aee
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\alergiasController' => __DIR__ . '/../..' . '/app/Http/Controllers/alergiasController.php',
+        'App\\Http\\Controllers\\citasController' => __DIR__ . '/../..' . '/app/Http/Controllers/citasController.php',
         'App\\Http\\Controllers\\medicamentosController' => __DIR__ . '/../..' . '/app/Http/Controllers/medicamentosController.php',
         'App\\Http\\Controllers\\medicosController' => __DIR__ . '/../..' . '/app/Http/Controllers/medicosController.php',
         'App\\Http\\Controllers\\pacientesController' => __DIR__ . '/../..' . '/app/Http/Controllers/pacientesController.php',

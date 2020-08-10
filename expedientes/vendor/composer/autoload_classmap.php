@@ -7,8 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Alergia' => $baseDir . '/app/Alergia.php',
+    'App\\Cita' => $baseDir . '/app/Cita.php',
+    'App\\CitasMedicamento' => $baseDir . '/app/CitasMedicamento.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Expediente' => $baseDir . '/app/Expediente.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -18,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\alergiasController' => $baseDir . '/app/Http/Controllers/alergiasController.php',
+    'App\\Http\\Controllers\\citasController' => $baseDir . '/app/Http/Controllers/citasController.php',
     'App\\Http\\Controllers\\medicamentosController' => $baseDir . '/app/Http/Controllers/medicamentosController.php',
     'App\\Http\\Controllers\\medicosController' => $baseDir . '/app/Http/Controllers/medicosController.php',
     'App\\Http\\Controllers\\pacientesController' => $baseDir . '/app/Http/Controllers/pacientesController.php',

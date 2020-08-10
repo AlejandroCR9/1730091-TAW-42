@@ -69,6 +69,9 @@ import CreateMedicoComponent from './components/medicos/crearMedico.vue'; //Cont
 import ViewMedicoComponent from './components/medicos/indexMedico.vue';//Contiene la tabla de doc
 import EditMedicoComponent from './components/medicos/editarMedico.vue'; //contiene el formularo para editar
 
+import ViewMisCompartidos from './components/pacientes/expcompartidos.vue'; //contiene el formularo para editar
+import ViewMeCompartieron from './components/medicos/mecompartieron.vue'; //contiene el formularo para editar
+
 //CITAS
 import CreateCitaComponent from './components/citas/crearCita.vue'; //Contiene el formulario para crear nuevos registros
 import ViewCitaComponent from './components/citas/indexCitas.vue';//Contiene la tabla de citas
@@ -221,6 +224,16 @@ const routes = [
         name: 'receta',
         path: '/Alex/1730091-TAW-42/expedientes/public/consulta/:idcita',
         component: CreateRecetaComponent
+    },
+    {
+        name: 'miscompartidos',
+        path: '/Alex/1730091-TAW-42/expedientes/public/miscompartidos',
+        component: ViewMisCompartidos
+    },
+    {
+        name: 'mecompartieron',
+        path: '/Alex/1730091-TAW-42/expedientes/public/listacompartidos',
+        component: ViewMeCompartieron
     }
   ];
 
