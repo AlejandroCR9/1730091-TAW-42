@@ -8791,6 +8791,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
+      //Evita el acceo de otro que no sea el admin
       this.$router.go(-1);
     }
   },
@@ -8801,21 +8802,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addAlergia: function addAlergia() {
       var _this = this;
 
@@ -8826,6 +8812,8 @@ __webpack_require__.r(__webpack_exports__);
           name: 'veralergia'
         }); //vuelve a renderizar la tabla a la vista de la tabla
 
+
+        _this.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
       });
     }
   }
@@ -8897,7 +8885,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Evita el acceso de otro usuario que no sea el admin
     }
   },
   data: function data() {
@@ -8909,33 +8897,21 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    //Solitud para ver que info es la que se eidtara
     var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.alergia = response.data;
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     updateAlergia: function updateAlergia() {
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.alergia).then(function (response) {
+        _this2.$swal.fire('¡Exito!', 'Se modifico correctamente', 'success');
+
         _this2.$router.push({
           name: 'veralergia'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -9054,12 +9030,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.alergias = response.data;
       });
     },
+    //Metodo que recibe que accion se esta haciendo con el registro
     handleAction: function handleAction(actionName, data) {
       console.log(actionName, data);
       console.log(data.id);
 
       switch (actionName) {
         case "edit":
+          //Si es editar redirige a la vista
           this.$router.push({
             name: 'editalergia',
             params: {
@@ -9069,9 +9047,11 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "delete":
+          //Si es borrar pide confiramcion antes de hhacerlo
           this.confirmar(data.id);
       }
     },
+    //Funcion que desplega una alerta para verigicar si esta seguro de su accion
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -9085,6 +9065,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se presiono continuar se elimina
           _this2.deleteAlergia(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
@@ -9234,42 +9215,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -9277,6 +9222,8 @@ __webpack_require__.r(__webpack_exports__);
       paciente: {},
       consulta: {},
       cita: {},
+      comentariosexpediente: {},
+      //carga todos loc comentarios que le han hecho al paciente
       ale: {},
       //alergias
       pad: {},
@@ -9315,6 +9262,14 @@ __webpack_require__.r(__webpack_exports__);
 
     this.axios.get(uri).then(function (response) {
       _this.pad = response.data;
+    }); //SE TRAE LOS COMENTARIOS QUE HA TENIDO EL EXPEDIENTE
+    //Url directa del metodo en laravel que me obtiene valores de la bd
+
+    uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/".concat(this.$route.params.id); //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+    //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+
+    this.axios.get(uri).then(function (response) {
+      _this.comentariosexpediente = response.data;
     });
   },
   methods: {
@@ -9376,6 +9331,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+    //Metodo que pregunta si desea ir a recetar al paciente
     recetar: function recetar(id) {
       var _this3 = this;
 
@@ -9389,8 +9345,8 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se presiona continuar se marca como atendiada la consulta y redireige a la ventana
           _this3.band = "b";
-          console.log("ER" + _this3.band);
 
           _this3.addConsulta();
 
@@ -9525,21 +9481,7 @@ __webpack_require__.r(__webpack_exports__);
 
       return hoy.getFullYear() + "-" + mes + "-" + dia + "T00:00";
     },
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
+    //AÑADE LA CITA
     addCita: function addCita() {
       var _this2 = this;
 
@@ -9551,10 +9493,23 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data == "error") {
           alert("La fecha y hora ya estan registradas");
         } else {
-          _this2.$router.push({
-            name: 'vercita'
-          }); //vuelve a renderizar la tabla a la vista de la tabla
+          _this2.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
 
+          if (_this2.$cookies.get("tipo") != 2) {
+            //Si no es medico redirige a tdas las citas
+            _this2.$router.push({
+              name: 'vercita'
+            }); //vuelve a renderizar la tabla a la vista de la tabla
+
+          } else {
+            _this2.$router.push({
+              name: 'vermiscitas',
+              params: {
+                mis: 1
+              }
+            }); //vuelve a renderizar la tabla a la vista de la tabla
+
+          }
         }
       });
     }
@@ -9639,7 +9594,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       //NUestro array donde se almacena los datos
       cita: {},
-      pacientes: {}
+      //DAtos de la cita a modifica
+      pacientes: {} //Lstado de pacientes
+
     };
   },
   created: function created() {
@@ -9683,21 +9640,6 @@ __webpack_require__.r(__webpack_exports__);
 
       return hoy.getFullYear() + "-" + mes + "-" + dia + "T00:00";
     },
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     updateCita: function updateCita() {
       var _this2 = this;
 
@@ -9706,8 +9648,10 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.post(uri, this.cita).then(function (response) {
         //Si ya esciste la fecha y hora
         if (response.data == "error") {
-          alert("La fecha y hora ya estan registradas");
+          _this2.$swal.fire('¡Error!', 'La fecha ya esta seleccionada', 'warning');
         } else {
+          _this2.$swal.fire('¡Exito!', 'Se modifico correctamente', 'success');
+
           _this2.$router.push({
             name: 'vercita'
           }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -9848,6 +9792,7 @@ __webpack_require__.r(__webpack_exports__);
         //borra el regisro
       }
     },
+    //MEtodo que lanza una alerta para asegurarse de la accion del usuer
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -9861,12 +9806,14 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si presiona continuar se borra el registro
           _this2.deletePaciente(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
         }
       });
     },
+    //Envia solcutud para eliminar registro
     deletePaciente: function deletePaciente(id) {
       var _this3 = this;
 
@@ -10204,9 +10151,13 @@ __webpack_require__.r(__webpack_exports__);
     return {
       //NUestro array donde se almacena los datos
       receta: {},
+      //Datos a gurardad
       receta2: {},
+      //listado de medicamentos en rceta
       medicamentos: {},
-      band: "1"
+      //Listado de medicamentos
+      band: "1" //Indicador si hay medicamentos en la tabla
+
     };
   },
   //Se ejecuta una cuando se crea el componente
@@ -10231,6 +10182,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.receta2 = response.data;
       });
     },
+    //Añade nuevos medicamentos a la tabla de la receta
     addMedi: function addMedi() {
       var _this2 = this;
 
@@ -10260,6 +10212,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se termino de recetar
           _this3.$router.push({
             name: 'vermiscitas',
             params: {
@@ -10268,12 +10221,13 @@ __webpack_require__.r(__webpack_exports__);
           });
 
           if (_this3.band == "2") {
+            //Verifica que haya medicamentos en la abla
             var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a();
             doc.autoTable({
               theme: 'grid',
               html: '#mireceta'
             });
-            doc.save(name);
+            doc.save(name); //Genera el pdf
           }
         }
       });
@@ -10946,38 +10900,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Eviga el acceso de otros users
     }
   },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
-      medico: {},
-      ultimo: {}
+      medico: {} //Info del medico
+
     };
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addMedico: function addMedico() {
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/create';
       this.axios.post(uri, this.medico).then(function (response) {
+        _this.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
+
         _this.$router.push({
           name: 'vermedico'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -11095,14 +11036,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Evita el acceso a otro user
     }
   },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
-      medico: {},
-      ultimo: {}
+      medico: {}
     };
   },
   //Se ejecuta una cuando se crea el componente
@@ -11117,21 +11057,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     updateMedico: function updateMedico() {
       var _this2 = this;
 
@@ -11143,6 +11068,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.medico).then(function (response) {
+        _this2.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
+
         _this2.$router.push({
           name: 'vermedico'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -11282,9 +11209,12 @@ __webpack_require__.r(__webpack_exports__);
     this.cargar(); //carga la info de la bd
   },
   methods: {
+    //Genera el pdf de la tabla de medicos
     generarPDF: function generarPDF() {
-      var name = "listamedicos.pdf";
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a("landscape");
+      var name = "listamedicos.pdf"; //Nombre archivo
+
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a("landscape"); //Horizonatl
+
       doc.autoTable({
         theme: 'grid',
         html: '#medicos'
@@ -11323,6 +11253,7 @@ __webpack_require__.r(__webpack_exports__);
         //borra el regisro
       }
     },
+    //Confirma la accion de borrado antes de elimianr
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -11336,6 +11267,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si le dio en confrimar se elimina
           _this2.deleteMedico(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
@@ -11473,6 +11405,7 @@ __webpack_require__.r(__webpack_exports__);
           break;
       }
     },
+    //Confirma la accionn de borrado de registo del usuario
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -11486,6 +11419,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se preciono continuar se elimina
           _this2.deletePaciente(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
@@ -11622,7 +11556,9 @@ __webpack_require__.r(__webpack_exports__);
       //NUestro array donde se almacena los datos
       paciente: {},
       medicos: {},
-      ultimo: {}
+      //Lustado de medicoas
+      ultimo: {} //Ultimo id registrado
+
     };
   },
   //Se ejecuta una cuando se crea el componente
@@ -11645,21 +11581,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addPaciente: function addPaciente() {
       var _this2 = this;
 
@@ -11787,7 +11708,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11804,21 +11724,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addPaciente: function addPaciente() {
       var _this2 = this;
 
@@ -11999,6 +11904,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -12563,6 +12469,7 @@ __webpack_require__.r(__webpack_exports__);
         //borra el regisro
       }
     },
+    //Acciona alerta antes de eliminar un registro 
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -12576,6 +12483,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se presiiona continunar se elimina
           _this2.deletePaciente(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
@@ -12870,7 +12778,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Evita acceso por parte de cierto usuario
     }
   },
   data: function data() {
@@ -12880,27 +12788,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addPadecimiento: function addPadecimiento() {
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/create';
       this.axios.post(uri, this.padecimiento).then(function (response) {
+        _this.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
+
         _this.$router.push({
           name: 'verpadecimiento'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -12976,7 +12871,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") != 1) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Evita el acceso a la vista por parte de ciertos usaurios
     }
   },
   data: function data() {
@@ -12988,33 +12883,21 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    //Solicurd de la infromacion a edirar
     var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/edit/".concat(this.$route.params.id);
     this.axios.get(uri).then(function (response) {
       _this.padecimiento = response.data;
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     updatePadecimiento: function updatePadecimiento() {
       var _this2 = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/padecimiento/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.padecimiento).then(function (response) {
+        _this2.$swal.fire('¡Exito!', 'Se modifico correctamente', 'success');
+
         _this2.$router.push({
           name: 'verpadecimiento'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -13133,12 +13016,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.padecimientos = response.data;
       });
     },
+    //controla las acciones en nuestro datatable
     handleAction: function handleAction(actionName, data) {
-      console.log(actionName, data);
-      console.log(data.id);
-
       switch (actionName) {
         case "edit":
+          //Si se presiona editar te manda a la vista de edicion
           this.$router.push({
             name: 'editpadecimiento',
             params: {
@@ -13148,9 +13030,11 @@ __webpack_require__.r(__webpack_exports__);
           break;
 
         case "delete":
+          //Si se preison  borrar se dispara la alerta de confiramcion
           this.confirmar(data.id);
       }
     },
+    //Envia alerta de confiramcion antes de borrar un regustro
     confirmar: function confirmar(id) {
       var _this2 = this;
 
@@ -13164,6 +13048,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Continuar'
       }).then(function (result) {
         if (result.value) {
+          //Si se preisono continuar se elimina el regsitro
           _this2.deletePadecimiento(id);
 
           _this2.$swal.fire('¡Borrado!', 'Se borro el registro', 'success');
@@ -13291,38 +13176,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") == 3) {
-      this.$router.go(-1);
+      this.$router.go(-1); //Evita el accieso de cierto usarip
     }
   },
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
-      secretaria: {},
-      ultimo: {}
+      secretaria: {}
     };
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     addSecretaria: function addSecretaria() {
       var _this = this;
 
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/create';
       this.axios.post(uri, this.secretaria).then(function (response) {
+        _this.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
+
         _this.$router.push({
           name: 'versecretaria'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -13446,8 +13317,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //NUestro array donde se almacena los datos
-      secretaria: {},
-      ultimo: {}
+      secretaria: {}
     };
   },
   //Se ejecuta una cuando se crea el componente
@@ -13461,21 +13331,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    validar: function validar() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation'); // Loop over them and prevent submission
-
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    },
     updateSecretaria: function updateSecretaria() {
       var _this2 = this;
 
@@ -13487,6 +13342,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.secretaria).then(function (response) {
+        _this2.$swal.fire('¡Exito!', 'Se modifico correctamente', 'success');
+
         _this2.$router.push({
           name: 'versecretaria'
         }); //vuelve a renderizar la tabla a la vista de la tabla
@@ -18432,7 +18289,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.datable{\r\n    padding: 32px;\n}\r\n", ""]);
+exports.push([module.i, "\n.datable{ \r\n    padding: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -57543,82 +57400,42 @@ var render = function() {
                   "div",
                   {
                     staticClass: "collapse",
-                    attrs: { "data-parent": "#accordion", id: "collapseOne2" }
+                    attrs: { "data-parent": "#accordion", id: "collapseOne4" }
                   },
                   [
-                    _c(
-                      "div",
-                      { staticClass: "card-body" },
-                      [
-                        _vm._m(10),
-                        _vm._v(" "),
-                        _vm._l(_vm.ale, function(a) {
-                          return _c(
-                            "div",
-                            { key: a.id, staticClass: "form-row" },
-                            [
-                              _c("div", [
-                                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "validationCustom01" } },
-                                    [_vm._v("Nombre: ")]
-                                  ),
-                                  _c("i", [_vm._v(" " + _vm._s(a.alergian))])
-                                ]),
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "table-responsive" }, [
+                        _c("table", { staticClass: "mb-0 table" }, [
+                          _vm._m(10),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(_vm.comentariosexpediente, function(c) {
+                              return _c("tr", { key: c.id }, [
+                                _c("td", {
+                                  domProps: {
+                                    textContent: _vm._s(
+                                      c.nombre + " " + c.apellidos
+                                    )
+                                  }
+                                }),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "validationCustom01" } },
-                                    [_vm._v("Descripción: ")]
-                                  ),
-                                  _c("i", [_vm._v(_vm._s(a.alergiades))])
-                                ])
-                              ])
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "card-body" },
-                      [
-                        _vm._m(11),
-                        _vm._v(" "),
-                        _vm._l(_vm.pad, function(p) {
-                          return _c(
-                            "div",
-                            { key: p.id, staticClass: "form-row" },
-                            [
-                              _c("div", [
-                                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "validationCustom01" } },
-                                    [_vm._v("Nombre: ")]
-                                  ),
-                                  _c("i", [_vm._v(" " + _vm._s(p.padn))])
-                                ]),
+                                _c("td", {
+                                  domProps: {
+                                    textContent: _vm._s(c.comentario)
+                                  }
+                                }),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-md-12 mb-3" }, [
-                                  _c(
-                                    "label",
-                                    { attrs: { for: "validationCustom01" } },
-                                    [_vm._v("Descripción: ")]
-                                  ),
-                                  _c("i", [_vm._v(_vm._s(p.paddes))])
-                                ])
+                                _c("td", {
+                                  domProps: { textContent: _vm._s(c.fecha) }
+                                })
                               ])
-                            ]
+                            }),
+                            0
                           )
-                        })
-                      ],
-                      2
-                    )
+                        ])
+                      ])
+                    ])
                   ]
                 )
               ])
@@ -57725,7 +57542,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "b-radius-0 card-header", attrs: { id: "headingTwo" } },
+      { staticClass: "card-header", attrs: { id: "headingFour" } },
       [
         _c(
           "button",
@@ -57734,16 +57551,12 @@ var staticRenderFns = [
             attrs: {
               type: "button",
               "data-toggle": "collapse",
-              "data-target": "#collapseOne2",
+              "data-target": "#collapseOne4",
               "aria-expanded": "false",
-              "aria-controls": "collapseTwo"
+              "aria-controls": "collapseFour"
             }
           },
-          [
-            _c("h5", { staticClass: "m-0 p-0" }, [
-              _vm._v("Alergias y Padecimientos")
-            ])
-          ]
+          [_c("h3", { staticClass: "m-0 p-0" }, [_vm._v("Comentarios")])]
         )
       ]
     )
@@ -57752,23 +57565,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h6", [
-      _c("b", [
-        _c("label", { attrs: { for: "validationCustom01" } }, [
-          _vm._v("Alergias")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [
-      _c("b", [
-        _c("label", { attrs: { for: "validationCustom01" } }, [
-          _vm._v("Padecimientos")
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre Médico")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Comentario")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Comentario hecho el")])
       ])
     ])
   }
@@ -59801,6 +59604,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba la usuario de la medico",
                       required: ""
                     },
@@ -60160,6 +59964,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba el telefono de la medico",
                       required: ""
                     },
@@ -60803,6 +60608,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba el telefono de la paciente",
                       required: ""
                     },
@@ -61244,6 +61050,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba el telefono de la paciente",
                       required: ""
                     },
@@ -62998,6 +62805,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba el telefono de la secretaria",
                       required: ""
                     },
@@ -63413,6 +63221,7 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
+                      maxlength: "10",
                       placeholder: "Escriba el telefono de la secretaria",
                       required: ""
                     },
@@ -80034,8 +79843,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: routes
 }); //Crea las rutas en modo history
 
-$cookies.set("tipo", document.getElementById('a').value, "0");
-$cookies.set("id", document.getElementById('i').value, "0");
+$cookies.set("tipo", document.getElementById('a').value, "0"); //COOKIE PARA EL TIPO DE USER EN SESIONO
+
+$cookies.set("id", document.getElementById('i').value, "0"); //COOKIE PARA EL ID DEL USARION SESIOn
+
 var vm = new Vue({
   el: "#app",
   router: router
