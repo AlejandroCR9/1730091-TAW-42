@@ -244,6 +244,11 @@
                 }else{
                     if(this.band == "a"){
                         console.log("ERRORR"+this.band)
+                        this.$swal.fire(
+                        '¡Exito!',
+                        'Se atendio al paciente',
+                        'success'
+                        )
                         this.$router.push({name: 'vermiscitas' , params: { mis: 1 }}); //vuelve a renderizar la tabla a la vista de la tabla
                     }
                 }

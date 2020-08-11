@@ -71,8 +71,11 @@
             <div class="main-card mb-3 card">
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <table class="mb-0 table table-borderless">
+                        <table id="mireceta" class="mb-0 table table-borderless">
                             <thead>
+                                <tr>
+                                    <th colspan="6">RECETA MEDICA</th>
+                                </tr>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Precio</th>
@@ -102,6 +105,9 @@
 </template>
 
 <script>
+    //imports para generar PFf
+    import jsPDF from 'jspdf'; 
+    import 'jspdf-autotable';
     export default {
         data(){
             return {
@@ -109,6 +115,7 @@
             receta:{},
             receta2:{},
             medicamentos:{},
+            band: "1"
             }
         },//Se ejecuta una cuando se crea el componente
         created() {
@@ -136,10 +143,17 @@
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/receta/create';
                 console.log(this.receta);
                 this.axios.post(uri, this.receta).then((response) => {
+                    this.$swal.fire(
+                    '¡Exito!',
+                    'Revise la tabla de abajo para ver los medicamentos',
+                    'success'
+                    )
                     this.cargar(); //vuelve a renderizar la tabla a la vista de la tabla
+                    this.band="2";
                 });
             },
             salir(){
+                var name="receta"+this.receta.idCita+".pdf"
                 this.$swal.fire({
                     title: '¿Estás seguro?',
                     text: "Ya no se podra regresar",
@@ -150,7 +164,16 @@
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
                     if (result.value) {
-                        this.$router.push({name: 'vermiscitas' , params: { mis: 1 }}); 
+                        this.$router.push({name: 'vermiscitas' , params: { mis: 1 }});
+                        if(this.band=="2"){
+                            let doc = new jsPDF();
+                            doc.autoTable({ 
+                                theme: 'grid',
+                                html: '#mireceta' 
+                            });
+                            
+                            doc.save(name);
+                        }
                     }
                 })
         

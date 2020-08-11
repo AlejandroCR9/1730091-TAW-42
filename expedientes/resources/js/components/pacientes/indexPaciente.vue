@@ -140,6 +140,6 @@
 </script>
 <style >
 .datable{
-    padding: 32px;
+    padding: 10px;
 }
 </style>

@@ -12,6 +12,11 @@
                             <div class="page-title-subheading">Listado de secretarias registrados en el sistema.
                             </div>
                         </div>
+                        <div class="page-title-actions">
+                        <button type="button" class="btn-shadow mr-3 btn btn-dark" @click.prevent="generarPDF()">
+                            <i class="pe-7s-download"></i>
+                         </button>
+                    </div>  
                     </div>    
                 </div>
             </div>            
@@ -26,6 +31,39 @@
                                 <data-table v-bind="parametersTable1" @actionTriggered="handleAction"/>
                             </div>
                         </div>
+                        <table id="medicos" class="mb-0 table table-borderless" style="display:none;">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th colspan="4">MIS PACIENTES</th>
+                                    <th></th>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Domicilio</th>
+                                    <th>Fecha Nacimiento</th>
+                                    <th>Telefono</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(re) in secretarias" :key="re.id">
+                                    <!--Se recuperan los medicamentos recetados en eesa cita-->
+                                    <td v-text="re.id"></td>
+                                    <td v-text="re.name"></td>
+                                    <td v-text="re.apellidos"></td>
+                                    <td v-text="re.domicilio"></td>
+                                    <td v-text="re.cedula"></td>
+                                    <td v-text="re.telefono"></td>
+                                    <td v-text="re.email"></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
                         <!--<div class="d-block text-center card-footer">
                             <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
                             <button class="btn-wide btn btn-success">Save</button>
@@ -85,6 +123,16 @@
             this.cargar()
         },
         methods: {
+            generarPDF(){
+                var name="listasecretarias.pdf"
+                let doc = new jsPDF("landscape");
+                doc.autoTable({ 
+                    theme: 'grid',
+                    html: '#secre' 
+                });
+                
+                doc.save(name);
+            },
             cargar(){
                 //Url directa del metodo en laravel que me obtiene valores de la bd
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria';

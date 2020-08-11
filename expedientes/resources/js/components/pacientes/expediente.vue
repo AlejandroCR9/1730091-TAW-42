@@ -137,7 +137,7 @@
                             <div data-parent="#accordion" id="collapseOne3" class="collapse">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="mb-0 table">
+                                        <table id="comenta" class="mb-0 table">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -196,9 +196,9 @@
 </template>
 
 <script>
-    
+
     export default {
-        
+        //components: { JsPDFAutotable },
         data(){
             return {
                 //NUestro array donde se almacena los datos
@@ -369,13 +369,14 @@
                     cancelButtonColor: '#d33',
                     
                 })
+               
             },
             aviso(){ //Aviso de no disponible el compartir en caso de que se seleccione a uno mismo
                 this.$swal.fire({
                     title: 'No disponible',
                     text: "Te seleccionaste a ti mismo",
                     icon: 'warning',
-                    showCancelButton: true,
+                    showCancelButton: false,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     
