@@ -11706,7 +11706,7 @@ __webpack_require__.r(__webpack_exports__);
       //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
       var uri = "http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/update/".concat(this.$route.params.id);
       this.axios.post(uri, this.paciente).then(function (response) {
-        _this2.$swal.fire('¡Exito!', 'Se creo correctamente', 'success');
+        _this2.$swal.fire('¡Exito!', 'Se modifco correctamente', 'success');
 
         _this2.$router.push({
           name: 'verpaciente'
@@ -60195,7 +60195,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "fa-file-pdf-o" })]
+              [_c("i", { staticClass: "pe-7s-download" })]
             )
           ])
         ])
@@ -62035,7 +62035,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "fa-file-pdf-o" })]
+              [_c("i", { staticClass: "pe-7s-download" })]
             )
           ])
         ])
@@ -63460,7 +63460,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "fa-file-pdf-o" })]
+              [_c("i", { staticClass: "pe-7s-download" })]
             )
           ])
         ])

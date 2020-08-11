@@ -118,7 +118,7 @@
             this.axios.post(uri, this.paciente).then((response) => {
                 this.$swal.fire(
                         '¡Exito!',
-                        'Se creo correctamente',
+                        'Se modifco correctamente',
                         'success'
                         )
                 this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
