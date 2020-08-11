@@ -76,6 +76,9 @@
 </template>
 
 <script>
+//imports para generar PFf
+    import jsPDF from 'jspdf'; 
+    import 'jspdf-autotable';
     export default {
         data() {
             return {
