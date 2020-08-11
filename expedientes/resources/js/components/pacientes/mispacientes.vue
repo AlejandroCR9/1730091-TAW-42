@@ -34,11 +34,7 @@
                         <table id="mispacientes" class="mb-0 table table-borderless" style="display:none;">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th colspan="4">MIS PACIENTES</th>
-                                    <th></th>
-                                    
+                                    <th colspan="6" style="text-align: center;">MIS PACIENTES</th>                                    
                                 </tr>
                                 <tr>
                                     <th>#</th>

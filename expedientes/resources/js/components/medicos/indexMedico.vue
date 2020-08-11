@@ -38,13 +38,7 @@
                         <table id="medicos" class="mb-0 table table-borderless" style="display:none;">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th colspan="2">LISTADO DE MEDICOS</th>
-                                    <th></th>
-                                    
+                                    <th colspan="6" style="text-align: center;">LISTADO DE MEDICOS</th>                                    
                                 </tr>
                                 <tr>
                                     <th>#</th>

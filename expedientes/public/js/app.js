@@ -11240,12 +11240,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 //imports para generar PFf
 
 
@@ -12686,10 +12680,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 //imports para generar PFf
 
 
@@ -13521,12 +13511,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
 /* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -60533,17 +60517,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th", { attrs: { colspan: "2" } }, [_vm._v("LISTADO DE MEDICOS")]),
-        _vm._v(" "),
-        _c("th")
+        _c(
+          "th",
+          { staticStyle: { "text-align": "center" }, attrs: { colspan: "6" } },
+          [_vm._v("LISTADO DE MEDICOS")]
+        )
       ]),
       _vm._v(" "),
       _c("tr", [
@@ -62377,13 +62355,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th", { attrs: { colspan: "4" } }, [_vm._v("MIS PACIENTES")]),
-        _vm._v(" "),
-        _c("th")
+        _c(
+          "th",
+          { staticStyle: { "text-align": "center" }, attrs: { colspan: "6" } },
+          [_vm._v("MIS PACIENTES")]
+        )
       ]),
       _vm._v(" "),
       _c("tr", [
@@ -63681,27 +63657,23 @@ var render = function() {
     _c("div", { staticClass: "app-main__inner" }, [
       _c("div", { staticClass: "app-page-title" }, [
         _c("div", { staticClass: "page-title-wrapper" }, [
-          _c("div", { staticClass: "page-title-heading" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("div", { staticClass: "page-title-actions" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn-shadow mr-3 btn btn-dark",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.generarPDF()
-                    }
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "page-title-actions" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn-shadow mr-3 btn btn-dark",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.generarPDF()
                   }
-                },
-                [_c("i", { staticClass: "pe-7s-download" })]
-              )
-            ])
+                }
+              },
+              [_c("i", { staticClass: "pe-7s-download" })]
+            )
           ])
         ])
       ]),
@@ -63740,7 +63712,7 @@ var render = function() {
                 attrs: { id: "secretarias" }
               },
               [
-                _vm._m(2),
+                _vm._m(1),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -63784,20 +63756,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "page-title-icon" }, [
-      _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _vm._v("Secretaria\n                        "),
-      _c("div", { staticClass: "page-title-subheading" }, [
-        _vm._v(
-          "Listado de secretarias registrados en el sistema.\n                        "
-        )
+    return _c("div", { staticClass: "page-title-heading" }, [
+      _c("div", { staticClass: "page-title-icon" }, [
+        _c("i", { staticClass: "pe-7s-car icon-gradient bg-mean-fruit" })
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("Secretaria\n                        "),
+        _c("div", { staticClass: "page-title-subheading" }, [
+          _vm._v(
+            "Listado de secretarias registrados en el sistema.\n                        "
+          )
+        ])
       ])
     ])
   },
@@ -63807,19 +63777,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th"),
-        _vm._v(" "),
-        _c("th", { attrs: { colspan: "2" } }, [
-          _vm._v("LISTADO DE SECRETARIAS")
-        ]),
-        _vm._v(" "),
-        _c("th")
+        _c(
+          "th",
+          { staticStyle: { "text-align": "center" }, attrs: { colspan: "6" } },
+          [_vm._v("LISTADO DE SECRETARIAS")]
+        )
       ]),
       _vm._v(" "),
       _c("tr", [

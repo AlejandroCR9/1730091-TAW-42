@@ -11,13 +11,13 @@
                         <div>Secretaria
                             <div class="page-title-subheading">Listado de secretarias registrados en el sistema.
                             </div>
-                        </div>
-                        <div class="page-title-actions">
+                        </div>  
+                    </div> 
+                    <div class="page-title-actions">
                         <button type="button" class="btn-shadow mr-3 btn btn-dark" @click.prevent="generarPDF()">
                             <i class="pe-7s-download"></i>
-                         </button>
-                    </div>  
-                    </div>    
+                        </button>
+                    </div>   
                 </div>
             </div>            
             <div class="row">
@@ -34,13 +34,7 @@
                         <table id="secretarias" class="mb-0 table table-borderless" style="display:none;">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th colspan="2">LISTADO DE SECRETARIAS</th>
-                                    <th></th>
-                                    
+                                    <th colspan="6" style="text-align: center;">LISTADO DE SECRETARIAS</th>
                                 </tr>
                                 <tr>
                                     <th>#</th>
