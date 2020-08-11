@@ -9363,6 +9363,8 @@ __webpack_require__.r(__webpack_exports__);
           if (_this2.band == "a") {
             console.log("ERRORR" + _this2.band);
 
+            _this2.$swal.fire('¡Exito!', 'Se atendio al paciente', 'success');
+
             _this2.$router.push({
               name: 'vermiscitas',
               params: {
@@ -11161,6 +11163,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -11238,6 +11244,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//imports para generar PFf
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11279,7 +11288,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     generarPDF: function generarPDF() {
       var name = "listamedicos.pdf";
-      var doc = new jsPDF("landscape");
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a("landscape");
       doc.autoTable({
         theme: 'grid',
         html: '#medicos'
@@ -13506,6 +13515,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
+/* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -13583,6 +13596,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//imports para generar PFf
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     if (this.$cookies.get("tipo") == 3) {
@@ -13629,7 +13645,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     generarPDF: function generarPDF() {
       var name = "listasecretarias.pdf";
-      var doc = new jsPDF("landscape");
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a("landscape");
       doc.autoTable({
         theme: 'grid',
         html: '#secre'
