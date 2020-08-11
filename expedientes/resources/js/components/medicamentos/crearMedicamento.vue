@@ -68,7 +68,7 @@
     export default {
         mounted() {
           if(this.$cookies.get("tipo")!=1){
-              this.$router.go(-1);
+              this.$router.go(-1);//Eita el acceso de otro usuario
           }
         },data(){
         return {
@@ -76,24 +76,16 @@
           medicamento:{}
         }
     }, methods: {
-      validar(){
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        },
+    
         addMedicamento(){
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
             let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medicamento/create';
             this.axios.post(uri, this.medicamento).then((response) => {
+                this.$swal.fire(
+                        '¡Exito!',
+                        'Se creo correctamente',
+                        'success'
+                        )
                 this.$router.push({name: 'vermedicamento'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }

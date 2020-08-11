@@ -133,6 +133,11 @@
             let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/create';
             console.log(this.paciente);
             this.axios.post(uri, this.paciente).then((response) => {
+                this.$swal.fire(
+                        '¡Exito!',
+                        'Se creo correctamente',
+                        'success'
+                        )
                 this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }

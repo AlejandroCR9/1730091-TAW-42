@@ -116,6 +116,11 @@
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
             let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/update/${this.$route.params.id}`;
             this.axios.post(uri, this.paciente).then((response) => {
+                this.$swal.fire(
+                        '¡Exito!',
+                        'Se creo correctamente',
+                        'success'
+                        )
                 this.$router.push({name: 'verpaciente'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }

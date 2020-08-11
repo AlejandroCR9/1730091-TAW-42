@@ -123,7 +123,7 @@
             this.axios.post(uri, this.medico).then((response) => {
                 this.$swal.fire(
                         '¡Exito!',
-                        'Se creo correctamente',
+                        'Se modifico correctamente',
                         'success'
                         )
                 this.$router.push({name: 'vermedico'}); //vuelve a renderizar la tabla a la vista de la tabla

@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Contraseña</label>
-                                <input type="password" class="form-control" id="contra" placeholder="Escriba la contraseña de la secretaria">
+                                <input type="password" class="form-control" id="contra" placeholder="Escribir contraseña nueva, dejar en blanco sin no hay cambio">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

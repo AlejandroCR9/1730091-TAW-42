@@ -43,14 +43,14 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Telefono</label>
-                                <input type="text" class="form-control" v-model="medico.telefono" placeholder="Escriba el telefono de la medico" required>
+                                <input type="text" class="form-control" maxlength="1'" v-model="medico.telefono" placeholder="Escriba el telefono de la medico" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Usuario</label>
-                                <input type=text class="form-control" maxlength="10" v-model="medico.user" placeholder="Escriba la usuario de la medico" required>
+                                <input type=text class="form-control" v-model="medico.user" placeholder="Escriba la usuario de la medico" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
