@@ -40,7 +40,9 @@
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th colspan="4">MIS PACIENTES</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th colspan="2">LISTADO DE MEDICOS</th>
                                     <th></th>
                                     
                                 </tr>

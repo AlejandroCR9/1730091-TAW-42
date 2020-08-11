@@ -31,12 +31,14 @@
                                 <data-table v-bind="parametersTable1" @actionTriggered="handleAction"/>
                             </div>
                         </div>
-                        <table id="medicos" class="mb-0 table table-borderless" style="display:none;">
+                        <table id="secretarias" class="mb-0 table table-borderless" style="display:none;">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th colspan="4">MIS PACIENTES</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th colspan="2">LISTADO DE SECRETARIAS</th>
                                     <th></th>
                                     
                                 </tr>
@@ -131,7 +133,7 @@
                 let doc = new jsPDF("landscape");
                 doc.autoTable({ 
                     theme: 'grid',
-                    html: '#secre' 
+                    html: '#secretarias' 
                 });
                 
                 doc.save(name);

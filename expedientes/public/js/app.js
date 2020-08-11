@@ -11244,6 +11244,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //imports para generar PFf
 
 
@@ -13596,6 +13598,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //imports para generar PFf
 
 
@@ -13648,7 +13652,7 @@ __webpack_require__.r(__webpack_exports__);
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0___default.a("landscape");
       doc.autoTable({
         theme: 'grid',
-        html: '#secre'
+        html: '#secretarias'
       });
       doc.save(name);
     },
@@ -60533,7 +60537,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th"),
         _vm._v(" "),
-        _c("th", { attrs: { colspan: "4" } }, [_vm._v("MIS PACIENTES")]),
+        _c("th"),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th", { attrs: { colspan: "2" } }, [_vm._v("LISTADO DE MEDICOS")]),
         _vm._v(" "),
         _c("th")
       ]),
@@ -61728,41 +61736,7 @@ var render = function() {
                   },
                   [
                     this.$cookies.get("id") == this.paciente.idmedi
-                      ? _c("div", { staticClass: "card-header" }, [
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("div", { staticClass: "input-group-prepend" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary",
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.hola()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Agregar Alergia")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "input-group-append" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary",
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.hola()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Agregar Padecimiento")]
-                              )
-                            ])
-                          ])
-                        ])
+                      ? _c("div", { staticClass: "card-header" })
                       : _vm._e(),
                     _vm._v(" "),
                     _c(
@@ -63763,7 +63737,7 @@ var render = function() {
               {
                 staticClass: "mb-0 table table-borderless",
                 staticStyle: { display: "none" },
-                attrs: { id: "medicos" }
+                attrs: { id: "secretarias" }
               },
               [
                 _vm._m(2),
@@ -63837,7 +63811,13 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th"),
         _vm._v(" "),
-        _c("th", { attrs: { colspan: "4" } }, [_vm._v("MIS PACIENTES")]),
+        _c("th"),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th", { attrs: { colspan: "2" } }, [
+          _vm._v("LISTADO DE SECRETARIAS")
+        ]),
         _vm._v(" "),
         _c("th")
       ]),

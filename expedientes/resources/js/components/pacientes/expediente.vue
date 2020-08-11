@@ -86,7 +86,7 @@
                             </div>
                             <div data-parent="#accordion" id="collapseOne2" class="collapse">
                                 <div class="card-header" v-if="this.$cookies.get('id') ==this.paciente.idmedi">
-                                   <div class="input-group">
+                                   <!--<div class="input-group">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-primary"  @click.prevent="hola()">Agregar Alergia</button>
                                         </div>
@@ -94,7 +94,7 @@
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" @click.prevent="hola()">Agregar Padecimiento</button>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
                                 <div class="card-body">
                                      <h5><b> <label for="validationCustom01">Alergias</label></b></h5>
