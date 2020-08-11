@@ -105,6 +105,7 @@
                         this.confirmar(data.id); //borra el regisro
                 }
             },
+            //MEtodo que lanza una alerta para asegurarse de la accion del usuer
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Estás seguro?',
@@ -115,7 +116,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                     }).then((result) => {
-                    if (result.value) {
+                    if (result.value) { //Si presiona continuar se borra el registro
                         this.deletePaciente(id)
                         this.$swal.fire(
                         '¡Borrado!',
@@ -125,6 +126,7 @@
                     }
                     })
             },
+            //Envia solcutud para eliminar registro
             deletePaciente(id)
             {
                 //Url directa del metodo en larvave que me obtiene valores de la bd
@@ -132,7 +134,6 @@
                 //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos y quita del array en la posicion especificada
                 this.axios.delete(uri).then(response => {
                     this.cargar();
-               
                 });
             }
         }

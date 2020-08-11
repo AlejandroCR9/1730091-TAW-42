@@ -102,20 +102,7 @@
                 //Se regresa la concatenacion de todo
                 return hoy.getFullYear()+"-"+mes+"-"+(dia)+"T00:00"
             },
-            validar(){
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            },
+            //AÑADE LA CITA
             addCita(){
                 
                 //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
@@ -126,7 +113,17 @@
                     if(response.data=="error"){
                         alert("La fecha y hora ya estan registradas")
                     }else{
-                        this.$router.push({name: 'vercita'}); //vuelve a renderizar la tabla a la vista de la tabla
+                        this.$swal.fire(
+                        '¡Exito!',
+                        'Se creo correctamente',
+                        'success'
+                        )
+                        if(this.$cookies.get("tipo")!=2){ //Si no es medico redirige a tdas las citas
+                            this.$router.push({name: 'vercita'}); //vuelve a renderizar la tabla a la vista de la tabla
+                        }else{
+                            this.$router.push({name: 'vermiscitas' , params: { mis: 1 }}); //vuelve a renderizar la tabla a la vista de la tabla
+                            
+                        }
                     }
                 });
             }

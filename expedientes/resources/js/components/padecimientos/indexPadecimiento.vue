@@ -95,17 +95,17 @@
                     this.padecimientos = response.data;
                 });
             },
+            //controla las acciones en nuestro datatable
             handleAction(actionName, data) {
-                console.log(actionName, data);
-                console.log(data.id)
                 switch(actionName) {
-                case "edit":
+                case "edit": //Si se presiona editar te manda a la vista de edicion
                     this.$router.push({name: 'editpadecimiento', params: { id: data.id } });
                     break;
-                case "delete":
+                case "delete": //Si se preison  borrar se dispara la alerta de confiramcion
                     this.confirmar(data.id);
                 }
             },
+            //Envia alerta de confiramcion antes de borrar un regustro
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Estás seguro?',
@@ -116,7 +116,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
-                if (result.value) {
+                if (result.value) { //Si se preisono continuar se elimina el regsitro
                     this.deletePadecimiento(id)
                     this.$swal.fire(
                     '¡Borrado!',

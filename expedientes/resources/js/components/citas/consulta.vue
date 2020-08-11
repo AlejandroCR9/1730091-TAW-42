@@ -81,70 +81,34 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div id="headingTwo" class="b-radius-0 card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="false" aria-controls="collapseTwo" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Alergias y Padecimientos</h5></button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseOne2" class="collapse">
-                                <div class="card-body">
-                                     <h6><b> <label for="validationCustom01">Alergias</label></b></h6>
-                                    <div class="form-row" v-for="(a) in ale" :key="a.id">
-                                        
-                                        <div >
-                                            <div class="col-md-12 mb-3">
-                                            <label for="validationCustom01">Nombre: </label><i> {{ a.alergian }}</i>
-
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="validationCustom01">Descripción: </label><i>{{ a.alergiades }}</i>
-                                            </div>
-                                        </div>
-                                        <!---->
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <h6><b> <label for="validationCustom01">Padecimientos</label></b></h6>
-                                    <div class="form-row" v-for="(p) in pad" :key="p.id">
-                                        
-                                        <div >
-                                            <div class="col-md-12 mb-3">
-                                             <label for="validationCustom01">Nombre: </label><i> {{ p.padn }}</i>
-
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label for="validationCustom01">Descripción: </label><i>{{ p.paddes }}</i>
-                                            </div>
-                                        </div>
-                                        <!---->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="card">
-                            <div id="headingThree" class="card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseOne3" aria-expanded="false" aria-controls="collapseThree" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Historial Clinico</h5></button>
-                            </div>
-                            <div data-parent="#accordion" id="collapseOne3" class="collapse">
-                                <div class="card-body">3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                    nesciunt
-                                    laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-                                    VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
                             <div id="headingFour" class="card-header">
-                                <button type="button" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="false" aria-controls="collapseFour" class="text-left m-0 p-0 btn btn-link btn-block"><h5 class="m-0 p-0">Comentarios</h5></button>
+                                <button type="button" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="false" aria-controls="collapseFour" class="text-left m-0 p-0 btn btn-link btn-block"><h3 class="m-0 p-0">Comentarios</h3></button>
                             </div>
                             <div data-parent="#accordion" id="collapseOne4" class="collapse">
-                                <div class="card-body">3. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa
-                                    nesciunt
-                                    laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-                                    sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable
-                                    VHS.
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="mb-0 table">
+                                            <thead>
+                                            <tr>
+                                                <th>Nombre Médico</th>
+                                                <th>Comentario</th>
+                                                <th>Comentario hecho el</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(c) in comentariosexpediente" :key="c.id">
+                                                    <!--Se recuperan los  comentarios de este expediene-->
+                                                    <td v-text="c.nombre + ' '+ c.apellidos"></td>
+                                                    <td v-text="c.comentario"></td>
+                                                    <td v-text="c.fecha"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
+                       
                     </div>
                     
                 </div>
@@ -163,6 +127,7 @@
           paciente:{},
           consulta:{},
           cita:{},
+          comentariosexpediente:{}, //carga todos loc comentarios que le han hecho al paciente
           ale:{}, //alergias
           pad:{}, //padecimientos
           band:"a"
@@ -205,6 +170,15 @@
           this.axios.get(uri).then(response => {
              this.pad = response.data;
           });
+
+            //SE TRAE LOS COMENTARIOS QUE HA TENIDO EL EXPEDIENTE
+            //Url directa del metodo en laravel que me obtiene valores de la bd
+            uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/paciente/comentarios/${this.$route.params.id}`;
+            //let uri = 'http://localhost/1730091-TAW-42/expedientes/public/api/medico';
+            //Metodo que envia una solicitud a la url especificada y recibe una respuesta que se guarda en el arreglo productos
+            this.axios.get(uri).then(response => {
+                this.comentariosexpediente = response.data;
+            });
 
           
     }, methods: {
@@ -254,6 +228,7 @@
                 }
             });
         },
+        //Metodo que pregunta si desea ir a recetar al paciente
         recetar(id){
             this.$swal.fire({
                 title: '¿Estás seguro?',
@@ -264,9 +239,8 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Continuar'
             }).then((result) => {
-                if (result.value) {
+                if (result.value) { //Si se presiona continuar se marca como atendiada la consulta y redireige a la ventana
                     this.band="b"
-                    console.log("ER"+this.band)
                     this.addConsulta()
                     this.$router.push({name: 'receta' , params: { idcita: id }});
                 }

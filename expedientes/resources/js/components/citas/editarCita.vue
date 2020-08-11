@@ -65,8 +65,8 @@
         data(){
             return {
                 //NUestro array donde se almacena los datos
-            cita:{},
-            pacientes:{}
+            cita:{}, //DAtos de la cita a modifica
+            pacientes:{} //Lstado de pacientes
             }
         }, 
         created() {
@@ -108,29 +108,24 @@
                 }
                 //Se regresa la concatenacion de todo
                 return hoy.getFullYear()+"-"+mes+"-"+(dia)+"T00:00"
-            },
-            validar(){
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            },           
+            },          
             updateCita(){
                 //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
                 let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/cita/update/${this.$route.params.id}`;
                 this.axios.post(uri, this.cita).then((response) => {
                     //Si ya esciste la fecha y hora
                     if(response.data=="error"){
-                        alert("La fecha y hora ya estan registradas")
+                        this.$swal.fire(
+                        '¡Error!',
+                        'La fecha ya esta seleccionada',
+                        'warning'
+                        )
                     }else{
+                        this.$swal.fire(
+                        '¡Exito!',
+                        'Se modifico correctamente',
+                        'success'
+                        )
                         this.$router.push({name: 'vercita'}); //vuelve a renderizar la tabla a la vista de la tabla
                     }
                 });

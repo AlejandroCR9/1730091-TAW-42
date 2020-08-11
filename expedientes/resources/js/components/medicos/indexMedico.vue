@@ -15,7 +15,7 @@
                     </div>
                     <div class="page-title-actions">
                         <button type="button" class="btn-shadow mr-3 btn btn-dark" @click.prevent="generarPDF()">
-                            <i class="pe-7s-download"></i>
+                            <i class="fa-file-pdf-o"></i>
                          </button>
                     </div>      
                 </div>
@@ -117,9 +117,10 @@
             this.cargar(); //carga la info de la bd
         },
         methods: {
+            //Genera el pdf de la tabla de medicos
             generarPDF(){
-                var name="listamedicos.pdf"
-                let doc = new jsPDF("landscape");
+                var name="listamedicos.pdf" //Nombre archivo
+                let doc = new jsPDF("landscape"); //Horizonatl
                 doc.autoTable({ 
                     theme: 'grid',
                     html: '#medicos' 
@@ -148,6 +149,7 @@
                         this.confirmar(data.id); //borra el regisro
                 }
             },
+            //Confirma la accion de borrado antes de elimianr
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Estás seguro?',
@@ -158,7 +160,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
-                if (result.value) {
+                if (result.value) { //Si le dio en confrimar se elimina
                     this.deleteMedico(id)
                     this.$swal.fire(
                     '¡Borrado!',

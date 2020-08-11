@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Usuario</label>
-                                <input type=text class="form-control" v-model="medico.user" placeholder="Escriba la usuario de la medico" required>
+                                <input type=text class="form-control" maxlength="10" v-model="medico.user" placeholder="Escriba la usuario de la medico" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -96,33 +96,23 @@
     export default {
         mounted() {
           if(this.$cookies.get("tipo")!=1){
-              this.$router.go(-1);
+              this.$router.go(-1); //Eviga el acceso de otros users
           }
         },data(){
         return {
             //NUestro array donde se almacena los datos
-          medico:{},
-          ultimo:{}
+          medico:{},//Info del medico
         }
     }, methods: {
-      validar(){
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        },
         addMedico(){
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
             let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/medico/create';
             this.axios.post(uri, this.medico).then((response) => {
+                this.$swal.fire(
+                    '¡Exito!',
+                    'Se creo correctamente',
+                    'success'
+                    )
                 this.$router.push({name: 'vermedico'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }

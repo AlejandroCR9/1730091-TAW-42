@@ -60412,7 +60412,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "pe-7s-download" })]
+              [_c("i", { staticClass: "fa-file-pdf-o" })]
             )
           ])
         ])
@@ -62250,7 +62250,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "pe-7s-download" })]
+              [_c("i", { staticClass: "fa-file-pdf-o" })]
             )
           ])
         ])
@@ -63672,7 +63672,7 @@ var render = function() {
                   }
                 }
               },
-              [_c("i", { staticClass: "pe-7s-download" })]
+              [_c("i", { staticClass: "fa-file-pdf-o" })]
             )
           ])
         ])

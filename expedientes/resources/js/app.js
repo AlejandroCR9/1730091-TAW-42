@@ -245,8 +245,8 @@ const routes = [
 
 const router = new VueRouter({ mode: 'history', routes: routes}); //Crea las rutas en modo history
 
-$cookies.set("tipo",document.getElementById('a').value,"0");
-$cookies.set("id",document.getElementById('i').value,"0");
+$cookies.set("tipo",document.getElementById('a').value,"0"); //COOKIE PARA EL TIPO DE USER EN SESIONO
+$cookies.set("id",document.getElementById('i').value,"0"); //COOKIE PARA EL ID DEL USARION SESIOn
 
 var vm = new Vue({
     el: "#app",

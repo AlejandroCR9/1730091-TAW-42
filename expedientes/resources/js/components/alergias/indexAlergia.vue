@@ -94,17 +94,19 @@
                     this.alergias = response.data;
                 });
             },
+            //Metodo que recibe que accion se esta haciendo con el registro
             handleAction(actionName, data) {
                 console.log(actionName, data);
                 console.log(data.id)
                 switch(actionName) {
-                case "edit":
+                case "edit": //Si es editar redirige a la vista
                     this.$router.push({name: 'editalergia', params: { id: data.id } });
                     break;
-                case "delete":
+                case "delete": //Si es borrar pide confiramcion antes de hhacerlo
                     this.confirmar(data.id);
                 }
             },
+            //Funcion que desplega una alerta para verigicar si esta seguro de su accion
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Estás seguro?',
@@ -115,7 +117,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                     }).then((result) => {
-                    if (result.value) {
+                    if (result.value) { //Si se presiono continuar se elimina
                         this.deleteAlergia(id)
                         this.$swal.fire(
                         '¡Borrado!',
@@ -138,7 +140,7 @@
   }
 </script>
 <style >
-.datable{
-    padding: 32px;
+.datable{ 
+    padding: 10px;
 }
 </style>

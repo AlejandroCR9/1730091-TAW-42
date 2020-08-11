@@ -97,6 +97,7 @@
                         break;
                 }
             },
+            //Confirma la accionn de borrado de registo del usuario
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Cancelar compartido?',
@@ -107,7 +108,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
-                    if (result.value) {
+                    if (result.value) { //Si se preciono continuar se elimina
                         this.deletePaciente(id)
                         this.$swal.fire(
                         '¡Borrado!',

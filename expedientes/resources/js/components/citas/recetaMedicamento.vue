@@ -112,10 +112,10 @@
         data(){
             return {
                 //NUestro array donde se almacena los datos
-            receta:{},
-            receta2:{},
-            medicamentos:{},
-            band: "1"
+            receta:{}, //Datos a gurardad
+            receta2:{}, //listado de medicamentos en rceta
+            medicamentos:{}, //Listado de medicamentos
+            band: "1" //Indicador si hay medicamentos en la tabla
             }
         },//Se ejecuta una cuando se crea el componente
         created() {
@@ -138,6 +138,7 @@
                     this.receta2 = response.data;
                 });
             },
+            //Añade nuevos medicamentos a la tabla de la receta
             addMedi(){
                 //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
                 let uri = 'http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/receta/create';
@@ -163,16 +164,15 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
-                    if (result.value) {
+                    if (result.value) { //Si se termino de recetar
                         this.$router.push({name: 'vermiscitas' , params: { mis: 1 }});
-                        if(this.band=="2"){
+                        if(this.band=="2"){ //Verifica que haya medicamentos en la abla
                             let doc = new jsPDF();
                             doc.autoTable({ 
                                 theme: 'grid',
                                 html: '#mireceta' 
                             });
-                            
-                            doc.save(name);
+                            doc.save(name); //Genera el pdf
                         }
                     }
                 })

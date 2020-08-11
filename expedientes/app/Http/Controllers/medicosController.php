@@ -16,8 +16,7 @@ class medicosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        
+    {  
         $medicos = User::where("tipo","=","2")->get(); //Trae todos los registro de la bd
         return $medicos; //Regresa esos registros
     }
@@ -31,13 +30,13 @@ class medicosController extends Controller
      */
     protected function create(Request $request)
     {   
-        $user= new User(); //Crea un nuevo medicamento de la tabla
+        $user= new User(); //Crea un nuevo medico de la tabla
         //Recupera los datos del request
         $user->name = $request->name;
         $user->apellidos = $request->apellidos;
         $user->cedula = $request->cedula;
-        $user->domicilio = $request->domicilio;
-        $user->tipo = 2;
+        $user->domicilio= $request->domicilio;
+        $user->tipo = 2;//MEDICO 
         $user->telefono = $request->telefono;
         $user->user = $request->user;
         $user->email=  $request->email;
@@ -61,7 +60,7 @@ class medicosController extends Controller
         $user->apellidos = $request->apellidos;
         $user->cedula = $request->cedula;
         $user->domicilio = $request->domicilio;
-        $user->tipo = 2;
+        $user->tipo = 2; //MEDICO
         $user->telefono = $request->telefono;
         $user->user = $request->user;
         $user->email=  $request->email;
@@ -95,21 +94,11 @@ class medicosController extends Controller
     protected function create2(Request $request)
     {   
         $user= new User(); //Crea un nuevo medicamento de la tabla
-        //Recupera los datos del request
-        /*$user->name = $data['name'];
-        $user->apellidos = $data['apellidos'];
-        $user->cedula = $data['cedula'];
-        $user->domicilio = $data['domicilio'];
-        $user->tipo = 3;
-        $user->telefono = $data['telefono'];
-        $user->user = $data['user'];
-        $user->email=  $data['email'];
-        $user->password = Hash::make($data['password']);*/
         $user->name = $request->name;
         $user->apellidos = $request->apellidos;
         $user->cedula = $request->cedula;
         $user->domicilio = $request->domicilio;
-        $user->tipo = 3;
+        $user->tipo = 3; //SECRETARIA
         $user->telefono = $request->telefono;
         $user->user = $request->user;
         $user->email=  $request->email;
@@ -147,7 +136,7 @@ class medicosController extends Controller
         $user->apellidos = $request->apellidos;
         $user->cedula = $request->cedula;
         $user->domicilio = $request->domicilio;
-        $user->tipo = 3;
+        $user->tipo = 3; //SEcrtaria
         $user->telefono = $request->telefono;
         $user->user = $request->user;
         $user->email=  $request->email;

@@ -54,8 +54,8 @@
     export default {
         mounted() {
           if(this.$cookies.get("tipo")!=1){
-              this.$router.go(-1);
-          }
+              this.$router.go(-1);//Evita el acceso de otro usuario que no sea el admin
+          } 
         },data(){
             return {
                 //NUestro array donde se almacena los datos
@@ -63,30 +63,22 @@
             }
         }, 
         created() {
+            //Solitud para ver que info es la que se eidtara
             let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/edit/${this.$route.params.id}`;
             this.axios.get(uri).then((response) => {
                 this.alergia = response.data;
             });
         },
         methods: {
-        validar(){
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            },
             updateAlergia(){
                 //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
                 let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/alergia/update/${this.$route.params.id}`;
                 this.axios.post(uri, this.alergia).then((response) => {
+                    this.$swal.fire(
+                    '¡Exito!',
+                    'Se modifico correctamente',
+                    'success'
+                    )
                     this.$router.push({name: 'veralergia'}); //vuelve a renderizar la tabla a la vista de la tabla
                 });
             }

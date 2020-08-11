@@ -16,9 +16,7 @@ class citasController extends Controller
      */
     public function index()
     {
-        $citas = Cita::join('expedientes', 'expedientes.id', '=', 'citas.idExpediente')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->orderBy('estadoCita','ASC')->orderBy('fechaAsignada','ASC')->get(); //Trae todos los registro de la bd
-        
-        
+        $citas = Cita::join('expedientes', 'expedientes.id', '=', 'citas.idExpediente')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->orderBy('estadoCita','ASC')->orderBy('fechaAsignada','ASC')->get(); //Trae la informacion de la cita
         return $citas; //Regresa esos registros
     }
 
@@ -28,7 +26,7 @@ class citasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function miscitas($id){
-        $citas=Cita::join('expedientes', 'citas.idExpediente', '=', 'expedientes.id')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->where("expedientes.idMedico",$id)->where("estadoCita",1)->orderBy('fechaAsignada','ASC')->get();
+        $citas=Cita::join('expedientes', 'citas.idExpediente', '=', 'expedientes.id')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->where("expedientes.idMedico",$id)->where("estadoCita",1)->orderBy('fechaAsignada','ASC')->get(); //Trae las citas especificas de cierto doctor y que estas no hayan sido atendidads
 
         return $citas; //Regresa esos registros
     }
@@ -39,7 +37,7 @@ class citasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function miscitas2($id){
-        $citas=Cita::join('expedientes', 'citas.idExpediente', '=', 'expedientes.id')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->where("expedientes.idMedico",$id)->where("estadoCita",2)->orderBy('fechaAsignada','ASC')->get();
+        $citas=Cita::join('expedientes', 'citas.idExpediente', '=', 'expedientes.id')->join('pacientes', 'pacientes.id', '=', 'expedientes.idPaciente')->select('citas.id','citas.estadoCita AS estado','citas.observaciones','citas.fechaAsignada AS fecha', 'pacientes.nombre','pacientes.apellidos','pacientes.telefono','pacientes.id As idPaciente')->where("expedientes.idMedico",$id)->where("estadoCita",2)->orderBy('fechaAsignada','ASC')->get(); //Trae las citas del doctor espesifico y que estas hayan sido atendidas
 
         return $citas; //Regresa esos registros
     }
@@ -55,7 +53,7 @@ class citasController extends Controller
     {
         $cita = new Cita(); //Crea un nuevo cita de la tabla
         //Recupera los datos del request
-        if(Cita::where('fechaAsignada', $request->fechaAsignada)->value('fechaAsignada')){
+        if(Cita::where('fechaAsignada', $request->fechaAsignada)->value('fechaAsignada')){ //En caso de que ya se haya tomado la fecha y la hora 
            return "error";
         } else {
             $expediente=Expediente::where('idPaciente',$request->idPaciente)->value('id');
@@ -94,12 +92,13 @@ class citasController extends Controller
         
         $cita = Cita::findOrFail($id); //Busca primero el cita
         //Obtiene los datos del request y actualiza los nuevos datos
+        //Se verifica que no se empalemn las fechas de las citas
         if(Cita::where('fechaAsignada', $request->fechaAsignada)->value('fechaAsignada') && $request->estadoCita==1){
             return "error";
          } else {
-             if($request->estadoCita==1)
+            if($request->estadoCita==1) //Si la cita no esta atendiad se busca el id del expediente
                 $expediente=Expediente::where('idPaciente',$request->idPaciente)->value('id');
-            else{
+            else{ //Se asigna el id del expediete 
                 $expediente=$request->idExpediente;
                 $cita->estadoCita=$request->estadoCita;
             }
@@ -134,7 +133,8 @@ class citasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function recetasCitas($id){
-        $citas=Cita::join('citamedicamentos', 'citamedicamentos.idCita', '=', 'citas.id')->join('medicamentos', 'citamedicamentos.idMedicamento', '=', 'medicamentos.id')->select('medicamentos.nombre AS nombremedicamento','medicamentos.percio','citamedicamentos.dosis','citamedicamentos.id','citamedicamentos.frecuencia',	'citamedicamentos.viaAdministracion','citamedicamentos.duracion')->where("citamedicamentos.idCita",$id)->get();
+        //Se traelos medicamentos de una cita en especifico
+        $citas=Cita::join('citamedicamentos', 'citamedicamentos.idCita', '=', 'citas.id')->join('medicamentos', 'citamedicamentos.idMedicamento', '=', 'medicamentos.id')->select('medicamentos.nombre AS nombremedicamento','medicamentos.percio','citamedicamentos.dosis','citamedicamentos.id','citamedicamentos.frecuencia',	'citamedicamentos.viaAdministracion','citamedicamentos.duracion')->where("citamedicamentos.idCita",$id)->get(); 
 
         return $citas; //Regresa esos registros
     }
@@ -146,7 +146,7 @@ class citasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardarReceta(Request $request)
-    {
+    {   
         $cita = new CitasMedicamento(); //Crea un nuevo cita de la tabla
         $cita->idMedicamento = $request->idMedicamento;
         $cita->idCita = $request->idCita; 

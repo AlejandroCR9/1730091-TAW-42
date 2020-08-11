@@ -105,6 +105,7 @@
                         this.confirmar(data.id); //borra el regisro
                 }
             },
+            //Acciona alerta antes de eliminar un registro 
             confirmar(id){
                 this.$swal.fire({
                     title: '¿Estás seguro?',
@@ -115,7 +116,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Continuar'
                 }).then((result) => {
-                if (result.value) {
+                if (result.value) { //Si se presiiona continunar se elimina
                     this.deletePaciente(id)
                     this.$swal.fire(
                     '¡Borrado!',

@@ -15,7 +15,7 @@
                     </div> 
                     <div class="page-title-actions">
                         <button type="button" class="btn-shadow mr-3 btn btn-dark" @click.prevent="generarPDF()">
-                            <i class="pe-7s-download"></i>
+                            <i class="fa-file-pdf-o"></i>
                         </button>
                     </div>   
                 </div>

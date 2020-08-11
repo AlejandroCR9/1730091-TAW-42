@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="validationCustom01">Telefono</label>
-                                <input type="text" class="form-control" v-model="secretaria.telefono" placeholder="Escriba el telefono de la secretaria" required>
+                                <input type="text" class="form-control" maxlength="10" v-model="secretaria.telefono" placeholder="Escriba el telefono de la secretaria" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -102,7 +102,6 @@
         return {
             //NUestro array donde se almacena los datos
           secretaria:{},
-          ultimo:{}
         }
     },//Se ejecuta una cuando se crea el componente
       created() {
@@ -113,20 +112,6 @@
           });
           
     }, methods: {
-      validar(){
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        },
         updateSecretaria(){
              //Para saber si se cambio la contra, si no se deja igual
             if(document.getElementById("contra").value!=""){
@@ -135,6 +120,11 @@
             //Url directa del metodo en laravel en el cual se manda el array con los datos almacenados mediante una solicitud post 
             let uri = `http://161.35.13.32/Alex/1730091-TAW-42/expedientes/public/api/secretaria/update/${this.$route.params.id}`;
             this.axios.post(uri, this.secretaria).then((response) => {
+                this.$swal.fire(
+                        '¡Exito!',
+                        'Se modifico correctamente',
+                        'success'
+                        )
                 this.$router.push({name: 'versecretaria'}); //vuelve a renderizar la tabla a la vista de la tabla
             });
         }
